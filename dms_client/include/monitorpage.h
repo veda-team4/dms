@@ -9,6 +9,8 @@
 #include "mainwindow.h"
 #include "led.h"
 #include "speaker.h"
+#include "gps.h"
+#include "osrm.h"
 
 extern bool gestureLock;
 
@@ -48,6 +50,11 @@ private:
 
   Led* led;
   Speaker* speaker;
+  Gps* gps;
+  Osrm* osrm;
+  double latitude, longitude;
+  bool navigating = false;
+  void navigation(bool on);
 };
 
 #endif // MONITORPAGE_H

@@ -60,9 +60,18 @@ endif()
 # OpenSSL
 find_package(OpenSSL REQUIRED)
 
+# Curl
+find_package(CURL REQUIRED)
+
 target_include_directories(dms_client PRIVATE include)
 
-target_link_libraries(dms_client PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network OpenSSL::SSL OpenSSL::Crypto)
+target_link_libraries(dms_client PRIVATE
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Network
+    OpenSSL::SSL
+    OpenSSL::Crypto
+    CURL::libcurl
+)
 
 set_target_properties(dms_client PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

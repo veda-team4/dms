@@ -2,5 +2,7 @@
   <qresource prefix="/images">
     <file>image/lock.png</file>
     <file>image/car.png</file>
+    <file>image/from.png</file>
+    <file>image/to.png</file>
   </qresource>
 </RCC>

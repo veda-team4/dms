@@ -9,7 +9,7 @@
 #include <cmath>
 
 Gps::Gps(const std::string& device, int baudrate) : device(device), baudrate(baudrate), fd(-1) {
-    if(!init()) {
+    if (!init()) {
         std::cerr << "Failed to initialize Gps on device: " << device << std::endl;
     }
 }
@@ -23,16 +23,16 @@ bool Gps::init() {
 
     //termios 설정을 위한 baudrate 변환
     speed_t baud_rate;
-    switch(baudrate) {
+    switch (baudrate) {
     case 9600: baud_rate = B9600; break;
     case 19200: baud_rate = B19200; break;
     case 115200: baud_rate = B115200; break;
-    default: 
+    default:
         std::cerr << "Unsupported baud rate: " << baudrate << std::endl;
         close(fd);
         return false;
     }
-    
+
     //termios 설정
     struct termios options;
     tcgetattr(fd, &options);
@@ -41,7 +41,7 @@ bool Gps::init() {
 
     cfmakeraw(&options);
 
-    if(tcsetattr(fd, TCSANOW, &options) < 0){
+    if (tcsetattr(fd, TCSANOW, &options) < 0) {
         perror("tcsetattr");
         return false;
     }
@@ -53,7 +53,7 @@ bool Gps::update() {
     FD_ZERO(&readfds);
     FD_SET(fd, &readfds);
 
-    struct timeval timeout = {1, 0};
+    struct timeval timeout = { 1, 0 };
     int ret = select(fd + 1, &readfds, nullptr, nullptr, &timeout);
     if (ret > 0 && FD_ISSET(fd, &readfds)) {
         std::string buffer;
@@ -80,7 +80,7 @@ void splitCSV(const std::string& line, std::vector<std::string>& fields) {
     std::stringstream ss(line);
     std::string token;
 
-    while(std::getline(ss, token, ',')){
+    while (std::getline(ss, token, ',')) {
         fields.push_back(token);
     }
 }
@@ -90,8 +90,8 @@ double Gps::convertToDecimal(const std::string& raw, char direction) {
     double degrees = std::floor(val / 100);
     double minutes = val - (degrees * 100);
     double decimal = degrees + (minutes / 60.0);
-    if(direction == 'S' || direction == 'W') decimal = -decimal;
-    return decimal; 
+    if (direction == 'S' || direction == 'W') decimal = -decimal;
+    return decimal;
 }
 
 bool Gps::parseNMEA(const std::string& sentence) {
@@ -106,31 +106,31 @@ bool Gps::parseNMEA(const std::string& sentence) {
     splitCSV(sentence, fields);
 
     int latIdx, latDirIdx, lonIdx, lonDirIdx;
-    if(fields[0].find("GGA") != std::string::npos){
+    if (fields[0].find("GGA") != std::string::npos) {
         latIdx = 2;
         latDirIdx = 3;
         lonIdx = 4;
         lonDirIdx = 5;
     }
-    else if(fields[0].find("RMC") != std::string::npos){
+    else if (fields[0].find("RMC") != std::string::npos) {
         latIdx = 3;
         latDirIdx = 4;
         lonIdx = 5;
         lonDirIdx = 6;
     }
-    else if(fields[0].find("GLL") != std::string::npos){
-        latIdx = 1; 
-        latDirIdx = 2; 
-        lonIdx = 3; 
+    else if (fields[0].find("GLL") != std::string::npos) {
+        latIdx = 1;
+        latDirIdx = 2;
+        lonIdx = 3;
         lonDirIdx = 4;
     }
-    else{
+    else {
         return false;
     }
 
     // 필드 개수가 우리가 필요로 하는 인덱스보다 적으면 실패
-    if(fields.size() <= std::max(std::max(latIdx, latDirIdx),
-                       std::max(lonIdx, lonDirIdx)))
+    if (fields.size() <= std::max(std::max(latIdx, latDirIdx),
+        std::max(lonIdx, lonDirIdx)))
     {
         return false;
     }
@@ -142,10 +142,10 @@ bool Gps::parseNMEA(const std::string& sentence) {
 }
 
 bool Gps::cur_location(double* _latitute, double* _longitude) {
-    if(latitude == -1 && longitude == -1) {
+    update();
+    if (latitude == -1 && longitude == -1) {
         return false;
     }
-    update();
     *_latitute = latitude;
     *_longitude = longitude;
     return true;

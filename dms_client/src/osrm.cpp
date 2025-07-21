@@ -13,7 +13,7 @@ Osrm::Osrm(const std::string& csvPath) {
   loadData(csvPath);
 }
 
-std::vector<restArea> Osrm::getRestAreas(double currLat, double currLon, int topN) {
+restArea Osrm::getRestAreas(double currLat, double currLon, int topN) {
   for (auto& area : allAreas) {
     area.straight_distance = haversine(currLat, currLon, area.latitude, area.longitude);
   }
@@ -32,12 +32,16 @@ std::vector<restArea> Osrm::getRestAreas(double currLat, double currLon, int top
     return a.route_duration < b.route_duration;
     });
 
+  return { candidates[0].name, candidates[0].route_distance, candidates[0].route_duration, static_cast<bool>(candidates[0].isRestArea) };
+
+  /*
   std::vector<restArea> result;
   for (int i = 0; i < std::min(topN, (int)candidates.size()); ++i) {
     const auto& c = candidates[i];
     result.push_back({ c.name, c.route_distance, c.route_duration, static_cast<bool>(c.isRestArea) });
   }
   return result;
+  */
 }
 
 void Osrm::loadData(const std::string& csvPath) {

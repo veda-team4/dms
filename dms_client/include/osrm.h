@@ -13,8 +13,8 @@ struct restArea {
 
 class Osrm {
 public:
-  Osrm(const std::string& csvPath = "rest_areas.csv");
-  std::vector<restArea> getRestAreas(double currLat, double currLon, int topN = 3);
+  Osrm(const std::string& csvPath = "./../../dms_client/resources/rest_areas.csv");
+  restArea getRestAreas(double currLat, double currLon, int topN = 3);
 
 private:
   struct InternalArea {
