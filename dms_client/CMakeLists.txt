@@ -27,6 +27,9 @@ set(PROJECT_SOURCES
         src/led.cpp include/led.h
         src/speaker.cpp include/speaker.h
         src/bluetooth.cpp include/bluetooth.h
+        src/gps.cpp include/gps.h
+        src/osrm.cpp include/osrm.h
+        include/json.hpp
         include/protocols.h
         resources/resources.qrc
 )
