@@ -131,12 +131,23 @@ bool MainWindow::eventFilter(QObject* obj, QEvent* event) {
 
 void MainWindow::updateLock() {
   gestureLock = !gestureLock;
-  ui->lockLabel->setVisible(gestureLock);
+  gestureImage(gestureLock);
 }
 
 bool MainWindow::isLock() {
   return gestureLock;
 }
+
+
+void MainWindow::gestureImage(bool lock) {
+    if (lock) {
+        ui->lockLabel->setPixmap(QPixmap(":/images/image/gesture2.png"));
+    }
+    else {
+        ui->lockLabel->setPixmap(QPixmap(":/images/image/gesture.png"));
+    }
+}
+
 
 void MainWindow::showStartPage() {
   if (auto prev = qobject_cast<BasePage*>(ui->stackedWidget->currentWidget())) {
