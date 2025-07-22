@@ -20,5 +20,7 @@
     <file>image/check_box.png</file>
     <file>image/empty_check_box.png</file>
     <file>image/smallcar.png</file>
+    <file>image/gesture.png</file>
+    <file>image/gesture2.png</file>
   </qresource>
 </RCC>
