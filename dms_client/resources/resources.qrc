@@ -12,5 +12,13 @@
     <file>image/monitoring_mint.png</file>
     <file>image/report.png</file>
     <file>image/report_mint.png</file>
+    <file>image/lock2.png</file>
+    <file>image/sadface.png</file>
+    <file>image/arrow_left.png</file>
+    <file>image/arrow_right.png</file>
+    <file>image/smileface.png</file>
+    <file>image/check_box.png</file>
+    <file>image/empty_check_box.png</file>
+    <file>image/smallcar.png</file>
   </qresource>
 </RCC>
