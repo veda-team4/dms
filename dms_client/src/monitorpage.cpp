@@ -32,19 +32,19 @@ MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* 
 
   ui->naviWidget->hide();
 
-  led = new Led();
-  speaker = new Speaker("plughw:3,0");
-  gps = new Gps();
-  osrm = new Osrm();
+  // led = new Led();
+  // speaker = new Speaker("plughw:3,0");
+  // gps = new Gps();
+  // osrm = new Osrm();
 }
 
 MonitorPage::~MonitorPage()
 {
-  led->led_off();
-  delete led;
-  delete speaker;
-  delete gps;
-  delete osrm;
+  // led->led_off();
+  // delete led;
+  // delete speaker;
+  // delete gps;
+  // delete osrm;
   delete wakeupTimer;
   delete ui;
 }
@@ -55,20 +55,21 @@ void MonitorPage::wakeupUI(bool on) {
     ui->wakeupLabel->show();
     ui->wakeupCloseButton->show();
     wakeupTimer->start(300);
-    led->led_on();
-    speaker->play("tts.wav");
+    // led->led_on();
+    // speaker->play("tts.wav");
   }
   else if (!on && wakeupFlashing) {
     wakeupFlashing = false;
     wakeupTimer->stop();
     ui->wakeupLabel->hide();
     ui->wakeupCloseButton->hide();
-    led->led_off();
+    // led->led_off();
     navigation(true);
   }
 }
 
 void MonitorPage::navigation(bool on) {
+  /*
     if (on && !navigating) {
         while (!gps->cur_location(&latitude, &longitude)) {
           usleep(100);
@@ -90,6 +91,7 @@ void MonitorPage::navigation(bool on) {
         ui->naviWidget->hide();
         navigating = false;
     }
+  */
 }
 
 void MonitorPage::activate() {
