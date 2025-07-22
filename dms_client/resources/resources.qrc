@@ -4,5 +4,9 @@
     <file>image/car.png</file>
     <file>image/from.png</file>
     <file>image/to.png</file>
+    <file>image/home.png</file>
+    <file>image/camset.png</file>
+    <file>image/monitoring.png</file>
+    <file>image/report.png</file>
   </qresource>
 </RCC>
