@@ -10,3 +10,7 @@ sudo reboot
 # 상단바 제거 
 ~/.config/wf-panel-pi.ini
 autohide=true
+
+# osrm 요청에 필요한 curl
+apt install curl
+apt install libcurl4-openssl-dev
