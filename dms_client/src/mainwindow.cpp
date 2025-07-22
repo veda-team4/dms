@@ -84,6 +84,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
 
   ui->stackedWidget->setCurrentWidget(startPage);
   startPage->activate();
+  focusMenu(0);
 }
 
 MainWindow::~MainWindow() {
@@ -143,6 +144,7 @@ void MainWindow::showStartPage() {
   }
   ui->stackedWidget->setCurrentWidget(startPage);
   startPage->activate();
+  focusMenu(0);
 }
 
 void MainWindow::showCamSetPage() {
@@ -151,6 +153,7 @@ void MainWindow::showCamSetPage() {
   }
   ui->stackedWidget->setCurrentWidget(camSetPage);
   camSetPage->activate();
+  focusMenu(1);
 }
 
 void MainWindow::showCalibratePage() {
@@ -159,6 +162,7 @@ void MainWindow::showCalibratePage() {
   }
   ui->stackedWidget->setCurrentWidget(calibratePage);
   calibratePage->activate();
+  focusMenu(1);
 }
 
 void MainWindow::showMonitorPage() {
@@ -167,4 +171,43 @@ void MainWindow::showMonitorPage() {
   }
   ui->stackedWidget->setCurrentWidget(monitorPage);
   monitorPage->activate();
+  focusMenu(2);
+}
+
+void MainWindow::focusMenu(int idx) {
+  if(idx == 0) {
+    ui->homeLabel->setStyleSheet("background-color: #242B32; border-bottom: 1px solid #242B32;");
+    ui->homeImage->setPixmap(QPixmap(":/images/image/home_mint.png"));
+  }
+  else {
+    ui->homeLabel->setStyleSheet("background-color: #1B2128; border-bottom: 1px solid #242B32;");
+    ui->homeImage->setPixmap(QPixmap(":/images/image/home.png"));
+  }
+
+  if(idx == 1) {
+    ui->camsetLabel->setStyleSheet("background-color: #242B32; border-bottom: 1px solid #242B32;");
+    ui->camsetImage->setPixmap(QPixmap(":/images/image/camset_mint.png"));
+  }
+  else {
+    ui->camsetLabel->setStyleSheet("background-color: #1B2128; border-bottom: 1px solid #242B32;");
+    ui->camsetImage->setPixmap(QPixmap(":/images/image/camset.png"));
+  }
+
+  if(idx == 2) {
+    ui->monitoringLabel->setStyleSheet("background-color: #242B32; border-bottom: 1px solid #242B32;");
+    ui->monitoringImage->setPixmap(QPixmap(":/images/image/monitoring_mint.png"));
+  }
+  else {
+    ui->monitoringLabel->setStyleSheet("background-color: #1B2128; border-bottom: 1px solid #242B32;");
+    ui->monitoringImage->setPixmap(QPixmap(":/images/image/monitoring.png"));
+  }
+
+  if(idx == 3) {
+    ui->reportLabel->setStyleSheet("background-color: #242B32; border-bottom: 1px solid #242B32;");
+    ui->reportImage->setPixmap(QPixmap(":/images/image/report_mint.png"));
+  }
+  else {
+    ui->reportLabel->setStyleSheet("background-color: #1B2128; border-bottom: 1px solid #242B32;");
+    ui->reportImage->setPixmap(QPixmap(":/images/image/report.png"));
+  }
 }

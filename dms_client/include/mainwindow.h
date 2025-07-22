@@ -49,5 +49,7 @@ private:
   QLocalSocket* socket;
 
   bool gestureLock = true;
+
+  void focusMenu(int idx);
 };
 #endif // MAINWINDOW_H

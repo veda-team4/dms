@@ -61,9 +61,9 @@ background-color: #181C23;
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>0</x>
       <y>0</y>
-      <width>510</width>
+      <width>640</width>
       <height>480</height>
      </rect>
     </property>
@@ -204,7 +204,7 @@ border-right: 1px solid #242B32;
 background-color:#1B2128;
 }</string>
     </property>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="homeLabel">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -222,8 +222,7 @@ background-color:#1B2128;
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: #242B32;
-color: white;
-padding-right: 25px;</string>
+border-bottom: 1px solid #242B32;</string>
      </property>
      <property name="text">
       <string/>
@@ -235,7 +234,7 @@ padding-right: 25px;</string>
       <number>0</number>
      </property>
     </widget>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="homeImage">
      <property name="geometry">
       <rect>
        <x>15</x>
@@ -257,7 +256,7 @@ padding-right: 25px;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="camsetLabel">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -276,7 +275,6 @@ padding-right: 25px;</string>
      <property name="styleSheet">
       <string notr="true">background-color: #1B2128;
 color: white;
-padding-right: 13px;
 border-bottom: 1px solid #242B32;</string>
      </property>
      <property name="text">
@@ -286,7 +284,7 @@ border-bottom: 1px solid #242B32;</string>
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_6">
+    <widget class="QLabel" name="camsetImage">
      <property name="geometry">
       <rect>
        <x>15</x>
@@ -305,7 +303,7 @@ border-bottom: 1px solid #242B32;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLabel" name="label_7">
+    <widget class="QLabel" name="reportLabel">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -334,7 +332,7 @@ border-bottom: 1px solid #242B32;</string>
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="monitoringLabel">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -363,7 +361,7 @@ border-bottom: 1px solid #242B32;</string>
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_5">
+    <widget class="QLabel" name="monitoringImage">
      <property name="geometry">
       <rect>
        <x>15</x>
@@ -382,7 +380,7 @@ border-bottom: 1px solid #242B32;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLabel" name="label_8">
+    <widget class="QLabel" name="reportImage">
      <property name="geometry">
       <rect>
        <x>15</x>
