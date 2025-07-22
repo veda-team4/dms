@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
+    <width>510</width>
     <height>480</height>
    </rect>
   </property>
@@ -34,10 +34,10 @@
   <widget class="QPushButton" name="previousButton">
    <property name="geometry">
     <rect>
-     <x>495</x>
-     <y>410</y>
+     <x>30</x>
+     <y>423</y>
      <width>120</width>
-     <height>40</height>
+     <height>34</height>
     </rect>
    </property>
    <property name="maximumSize">
@@ -48,7 +48,8 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>14</pointsize>
+     <family>Nunito</family>
+     <pointsize>13</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -56,8 +57,11 @@
     <string notr="true">QPushButton {
     border: 2px solid black;
     border-radius: 8px;
-    background-color: white;
+    background-color: rgb(36, 43, 50);
+	border-color: rgb(8, 247, 254);
+	color: white;
     outline: none;
+	padding-left: 20px;
 }
 
 QPushButton:focus {
@@ -75,10 +79,10 @@ QPushButton:pressed {
   <widget class="QPushButton" name="nextButton">
    <property name="geometry">
     <rect>
-     <x>495</x>
-     <y>360</y>
+     <x>250</x>
+     <y>423</y>
      <width>120</width>
-     <height>40</height>
+     <height>34</height>
     </rect>
    </property>
    <property name="maximumSize">
@@ -89,7 +93,8 @@ QPushButton:pressed {
    </property>
    <property name="font">
     <font>
-     <pointsize>14</pointsize>
+     <family>Nunito</family>
+     <pointsize>13</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -97,8 +102,11 @@ QPushButton:pressed {
     <string notr="true">QPushButton {
     border: 2px solid black;
     border-radius: 8px;
-    background-color: white;
+	background-color: rgb(36, 43, 50);
+	border-color: rgb(8, 247, 254);
+	color: white;
     outline: none;
+	padding-right: 25px;
 }
 
 QPushButton:focus {
@@ -116,23 +124,26 @@ QPushButton:pressed {
   <widget class="QLabel" name="closedInfoLabel">
    <property name="geometry">
     <rect>
-     <x>495</x>
-     <y>200</y>
-     <width>120</width>
-     <height>70</height>
+     <x>388</x>
+     <y>251</y>
+     <width>112</width>
+     <height>63</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>14</pointsize>
+     <family>Nunito</family>
+     <pointsize>12</pointsize>
      <bold>true</bold>
     </font>
    </property>
    <property name="styleSheet">
     <string notr="true">border: 2px solid black;
 border-radius: 8px;
-background-color: white;
+background-color: rgb(36, 43, 50);
+color: white;
 outline: none;
+border-color: rgb(8, 247, 254);
 padding-top: 3px;</string>
    </property>
    <property name="text">
@@ -148,17 +159,22 @@ padding-top: 3px;</string>
   <widget class="QLabel" name="closedVal">
    <property name="geometry">
     <rect>
-     <x>495</x>
-     <y>240</y>
+     <x>384</x>
+     <y>286</y>
      <width>120</width>
      <height>20</height>
     </rect>
    </property>
    <property name="font">
     <font>
+     <family>Nunito</family>
      <pointsize>12</pointsize>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+background-color: transparent;</string>
    </property>
    <property name="text">
     <string>0.0</string>
@@ -170,23 +186,26 @@ padding-top: 3px;</string>
   <widget class="QLabel" name="thresholdLabel">
    <property name="geometry">
     <rect>
-     <x>495</x>
-     <y>280</y>
-     <width>120</width>
-     <height>70</height>
+     <x>388</x>
+     <y>325</y>
+     <width>112</width>
+     <height>63</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>14</pointsize>
+     <family>Nunito</family>
+     <pointsize>12</pointsize>
      <bold>true</bold>
     </font>
    </property>
    <property name="styleSheet">
     <string notr="true">border: 2px solid black;
 border-radius: 8px;
-background-color: white;
+background-color: rgb(36, 43, 50);
+color: white;
 outline: none;
+border-color: rgb(8, 247, 254);
 padding-top: 3px;</string>
    </property>
    <property name="text">
@@ -202,17 +221,22 @@ padding-top: 3px;</string>
   <widget class="QLabel" name="thresholdVal">
    <property name="geometry">
     <rect>
-     <x>495</x>
-     <y>320</y>
+     <x>384</x>
+     <y>360</y>
      <width>120</width>
      <height>20</height>
     </rect>
    </property>
    <property name="font">
     <font>
+     <family>Nunito</family>
      <pointsize>12</pointsize>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+background-color: transparent;</string>
    </property>
    <property name="text">
     <string>0.0</string>
@@ -224,10 +248,10 @@ padding-top: 3px;</string>
   <widget class="QLabel" name="infoLabel">
    <property name="geometry">
     <rect>
-     <x>25</x>
-     <y>60</y>
-     <width>440</width>
-     <height>40</height>
+     <x>26</x>
+     <y>61</y>
+     <width>352</width>
+     <height>62</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -258,11 +282,12 @@ padding-top: 3px;</string>
    <property name="styleSheet">
     <string notr="true">border: 2px solid black;
 border-radius: 8px;
-background-color: white;
+background-color: rgb(36, 43, 50);
+border-color: rgb(8, 247, 254);
 outline: none;</string>
    </property>
    <property name="text">
-    <string>뜬 눈의 크기를 측정합니다. 준비 완료 시 버튼을 눌러주세요.</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -272,9 +297,9 @@ outline: none;</string>
    <property name="geometry">
     <rect>
      <x>25</x>
-     <y>120</y>
-     <width>440</width>
-     <height>330</height>
+     <y>135</y>
+     <width>350</width>
+     <height>262</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -310,10 +335,10 @@ outline: none;</string>
   <widget class="QProgressBar" name="progressBar">
    <property name="geometry">
     <rect>
-     <x>495</x>
-     <y>60</y>
-     <width>120</width>
-     <height>40</height>
+     <x>388</x>
+     <y>126</y>
+     <width>112</width>
+     <height>35</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -337,7 +362,9 @@ outline: none;</string>
    <property name="styleSheet">
     <string notr="true">border: 2px solid black;
 border-radius: 8px;
-background-color: white;
+background-color: rgb(36, 43, 50);
+color: white;
+border-color: rgb(8, 247, 254);
 outline: none;</string>
    </property>
    <property name="value">
@@ -348,25 +375,31 @@ outline: none;</string>
    </property>
   </widget>
   <widget class="QLabel" name="openedInfoLabel">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
-     <x>495</x>
-     <y>120</y>
-     <width>120</width>
-     <height>70</height>
+     <x>388</x>
+     <y>177</y>
+     <width>112</width>
+     <height>63</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>14</pointsize>
+     <family>Nunito</family>
+     <pointsize>12</pointsize>
      <bold>true</bold>
     </font>
    </property>
    <property name="styleSheet">
     <string notr="true">border: 2px solid black;
 border-radius: 8px;
-background-color: white;
+background-color: rgb(36, 43, 50);
+color: white;
 outline: none;
+border-color: rgb(8, 247, 254);
 padding-top: 3px;</string>
    </property>
    <property name="text">
@@ -382,23 +415,116 @@ padding-top: 3px;</string>
   <widget class="QLabel" name="openedVal">
    <property name="geometry">
     <rect>
-     <x>495</x>
-     <y>160</y>
+     <x>384</x>
+     <y>212</y>
      <width>120</width>
      <height>20</height>
     </rect>
    </property>
    <property name="font">
     <font>
+     <family>Nunito</family>
      <pointsize>12</pointsize>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+background-color: transparent;</string>
    </property>
    <property name="text">
     <string>0.0</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="infotext">
+   <property name="geometry">
+    <rect>
+     <x>79</x>
+     <y>71</y>
+     <width>293</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Nunito</family>
+     <pointsize>11</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+background-color: transparent;</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="lineWidth">
+    <number>1</number>
+   </property>
+   <property name="midLineWidth">
+    <number>0</number>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;div style=&quot;color:#ffffff; margin-bottom: 2px;&quot;&gt;Measuring eye openness&lt;/div&gt;&lt;div style=&quot;color:#ffffff; margin-top: 2px;&quot;&gt;Swipe to proceed when ready&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;
+</string>
+   </property>
+   <property name="wordWrap">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lock">
+   <property name="geometry">
+    <rect>
+     <x>39</x>
+     <y>76</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/image/lock2.png);
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="left">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>425</y>
+     <width>30</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/image/arrow_left.png);
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="right">
+   <property name="geometry">
+    <rect>
+     <x>339</x>
+     <y>425</y>
+     <width>30</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/image/arrow_right.png);
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>
