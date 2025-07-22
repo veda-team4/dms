@@ -61,9 +61,9 @@ background-color: #181C23;
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>130</x>
       <y>0</y>
-      <width>640</width>
+      <width>510</width>
       <height>480</height>
      </rect>
     </property>
@@ -92,7 +92,7 @@ background-color: #181C23;
       <x>0</x>
       <y>0</y>
       <width>640</width>
-      <height>30</height>
+      <height>15</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -535,9 +535,9 @@ background-color: transparent;</string>
    </widget>
    <zorder>stackedWidget</zorder>
    <zorder>leftWidget</zorder>
+   <zorder>lockLabel</zorder>
    <zorder>dragLabel</zorder>
    <zorder>closeButton</zorder>
-   <zorder>lockLabel</zorder>
    <zorder>label_14</zorder>
   </widget>
  </widget>
