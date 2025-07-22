@@ -67,6 +67,7 @@
    </property>
    <property name="styleSheet">
     <string notr="true">border: 2px solid black;
+border-color: rgb(8, 247, 254);
 border-radius: 8px;
 background-color: rgb(36, 43, 50);
 outline: none;
@@ -121,7 +122,7 @@ outline: none;</string>
   <widget class="QPushButton" name="nextButton">
    <property name="geometry">
     <rect>
-     <x>378</x>
+     <x>250</x>
      <y>423</y>
      <width>120</width>
      <height>34</height>
@@ -135,7 +136,8 @@ outline: none;</string>
    </property>
    <property name="font">
     <font>
-     <pointsize>14</pointsize>
+     <family>Nunito</family>
+     <pointsize>13</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -144,9 +146,10 @@ outline: none;</string>
     border: 2px solid black;
     border-radius: 8px;
     background-color: rgb(36, 43, 50);
+	border-color: rgb(8, 247, 254);
     outline: none;
 	color: white;
-	padding-right: 35px;
+	padding-right: 25px;
 }
 
 QPushButton:focus {
@@ -178,7 +181,8 @@ QPushButton:pressed {
    </property>
    <property name="font">
     <font>
-     <pointsize>14</pointsize>
+     <family>Nunito</family>
+     <pointsize>13</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -187,9 +191,10 @@ QPushButton:pressed {
     border: 2px solid black;
     border-radius: 8px;
     background-color: rgb(36, 43, 50);
+	border-color: rgb(8, 247, 254);
     outline: none;
 	color: white;
-padding-left: 13px;
+	padding-left: 20px;
 }
 
 QPushButton:focus {
@@ -207,15 +212,16 @@ QPushButton:pressed {
   <widget class="QLabel" name="infotext">
    <property name="geometry">
     <rect>
-     <x>77</x>
+     <x>79</x>
      <y>71</y>
      <width>293</width>
-     <height>42</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>10</pointsize>
+     <family>Nunito</family>
+     <pointsize>11</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -233,7 +239,17 @@ background-color: transparent;</string>
     <number>0</number>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Please position the camera at an angle&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;where your face is clearly visible&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;
+  &lt;body&gt;
+    &lt;div style=&quot;color:#ffffff; margin-bottom: 2px;&quot;&gt;
+      Please position the camera at an angle
+    &lt;/div&gt;
+    &lt;div style=&quot;color:#ffffff; margin-top: 2px;&quot;&gt;
+      where your face is clearly visible
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</string>
    </property>
    <property name="wordWrap">
     <bool>false</bool>
@@ -242,8 +258,8 @@ background-color: transparent;</string>
   <widget class="QLabel" name="lock">
    <property name="geometry">
     <rect>
-     <x>38</x>
-     <y>77</y>
+     <x>39</x>
+     <y>76</y>
      <width>31</width>
      <height>31</height>
     </rect>
@@ -259,14 +275,15 @@ background-color: transparent;</string>
   <widget class="QLabel" name="left">
    <property name="geometry">
     <rect>
-     <x>17</x>
-     <y>415</y>
-     <width>51</width>
-     <height>51</height>
+     <x>30</x>
+     <y>425</y>
+     <width>30</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/images/image/arrow_left.png);</string>
+    <string notr="true">image: url(:/images/image/arrow_left.png);
+background-color: transparent;</string>
    </property>
    <property name="text">
     <string/>
@@ -275,14 +292,15 @@ background-color: transparent;</string>
   <widget class="QLabel" name="right">
    <property name="geometry">
     <rect>
-     <x>458</x>
-     <y>415</y>
-     <width>51</width>
-     <height>51</height>
+     <x>339</x>
+     <y>425</y>
+     <width>30</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/images/image/arrow_right.png);</string>
+    <string notr="true">image: url(:/images/image/arrow_right.png);
+background-color: transparent;</string>
    </property>
    <property name="text">
     <string/>
@@ -324,6 +342,7 @@ background-color: transparent;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">border: 2px solid black;
+border-color: rgb(8, 247, 254);
 border-radius: 8px;
 background-color: rgb(36, 43, 50);
 outline: none;
@@ -346,7 +365,8 @@ outline: none;
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/images/image/sadface.png);</string>
+    <string notr="true">image: url(:/images/image/sadface.png);
+background-color: transparent;</string>
    </property>
    <property name="text">
     <string/>
@@ -380,12 +400,14 @@ background-color: transparent;</string>
    </property>
    <property name="font">
     <font>
-     <pointsize>11</pointsize>
+     <family>Nunito</family>
+     <pointsize>13</pointsize>
      <bold>true</bold>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: transparent;</string>
    </property>
    <property name="text">
     <string>Face</string>
@@ -394,14 +416,15 @@ background-color: transparent;</string>
   <widget class="QLabel" name="empty_checkbox">
    <property name="geometry">
     <rect>
-     <x>456</x>
-     <y>205</y>
+     <x>458</x>
+     <y>206</y>
      <width>24</width>
      <height>24</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/images/image/empty_check_box.png);</string>
+    <string notr="true">image: url(:/images/image/empty_check_box.png);
+background-color: transparent;</string>
    </property>
    <property name="text">
     <string/>
@@ -410,14 +433,15 @@ background-color: transparent;</string>
   <widget class="QLabel" name="checkbox">
    <property name="geometry">
     <rect>
-     <x>456</x>
-     <y>205</y>
+     <x>458</x>
+     <y>206</y>
      <width>24</width>
      <height>24</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/images/image/check_box.png);</string>
+    <string notr="true">image: url(:/images/image/check_box.png);
+background-color: transparent;</string>
    </property>
    <property name="text">
     <string/>
@@ -428,18 +452,20 @@ background-color: transparent;</string>
     <rect>
      <x>24</x>
      <y>20</y>
-     <width>230</width>
+     <width>241</width>
      <height>25</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>11</pointsize>
+     <family>Nunito</family>
+     <pointsize>14</pointsize>
      <bold>true</bold>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: transparent;</string>
    </property>
    <property name="text">
     <string>Driving Monitoring System</string>
@@ -448,14 +474,15 @@ background-color: transparent;</string>
   <widget class="QLabel" name="smallcar">
    <property name="geometry">
     <rect>
-     <x>255</x>
+     <x>263</x>
      <y>21</y>
      <width>24</width>
      <height>24</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/images/image/smallcar.png);</string>
+    <string notr="true">image: url(:/images/image/smallcar.png);
+background-color: transparent;</string>
    </property>
    <property name="text">
     <string/>
@@ -470,13 +497,13 @@ background-color: transparent;</string>
   <zorder>left</zorder>
   <zorder>right</zorder>
   <zorder>faceLabel</zorder>
-  <zorder>sadface</zorder>
-  <zorder>smileface</zorder>
   <zorder>facetext</zorder>
-  <zorder>empty_checkbox</zorder>
-  <zorder>checkbox</zorder>
   <zorder>title</zorder>
   <zorder>smallcar</zorder>
+  <zorder>smileface</zorder>
+  <zorder>checkbox</zorder>
+  <zorder>empty_checkbox</zorder>
+  <zorder>sadface</zorder>
  </widget>
  <resources/>
  <connections/>
