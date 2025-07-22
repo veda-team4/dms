@@ -55,7 +55,7 @@
    </property>
    <property name="styleSheet">
     <string notr="true">QWidget {
-background-color: #181C23;
+
 }</string>
    </property>
    <widget class="QStackedWidget" name="stackedWidget">
@@ -84,6 +84,9 @@ background-color: #181C23;
       <width>16777215</width>
       <height>16777215</height>
      </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #181C23;</string>
     </property>
    </widget>
    <widget class="QLabel" name="dragLabel">

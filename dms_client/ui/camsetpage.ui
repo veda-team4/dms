@@ -31,6 +31,15 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+background-color: #181C23;
+}
+</string>
+  </property>
   <widget class="QLabel" name="infoLabel">
    <property name="geometry">
     <rect>
@@ -108,7 +117,7 @@ outline: none;
     </size>
    </property>
    <property name="styleSheet">
-    <string notr="true">border: 2px solid black;
+    <string notr="true">border: 2px solid #08F7FE;
 border-radius: 8px;
 outline: none;</string>
    </property>

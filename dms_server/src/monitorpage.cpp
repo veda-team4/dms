@@ -14,7 +14,7 @@
 // ********** 눈 감김 감지 관련 상수 **********
 #define BLINK_WINDOW_MS 2000 // 분석 시간 윈도우 (2초)
 #define INCREASE_THRESH  10 // 고개 움직임 감지 최소 값
-#define MAX_DOWN_COUNT 1 // 몇번 카운트 해야 경고할 것인지
+#define MAX_DOWN_COUNT 2 // 몇번 카운트 해야 경고할 것인지
 // ********************************************
 
 int monitorpage(double thresholdEAR) {

@@ -23,7 +23,9 @@
    <enum>Qt::LeftToRight</enum>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #181C23;</string>
+   <string notr="true">QWidget {
+background-color: #181C23;
+}</string>
   </property>
   <widget class="QLabel" name="carImage">
    <property name="enabled">

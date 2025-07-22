@@ -22,5 +22,7 @@
     <file>image/smallcar.png</file>
     <file>image/gesture.png</file>
     <file>image/gesture2.png</file>
+    <file>image/safe.png</file>
+    <file>image/danger.png</file>
   </qresource>
 </RCC>
