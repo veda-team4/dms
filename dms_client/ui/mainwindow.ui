@@ -188,7 +188,7 @@ border: none;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>:/images/image/home.png</pixmap>
+      <pixmap resource="../resources/resources.qrc">:/images/image/home.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -238,7 +238,7 @@ border: none;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>:/images/image/camset.png</pixmap>
+      <pixmap resource="../resources/resources.qrc">:/images/image/camset.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -315,7 +315,7 @@ border: none;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>:/images/image/monitoring.png</pixmap>
+      <pixmap resource="../resources/resources.qrc">:/images/image/monitoring.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -338,7 +338,7 @@ border: none;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>:/images/image/report.png</pixmap>
+      <pixmap resource="../resources/resources.qrc">:/images/image/report.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -388,7 +388,7 @@ border: none;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>:/images/image/eye.png</pixmap>
+      <pixmap resource="../resources/resources.qrc">:/images/image/eye.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -414,22 +414,47 @@ border: none;</string>
       <height>30</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;
+border: none;</string>
+    </property>
     <property name="text">
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>:/images/image/lock.png</pixmap>
+     <pixmap resource="../resources/resources.qrc">:/images/image/lock.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="closeButton">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>9</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: transparent;
+background-color: transparent;
+border: none;</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
    <zorder>stackedWidget</zorder>
    <zorder>leftWidget</zorder>
    <zorder>dragLabel</zorder>
    <zorder>lockLabel</zorder>
+   <zorder>closeButton</zorder>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

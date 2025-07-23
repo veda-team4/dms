@@ -14,6 +14,9 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
   // dragLabel에 이벤트 필터 설치
   ui->dragLabel->installEventFilter(this);
 
+  // 닫기 버튼 누르면 닫기
+  connect(ui->closeButton, &QPushButton::clicked, qApp, QCoreApplication::quit);
+
   // 서버 프로세스, 소켓 생성
   serverProcess = new QProcess(this);
   socket = new QLocalSocket(this);
