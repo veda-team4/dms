@@ -619,63 +619,39 @@ QProgressBar::chunk {
     <number>0</number>
    </property>
   </widget>
-  <widget class="QPushButton" name="previousButton">
+  <widget class="QLabel" name="right">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>423</y>
-     <width>120</width>
-     <height>34</height>
-    </rect>
-   </property>
-   <property name="maximumSize">
-    <size>
-     <width>16777215</width>
-     <height>16777215</height>
-    </size>
-   </property>
-   <property name="font">
-    <font>
-     <family>Nunito</family>
-     <pointsize>13</pointsize>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton {
-    border: 1px solid black;
-    border-radius: 8px;
-    background-color: rgb(36, 43, 50);
-	border-color: rgb(8, 247, 254);
-    outline: none;
-	color: white;
-	padding-left: 20px;
-}
-
-QPushButton:focus {
-    outline: none;
-}
-
-QPushButton:pressed {
-    background-color: #e0e0e0;
-}</string>
-   </property>
-   <property name="text">
-    <string>Previous</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="left">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>425</y>
+     <x>440</x>
+     <y>20</y>
      <width>30</width>
      <height>30</height>
     </rect>
    </property>
    <property name="styleSheet">
+    <string notr="true">image: url(:/images/image/arrow_right.png);
+border: 2px solid transparent;
+border-radius: 8px;
+background-color: rgb(36, 43, 50);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="left">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>20</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
     <string notr="true">image: url(:/images/image/arrow_left.png);
-background-color: transparent;</string>
+border: 2px solid transparent;
+border-radius: 8px;
+background-color: rgb(36, 43, 50);</string>
    </property>
    <property name="text">
     <string/>
@@ -684,10 +660,10 @@ background-color: transparent;</string>
   <widget class="QPushButton" name="nextButton">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>423</y>
-     <width>120</width>
-     <height>34</height>
+     <x>440</x>
+     <y>20</y>
+     <width>30</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="maximumSize">
@@ -707,37 +683,57 @@ background-color: transparent;</string>
     <string notr="true">QPushButton {
     border: 2px solid black;
     border-radius: 8px;
-    background-color: rgb(36, 43, 50);
+    background-color: transparent;
 	border-color: rgb(8, 247, 254);
     outline: none;
 	color: white;
-	padding-right: 25px;
+	padding-left: 20px;
 }
 
 QPushButton:focus {
     outline: none;
-}
-
-QPushButton:pressed {
-    background-color: #e0e0e0;
 }</string>
    </property>
    <property name="text">
-    <string>Next</string>
+    <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="right">
+  <widget class="QPushButton" name="previousButton">
    <property name="geometry">
     <rect>
-     <x>339</x>
-     <y>425</y>
-     <width>30</width>
-     <height>30</height>
+     <x>400</x>
+     <y>20</y>
+     <width>31</width>
+     <height>31</height>
     </rect>
    </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Nunito</family>
+     <pointsize>13</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/images/image/arrow_right.png);
-background-color: transparent;</string>
+    <string notr="true">QPushButton {
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: transparent;
+	border-color: rgb(8, 247, 254);
+    outline: none;
+	color: white;
+	padding-left: 20px;
+}
+
+QPushButton:focus {
+    outline: none;
+}</string>
    </property>
    <property name="text">
     <string/>
@@ -754,10 +750,10 @@ background-color: transparent;</string>
   <zorder>title</zorder>
   <zorder>smallcar</zorder>
   <zorder>sleepingProgress</zorder>
-  <zorder>previousButton</zorder>
+  <zorder>right</zorder>
   <zorder>left</zorder>
   <zorder>nextButton</zorder>
-  <zorder>right</zorder>
+  <zorder>previousButton</zorder>
  </widget>
  <resources>
   <include location="../resources/resources.qrc"/>

@@ -34,10 +34,10 @@
   <widget class="QPushButton" name="previousButton">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>423</y>
-     <width>120</width>
-     <height>34</height>
+     <x>400</x>
+     <y>20</y>
+     <width>31</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="maximumSize">
@@ -57,192 +57,19 @@
     <string notr="true">QPushButton {
     border: 2px solid black;
     border-radius: 8px;
-    background-color: rgb(36, 43, 50);
+    background-color: transparent;
 	border-color: rgb(8, 247, 254);
-	color: white;
     outline: none;
+	color: white;
 	padding-left: 20px;
 }
 
 QPushButton:focus {
     outline: none;
-}
-
-QPushButton:pressed {
-    background-color: #e0e0e0;
 }</string>
    </property>
    <property name="text">
-    <string>Previous</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="nextButton">
-   <property name="geometry">
-    <rect>
-     <x>250</x>
-     <y>423</y>
-     <width>120</width>
-     <height>34</height>
-    </rect>
-   </property>
-   <property name="maximumSize">
-    <size>
-     <width>16777215</width>
-     <height>16777215</height>
-    </size>
-   </property>
-   <property name="font">
-    <font>
-     <family>Nunito</family>
-     <pointsize>13</pointsize>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton {
-    border: 2px solid black;
-    border-radius: 8px;
-	background-color: rgb(36, 43, 50);
-	border-color: rgb(8, 247, 254);
-	color: white;
-    outline: none;
-	padding-right: 25px;
-}
-
-QPushButton:focus {
-    outline: none;
-}
-
-QPushButton:pressed {
-    background-color: #e0e0e0;
-}</string>
-   </property>
-   <property name="text">
-    <string>Next</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="closedInfoLabel">
-   <property name="geometry">
-    <rect>
-     <x>388</x>
-     <y>251</y>
-     <width>112</width>
-     <height>63</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Nunito</family>
-     <pointsize>12</pointsize>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">border: 2px solid black;
-border-radius: 8px;
-background-color: rgb(36, 43, 50);
-color: white;
-outline: none;
-border-color: rgb(8, 247, 254);
-padding-top: 3px;</string>
-   </property>
-   <property name="text">
-    <string>Closed EAR</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignHCenter|Qt::AlignTop</set>
-   </property>
-   <property name="margin">
-    <number>0</number>
-   </property>
-  </widget>
-  <widget class="QLabel" name="closedVal">
-   <property name="geometry">
-    <rect>
-     <x>384</x>
-     <y>286</y>
-     <width>120</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Nunito</family>
-     <pointsize>12</pointsize>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: white;
-background-color: transparent;</string>
-   </property>
-   <property name="text">
-    <string>0.0</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="QLabel" name="thresholdLabel">
-   <property name="geometry">
-    <rect>
-     <x>388</x>
-     <y>325</y>
-     <width>112</width>
-     <height>63</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Nunito</family>
-     <pointsize>12</pointsize>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">border: 2px solid black;
-border-radius: 8px;
-background-color: rgb(36, 43, 50);
-color: white;
-outline: none;
-border-color: rgb(8, 247, 254);
-padding-top: 3px;</string>
-   </property>
-   <property name="text">
-    <string>Threshold</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignHCenter|Qt::AlignTop</set>
-   </property>
-   <property name="margin">
-    <number>0</number>
-   </property>
-  </widget>
-  <widget class="QLabel" name="thresholdVal">
-   <property name="geometry">
-    <rect>
-     <x>384</x>
-     <y>360</y>
-     <width>120</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Nunito</family>
-     <pointsize>12</pointsize>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: white;
-background-color: transparent;</string>
-   </property>
-   <property name="text">
-    <string>0.0</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="infoLabel">
@@ -250,7 +77,7 @@ background-color: transparent;</string>
     <rect>
      <x>26</x>
      <y>61</y>
-     <width>352</width>
+     <width>291</width>
      <height>62</height>
     </rect>
    </property>
@@ -298,8 +125,8 @@ outline: none;</string>
     <rect>
      <x>25</x>
      <y>135</y>
-     <width>350</width>
-     <height>262</height>
+     <width>400</width>
+     <height>300</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -335,10 +162,10 @@ outline: none;</string>
   <widget class="QProgressBar" name="progressBar">
    <property name="geometry">
     <rect>
-     <x>388</x>
-     <y>126</y>
-     <width>112</width>
-     <height>35</height>
+     <x>330</x>
+     <y>70</y>
+     <width>111</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -374,77 +201,12 @@ outline: none;</string>
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="openedInfoLabel">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>388</x>
-     <y>177</y>
-     <width>112</width>
-     <height>63</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Nunito</family>
-     <pointsize>12</pointsize>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">border: 2px solid black;
-border-radius: 8px;
-background-color: rgb(36, 43, 50);
-color: white;
-outline: none;
-border-color: rgb(8, 247, 254);
-padding-top: 3px;</string>
-   </property>
-   <property name="text">
-    <string>Opened EAR</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignHCenter|Qt::AlignTop</set>
-   </property>
-   <property name="margin">
-    <number>0</number>
-   </property>
-  </widget>
-  <widget class="QLabel" name="openedVal">
-   <property name="geometry">
-    <rect>
-     <x>384</x>
-     <y>212</y>
-     <width>120</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Nunito</family>
-     <pointsize>12</pointsize>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: white;
-background-color: transparent;</string>
-   </property>
-   <property name="text">
-    <string>0.0</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
   <widget class="QLabel" name="infotext">
    <property name="geometry">
     <rect>
      <x>79</x>
      <y>71</y>
-     <width>293</width>
+     <width>241</width>
      <height>41</height>
     </rect>
    </property>
@@ -496,15 +258,58 @@ background-color: transparent;</string>
   <widget class="QLabel" name="left">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>425</y>
-     <width>30</width>
-     <height>30</height>
+     <x>400</x>
+     <y>20</y>
+     <width>31</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">image: url(:/images/image/arrow_left.png);
-background-color: transparent;</string>
+border: 2px solid transparent;
+border-radius: 8px;
+background-color: rgb(36, 43, 50);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="nextButton">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>20</y>
+     <width>30</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Nunito</family>
+     <pointsize>13</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: transparent;
+	border-color: rgb(8, 247, 254);
+    outline: none;
+	color: white;
+	padding-left: 20px;
+}
+
+QPushButton:focus {
+    outline: none;
+}</string>
    </property>
    <property name="text">
     <string/>
@@ -513,20 +318,31 @@ background-color: transparent;</string>
   <widget class="QLabel" name="right">
    <property name="geometry">
     <rect>
-     <x>339</x>
-     <y>425</y>
+     <x>440</x>
+     <y>20</y>
      <width>30</width>
      <height>30</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">image: url(:/images/image/arrow_right.png);
-background-color: transparent;</string>
+border: 2px solid transparent;
+border-radius: 8px;
+background-color: rgb(36, 43, 50);</string>
    </property>
    <property name="text">
     <string/>
    </property>
   </widget>
+  <zorder>right</zorder>
+  <zorder>left</zorder>
+  <zorder>previousButton</zorder>
+  <zorder>infoLabel</zorder>
+  <zorder>videoLabel</zorder>
+  <zorder>progressBar</zorder>
+  <zorder>infotext</zorder>
+  <zorder>lock</zorder>
+  <zorder>nextButton</zorder>
  </widget>
  <resources/>
  <connections/>

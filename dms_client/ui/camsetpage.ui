@@ -31,15 +31,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <property name="autoFillBackground">
-   <bool>false</bool>
-  </property>
-  <property name="styleSheet">
-   <string notr="true">QWidget {
-background-color: #181C23;
-}
-</string>
-  </property>
   <widget class="QLabel" name="infoLabel">
    <property name="geometry">
     <rect>
@@ -117,7 +108,7 @@ outline: none;
     </size>
    </property>
    <property name="styleSheet">
-    <string notr="true">border: 2px solid #08F7FE;
+    <string notr="true">border: 2px solid black;
 border-radius: 8px;
 outline: none;</string>
    </property>
@@ -131,10 +122,10 @@ outline: none;</string>
   <widget class="QPushButton" name="nextButton">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>423</y>
-     <width>120</width>
-     <height>34</height>
+     <x>440</x>
+     <y>20</y>
+     <width>30</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="maximumSize">
@@ -154,7 +145,7 @@ outline: none;</string>
     <string notr="true">QPushButton {
     border: 2px solid black;
     border-radius: 8px;
-    background-color: rgb(36, 43, 50);
+	background-color: transparent;
 	border-color: rgb(8, 247, 254);
     outline: none;
 	color: white;
@@ -170,16 +161,16 @@ QPushButton:pressed {
 }</string>
    </property>
    <property name="text">
-    <string>Next</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="previousButton">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>423</y>
-     <width>120</width>
-     <height>34</height>
+     <x>400</x>
+     <y>20</y>
+     <width>30</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="maximumSize">
@@ -199,7 +190,7 @@ QPushButton:pressed {
     <string notr="true">QPushButton {
     border: 2px solid black;
     border-radius: 8px;
-    background-color: rgb(36, 43, 50);
+    background-color: transparent;
 	border-color: rgb(8, 247, 254);
     outline: none;
 	color: white;
@@ -215,7 +206,7 @@ QPushButton:pressed {
 }</string>
    </property>
    <property name="text">
-    <string>Previous</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="infotext">
@@ -284,15 +275,17 @@ background-color: transparent;</string>
   <widget class="QLabel" name="left">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>425</y>
+     <x>400</x>
+     <y>20</y>
      <width>30</width>
      <height>30</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">image: url(:/images/image/arrow_left.png);
-background-color: transparent;</string>
+border: 2px solid transparent;
+border-radius: 8px;
+background-color: rgb(36, 43, 50);</string>
    </property>
    <property name="text">
     <string/>
@@ -301,15 +294,17 @@ background-color: transparent;</string>
   <widget class="QLabel" name="right">
    <property name="geometry">
     <rect>
-     <x>339</x>
-     <y>425</y>
+     <x>440</x>
+     <y>20</y>
      <width>30</width>
      <height>30</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">image: url(:/images/image/arrow_right.png);
-background-color: transparent;</string>
+border: 2px solid transparent;
+border-radius: 8px;
+background-color: rgb(36, 43, 50);</string>
    </property>
    <property name="text">
     <string/>
@@ -497,14 +492,14 @@ background-color: transparent;</string>
     <string/>
    </property>
   </widget>
+  <zorder>right</zorder>
+  <zorder>left</zorder>
   <zorder>videoLabel</zorder>
   <zorder>nextButton</zorder>
   <zorder>previousButton</zorder>
   <zorder>infoLabel</zorder>
   <zorder>infotext</zorder>
   <zorder>lock</zorder>
-  <zorder>left</zorder>
-  <zorder>right</zorder>
   <zorder>faceLabel</zorder>
   <zorder>facetext</zorder>
   <zorder>title</zorder>

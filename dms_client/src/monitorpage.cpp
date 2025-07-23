@@ -10,27 +10,26 @@ MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* 
 
   ui->naviWidget->hide();
 
-  led = new Led();
+  // led = new Led();
   // speaker = new Speaker("plughw:3,0");
-  gps = new Gps();
-  osrm = new Osrm();
+  // gps = new Gps();
+  // osrm = new Osrm();
 }
 
 MonitorPage::~MonitorPage()
 {
-  led->led_off();
-  delete led;
+  // led->led_off();
+  // delete led;
   // delete speaker;
-  delete gps;
-  delete osrm;
-  delete wakeupTimer;
+  // delete gps;
+  // delete osrm;
   delete ui;
 }
 
 void MonitorPage::wakeupUI(bool on) {
   if (on && !wakeupFlashing) {
     wakeupFlashing = true;
-    led->led_on();
+    // led->led_on();
     ui->infoLabel->setStyleSheet("border: 1px solid #FE0808; border-radius: 10px; background-color: #242B32; outline: none;");
     ui->infoLabel2->setStyleSheet("background-color: transparent; color: #FE0808;");
     ui->infoPicture->setPixmap(QPixmap(":/images/image/danger.png"));
@@ -39,7 +38,7 @@ void MonitorPage::wakeupUI(bool on) {
   }
   else if (!on && wakeupFlashing) {
     wakeupFlashing = false;
-    led->led_off();
+    // led->led_off();
     ui->infoLabel->setStyleSheet("border: 1px solid #08F7FE; border-radius: 10px; background-color: #242B32; outline: none;");
     ui->infoLabel2->setStyleSheet("background-color: transparent; color: #08F7FE;");
     ui->infoPicture->setPixmap(QPixmap(":/images/image/safe.png"));
@@ -48,6 +47,7 @@ void MonitorPage::wakeupUI(bool on) {
 }
 
 void MonitorPage::navigation(bool on) {
+  /*
     if (on && !navigating) {
         while (!gps->cur_location(&latitude, &longitude)) {
           usleep(100);
@@ -69,6 +69,7 @@ void MonitorPage::navigation(bool on) {
         ui->naviWidget->hide();
         navigating = false;
     }
+  */
 }
 
 void MonitorPage::activate() {
