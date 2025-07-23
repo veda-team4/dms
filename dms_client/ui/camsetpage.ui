@@ -122,10 +122,10 @@ outline: none;</string>
   <widget class="QPushButton" name="nextButton">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>20</y>
-     <width>30</width>
-     <height>30</height>
+     <x>545</x>
+     <y>45</y>
+     <width>25</width>
+     <height>25</height>
     </rect>
    </property>
    <property name="maximumSize">
@@ -146,7 +146,7 @@ outline: none;</string>
     border: 2px solid black;
     border-radius: 8px;
 	background-color: transparent;
-	border-color: rgb(8, 247, 254);
+	border-color: #F37321;
     outline: none;
 	color: white;
 	padding-right: 25px;
@@ -167,10 +167,10 @@ QPushButton:pressed {
   <widget class="QPushButton" name="previousButton">
    <property name="geometry">
     <rect>
-     <x>400</x>
-     <y>20</y>
-     <width>30</width>
-     <height>30</height>
+     <x>515</x>
+     <y>45</y>
+     <width>25</width>
+     <height>25</height>
     </rect>
    </property>
    <property name="maximumSize">
@@ -191,7 +191,7 @@ QPushButton:pressed {
     border: 2px solid black;
     border-radius: 8px;
     background-color: transparent;
-	border-color: rgb(8, 247, 254);
+	border-color: #F37321;
     outline: none;
 	color: white;
 	padding-left: 20px;
@@ -275,10 +275,10 @@ background-color: transparent;</string>
   <widget class="QLabel" name="left">
    <property name="geometry">
     <rect>
-     <x>400</x>
-     <y>20</y>
-     <width>30</width>
-     <height>30</height>
+     <x>515</x>
+     <y>45</y>
+     <width>25</width>
+     <height>25</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -294,10 +294,10 @@ background-color: rgb(36, 43, 50);</string>
   <widget class="QLabel" name="right">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>20</y>
-     <width>30</width>
-     <height>30</height>
+     <x>545</x>
+     <y>45</y>
+     <width>25</width>
+     <height>25</height>
     </rect>
    </property>
    <property name="styleSheet">
