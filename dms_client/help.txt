@@ -14,3 +14,8 @@ autohide=true
 # osrm 요청에 필요한 curl
 apt install curl
 apt install libcurl4-openssl-dev
+
+#font 적용 방법
+#경로== dms/dms_client/resources/fonts
+sudo cp -r 경로 /usr/share/fonts/truetype/custom/
+sudo fc-cache -fv
