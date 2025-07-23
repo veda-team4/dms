@@ -408,10 +408,10 @@ border: none;</string>
    <widget class="QLabel" name="lockLabel">
     <property name="geometry">
      <rect>
-      <x>600</x>
+      <x>605</x>
       <y>10</y>
-      <width>30</width>
-      <height>30</height>
+      <width>25</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -431,10 +431,10 @@ border: none;</string>
    <widget class="QPushButton" name="closeButton">
     <property name="geometry">
      <rect>
-      <x>600</x>
+      <x>605</x>
       <y>9</y>
-      <width>30</width>
-      <height>30</height>
+      <width>25</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
