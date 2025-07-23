@@ -1,10 +1,12 @@
 #ifndef CO2_H
 #define CO2_H
 
-class Co2 {
+class CO2Sensor {
 public:
-  Co2();
-  ~Co2();
+    CO2Sensor() = default;
+    ~CO2Sensor() = default;
+
+    bool read_cth(int* co2_ppm, int* temperature, int* humidity);
 };
 
 #endif
