@@ -12,7 +12,7 @@
 #include "protocols.h"
 
 // ********** 눈 감김 감지 관련 상수 **********
-#define BLINK_WINDOW_MS 2000 // 분석 시간 윈도우 (2초)
+#define BLINK_WINDOW_MS 1500 // 분석 시간 윈도우
 #define INCREASE_THRESH  10 // 고개 움직임 감지 최소 값
 #define MAX_DOWN_COUNT 2 // 몇번 카운트 해야 경고할 것인지
 // ********************************************
@@ -95,8 +95,8 @@ int monitorpage(double thresholdEAR) {
           cv::Scalar(0, 0, 255), 2);
         }
 
-      // { 현재 시간, 눈 감음 여부} 기록 / 2초 이전에는 떠있다고 체크 (비율 계산 안정성 위해)
-      if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - startTime).count() <= 2000) {
+      // { 현재 시간, 눈 감음 여부} 기록 / 1.5초 이전에는 떠있다고 체크 (비율 계산 안정성 위해)
+      if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - startTime).count() <= 1500) {
         static int i = 0;
         blinkHistory.emplace_back(std::chrono::steady_clock::now(), false);
       }
@@ -126,13 +126,13 @@ int monitorpage(double thresholdEAR) {
       blinkHistory.emplace_back(std::chrono::steady_clock::now(), false);
     }
 
-    // 2초간의 윈도우 초과한 항목 제거
+    // 1.5초 간의 윈도우 초과한 항목 제거
     while (!blinkHistory.empty() && std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - blinkHistory.front().first).count() > BLINK_WINDOW_MS) {
       if (blinkHistory.front().second) --closedCount;
       blinkHistory.pop_front();
     }
 
-    // 2초간의 { 현재 시간, 눈 감음 여부 } Window 에서 눈 감김 비율 계산
+    // 1.5초간의 { 현재 시간, 눈 감음 여부 } Window 에서 눈 감김 비율 계산
     if (!blinkHistory.empty()) {
       eyeClosedRatio = static_cast<double>(closedCount) / blinkHistory.size();
     }

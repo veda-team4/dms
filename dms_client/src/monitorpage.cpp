@@ -172,7 +172,7 @@ void MonitorPage::readFrame() {
         ui->sleepingBar->setValue(v);
         ui->sleepingProgress->setValue(v);
 
-        if (value >= BLINK_RATIO_THRESH) {
+        if (value == 1.0) {
           wakeupUI(true);
         }
       }
