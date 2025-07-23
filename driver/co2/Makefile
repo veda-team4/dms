@@ -35,7 +35,7 @@ install: all dtbo autoload
 	sudo cp $(MODNAME).ko /lib/modules/$(shell uname -r)/kernel/drivers/i2c/
 	sudo depmod -a
 	sudo cp $(DTBO_OUT) $(DTBODIR)/
-	sudo grep -q '^dtoverlay=scd4x' /boot/config.txt || echo 'dtoverlay=scd4x' | sudo tee -a /boot/config.txt
+	sudo grep -q '^dtoverlay=scd4x' /boot/firmware/config.txt || echo 'dtoverlay=scd4x' | sudo tee -a /boot/firmware/config.txt
 	@echo "Installation complete. Reboot to apply changes."
 
 # 완전 제거
@@ -44,7 +44,7 @@ uninstall:
 	sudo rm -f /lib/modules/$(shell uname -r)/kernel/drivers/i2c/$(MODNAME).ko
 	sudo rm -f $(DTBODIR)/$(DTBO_OUT)
 	sudo rm -f /etc/modules-load.d/$(MODNAME).conf
-	sudo sed -i '/^dtoverlay=scd4x/d' /boot/config.txt
+	sudo sed -i '/^dtoverlay=scd4x/d' /boot/firmware/config.txt
 	sudo depmod -a
 	@echo "Uninstall complete."
 
