@@ -11,6 +11,7 @@
 #include "camsetpage.h"
 #include "calibratepage.h"
 #include "monitorpage.h"
+#include "reportpage.h"
 #include "basepage.h"
 
 QT_BEGIN_NAMESPACE
@@ -33,6 +34,7 @@ private slots:
   void showCamSetPage();
   void showCalibratePage();
   void showMonitorPage();
+  void showReportPage();
 
 private:
   Ui::MainWindow* ui;
@@ -44,6 +46,7 @@ private:
   BasePage* camSetPage;
   BasePage* calibratePage;
   BasePage* monitorPage;
+  BasePage* reportPage;
 
   QProcess* serverProcess;
   QLocalSocket* socket;

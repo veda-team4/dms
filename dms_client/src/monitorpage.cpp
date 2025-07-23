@@ -7,6 +7,7 @@
 MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* socket) : BasePage(parent), mainWindow(mainWindow), ui(new Ui::MonitorPage), socket(socket) {
   ui->setupUi(this);
   connect(ui->previousButton, &QPushButton::clicked, this, &MonitorPage::moveToPrevious);
+  connect(ui->nextButton, &QPushButton::clicked, this, &MonitorPage::moveToNext);
 
   ui->naviWidget->hide();
 
