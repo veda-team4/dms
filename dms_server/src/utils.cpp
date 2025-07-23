@@ -254,3 +254,30 @@ void drawGestureZones(cv::Mat& frame) {
     cv::line(frame, cv::Point(rightX, y), cv::Point(rightX, std::min(y + lineLength, height - 1)), color, thickness);
   }
 }
+
+void drawFaceRect(cv::Mat& frame, dlib::rectangle& faceRect) {
+  int lineLen = 20;   // 코너 선 길이
+    int thickness = 4;  // 선 두께
+    cv::Scalar color(33, 115, 243); // #F37321 → BGR
+
+    cv::Point tl(faceRect.left(), faceRect.top());          // 왼쪽 위
+    cv::Point tr(faceRect.right(), faceRect.top());         // 오른쪽 위
+    cv::Point bl(faceRect.left(), faceRect.bottom());       // 왼쪽 아래
+    cv::Point br(faceRect.right(), faceRect.bottom());      // 오른쪽 아래
+
+    // 왼쪽 위
+    cv::line(frame, tl, cv::Point(tl.x + lineLen, tl.y), color, thickness);
+    cv::line(frame, tl, cv::Point(tl.x, tl.y + lineLen), color, thickness);
+
+    // 오른쪽 위
+    cv::line(frame, tr, cv::Point(tr.x - lineLen, tr.y), color, thickness);
+    cv::line(frame, tr, cv::Point(tr.x, tr.y + lineLen), color, thickness);
+
+    // 왼쪽 아래
+    cv::line(frame, bl, cv::Point(bl.x + lineLen, bl.y), color, thickness);
+    cv::line(frame, bl, cv::Point(bl.x, bl.y - lineLen), color, thickness);
+
+    // 오른쪽 아래
+    cv::line(frame, br, cv::Point(br.x - lineLen, br.y), color, thickness);
+    cv::line(frame, br, cv::Point(br.x, br.y - lineLen), color, thickness);
+}

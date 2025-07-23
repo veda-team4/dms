@@ -79,10 +79,7 @@ int monitorpage(double thresholdEAR) {
       dlib::full_object_detection landmarks = sp(dlibFrame, faceRect);
 
       // 얼굴 사각형 그리기
-      cv::rectangle(frame,
-        cv::Point(faceRect.left(), faceRect.top()),
-        cv::Point(faceRect.right(), faceRect.bottom()),
-        cv::Scalar(0, 255, 0), 2);
+      drawFaceRect(frame, faceRect);
 
       // 랜드마크 이용해서 EAR 계산
       double earL = computeEAR(landmarks, 36);
