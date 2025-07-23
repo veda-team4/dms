@@ -14,9 +14,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
   // dragLabel에 이벤트 필터 설치
   ui->dragLabel->installEventFilter(this);
 
-  // 종료 버튼 클릭 시 앱 종료
-  connect(ui->closeButton, &QPushButton::clicked, qApp, QCoreApplication::quit);
-
   // 서버 프로세스, 소켓 생성
   serverProcess = new QProcess(this);
   socket = new QLocalSocket(this);
@@ -140,12 +137,12 @@ bool MainWindow::isLock() {
 
 
 void MainWindow::gestureImage(bool lock) {
-    if (lock) {
-        ui->lockLabel->setPixmap(QPixmap(":/images/image/gesture2.png"));
-    }
-    else {
-        ui->lockLabel->setPixmap(QPixmap(":/images/image/gesture.png"));
-    }
+  if (lock) {
+    ui->lockLabel->setVisible(true);
+  }
+  else {
+    ui->lockLabel->setVisible(false);
+  }
 }
 
 
@@ -173,7 +170,7 @@ void MainWindow::showCalibratePage() {
   }
   ui->stackedWidget->setCurrentWidget(calibratePage);
   calibratePage->activate();
-  focusMenu(1);
+  focusMenu(2);
 }
 
 void MainWindow::showMonitorPage() {
@@ -182,43 +179,43 @@ void MainWindow::showMonitorPage() {
   }
   ui->stackedWidget->setCurrentWidget(monitorPage);
   monitorPage->activate();
-  focusMenu(2);
+  focusMenu(3);
 }
 
 void MainWindow::focusMenu(int idx) {
   if(idx == 0) {
-    ui->homeLabel->setStyleSheet("background-color: #242B32; border-bottom: 1px solid #242B32;");
-    ui->homeImage->setPixmap(QPixmap(":/images/image/home_mint.png"));
+    ui->homeLabel->setStyleSheet("background-color: #F37321;"); // orange
+    // ui->homeImage->setPixmap(QPixmap(":/images/image/home.png"));
   }
   else {
-    ui->homeLabel->setStyleSheet("background-color: #1B2128; border-bottom: 1px solid #242B32;");
-    ui->homeImage->setPixmap(QPixmap(":/images/image/home.png"));
+    ui->homeLabel->setStyleSheet("background-color: #151A25; border-bottom: 2px solid #2A2F3A;"); // gray
   }
 
   if(idx == 1) {
-    ui->camsetLabel->setStyleSheet("background-color: #242B32; border-bottom: 1px solid #242B32;");
-    ui->camsetImage->setPixmap(QPixmap(":/images/image/camset_mint.png"));
+    ui->camsetLabel->setStyleSheet("background-color: #F37321;");
   }
   else {
-    ui->camsetLabel->setStyleSheet("background-color: #1B2128; border-bottom: 1px solid #242B32;");
-    ui->camsetImage->setPixmap(QPixmap(":/images/image/camset.png"));
+    ui->camsetLabel->setStyleSheet("background-color: #151A25; border-bottom: 2px solid #2A2F3A;");
   }
 
   if(idx == 2) {
-    ui->monitoringLabel->setStyleSheet("background-color: #242B32; border-bottom: 1px solid #242B32;");
-    ui->monitoringImage->setPixmap(QPixmap(":/images/image/monitoring_mint.png"));
+    ui->calibrateLabel->setStyleSheet("background-color: #F37321;");
   }
   else {
-    ui->monitoringLabel->setStyleSheet("background-color: #1B2128; border-bottom: 1px solid #242B32;");
-    ui->monitoringImage->setPixmap(QPixmap(":/images/image/monitoring.png"));
+    ui->calibrateLabel->setStyleSheet("background-color: #151A25; border-bottom: 2px solid #2A2F3A;");
   }
 
   if(idx == 3) {
-    ui->reportLabel->setStyleSheet("background-color: #242B32; border-bottom: 1px solid #242B32;");
-    ui->reportImage->setPixmap(QPixmap(":/images/image/report_mint.png"));
+    ui->monitoringLabel->setStyleSheet("background-color: #F37321;");
   }
   else {
-    ui->reportLabel->setStyleSheet("background-color: #1B2128; border-bottom: 1px solid #242B32;");
-    ui->reportImage->setPixmap(QPixmap(":/images/image/report.png"));
+    ui->monitoringLabel->setStyleSheet("background-color: #151A25; border-bottom: 2px solid #2A2F3A;");
+  }
+
+  if(idx == 4) {
+    ui->reportLabel->setStyleSheet("background-color: #F37321;");
+  }
+  else {
+    ui->reportLabel->setStyleSheet("background-color: #151A25; border-bottom: 2px solid #2A2F3A;");
   }
 }

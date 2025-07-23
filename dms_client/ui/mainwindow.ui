@@ -61,9 +61,9 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>60</x>
       <y>0</y>
-      <width>510</width>
+      <width>580</width>
       <height>480</height>
      </rect>
     </property>
@@ -86,7 +86,7 @@
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: #181C23;</string>
+     <string notr="true">background-color: #1A1F2C;</string>
     </property>
    </widget>
    <widget class="QLabel" name="dragLabel">
@@ -126,94 +126,28 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="closeButton">
-    <property name="geometry">
-     <rect>
-      <x>610</x>
-      <y>10</y>
-      <width>20</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>20</width>
-      <height>20</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>20</width>
-      <height>20</height>
-     </size>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  outline: none;
-}
-
-QPushButton:pressed {
-    background-color: #c62828;
-}</string>
-    </property>
-    <property name="text">
-     <string>X</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lockLabel">
-    <property name="geometry">
-     <rect>
-      <x>45</x>
-      <y>48</y>
-      <width>40</width>
-      <height>40</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: transparent;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="../resources/resources.qrc">:/images/image/gesture2.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QWidget" name="leftWidget" native="true">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>130</width>
+      <width>60</width>
       <height>480</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QWidget {
-border-right: 1px solid #242B32;
-background-color:#1B2128;
+border-right: 2px solid #1A1F2C;
+background-color:#0E1420;
 }</string>
     </property>
     <widget class="QLabel" name="homeLabel">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>116</y>
-       <width>130</width>
-       <height>44</height>
+       <y>115</y>
+       <width>60</width>
+       <height>40</height>
       </rect>
      </property>
      <property name="font">
@@ -224,7 +158,7 @@ background-color:#1B2128;
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #242B32;
+      <string notr="true">background-color: #F37321;
 border-bottom: 1px solid #242B32;</string>
      </property>
      <property name="text">
@@ -240,20 +174,21 @@ border-bottom: 1px solid #242B32;</string>
     <widget class="QLabel" name="homeImage">
      <property name="geometry">
       <rect>
-       <x>15</x>
-       <y>130</y>
-       <width>16</width>
-       <height>16</height>
+       <x>20</x>
+       <y>125</y>
+       <width>20</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:1B2128</string>
+      <string notr="true">background-color:transparent;
+border: none;</string>
      </property>
      <property name="text">
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../resources/resources.qrc">:/images/image/home.png</pixmap>
+      <pixmap>:/images/image/home.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -263,9 +198,9 @@ border-bottom: 1px solid #242B32;</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>160</y>
-       <width>130</width>
-       <height>44</height>
+       <y>155</y>
+       <width>60</width>
+       <height>40</height>
       </rect>
      </property>
      <property name="font">
@@ -276,9 +211,8 @@ border-bottom: 1px solid #242B32;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #1B2128;
-color: white;
-border-bottom: 1px solid #242B32;</string>
+      <string notr="true">background-color: #151A25;
+border-bottom: 2px solid #2A2F3A;</string>
      </property>
      <property name="text">
       <string/>
@@ -290,29 +224,33 @@ border-bottom: 1px solid #242B32;</string>
     <widget class="QLabel" name="camsetImage">
      <property name="geometry">
       <rect>
-       <x>15</x>
-       <y>173</y>
-       <width>16</width>
-       <height>16</height>
+       <x>20</x>
+       <y>165</y>
+       <width>20</width>
+       <height>20</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: transparent;
+border: none;</string>
      </property>
      <property name="text">
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../resources/resources.qrc">:/images/image/camset.png</pixmap>
+      <pixmap>:/images/image/camset.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLabel" name="reportLabel">
+    <widget class="QLabel" name="monitoringLabel">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>248</y>
-       <width>130</width>
-       <height>44</height>
+       <y>235</y>
+       <width>60</width>
+       <height>40</height>
       </rect>
      </property>
      <property name="font">
@@ -323,10 +261,8 @@ border-bottom: 1px solid #242B32;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #1B2128;
-color: white;
-padding-right: 15px;
-border-bottom: 1px solid #242B32;</string>
+      <string notr="true">background-color: #151A25;
+border-bottom: 2px solid #2A2F3A;</string>
      </property>
      <property name="text">
       <string/>
@@ -335,13 +271,13 @@ border-bottom: 1px solid #242B32;</string>
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="monitoringLabel">
+    <widget class="QLabel" name="calibrateLabel">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>204</y>
-       <width>130</width>
-       <height>44</height>
+       <y>195</y>
+       <width>60</width>
+       <height>40</height>
       </rect>
      </property>
      <property name="font">
@@ -352,10 +288,8 @@ border-bottom: 1px solid #242B32;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #1B2128;
-color: white;
-padding-right: 1px;
-border-bottom: 1px solid #242B32;</string>
+      <string notr="true">background-color: #151A25;
+border-bottom: 2px solid #2A2F3A;</string>
      </property>
      <property name="text">
       <string/>
@@ -367,17 +301,21 @@ border-bottom: 1px solid #242B32;</string>
     <widget class="QLabel" name="monitoringImage">
      <property name="geometry">
       <rect>
-       <x>15</x>
-       <y>217</y>
-       <width>16</width>
-       <height>16</height>
+       <x>20</x>
+       <y>245</y>
+       <width>20</width>
+       <height>20</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: transparent;
+border: none;</string>
      </property>
      <property name="text">
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../resources/resources.qrc">:/images/image/monitoring.png</pixmap>
+      <pixmap>:/images/image/monitoring.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -386,168 +324,112 @@ border-bottom: 1px solid #242B32;</string>
     <widget class="QLabel" name="reportImage">
      <property name="geometry">
       <rect>
-       <x>15</x>
-       <y>261</y>
-       <width>16</width>
-       <height>16</height>
+       <x>20</x>
+       <y>285</y>
+       <width>20</width>
+       <height>20</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: transparent;
+border: none;</string>
      </property>
      <property name="text">
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../resources/resources.qrc">:/images/image/report.png</pixmap>
+      <pixmap>:/images/image/report.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLabel" name="label_9">
+    <widget class="QLabel" name="reportLabel">
      <property name="geometry">
       <rect>
-       <x>29</x>
-       <y>38</y>
-       <width>72</width>
-       <height>64</height>
+       <x>0</x>
+       <y>275</y>
+       <width>60</width>
+       <height>40</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Nunito SemiBold</family>
+       <pointsize>10</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
      <property name="styleSheet">
-      <string notr="true">border-radius: 10px;
-border: 2px solid #08F7FE;
-background-color: #242B32;</string>
+      <string notr="true">background-color: #151A25;
+border-bottom: 2px solid #2A2F3A;</string>
      </property>
      <property name="text">
       <string/>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
     </widget>
-    <widget class="QLabel" name="label_10">
+    <widget class="QLabel" name="callibrateImage">
      <property name="geometry">
       <rect>
-       <x>49</x>
-       <y>128</y>
-       <width>60</width>
+       <x>20</x>
+       <y>205</y>
+       <width>20</width>
        <height>20</height>
       </rect>
      </property>
-     <property name="font">
-      <font>
-       <family>Nunito</family>
-       <pointsize>13</pointsize>
-      </font>
-     </property>
      <property name="styleSheet">
-      <string notr="true">color: white;
-background-color: transparent;</string>
-     </property>
-     <property name="text">
-      <string>Home</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_11">
-     <property name="geometry">
-      <rect>
-       <x>45</x>
-       <y>169</y>
-       <width>65</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Nunito</family>
-       <pointsize>13</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: white;
-background-color: transparent;
+      <string notr="true">background-color: transparent;
 border: none;</string>
      </property>
      <property name="text">
-      <string>Camset</string>
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>:/images/image/eye.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLabel" name="label_12">
-     <property name="geometry">
-      <rect>
-       <x>42</x>
-       <y>213</y>
-       <width>100</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Nunito</family>
-       <pointsize>13</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: white;
-background-color: transparent;</string>
-     </property>
-     <property name="text">
-      <string>Monitoring</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_13">
-     <property name="geometry">
-      <rect>
-       <x>45</x>
-       <y>259</y>
-       <width>57</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Nunito</family>
-       <pointsize>13</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: white;
-background-color: transparent;
-border: none;</string>
-     </property>
-     <property name="text">
-      <string>Report</string>
-     </property>
-    </widget>
+    <zorder>reportLabel</zorder>
+    <zorder>homeLabel</zorder>
+    <zorder>homeImage</zorder>
+    <zorder>camsetLabel</zorder>
+    <zorder>camsetImage</zorder>
+    <zorder>monitoringLabel</zorder>
+    <zorder>calibrateLabel</zorder>
+    <zorder>monitoringImage</zorder>
+    <zorder>reportImage</zorder>
+    <zorder>callibrateImage</zorder>
    </widget>
-   <widget class="QLabel" name="label_14">
+   <widget class="QLabel" name="lockLabel">
     <property name="geometry">
      <rect>
-      <x>18</x>
-      <y>11</y>
-      <width>103</width>
-      <height>16</height>
+      <x>600</x>
+      <y>10</y>
+      <width>30</width>
+      <height>30</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <family>Nunito</family>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: #08F7FE;
-background-color: transparent;</string>
-    </property>
     <property name="text">
-     <string>Gesture Status</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>:/images/image/lock.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
     </property>
    </widget>
    <zorder>stackedWidget</zorder>
    <zorder>leftWidget</zorder>
-   <zorder>lockLabel</zorder>
    <zorder>dragLabel</zorder>
-   <zorder>closeButton</zorder>
-   <zorder>label_14</zorder>
+   <zorder>lockLabel</zorder>
   </widget>
  </widget>
- <resources>
-  <include location="../resources/resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
