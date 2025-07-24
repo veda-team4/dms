@@ -18,6 +18,7 @@ ReportPage::ReportPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* so
     ui(new Ui::ReportPage)
 {
     ui->setupUi(this);
+    connect(ui->nextButton, &QPushButton::clicked, this, &ReportPage::moveToNext);
 }
 
 ReportPage::~ReportPage()
@@ -42,6 +43,8 @@ void ReportPage::deactivate() {
   }
   buffer.clear();
   ciphertext_len = -1;
+  timer->stop();
+  mainWindow->sleepingFrames.clear();
 }
 
 void ReportPage::printGraph(Information& info) {
@@ -147,5 +150,58 @@ void ReportPage::playSleepingClip() {
 }
 
 void ReportPage::readFrame() {
+    buffer.append(socket->readAll());
 
+  while (true) {
+    // 단계 1: IV + 길이 수신 대기
+    if (ciphertext_len == -1 && buffer.size() >= 20) {
+      // 16바이트 IV 읽기
+      iv = buffer.left(16);
+      buffer.remove(0, 16);
+
+      // 4바이트 암호문 길이 읽기
+      ciphertext_len = *reinterpret_cast<const uint32_t*>(buffer.constData());
+      buffer.remove(0, 4);
+    }
+
+    // 데이터 길이만큼 수신 완료되었을 때 처리
+    if (ciphertext_len != -1 && buffer.size() >= ciphertext_len) {
+      QByteArray encrypted = buffer.left(ciphertext_len);
+      buffer.remove(0, ciphertext_len);
+      ciphertext_len = -1;
+
+      // 복호화
+      QByteArray decrypted;
+      decrypted.resize(131072);
+      int decrypted_len;
+
+      bool success = aes_decrypt(
+        reinterpret_cast<const unsigned char*>(encrypted.constData()), encrypted.size(),
+        key, reinterpret_cast<const unsigned char*>(iv.constData()),
+        reinterpret_cast<unsigned char*>(decrypted.data()), &decrypted_len
+      );
+
+      if (!success) {
+        writeLog("AES decrypt failed");
+        return;
+      }
+
+      // 복호화된 평문에서 명령과 길이 추출
+      quint8 cmd = static_cast<quint8>(decrypted[0]);
+      
+      if (cmd == Protocol::RIGHT || cmd == Protocol::LEFT) {
+        return;
+      }
+      else if (cmd == Protocol::STRETCH) {
+          ui->nextButton->click();
+        return;
+      }
+      else {
+        writeLog("Clear protocol number " + std::to_string(cmd));
+      }
+    }
+    else {
+      break;  // 아직 데이터 부족
+    }
+  }
 }

@@ -115,6 +115,13 @@ int main(void) {
         break;
       }
     }
+    else if (protocol == Protocol::REPORT) {
+      writeLog("message from client: REPORT");
+      if (reportpage() == -1) {
+        writeLog("report error");
+        break;
+      }
+    }
     else if (protocol == Protocol::STOP) {
       break;
     }

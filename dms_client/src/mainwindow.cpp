@@ -86,6 +86,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
   connect(monitorPage, &MonitorPage::moveToPrevious, this, &MainWindow::showCalibratePage);
   connect(monitorPage, &MonitorPage::moveToNext, this, &MainWindow::showReportPage);
 
+  connect(reportPage, &ReportPage::moveToNext, this, &MainWindow::showStartPage);
+
   ui->stackedWidget->setCurrentWidget(startPage);
   startPage->activate();
   //reportPage->activate();

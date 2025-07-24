@@ -22,6 +22,10 @@ struct Information {
   int alertCount = 0;
   unsigned long long sleepingCount = 0;
   double sleepingAverage = 0.0;
+  void clear() {
+      values.clear();
+      alertCount = sleepingCount = sleepingAverage = 0;
+  }
 };
 
 QT_BEGIN_NAMESPACE

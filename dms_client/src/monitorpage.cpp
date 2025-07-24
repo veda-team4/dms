@@ -82,6 +82,7 @@ void MonitorPage::navigation(bool on) {
 void MonitorPage::activate() {
   connect(socket, &QLocalSocket::readyRead, this, &MonitorPage::readFrame);
   writeEncryptedCommand(socket, Protocol::MONITOR);
+  mainWindow->info.clear();
 }
 
 void MonitorPage::deactivate() {

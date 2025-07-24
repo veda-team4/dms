@@ -45,6 +45,7 @@ void CalibratePage::deactivate() {
   }
   buffer.clear();
   ciphertext_len = -1;
+  clickCount = 0;
 }
 
 void CalibratePage::moveToNextStep() {
