@@ -1,0 +1,2 @@
+##아래 명령어 실행 시 재부팅 후부터 드라이버 자동 적용됨
+make uninstall clean install reboot
