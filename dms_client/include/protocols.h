@@ -38,6 +38,8 @@ namespace Protocol {
     EARTHRESHOLD,
     EYECLOSEDRATIO,
     FRAME,
+    FACEOK,
+    FACENOTOK,
     // SERVER -> CLIENT [COMMAND]
     HEADDROPPED,
     LEFT,

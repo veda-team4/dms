@@ -80,10 +80,24 @@ void CamSetPage::readSocket() {
           ui->previousButton->click();
         }
         return;
-    }
+      }
       else if (cmd == Protocol::STRETCH) {
         mainWindow->updateLock();
         writeEncryptedCommand(socket, (mainWindow->isLock() ? Protocol::LOCK : Protocol::UNLOCK));
+        if(mainWindow->isLock()) {
+            ui->infojes->raise();
+        }
+        else {
+            ui->infoswipe->raise();
+        }
+        return;
+      }
+      else if (cmd == Protocol::FACEOK) {
+        ui->camset_suc->raise();
+        return;
+      }
+      else if (cmd == Protocol::FACENOTOK) {
+        ui->camset_fail->raise();
         return;
       }
 

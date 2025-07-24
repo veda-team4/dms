@@ -733,15 +733,15 @@ background-color: transparent;</string>
   <zorder>lock</zorder>
   <zorder>title</zorder>
   <zorder>infotext</zorder>
-  <zorder>infojes</zorder>
   <zorder>run_red</zorder>
   <zorder>run</zorder>
-  <zorder>camset_fail</zorder>
   <zorder>videoLabel</zorder>
   <zorder>camset_suc</zorder>
   <zorder>wait_green</zorder>
   <zorder>wait</zorder>
+  <zorder>camset_fail</zorder>
   <zorder>infoswipe</zorder>
+  <zorder>infojes</zorder>
  </widget>
  <resources/>
  <connections/>

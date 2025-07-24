@@ -57,6 +57,10 @@ int camsetpage() {
     if (localHasFace) {
       // 얼굴 사각형 그리기
       drawFaceRect(frame, faceRect);
+      writeEncryptedCommand(client_fd, Protocol::FACEOK);
+    }
+    else {
+      writeEncryptedCommand(client_fd, Protocol::FACENOTOK);
     }
 
     {

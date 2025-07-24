@@ -71,7 +71,6 @@ private:
 
   bool gestureLock = true;
 
-
   void focusMenu(int idx);
   void gestureImage(bool lock);
 };
