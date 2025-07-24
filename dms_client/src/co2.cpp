@@ -13,25 +13,29 @@ CO2Sensor::CO2Sensor(const char* device)
 }
 
 CO2Sensor::~CO2Sensor() {
-    if (fd >= 0) close(fd);
+    // if (fd >= 0) close(fd);
 }
 
 bool CO2Sensor::init() {
-    fd = open(device_path, O_RDONLY | O_NONBLOCK);
-    if (fd < 0) {
-        perror("CO2Sensor open");
-        return false;
-    }
+    // fd = open(device_path, O_RDONLY | O_NONBLOCK);
+    // if (fd < 0) {
+    //     perror("CO2Sensor open");
+    //     return false;
+    // }
     return true;
 }
 
 bool CO2Sensor::update() {
+    fd = open(device_path, O_RDONLY | O_NONBLOCK);
+
     if (fd < 0) return false;
 
     char buf[64] = {0};
     lseek(fd, 0, SEEK_SET);  //처음부터 읽기
     int len = read(fd, buf, sizeof(buf) - 1);
     if (len <= 0) return false;
+
+    if (fd >= 0) close(fd);
     return parseData(buf);
 }
 
