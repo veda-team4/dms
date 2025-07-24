@@ -33,6 +33,10 @@ void ReportPage::activate() {
   printGraph(mainWindow->info);
   printSummary(mainWindow->info);
   playSleepingClip();
+  if(!mainWindow->isLock()) {
+      mainWindow->updateLock();
+      writeEncryptedCommand(socket, Protocol::LOCK);
+  }
 }
 
 void ReportPage::deactivate() {
