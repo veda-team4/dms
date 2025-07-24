@@ -432,13 +432,14 @@ border: none;</string>
     <property name="geometry">
      <rect>
       <x>605</x>
-      <y>9</y>
+      <y>10</y>
       <width>25</width>
       <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">color: transparent;
+gridline-color: transparent;
 background-color: transparent;
 border: none;</string>
     </property>

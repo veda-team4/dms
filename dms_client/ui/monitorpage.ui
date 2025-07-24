@@ -622,10 +622,10 @@ QProgressBar::chunk {
   <widget class="QLabel" name="right">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>20</y>
-     <width>30</width>
-     <height>30</height>
+     <x>545</x>
+     <y>45</y>
+     <width>25</width>
+     <height>25</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -641,10 +641,10 @@ background-color: rgb(36, 43, 50);</string>
   <widget class="QLabel" name="left">
    <property name="geometry">
     <rect>
-     <x>400</x>
-     <y>20</y>
-     <width>31</width>
-     <height>31</height>
+     <x>515</x>
+     <y>45</y>
+     <width>25</width>
+     <height>25</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -660,10 +660,10 @@ background-color: rgb(36, 43, 50);</string>
   <widget class="QPushButton" name="nextButton">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>20</y>
-     <width>30</width>
-     <height>30</height>
+     <x>545</x>
+     <y>45</y>
+     <width>25</width>
+     <height>25</height>
     </rect>
    </property>
    <property name="maximumSize">
@@ -684,7 +684,7 @@ background-color: rgb(36, 43, 50);</string>
     border: 2px solid black;
     border-radius: 8px;
     background-color: transparent;
-	border-color: rgb(8, 247, 254);
+	border-color: #F37321;
     outline: none;
 	color: white;
 	padding-left: 20px;
@@ -701,10 +701,10 @@ QPushButton:focus {
   <widget class="QPushButton" name="previousButton">
    <property name="geometry">
     <rect>
-     <x>400</x>
-     <y>20</y>
-     <width>31</width>
-     <height>31</height>
+     <x>515</x>
+     <y>45</y>
+     <width>25</width>
+     <height>25</height>
     </rect>
    </property>
    <property name="maximumSize">
@@ -725,7 +725,7 @@ QPushButton:focus {
     border: 2px solid black;
     border-radius: 8px;
     background-color: transparent;
-	border-color: rgb(8, 247, 254);
+	border-color: #F37321;
     outline: none;
 	color: white;
 	padding-left: 20px;
