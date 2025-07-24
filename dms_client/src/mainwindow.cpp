@@ -1,6 +1,7 @@
 #include <iostream>
 #include <QMouseEvent>
 #include <QWindow>
+#include <signal.h>
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "utils.h"
@@ -87,8 +88,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
 
   ui->stackedWidget->setCurrentWidget(startPage);
   startPage->activate();
-  // reportPage->activate();
-  // ui->stackedWidget->setCurrentWidget(reportPage);
+  //reportPage->activate();
+  //ui->stackedWidget->setCurrentWidget(reportPage);
   focusMenu(0);
 }
 

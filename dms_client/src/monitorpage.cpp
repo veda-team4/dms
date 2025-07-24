@@ -38,6 +38,10 @@ void MonitorPage::wakeupUI(bool on) {
     ui->infoPicture->setPixmap(QPixmap(":/images/image/danger.png"));
     // speaker->play("tts.wav");
     navigation(true);
+
+    // 최근 5초 프레임을 클립으로 저장
+    std::vector<QPixmap> clip(mainWindow->recentFrames.begin(), mainWindow->recentFrames.end());
+    mainWindow->sleepingFrames.push_back(std::move(clip));
   }
   else if (!on && wakeupFlashing) {
     wakeupFlashing = false;
@@ -167,6 +171,11 @@ void MonitorPage::readFrame() {
           ui->videoLabel->setPixmap(
             pixmap.scaled(ui->videoLabel->size(), Qt::KeepAspectRatio)
           );
+        }
+
+        mainWindow->recentFrames.push_back(pixmap);
+        if(mainWindow->recentFrames.size() > mainWindow->MAX_FRAMES) {
+          mainWindow->recentFrames.pop_front();
         }
       }
       else if (cmd == Protocol::EYECLOSEDRATIO) {

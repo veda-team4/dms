@@ -22,6 +22,7 @@ ReportPage::ReportPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* so
 
 ReportPage::~ReportPage()
 {
+    delete timer;
     delete ui;
 }
 
@@ -30,10 +31,11 @@ void ReportPage::activate() {
   writeEncryptedCommand(socket, Protocol::REPORT);
   printGraph(mainWindow->info);
   printSummary(mainWindow->info);
+  playSleepingClip();
 }
 
 void ReportPage::deactivate() {
-  // writeEncryptedCommand(socket, Protocol::STOP);
+  writeEncryptedCommand(socket, Protocol::STOP);
   disconnect(socket, &QLocalSocket::readyRead, this, &ReportPage::readFrame);
   while (socket->waitForReadyRead(100) > 0) {
     socket->readAll();
@@ -45,8 +47,10 @@ void ReportPage::deactivate() {
 void ReportPage::printGraph(Information& info) {
     QVector<double>& values = info.values;
 
-    // QFont tinyFont;
-    // tinyFont.setPixelSize(1);
+    QFont tinyFont;
+    tinyFont.setPixelSize(1);
+
+    // values.push_back(10); values.push_back(20); values.push_back(40); values.push_back(90); values.push_back(100); values.push_back(80);
 
     // === 2. 시리즈 생성 (인덱스를 0~100으로 정규화) ===
     QLineSeries *series = new QLineSeries();
@@ -64,26 +68,21 @@ void ReportPage::printGraph(Information& info) {
     QChart *chart = new QChart();
     chart->legend()->hide();
     chart->addSeries(series);
-    chart->setMargins(QMargins(0, 0, 0, 0));  // 바깥쪽 여백 제거
-    chart->layout()->setContentsMargins(0, 0, 0, 0); // 내부 레이아웃 여백 제거
-    chart->setBackgroundRoundness(0);
+    chart->setMargins(QMargins(10, 0, 10, 0));  // 바깥쪽 여백 제거
+    chart->layout()->setContentsMargins(0, 0, 0, 0); 
 
     // === 4. X축: 0~100% 고정 ===
     QValueAxis *axisX = new QValueAxis;
     axisX->setRange(0, 100);
     axisX->setLabelsVisible(false);
-    // axisX->setLabelsFont(tinyFont);
+    axisX->setLabelsFont(tinyFont);
     chart->addAxis(axisX, Qt::AlignBottom);
     series->attachAxis(axisX);
 
     // === 5. Y축: 값 범위 ===
     QValueAxis *axisY = new QValueAxis;
     axisY->setRange(0, 100); // 값 범위 고정 (필요 시 min/max 계산)
-    axisY->setTickCount(5);
-    axisY->setLabelFormat("%d%%");
-    // axisY->setLabelsVisible(false);
-    // axisY->setLabelsFont(tinyFont);
-    axisY->setTitleText("Sleeping Rate");
+    axisY->setLabelsVisible(false);
     chart->addAxis(axisY, Qt::AlignLeft);
     series->attachAxis(axisY);
 
@@ -107,12 +106,44 @@ void ReportPage::printGraph(Information& info) {
 }
 
 void ReportPage::printSummary(Information& info) {
-    std::string averageStr = "운전 중 눈감김 비율 평균: ";
+    std::string averageStr = "  운전 중 눈감김 비율 평균: ";
     averageStr += (std::to_string((int)info.sleepingAverage) + std::string("%"));
     ui->sleepingAverage->setText(QString::fromStdString(averageStr));
-    std::string alertCount = "졸음 경고 횟수: ";
+    std::string alertCount = "  졸음 경고 횟수: ";
     alertCount += (std::to_string(info.alertCount) + std::string("회"));
     ui->alertCount->setText(QString::fromStdString(alertCount));
+}
+
+void ReportPage::playSleepingClip() {
+    if (mainWindow->sleepingFrames.empty()) return;
+
+    currentClipIndex = currentFrameIndex = 0;
+
+    timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, [this]() {
+        auto &clip = mainWindow->sleepingFrames[currentClipIndex];
+        ui->sleepingLabel->setText(QString::fromStdString(std::string("졸음 영상 #") + std::to_string(currentClipIndex + 1)));
+        if (currentFrameIndex >= clip.size()) {
+            // 다음 클립으로
+            currentClipIndex++;
+            currentFrameIndex = 0;
+
+            if (currentClipIndex >= mainWindow->sleepingFrames.size()) {
+                currentClipIndex = 0;
+                currentFrameIndex = 0;
+                return;
+            }
+        }
+
+        // 프레임 출력
+        ui->videoLabel->setPixmap(
+            clip[currentFrameIndex].scaled(ui->videoLabel->size(), Qt::KeepAspectRatio)
+        );
+
+        currentFrameIndex++;
+    });
+
+    timer->start(33); // 30fps 재생
 }
 
 void ReportPage::readFrame() {

@@ -130,7 +130,7 @@ color:white;</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>114</y>
+     <y>115</y>
      <width>440</width>
      <height>330</height>
     </rect>
@@ -259,18 +259,20 @@ color: #D5D5D5;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: transparent;
-image: url(:/images/image/palm1.png);</string>
+    <string notr="true">background-color: transparent;</string>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../resources/resources.qrc">:/images/image/palm1.png</pixmap>
    </property>
   </widget>
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
-     <x>468</x>
-     <y>350</y>
+     <x>466</x>
+     <y>349</y>
      <width>100</width>
      <height>100</height>
     </rect>
@@ -489,6 +491,8 @@ image: url(:/images/image/dot.png);</string>
   <zorder>label_2</zorder>
   <zorder>label</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

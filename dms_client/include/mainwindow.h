@@ -7,6 +7,9 @@
 #include <QLocalSocket>
 #include <QMouseEvent>
 #include <QPoint>
+#include <deque>
+#include <vector>
+#include <QPixmap>
 #include "startpage.h"
 #include "camsetpage.h"
 #include "calibratepage.h"
@@ -33,6 +36,9 @@ public:
   void updateLock();
   bool isLock();
   Information info;
+  std::deque<QPixmap> recentFrames;
+  std::vector<std::vector<QPixmap>> sleepingFrames;
+  const int MAX_FRAMES = 30 * 5;
 
 protected:
   bool eventFilter(QObject* obj, QEvent* event) override;

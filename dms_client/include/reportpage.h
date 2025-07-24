@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QLocalSocket>
+#include <QTimer>
 #include "basepage.h"
 #include "mainwindow.h"
 
@@ -30,9 +31,13 @@ private:
     QByteArray iv;
     int ciphertext_len = -1;
     quint8 cmd;
+    int currentClipIndex;
+    int currentFrameIndex;
+    QTimer* timer;
     void readFrame();
     void printGraph(Information& info);
     void printSummary(Information& info);
+    void playSleepingClip();
 };
 
 #endif // REPORTPAGE_H
