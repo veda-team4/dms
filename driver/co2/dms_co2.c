@@ -17,10 +17,11 @@
 #include <linux/delay.h>
 #include <linux/slab.h>
 #include <linux/kernel.h>
+#include <linux/workqueue.h>
+#include <linux/mutex.h>
 
-/* -------------------- Sensirion CRC & Byte Utils -------------------- */
-static u8 sensirion_crc8(const u8 *data, int len)
-{
+/* -------------------- Sensirion CRC & Byte Conversion -------------------- */
+static u8 sensirion_crc8(const u8 *data, int len) {
     u8 crc = 0xFF;
     for (int i = 0; i < len; i++) {
         crc ^= data[i];
@@ -30,16 +31,21 @@ static u8 sensirion_crc8(const u8 *data, int len)
     return crc;
 }
 
-static u16 sensirion_bytes_to_u16(const u8 *data)
-{
+static u16 sensirion_bytes_to_u16(const u8 *data) {
     return ((u16)data[0] << 8) | data[1];
 }
 
 /* -------------------- SCD4x Sensor Core Logic -------------------- */
 static struct i2c_client *g_client;
+static struct delayed_work dms_co2_work; 
+static DEFINE_MUTEX(data_lock);
 
-static int scd4x_measure_single_shot(u16 *co2, int *temp_milli, int *rh_milli)
-{
+static u16 last_co2;
+static int last_temp_milli;
+static int last_rh_milli;
+
+
+static int scd4x_measure_single_shot(u16 *co2, int *temp_milli, int *rh_milli) {
     int ret;
     u8 cmd[2] = { 0x21, 0x9D };     // measure_single_shot
     u8 read_cmd[2] = { 0xEC, 0x05 }; // read_measurement
@@ -81,30 +87,45 @@ static int scd4x_measure_single_shot(u16 *co2, int *temp_milli, int *rh_milli)
     u16 rh_raw = sensirion_bytes_to_u16(&rx[6]);
 
     *co2 = co2_raw;
-    *temp_milli = ((17500 * temp_raw) / 65535) - 4500;  // in 0.01 °C
-    *rh_milli = (10000 * rh_raw) / 65535;               // in 0.01 %RH
+    *temp_milli = ((17500 * temp_raw) / 65535) - 4500;  
+    *rh_milli = (10000 * rh_raw) / 65535;               
     return 0;
 }
 
-/* -------------------- /dev/dms_co2 Interface -------------------- */
-static ssize_t dms_co2_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
-{
+static void dms_co2_work_func(struct work_struct *work) {
     u16 co2;
-    int temp_milli, rh_milli;
+    int temp, rh;
+    if (scd4x_measure_single_shot(&co2, &temp, &rh) == 0) {
+        mutex_lock(&data_lock);
+        last_co2 = co2;
+        last_temp_milli = temp;
+        last_rh_milli = rh;
+        mutex_unlock(&data_lock);
+    }
+    schedule_delayed_work(&dms_co2_work, msecs_to_jiffies(5000));   // Schedule next measurement in 5 seconds(계속 반복)
+}
+
+/* -------------------- /dev/dms_co2 Interface -------------------- */
+static ssize_t dms_co2_read(struct file *file, char __user *buf, size_t count, loff_t *ppos) {
     char result[64];
-    int len, ret;
+    int len;
+
+    u16 co2;
+    int temp, rh;
 
     if (*ppos != 0)
         return 0;  // EOF on second read
 
-    ret = scd4x_measure_single_shot(&co2, &temp_milli, &rh_milli);
-    if (ret)
-        return ret;
+    mutex_lock(&data_lock);
+    co2 = last_co2;
+    temp = last_temp_milli;
+    rh = last_rh_milli;
+    mutex_unlock(&data_lock);
 
     len = snprintf(result, sizeof(result), "%u %d.%02d %d.%02d\n",
                    co2,
-                   temp_milli / 100, temp_milli % 100,
-                   rh_milli / 100, rh_milli % 100);
+                   temp / 100, temp % 100,
+                   rh / 100, rh % 100);
 
     if (copy_to_user(buf, result, len))
         return -EFAULT;
@@ -128,21 +149,15 @@ static struct miscdevice dms_miscdev = {
 /* -------------------- I2C Driver Bindings -------------------- */
 static int dms_probe(struct i2c_client *client)
 {
-    int ret;
     g_client = client;
-
-    ret = misc_register(&dms_miscdev);
-    if (ret) {
-        dev_err(&client->dev, "Failed to register misc device\n");
-        return ret;
-    }
-
-    dev_info(&client->dev, "dms_co2 sensor initialized\n");
-    return 0;
+    INIT_DELAYED_WORK(&dms_co2_work, dms_co2_work_func);
+    schedule_delayed_work(&dms_co2_work, msecs_to_jiffies(1000));   // Start first measurement after 1 second
+    return misc_register(&dms_miscdev);
 }
 
 static void dms_remove(struct i2c_client *client)
 {
+    cancel_delayed_work_sync(&dms_co2_work);
     misc_deregister(&dms_miscdev);
     g_client = NULL;
 }
@@ -164,6 +179,6 @@ static struct i2c_driver dms_driver = {
 
 module_i2c_driver(dms_driver);
 
-MODULE_AUTHOR("안전운전해조");
-MODULE_DESCRIPTION("SCD4x CO2 Sensor Driver with /dev Interface");
+MODULE_AUTHOR("JSY");
+MODULE_DESCRIPTION("SCD4x CO2 Sensor Driver with Background Workqueue");
 MODULE_LICENSE("GPL");
