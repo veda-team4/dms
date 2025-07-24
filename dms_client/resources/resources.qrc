@@ -9,10 +9,8 @@
         <file>image/camset.png</file>
         <file>image/monitoring.png</file>
         <file>image/report.png</file>
-        <file>image/sadface.png</file>
         <file>image/arrow_left.png</file>
         <file>image/arrow_right.png</file>
-        <file>image/smileface.png</file>
         <file>image/check_box.png</file>
         <file>image/empty_check_box.png</file>
         <file>image/smallcar.png</file>
@@ -21,12 +19,16 @@
         <file>image/safe.png</file>
         <file>image/danger.png</file>
         <file>image/eye.png</file>
-        <file>image/palm1.png</file>
-        <file>image/palm2.png</file>
-        <file>image/previous.png</file>
-        <file>image/next.png</file>
         <file>image/hand_gesture.png</file>
         <file>image/dot.png</file>
         <file>image/dot_w.png</file>
+        <file>image/palm1(1).png</file>
+        <file>image/previous(1).png</file>
+        <file>image/next(1).png</file>
+        <file>image/palm2(1).png</file>
+        <file>image/dot_o.png</file>
+        <file>image/sadface.png</file>
+        <file>image/smileface.png</file>
+        <file>image/infoswipe.png</file>
     </qresource>
 </RCC>
