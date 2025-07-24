@@ -40,11 +40,13 @@ background-color: #181C23;
     <font>
      <family>Hanwha</family>
      <pointsize>17</pointsize>
-     <bold>false</bold>
+     <italic>false</italic>
+     <bold>true</bold>
     </font>
    </property>
    <property name="styleSheet">
     <string notr="true">color: #F37321;
+font: 800 17pt &quot;Hanwha&quot;;
 background-color: transparent;</string>
    </property>
    <property name="text">
@@ -78,9 +80,9 @@ color: #D5D5D5;</string>
    <property name="geometry">
     <rect>
      <x>457</x>
-     <y>310</y>
-     <width>115</width>
-     <height>140</height>
+     <y>297</y>
+     <width>113</width>
+     <height>147</height>
     </rect>
    </property>
    <property name="font">
@@ -102,8 +104,8 @@ border-radius: 8px;</string>
   <widget class="QLabel" name="jes_title">
    <property name="geometry">
     <rect>
-     <x>480</x>
-     <y>314</y>
+     <x>481</x>
+     <y>301</y>
      <width>88</width>
      <height>31</height>
     </rect>
@@ -111,7 +113,7 @@ border-radius: 8px;</string>
    <property name="font">
     <font>
      <family>hanwhaGothic</family>
-     <pointsize>11</pointsize>
+     <pointsize>10</pointsize>
      <italic>false</italic>
      <bold>true</bold>
      <strikeout>false</strikeout>
@@ -253,13 +255,14 @@ color: #D5D5D5;</string>
    <property name="geometry">
     <rect>
      <x>462</x>
-     <y>320</y>
+     <y>307</y>
      <width>17</width>
      <height>17</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: transparent;</string>
+    <string notr="true">image: url(:/images/image/palm1(1).png);
+background-color: transparent;</string>
    </property>
    <property name="text">
     <string/>
@@ -271,8 +274,8 @@ color: #D5D5D5;</string>
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
-     <x>466</x>
-     <y>349</y>
+     <x>465</x>
+     <y>341</y>
      <width>100</width>
      <height>100</height>
     </rect>
@@ -293,10 +296,13 @@ color: #D5D5D5;</string>
      <font>
       <family>hanwhaGothic</family>
       <pointsize>10</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
      </font>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: transparent;
+font: 10pt &quot;hanwhaGothic&quot;;
 color:white;</string>
     </property>
     <property name="text">
@@ -325,7 +331,7 @@ color:white;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/images/image/previous.png);
+     <string notr="true">image: url(:/images/image/previous(1).png);
 background-color: transparent;</string>
     </property>
     <property name="text">
@@ -342,7 +348,7 @@ background-color: transparent;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/images/image/next.png);
+     <string notr="true">image: url(:/images/image/next(1).png);
 background-color: transparent;</string>
     </property>
     <property name="text">
@@ -359,7 +365,7 @@ background-color: transparent;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/images/image/palm2.png);
+     <string notr="true">image: url(:/images/image/palm2(1).png);
 background-color: transparent;</string>
     </property>
     <property name="text">
@@ -429,7 +435,7 @@ image: url(:/images/image/dot_w.png);</string>
    <property name="geometry">
     <rect>
      <x>465</x>
-     <y>345</y>
+     <y>335</y>
      <width>99</width>
      <height>1</height>
     </rect>
@@ -459,7 +465,7 @@ image: url(:/images/image/hand_gesture.png);</string>
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="wait_green">
    <property name="geometry">
     <rect>
      <x>474</x>
@@ -476,6 +482,47 @@ image: url(:/images/image/dot.png);</string>
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="run_red">
+   <property name="geometry">
+    <rect>
+     <x>474</x>
+     <y>89</y>
+     <width>9</width>
+     <height>9</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/image/dot_o.png);
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="run">
+   <property name="geometry">
+    <rect>
+     <x>488</x>
+     <y>84</y>
+     <width>47</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>hanwhaGothic</family>
+     <pointsize>9</pointsize>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+color: #D5D5D5;</string>
+   </property>
+   <property name="text">
+    <string>실행 중</string>
+   </property>
+  </widget>
   <zorder>titlelabel</zorder>
   <zorder>infolabel</zorder>
   <zorder>man_border</zorder>
@@ -488,8 +535,10 @@ image: url(:/images/image/dot.png);</string>
   <zorder>infostart</zorder>
   <zorder>introstart</zorder>
   <zorder>line</zorder>
-  <zorder>label_2</zorder>
+  <zorder>wait_green</zorder>
   <zorder>label</zorder>
+  <zorder>run_red</zorder>
+  <zorder>run</zorder>
  </widget>
  <resources>
   <include location="../resources/resources.qrc"/>
