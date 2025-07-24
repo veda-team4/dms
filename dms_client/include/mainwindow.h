@@ -14,6 +14,13 @@
 #include "reportpage.h"
 #include "basepage.h"
 
+struct Information {
+  QVector<double> values;
+  int alertCount = 0;
+  unsigned long long sleepingCount = 0;
+  double sleepingAverage = 0.0;
+};
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -25,6 +32,7 @@ public:
   ~MainWindow();
   void updateLock();
   bool isLock();
+  Information info;
 
 protected:
   bool eventFilter(QObject* obj, QEvent* event) override;
@@ -52,6 +60,7 @@ private:
   QLocalSocket* socket;
 
   bool gestureLock = true;
+
 
   void focusMenu(int idx);
   void gestureImage(bool lock);

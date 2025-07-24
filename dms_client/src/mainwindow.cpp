@@ -87,6 +87,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
 
   ui->stackedWidget->setCurrentWidget(startPage);
   startPage->activate();
+  // reportPage->activate();
+  // ui->stackedWidget->setCurrentWidget(reportPage);
   focusMenu(0);
 }
 
@@ -140,7 +142,6 @@ void MainWindow::updateLock() {
 bool MainWindow::isLock() {
   return gestureLock;
 }
-
 
 void MainWindow::gestureImage(bool lock) {
   if (lock) {

@@ -239,8 +239,8 @@ outline: none;</string>
   <widget class="QWidget" name="naviWidget" native="true">
    <property name="geometry">
     <rect>
-     <x>25</x>
-     <y>135</y>
+     <x>40</x>
+     <y>120</y>
      <width>350</width>
      <height>262</height>
     </rect>

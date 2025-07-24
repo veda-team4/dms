@@ -3,6 +3,7 @@
 #include "utils.h"
 #include "protocols.h"
 #include <unistd.h>
+#include <QDateTime>
 
 MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* socket) : BasePage(parent), mainWindow(mainWindow), ui(new Ui::MonitorPage), socket(socket) {
   ui->setupUi(this);
@@ -30,6 +31,7 @@ MonitorPage::~MonitorPage()
 void MonitorPage::wakeupUI(bool on) {
   if (on && !wakeupFlashing) {
     wakeupFlashing = true;
+    ++mainWindow->info.alertCount;
     // led->led_on();
     ui->infoLabel->setStyleSheet("border: 1px solid #FE0808; border-radius: 10px; background-color: #242B32; outline: none;");
     ui->infoLabel2->setStyleSheet("background-color: transparent; color: #FE0808;");
@@ -176,6 +178,15 @@ void MonitorPage::readFrame() {
         if (value == 1.0) {
           wakeupUI(true);
         }
+
+        // ---- 1초마다 values에 추가 ----
+        qint64 now = QDateTime::currentMSecsSinceEpoch();
+        if (now - lastAppendTime >= 1000 || (!mainWindow->info.values.empty() && mainWindow->info.values.back() != 100 && value == 1.0)) {
+            mainWindow->info.values.append(v);
+            lastAppendTime = now;
+        }
+        ++mainWindow->info.sleepingCount;
+        mainWindow->info.sleepingAverage += (v - mainWindow->info.sleepingAverage) / mainWindow->info.sleepingCount;
       }
       else {
         writeLog("Clear protocol number " + std::to_string(cmd));

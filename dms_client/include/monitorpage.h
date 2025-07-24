@@ -38,6 +38,7 @@ private:
   QByteArray iv;
   int ciphertext_len = -1;
   quint8 cmd;
+  qint64 lastAppendTime = 0;
 
   QTimer* wakeupTimer;
   bool wakeupFlashOn = false;

@@ -1,5 +1,5 @@
 # QT 설치
-sudo apt-get install qtcreator qtbase5-dev qtchooser qtbase5-dev-tools cmake
+sudo apt-get install qtcreator qtbase5-dev qtchooser qtbase5-dev-tools cmake libqt5charts5-dev
 
 # 한글 폰트 설치
 https://m.blog.naver.com/mythee1/223300805398

@@ -10,6 +10,8 @@ namespace Ui {
 class ReportPage;
 }
 
+struct Information;
+
 class ReportPage : public BasePage
 {
     Q_OBJECT
@@ -29,6 +31,8 @@ private:
     int ciphertext_len = -1;
     quint8 cmd;
     void readFrame();
+    void printGraph(Information& info);
+    void printSummary(Information& info);
 };
 
 #endif // REPORTPAGE_H

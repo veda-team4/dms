@@ -65,6 +65,9 @@ find_package(OpenSSL REQUIRED)
 # Curl
 find_package(CURL REQUIRED)
 
+# Chart
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Charts REQUIRED)
+
 target_include_directories(dms_client PRIVATE include)
 
 target_link_libraries(dms_client PRIVATE
@@ -73,6 +76,7 @@ target_link_libraries(dms_client PRIVATE
     OpenSSL::SSL
     OpenSSL::Crypto
     CURL::libcurl
+    Qt${QT_VERSION_MAJOR}::Charts
 )
 
 set_target_properties(dms_client PROPERTIES
