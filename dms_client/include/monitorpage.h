@@ -11,6 +11,7 @@
 #include "speaker.h"
 #include "gps.h"
 #include "osrm.h"
+#include "bluetooth.h"
 
 extern bool gestureLock;
 
@@ -49,11 +50,18 @@ private:
 
   Led* led;
   Speaker* speaker;
+  Bluetooth* bluetooth;
   Gps* gps;
   Osrm* osrm;
   double latitude, longitude;
   bool navigating = false;
   void navigation(bool on);
+
+  void openDevice();
+  void closeDevice();
+
+  void playDevice();
+  void stopDevice();
 };
 
 #endif // MONITORPAGE_H

@@ -11,33 +11,57 @@ MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* 
   connect(ui->nextButton, &QPushButton::clicked, this, &MonitorPage::moveToNext);
 
   ui->naviWidget->hide();
-
-  // led = new Led();
-  // speaker = new Speaker("plughw:3,0");
-  // gps = new Gps();
-  // osrm = new Osrm();
 }
 
 MonitorPage::~MonitorPage()
 {
-  // led->led_off();
-  // delete led;
-  // delete speaker;
-  // delete gps;
-  // delete osrm;
-  delete ui;
+    delete ui;
+}
+
+void MonitorPage::openDevice() {
+  /*
+  led = new Led();
+  speaker = new Speaker("plughw:4,0");
+  gps = new Gps();
+  bluetooth = new Bluetooth();
+  osrm = new Osrm();
+  */
+}
+
+void MonitorPage::closeDevice() {
+  /*
+  led->led_off();
+  delete led;
+  delete speaker;
+  delete gps;
+  delete bluetooth;
+  delete osrm;
+  */
+}
+
+void MonitorPage::playDevice() {
+    /*
+    led->led_on();
+    speaker->play("tts.wav");
+    navigation(true);
+    */
+}
+
+void MonitorPage::stopDevice() {
+    /*
+    led->led_off();
+    navigation(false);
+    */
 }
 
 void MonitorPage::wakeupUI(bool on) {
   if (on && !wakeupFlashing) {
     wakeupFlashing = true;
     ++mainWindow->info.alertCount;
-    // led->led_on();
     ui->infoLabel->setStyleSheet("border: 1px solid #FE0808; border-radius: 10px; background-color: #242B32; outline: none;");
     ui->infoLabel2->setStyleSheet("background-color: transparent; color: #FE0808;");
     ui->infoPicture->setPixmap(QPixmap(":/images/image/danger.png"));
-    // speaker->play("tts.wav");
-    navigation(true);
+    playDevice();
 
     // 최근 5초 프레임을 클립으로 저장
     std::vector<QPixmap> clip(mainWindow->recentFrames.begin(), mainWindow->recentFrames.end());
@@ -45,16 +69,14 @@ void MonitorPage::wakeupUI(bool on) {
   }
   else if (!on && wakeupFlashing) {
     wakeupFlashing = false;
-    // led->led_off();
     ui->infoLabel->setStyleSheet("border: 1px solid #08F7FE; border-radius: 10px; background-color: #242B32; outline: none;");
     ui->infoLabel2->setStyleSheet("background-color: transparent; color: #08F7FE;");
     ui->infoPicture->setPixmap(QPixmap(":/images/image/safe.png"));
-    navigation(false);
+    stopDevice();
   }
 }
 
 void MonitorPage::navigation(bool on) {
-  /*
     if (on && !navigating) {
         while (!gps->cur_location(&latitude, &longitude)) {
           usleep(100);
@@ -76,13 +98,17 @@ void MonitorPage::navigation(bool on) {
         ui->naviWidget->hide();
         navigating = false;
     }
-  */
 }
 
 void MonitorPage::activate() {
   connect(socket, &QLocalSocket::readyRead, this, &MonitorPage::readFrame);
   writeEncryptedCommand(socket, Protocol::MONITOR);
   mainWindow->info.clear();
+  if(!mainWindow->isLock()) {
+      mainWindow->updateLock();
+      writeEncryptedCommand(socket, Protocol::LOCK);
+  }
+  openDevice();
 }
 
 void MonitorPage::deactivate() {
@@ -94,6 +120,7 @@ void MonitorPage::deactivate() {
   buffer.clear();
   ciphertext_len = -1;
   wakeupUI(false);
+  closeDevice();
 }
 
 void MonitorPage::readFrame() {
@@ -148,6 +175,9 @@ void MonitorPage::readFrame() {
         return;
       }
       else if (cmd == Protocol::RIGHT) {
+        if (!mainWindow->isLock()) {
+          ui->nextButton->click();
+        }
         return;
       }
       else if (cmd == Protocol::STRETCH) {

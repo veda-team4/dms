@@ -88,7 +88,7 @@ int calibratepage(double* thresholdEAR, double* openedEAR, double* closedEAR) {
 
       for (int i = 0; i < landmarkIdx.size(); ++i) {
         dlib::point p = landmarks.part(landmarkIdx[i]);
-        cv::circle(frame, cv::Point(p.x(), p.y()), 2, cv::Scalar(255, 0, 0), -1);
+        cv::circle(frame, cv::Point(p.x(), p.y()), 2, cv::Scalar(102, 204, 102), -1);
       }
     }
 

@@ -238,7 +238,7 @@ void drawGestureZones(cv::Mat& frame) {
   int lineSpacing = 10;   // 점선 간격
   int lineLength = 5;     // 점선 길이
   int thickness = 2;
-  cv::Scalar color(0, 255, 0);
+  cv::Scalar color(33, 115, 243); // #F37321 → BGR
 
   int height = frame.rows;
   int width = frame.cols;
