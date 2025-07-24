@@ -14,8 +14,6 @@
 
 extern bool gestureLock;
 
-#define BLINK_RATIO_THRESH 0.6 // 2초 중 얼만큼을 눈을 감아야 경고할지에 대한 비율
-
 namespace Ui {
   class MonitorPage;
 }
@@ -40,6 +38,7 @@ private:
   QByteArray iv;
   int ciphertext_len = -1;
   quint8 cmd;
+  qint64 lastAppendTime = 0;
 
   QTimer* wakeupTimer;
   bool wakeupFlashOn = false;

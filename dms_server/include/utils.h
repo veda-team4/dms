@@ -38,4 +38,7 @@ bool aes_encrypt(const unsigned char* plaintext, int plaintext_len, const unsign
 bool aes_decrypt(const unsigned char* ciphertext, int ciphertext_len, const unsigned char* key, const unsigned char* iv, unsigned char* plaintext, int* plaintext_len);
 // ****************************************************************
 
+// 얼굴 사각형 그려주는 함수
+void drawFaceRect(cv::Mat& frame, dlib::rectangle& faceRect);
+
 #endif // UTILS_H

@@ -80,19 +80,11 @@ int calibratepage(double* thresholdEAR, double* openedEAR, double* closedEAR) {
 
     if (localHasFace) {
       // 얼굴 사각형 그리기
-      cv::rectangle(frame,
-        cv::Point(faceRect.left(), faceRect.top()),
-        cv::Point(faceRect.right(), faceRect.bottom()),
-        cv::Scalar(0, 255, 0), 2);
+      drawFaceRect(frame, faceRect);
 
       // 랜드마크 그리기
       dlib::cv_image<dlib::bgr_pixel> dlibFrame(frame);
       dlib::full_object_detection landmarks = sp(dlibFrame, faceRect);
-
-      cv::rectangle(frame,
-        cv::Point(faceRect.left(), faceRect.top()),
-        cv::Point(faceRect.right(), faceRect.bottom()),
-        cv::Scalar(0, 255, 0), 2);
 
       for (int i = 0; i < landmarkIdx.size(); ++i) {
         dlib::point p = landmarks.part(landmarkIdx[i]);
@@ -189,19 +181,11 @@ int calibrateEyes(double* ear, bool opened) {
 
     if (localHasFace) {
       // 얼굴 사각형 그리기
-      cv::rectangle(frame,
-        cv::Point(faceRect.left(), faceRect.top()),
-        cv::Point(faceRect.right(), faceRect.bottom()),
-        cv::Scalar(0, 255, 0), 2);
+      drawFaceRect(frame, faceRect);
 
       // 랜드마크 그리기
       dlib::cv_image<dlib::bgr_pixel> dlibFrame(frame);
       dlib::full_object_detection landmarks = sp(dlibFrame, faceRect);
-
-      cv::rectangle(frame,
-        cv::Point(faceRect.left(), faceRect.top()),
-        cv::Point(faceRect.right(), faceRect.bottom()),
-        cv::Scalar(0, 255, 0), 2);
 
       for (int i = 0; i < landmarkIdx.size(); ++i) {
         dlib::point p = landmarks.part(landmarkIdx[i]);

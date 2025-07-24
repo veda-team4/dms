@@ -23,11 +23,13 @@ set(PROJECT_SOURCES
         src/camsetpage.cpp include/camsetpage.h ui/camsetpage.ui
         src/calibratepage.cpp include/calibratepage.h ui/calibratepage.ui
         src/monitorpage.cpp include/monitorpage.h ui/monitorpage.ui
+        src/reportpage.cpp include/reportpage.h ui/reportpage.ui
         src/utils.cpp include/utils.h
         src/led.cpp include/led.h
         src/speaker.cpp include/speaker.h
         src/bluetooth.cpp include/bluetooth.h
         src/gps.cpp include/gps.h
+        src/co2.cpp include/co2.h
         src/osrm.cpp include/osrm.h
         include/json.hpp
         include/protocols.h
@@ -63,6 +65,9 @@ find_package(OpenSSL REQUIRED)
 # Curl
 find_package(CURL REQUIRED)
 
+# Chart
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Charts REQUIRED)
+
 target_include_directories(dms_client PRIVATE include)
 
 target_link_libraries(dms_client PRIVATE
@@ -71,6 +76,7 @@ target_link_libraries(dms_client PRIVATE
     OpenSSL::SSL
     OpenSSL::Crypto
     CURL::libcurl
+    Qt${QT_VERSION_MAJOR}::Charts
 )
 
 set_target_properties(dms_client PROPERTIES

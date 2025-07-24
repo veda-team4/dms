@@ -56,10 +56,7 @@ int camsetpage() {
 
     if (localHasFace) {
       // 얼굴 사각형 그리기
-      cv::rectangle(frame,
-        cv::Point(faceRect.left(), faceRect.top()),
-        cv::Point(faceRect.right(), faceRect.bottom()),
-        cv::Scalar(0, 255, 0), 2);
+      drawFaceRect(frame, faceRect);
     }
 
     {

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
+    <width>580</width>
     <height>480</height>
    </rect>
   </property>
@@ -34,10 +34,10 @@
   <widget class="QLabel" name="infoLabel">
    <property name="geometry">
     <rect>
-     <x>25</x>
-     <y>60</y>
-     <width>440</width>
-     <height>40</height>
+     <x>26</x>
+     <y>61</y>
+     <width>352</width>
+     <height>62</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -61,18 +61,20 @@
    <property name="font">
     <font>
      <family>Sans Serif</family>
-     <pointsize>15</pointsize>
+     <pointsize>10</pointsize>
      <bold>true</bold>
     </font>
    </property>
    <property name="styleSheet">
     <string notr="true">border: 2px solid black;
+border-color: rgb(8, 247, 254);
 border-radius: 8px;
-background-color: white;
-outline: none;</string>
+background-color: rgb(36, 43, 50);
+outline: none;
+</string>
    </property>
    <property name="text">
-    <string>얼굴이 잘 인식되는 각도로 카메라를 놓아주세요</string>
+    <string/>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -82,9 +84,9 @@ outline: none;</string>
    <property name="geometry">
     <rect>
      <x>25</x>
-     <y>120</y>
-     <width>440</width>
-     <height>330</height>
+     <y>135</y>
+     <width>350</width>
+     <height>262</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -120,10 +122,10 @@ outline: none;</string>
   <widget class="QPushButton" name="nextButton">
    <property name="geometry">
     <rect>
-     <x>495</x>
-     <y>360</y>
-     <width>120</width>
-     <height>40</height>
+     <x>545</x>
+     <y>45</y>
+     <width>25</width>
+     <height>25</height>
     </rect>
    </property>
    <property name="maximumSize">
@@ -134,7 +136,8 @@ outline: none;</string>
    </property>
    <property name="font">
     <font>
-     <pointsize>14</pointsize>
+     <family>Nunito</family>
+     <pointsize>13</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -142,8 +145,11 @@ outline: none;</string>
     <string notr="true">QPushButton {
     border: 2px solid black;
     border-radius: 8px;
-    background-color: white;
+	background-color: transparent;
+	border-color: #F37321;
     outline: none;
+	color: white;
+	padding-right: 25px;
 }
 
 QPushButton:focus {
@@ -155,16 +161,16 @@ QPushButton:pressed {
 }</string>
    </property>
    <property name="text">
-    <string>Next</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="previousButton">
    <property name="geometry">
     <rect>
-     <x>495</x>
-     <y>410</y>
-     <width>120</width>
-     <height>40</height>
+     <x>515</x>
+     <y>45</y>
+     <width>25</width>
+     <height>25</height>
     </rect>
    </property>
    <property name="maximumSize">
@@ -175,7 +181,8 @@ QPushButton:pressed {
    </property>
    <property name="font">
     <font>
-     <pointsize>14</pointsize>
+     <family>Nunito</family>
+     <pointsize>13</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -183,8 +190,11 @@ QPushButton:pressed {
     <string notr="true">QPushButton {
     border: 2px solid black;
     border-radius: 8px;
-    background-color: white;
+    background-color: transparent;
+	border-color: #F37321;
     outline: none;
+	color: white;
+	padding-left: 20px;
 }
 
 QPushButton:focus {
@@ -196,9 +206,308 @@ QPushButton:pressed {
 }</string>
    </property>
    <property name="text">
-    <string>Previous</string>
+    <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="infotext">
+   <property name="geometry">
+    <rect>
+     <x>79</x>
+     <y>71</y>
+     <width>293</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Nunito</family>
+     <pointsize>11</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+background-color: transparent;</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="lineWidth">
+    <number>1</number>
+   </property>
+   <property name="midLineWidth">
+    <number>0</number>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;
+  &lt;body&gt;
+    &lt;div style=&quot;color:#ffffff; margin-bottom: 2px;&quot;&gt;
+      Please position the camera at an angle
+    &lt;/div&gt;
+    &lt;div style=&quot;color:#ffffff; margin-top: 2px;&quot;&gt;
+      where your face is clearly visible
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</string>
+   </property>
+   <property name="wordWrap">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lock">
+   <property name="geometry">
+    <rect>
+     <x>39</x>
+     <y>76</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/image/lock2.png);
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="left">
+   <property name="geometry">
+    <rect>
+     <x>515</x>
+     <y>45</y>
+     <width>25</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/image/arrow_left.png);
+border: 2px solid transparent;
+border-radius: 8px;
+background-color: rgb(36, 43, 50);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="right">
+   <property name="geometry">
+    <rect>
+     <x>545</x>
+     <y>45</y>
+     <width>25</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/image/arrow_right.png);
+border: 2px solid transparent;
+border-radius: 8px;
+background-color: rgb(36, 43, 50);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="faceLabel">
+   <property name="geometry">
+    <rect>
+     <x>394</x>
+     <y>135</y>
+     <width>104</width>
+     <height>105</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Sans Serif</family>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 2px solid black;
+border-color: rgb(8, 247, 254);
+border-radius: 8px;
+background-color: rgb(36, 43, 50);
+outline: none;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="sadface">
+   <property name="geometry">
+    <rect>
+     <x>415</x>
+     <y>143</y>
+     <width>60</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/image/sadface.png);
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="smileface">
+   <property name="geometry">
+    <rect>
+     <x>415</x>
+     <y>143</y>
+     <width>60</width>
+     <height>59</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/image/smileface.png);
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="facetext">
+   <property name="geometry">
+    <rect>
+     <x>415</x>
+     <y>209</y>
+     <width>69</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Nunito</family>
+     <pointsize>13</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string>Face</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="empty_checkbox">
+   <property name="geometry">
+    <rect>
+     <x>458</x>
+     <y>206</y>
+     <width>24</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/image/empty_check_box.png);
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="checkbox">
+   <property name="geometry">
+    <rect>
+     <x>458</x>
+     <y>206</y>
+     <width>24</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/image/check_box.png);
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="title">
+   <property name="geometry">
+    <rect>
+     <x>24</x>
+     <y>20</y>
+     <width>241</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Nunito</family>
+     <pointsize>14</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string>Driving Monitoring System</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="smallcar">
+   <property name="geometry">
+    <rect>
+     <x>263</x>
+     <y>21</y>
+     <width>24</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/image/smallcar.png);
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>right</zorder>
+  <zorder>left</zorder>
+  <zorder>videoLabel</zorder>
+  <zorder>nextButton</zorder>
+  <zorder>previousButton</zorder>
+  <zorder>infoLabel</zorder>
+  <zorder>infotext</zorder>
+  <zorder>lock</zorder>
+  <zorder>faceLabel</zorder>
+  <zorder>facetext</zorder>
+  <zorder>title</zorder>
+  <zorder>smallcar</zorder>
+  <zorder>smileface</zorder>
+  <zorder>checkbox</zorder>
+  <zorder>empty_checkbox</zorder>
+  <zorder>sadface</zorder>
  </widget>
  <resources/>
  <connections/>

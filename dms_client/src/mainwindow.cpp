@@ -1,6 +1,7 @@
 #include <iostream>
 #include <QMouseEvent>
 #include <QWindow>
+#include <signal.h>
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "utils.h"
@@ -14,7 +15,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
   // dragLabel에 이벤트 필터 설치
   ui->dragLabel->installEventFilter(this);
 
-  // 종료 버튼 클릭 시 앱 종료
+  // 닫기 버튼 누르면 닫기
   connect(ui->closeButton, &QPushButton::clicked, qApp, QCoreApplication::quit);
 
   // 서버 프로세스, 소켓 생성
@@ -64,12 +65,14 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
   camSetPage = new CamSetPage(nullptr, this, socket);
   calibratePage = new CalibratePage(nullptr, this, socket);
   monitorPage = new MonitorPage(nullptr, this, socket);
+  reportPage = new ReportPage(nullptr, this, socket);
 
   // 페이지 스택에 추가
   ui->stackedWidget->addWidget(startPage);
   ui->stackedWidget->addWidget(camSetPage);
   ui->stackedWidget->addWidget(calibratePage);
   ui->stackedWidget->addWidget(monitorPage);
+  ui->stackedWidget->addWidget(reportPage);
 
   // 각 페이지에서 버튼 클릭 시 다음 또는 이전 페이지로 이동할 수 있도록 설정
   connect(startPage, &StartPage::moveToNext, this, &MainWindow::showCamSetPage);
@@ -81,9 +84,13 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
   connect(calibratePage, &CalibratePage::moveToPrevious, this, &MainWindow::showCamSetPage);
 
   connect(monitorPage, &MonitorPage::moveToPrevious, this, &MainWindow::showCalibratePage);
+  connect(monitorPage, &MonitorPage::moveToNext, this, &MainWindow::showReportPage);
 
   ui->stackedWidget->setCurrentWidget(startPage);
   startPage->activate();
+  //reportPage->activate();
+  //ui->stackedWidget->setCurrentWidget(reportPage);
+  focusMenu(0);
 }
 
 MainWindow::~MainWindow() {
@@ -130,12 +137,22 @@ bool MainWindow::eventFilter(QObject* obj, QEvent* event) {
 
 void MainWindow::updateLock() {
   gestureLock = !gestureLock;
-  ui->lockLabel->setVisible(gestureLock);
+  gestureImage(gestureLock);
 }
 
 bool MainWindow::isLock() {
   return gestureLock;
 }
+
+void MainWindow::gestureImage(bool lock) {
+  if (lock) {
+    ui->lockLabel->setVisible(true);
+  }
+  else {
+    ui->lockLabel->setVisible(false);
+  }
+}
+
 
 void MainWindow::showStartPage() {
   if (auto prev = qobject_cast<BasePage*>(ui->stackedWidget->currentWidget())) {
@@ -143,6 +160,7 @@ void MainWindow::showStartPage() {
   }
   ui->stackedWidget->setCurrentWidget(startPage);
   startPage->activate();
+  focusMenu(0);
 }
 
 void MainWindow::showCamSetPage() {
@@ -151,6 +169,7 @@ void MainWindow::showCamSetPage() {
   }
   ui->stackedWidget->setCurrentWidget(camSetPage);
   camSetPage->activate();
+  focusMenu(1);
 }
 
 void MainWindow::showCalibratePage() {
@@ -159,6 +178,7 @@ void MainWindow::showCalibratePage() {
   }
   ui->stackedWidget->setCurrentWidget(calibratePage);
   calibratePage->activate();
+  focusMenu(2);
 }
 
 void MainWindow::showMonitorPage() {
@@ -167,4 +187,52 @@ void MainWindow::showMonitorPage() {
   }
   ui->stackedWidget->setCurrentWidget(monitorPage);
   monitorPage->activate();
+  focusMenu(3);
+}
+
+void MainWindow::showReportPage() {
+  if (auto prev = qobject_cast<BasePage*>(ui->stackedWidget->currentWidget())) {
+    prev->deactivate();
+  }
+  ui->stackedWidget->setCurrentWidget(reportPage);
+  reportPage->activate();
+  focusMenu(4);
+}
+
+void MainWindow::focusMenu(int idx) {
+  if(idx == 0) {
+    ui->homeLabel->setStyleSheet("background-color: #F37321;"); // orange
+    // ui->homeImage->setPixmap(QPixmap(":/images/image/home.png"));
+  }
+  else {
+    ui->homeLabel->setStyleSheet("background-color: #151A25; border-bottom: 2px solid #2A2F3A;"); // gray
+  }
+
+  if(idx == 1) {
+    ui->camsetLabel->setStyleSheet("background-color: #F37321;");
+  }
+  else {
+    ui->camsetLabel->setStyleSheet("background-color: #151A25; border-bottom: 2px solid #2A2F3A;");
+  }
+
+  if(idx == 2) {
+    ui->calibrateLabel->setStyleSheet("background-color: #F37321;");
+  }
+  else {
+    ui->calibrateLabel->setStyleSheet("background-color: #151A25; border-bottom: 2px solid #2A2F3A;");
+  }
+
+  if(idx == 3) {
+    ui->monitoringLabel->setStyleSheet("background-color: #F37321;");
+  }
+  else {
+    ui->monitoringLabel->setStyleSheet("background-color: #151A25; border-bottom: 2px solid #2A2F3A;");
+  }
+
+  if(idx == 4) {
+    ui->reportLabel->setStyleSheet("background-color: #F37321;");
+  }
+  else {
+    ui->reportLabel->setStyleSheet("background-color: #151A25; border-bottom: 2px solid #2A2F3A;");
+  }
 }

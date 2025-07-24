@@ -3,72 +3,58 @@
 #include "utils.h"
 #include "protocols.h"
 #include <unistd.h>
+#include <QDateTime>
 
 MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* socket) : BasePage(parent), mainWindow(mainWindow), ui(new Ui::MonitorPage), socket(socket) {
   ui->setupUi(this);
   connect(ui->previousButton, &QPushButton::clicked, this, &MonitorPage::moveToPrevious);
-
-  // WakeUP 레이블 번쩍번쩍 기능
-  wakeupTimer = new QTimer(this);
-  connect(wakeupTimer, &QTimer::timeout, this, [=]() {
-    if (wakeupFlashOn) {
-      ui->wakeupLabel->setStyleSheet("background-color: white; color: black; font-size: 24px; font-weight: bold; border-radius: 8px; border: 2px solid black;");
-    }
-    else {
-      ui->wakeupLabel->setStyleSheet("background-color: red; color: black; font-size: 24px; font-weight: bold; border-radius: 8px; border: 2px solid black;");
-    }
-    wakeupFlashOn = !wakeupFlashOn;
-    });
-
-  ui->wakeupLabel->hide();
-  ui->wakeupCloseButton->hide();
-
-  connect(ui->wakeupCloseButton, &QPushButton::clicked, this, [=]() {
-    wakeupTimer->stop();
-    ui->wakeupLabel->hide();
-    ui->wakeupCloseButton->hide();
-    wakeupFlashing = false;
-    });
+  connect(ui->nextButton, &QPushButton::clicked, this, &MonitorPage::moveToNext);
 
   ui->naviWidget->hide();
 
-  led = new Led();
-  speaker = new Speaker("plughw:3,0");
-  gps = new Gps();
-  osrm = new Osrm();
+  // led = new Led();
+  // speaker = new Speaker("plughw:3,0");
+  // gps = new Gps();
+  // osrm = new Osrm();
 }
 
 MonitorPage::~MonitorPage()
 {
-  led->led_off();
-  delete led;
-  delete speaker;
-  delete gps;
-  delete osrm;
-  delete wakeupTimer;
+  // led->led_off();
+  // delete led;
+  // delete speaker;
+  // delete gps;
+  // delete osrm;
   delete ui;
 }
 
 void MonitorPage::wakeupUI(bool on) {
   if (on && !wakeupFlashing) {
     wakeupFlashing = true;
-    ui->wakeupLabel->show();
-    ui->wakeupCloseButton->show();
-    wakeupTimer->start(300);
-    led->led_on();
-    speaker->play("tts.wav");
+    ++mainWindow->info.alertCount;
+    // led->led_on();
+    ui->infoLabel->setStyleSheet("border: 1px solid #FE0808; border-radius: 10px; background-color: #242B32; outline: none;");
+    ui->infoLabel2->setStyleSheet("background-color: transparent; color: #FE0808;");
+    ui->infoPicture->setPixmap(QPixmap(":/images/image/danger.png"));
+    // speaker->play("tts.wav");
+    navigation(true);
+
+    // 최근 5초 프레임을 클립으로 저장
+    std::vector<QPixmap> clip(mainWindow->recentFrames.begin(), mainWindow->recentFrames.end());
+    mainWindow->sleepingFrames.push_back(std::move(clip));
   }
   else if (!on && wakeupFlashing) {
     wakeupFlashing = false;
-    wakeupTimer->stop();
-    ui->wakeupLabel->hide();
-    ui->wakeupCloseButton->hide();
-    led->led_off();
-    navigation(true);
+    // led->led_off();
+    ui->infoLabel->setStyleSheet("border: 1px solid #08F7FE; border-radius: 10px; background-color: #242B32; outline: none;");
+    ui->infoLabel2->setStyleSheet("background-color: transparent; color: #08F7FE;");
+    ui->infoPicture->setPixmap(QPixmap(":/images/image/safe.png"));
+    navigation(false);
   }
 }
 
 void MonitorPage::navigation(bool on) {
+  /*
     if (on && !navigating) {
         while (!gps->cur_location(&latitude, &longitude)) {
           usleep(100);
@@ -90,6 +76,7 @@ void MonitorPage::navigation(bool on) {
         ui->naviWidget->hide();
         navigating = false;
     }
+  */
 }
 
 void MonitorPage::activate() {
@@ -163,11 +150,7 @@ void MonitorPage::readFrame() {
         return;
       }
       else if (cmd == Protocol::STRETCH) {
-        if (navigating) {
-            navigation(false);
-            return;
-        }
-        else if (wakeupFlashing) {
+        if (wakeupFlashing) {
           wakeupUI(false);
           return;
         }
@@ -189,17 +172,30 @@ void MonitorPage::readFrame() {
             pixmap.scaled(ui->videoLabel->size(), Qt::KeepAspectRatio)
           );
         }
+
+        mainWindow->recentFrames.push_back(pixmap);
+        if(mainWindow->recentFrames.size() > mainWindow->MAX_FRAMES) {
+          mainWindow->recentFrames.pop_front();
+        }
       }
       else if (cmd == Protocol::EYECLOSEDRATIO) {
         double value = *reinterpret_cast<const double*>(decrypted.constData() + 5);
-        ui->sleepingBar->setValue((int)(value * 100.0));
+        int v = (int)(value * 100.0);
+        ui->sleepingBar->setValue(v);
+        ui->sleepingProgress->setValue(v);
 
-        if (value >= BLINK_RATIO_THRESH) {
-          if (navigating) {
-            navigation(false);
-          }
+        if (value == 1.0) {
           wakeupUI(true);
         }
+
+        // ---- 1초마다 values에 추가 ----
+        qint64 now = QDateTime::currentMSecsSinceEpoch();
+        if (now - lastAppendTime >= 1000 || (!mainWindow->info.values.empty() && mainWindow->info.values.back() != 100 && value == 1.0)) {
+            mainWindow->info.values.append(v);
+            lastAppendTime = now;
+        }
+        ++mainWindow->info.sleepingCount;
+        mainWindow->info.sleepingAverage += (v - mainWindow->info.sleepingAverage) / mainWindow->info.sleepingCount;
       }
       else {
         writeLog("Clear protocol number " + std::to_string(cmd));

@@ -27,6 +27,7 @@ namespace Protocol {
     CALIBRATE_CLOSED,
     CALIBRATE_FINISH,
     MONITOR,
+    REPORT,
     STOP,
     LOCK,
     UNLOCK,

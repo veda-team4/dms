@@ -97,15 +97,12 @@ void CalibratePage::moveToPreviousStep() {
   case 2:
     ui->infoLabel->setText("뜬 눈의 크기를 측정합니다. 준비 완료 시 버튼을 눌러주세요.");
     ui->progressBar->setValue(0);
-    ui->openedVal->setText("0.0");
     progressStep = 0;
     clickCount -= 2;
     break;
   case 4:
     ui->infoLabel->setText("감은 눈의 크기를 측정합니다. 준비 완료 시 버튼을 눌러주세요.");
     ui->progressBar->setValue(0);
-    ui->closedVal->setText("0.0");
-    ui->thresholdVal->setText("0.0");
     progressStep = 0;
     clickCount -= 2;
     break;
@@ -185,13 +182,13 @@ void CalibratePage::readFrame() {
       else if (cmd == Protocol::OPENEDEAR || cmd == Protocol::CLOSEDEAR || cmd == Protocol::EARTHRESHOLD) {
         double value = *reinterpret_cast<const double*>(decrypted.constData() + 5);
         if (cmd == Protocol::OPENEDEAR) {
-          ui->openedVal->setText(QString::number(value));
+          //ui->openedVal->setText(QString::number(value));
         }
         else if (cmd == Protocol::CLOSEDEAR) {
-          ui->closedVal->setText(QString::number(value));
+          //ui->closedVal->setText(QString::number(value));
         }
         else if (cmd == Protocol::EARTHRESHOLD) {
-          ui->thresholdVal->setText(QString::number(value));
+          //ui->thresholdVal->setText(QString::number(value));
         }
       }
       else {

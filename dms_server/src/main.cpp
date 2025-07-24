@@ -74,6 +74,7 @@ int main(void) {
     writeLog("Camera open failed");
     return -1;
   }
+  cap.set(cv::CAP_PROP_FPS, 30);
 
   // 6. 얼굴 탐지 쓰레드 생성
   std::thread faceThread(runFaceDetectionThread);
