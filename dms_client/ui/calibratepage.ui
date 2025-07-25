@@ -37,8 +37,8 @@
   <widget class="QPushButton" name="previousButton">
    <property name="geometry">
     <rect>
-     <x>515</x>
-     <y>45</y>
+     <x>480</x>
+     <y>10</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -117,8 +117,8 @@ border: 1px solid rgb(26, 31, 44);</string>
   <widget class="QLabel" name="left">
    <property name="geometry">
     <rect>
-     <x>515</x>
-     <y>45</y>
+     <x>480</x>
+     <y>10</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -136,8 +136,8 @@ background-color: rgb(36, 43, 50);</string>
   <widget class="QPushButton" name="nextButton">
    <property name="geometry">
     <rect>
-     <x>545</x>
-     <y>45</y>
+     <x>510</x>
+     <y>10</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -177,8 +177,8 @@ QPushButton:focus {
   <widget class="QLabel" name="right">
    <property name="geometry">
     <rect>
-     <x>545</x>
-     <y>45</y>
+     <x>510</x>
+     <y>10</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -227,7 +227,7 @@ border-radius: 8px;</string>
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="info_text_13">
+   <widget class="QLabel" name="info_ready">
     <property name="geometry">
      <rect>
       <x>13</x>
@@ -282,7 +282,7 @@ background-color: transparent;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="info_text_24">
+   <widget class="QLabel" name="info_next">
     <property name="geometry">
      <rect>
       <x>13</x>
@@ -321,47 +321,6 @@ color:white;</string>
     </property>
    </widget>
   </widget>
-  <widget class="QLabel" name="wait">
-   <property name="geometry">
-    <rect>
-     <x>488</x>
-     <y>84</y>
-     <width>47</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>hanwhaGothic</family>
-     <pointsize>9</pointsize>
-     <bold>false</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: transparent;
-color: #D5D5D5;</string>
-   </property>
-   <property name="text">
-    <string>실행 중</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="run_red">
-   <property name="geometry">
-    <rect>
-     <x>474</x>
-     <y>89</y>
-     <width>9</width>
-     <height>9</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">image: url(:/images/image/dot_o.png);
-background-color: transparent;</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QWidget" name="eyeset" native="true">
    <property name="geometry">
     <rect>
@@ -399,12 +358,12 @@ border-radius: 1px;</string>
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="eyeset_text_13">
+   <widget class="QLabel" name="eyeLabel">
     <property name="geometry">
      <rect>
-      <x>22</x>
+      <x>-1</x>
       <y>4</y>
-      <width>88</width>
+      <width>111</width>
       <height>36</height>
      </rect>
     </property>
@@ -433,11 +392,14 @@ background-color: transparent;</string>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;측정 준비 중&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
     <property name="wordWrap">
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="eyeset_icon_12">
+   <widget class="QLabel" name="openedIcon">
     <property name="geometry">
      <rect>
       <x>45</x>
@@ -482,7 +444,8 @@ background-color: transparent;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">border: 2px solid black;
+     <string notr="true">QProgressBar {
+border: 2px solid black;
 border-radius: 7px;
 border-color: rgba(243, 115,33,1);
 
@@ -490,7 +453,13 @@ background-color: transparent;
 
 color: white;
 
-outline: none;</string>
+outline: none;
+}
+
+QProgressBar:chunk {
+border-radius: 5px;
+background-color: #FDA55B;
+}</string>
     </property>
     <property name="value">
      <number>0</number>
@@ -499,83 +468,7 @@ outline: none;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="eyeset_text_2">
-    <property name="geometry">
-     <rect>
-      <x>22</x>
-      <y>4</y>
-      <width>88</width>
-      <height>36</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>hanwhaGothic</family>
-      <pointsize>10</pointsize>
-      <italic>false</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: white;
-font: 800 10pt &quot;hanwhaGothic&quot;;
-background-color: transparent;</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-    <property name="lineWidth">
-     <number>1</number>
-    </property>
-    <property name="midLineWidth">
-     <number>0</number>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;측정 중&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-    <property name="wordWrap">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="eyeset_text_4">
-    <property name="geometry">
-     <rect>
-      <x>22</x>
-      <y>4</y>
-      <width>88</width>
-      <height>36</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>hanwhaGothic</family>
-      <pointsize>10</pointsize>
-      <italic>false</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: white;
-font: 800 10pt &quot;hanwhaGothic&quot;;
-background-color: transparent;</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-    <property name="lineWidth">
-     <number>1</number>
-    </property>
-    <property name="midLineWidth">
-     <number>0</number>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;측정 중&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-    <property name="wordWrap">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="eyeset_icon_34">
+   <widget class="QLabel" name="closedIcon">
     <property name="geometry">
      <rect>
       <x>45</x>
@@ -619,181 +512,37 @@ background-color: transparent;</string>
     <string>운전자 모니터링 시스템</string>
    </property>
   </widget>
-  <widget class="QLabel" name="infotext_1">
-   <property name="geometry">
-    <rect>
-     <x>12</x>
-     <y>85</y>
-     <width>358</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Hanwha</family>
-     <pointsize>10</pointsize>
-     <bold>false</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: white;
-background-color: transparent;</string>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::NoFrame</enum>
-   </property>
-   <property name="lineWidth">
-    <number>1</number>
-   </property>
-   <property name="midLineWidth">
-    <number>0</number>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;눈을 뜰 준비를 하세요.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-   <property name="wordWrap">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="infotext_2">
-   <property name="geometry">
-    <rect>
-     <x>12</x>
-     <y>85</y>
-     <width>358</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Hanwha</family>
-     <pointsize>10</pointsize>
-     <bold>false</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: white;
-background-color: transparent;</string>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::NoFrame</enum>
-   </property>
-   <property name="lineWidth">
-    <number>1</number>
-   </property>
-   <property name="midLineWidth">
-    <number>0</number>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;눈을 떠 주세요. 뜬 눈 크기를 측정합니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-   <property name="wordWrap">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="infotext_3">
-   <property name="geometry">
-    <rect>
-     <x>12</x>
-     <y>85</y>
-     <width>358</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Hanwha</family>
-     <pointsize>10</pointsize>
-     <bold>false</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: white;
-background-color: transparent;</string>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::NoFrame</enum>
-   </property>
-   <property name="lineWidth">
-    <number>1</number>
-   </property>
-   <property name="midLineWidth">
-    <number>0</number>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;눈을 감을 준비를 하세요.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-   <property name="wordWrap">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="infotext_4">
-   <property name="geometry">
-    <rect>
-     <x>12</x>
-     <y>85</y>
-     <width>358</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Hanwha</family>
-     <pointsize>10</pointsize>
-     <bold>false</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: white;
-background-color: transparent;</string>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::NoFrame</enum>
-   </property>
-   <property name="lineWidth">
-    <number>1</number>
-   </property>
-   <property name="midLineWidth">
-    <number>0</number>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;눈을 감아 주세요. 감은 눈의 크기를 측정합니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-   <property name="wordWrap">
-    <bool>false</bool>
-   </property>
-  </widget>
   <widget class="QLabel" name="infoLabel">
    <property name="geometry">
     <rect>
-     <x>340</x>
-     <y>50</y>
-     <width>101</width>
+     <x>18</x>
+     <y>80</y>
+     <width>421</width>
      <height>21</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Hanwha</family>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>이건 빼야되는겨</string>
+    <string>뜬 눈의 크기를 측정합니다. 준비 완료 시 버튼을 눌러주세요.</string>
    </property>
   </widget>
   <zorder>right</zorder>
   <zorder>left</zorder>
-  <zorder>previousButton</zorder>
   <zorder>videoLabel</zorder>
-  <zorder>nextButton</zorder>
   <zorder>info</zorder>
-  <zorder>wait</zorder>
-  <zorder>run_red</zorder>
   <zorder>eyeset</zorder>
   <zorder>title</zorder>
-  <zorder>infotext_1</zorder>
-  <zorder>infotext_2</zorder>
-  <zorder>infotext_3</zorder>
-  <zorder>infotext_4</zorder>
   <zorder>infoLabel</zorder>
+  <zorder>nextButton</zorder>
+  <zorder>previousButton</zorder>
  </widget>
  <resources/>
  <connections/>

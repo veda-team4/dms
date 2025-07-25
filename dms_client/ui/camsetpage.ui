@@ -34,8 +34,8 @@
   <widget class="QPushButton" name="nextButton">
    <property name="geometry">
     <rect>
-     <x>545</x>
-     <y>45</y>
+     <x>510</x>
+     <y>10</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -79,8 +79,8 @@ QPushButton:pressed {
   <widget class="QPushButton" name="previousButton">
    <property name="geometry">
     <rect>
-     <x>515</x>
-     <y>45</y>
+     <x>480</x>
+     <y>10</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -177,8 +177,8 @@ background-color: transparent;</string>
   <widget class="QLabel" name="left">
    <property name="geometry">
     <rect>
-     <x>515</x>
-     <y>45</y>
+     <x>480</x>
+     <y>10</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -196,8 +196,8 @@ background-color: rgb(36, 43, 50);</string>
   <widget class="QLabel" name="right">
    <property name="geometry">
     <rect>
-     <x>545</x>
-     <y>45</y>
+     <x>510</x>
+     <y>10</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -327,47 +327,6 @@ background-color: transparent;</string>
      <string/>
     </property>
    </widget>
-  </widget>
-  <widget class="QLabel" name="run_red">
-   <property name="geometry">
-    <rect>
-     <x>474</x>
-     <y>89</y>
-     <width>9</width>
-     <height>9</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">image: url(:/images/image/dot_o.png);
-background-color: transparent;</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="run">
-   <property name="geometry">
-    <rect>
-     <x>488</x>
-     <y>84</y>
-     <width>47</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>hanwhaGothic</family>
-     <pointsize>9</pointsize>
-     <bold>false</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: transparent;
-color: #D5D5D5;</string>
-   </property>
-   <property name="text">
-    <string>실행 중</string>
-   </property>
   </widget>
   <widget class="QWidget" name="camset_fail" native="true">
    <property name="geometry">
@@ -595,47 +554,6 @@ background-color: transparent;</string>
     </property>
    </widget>
   </widget>
-  <widget class="QLabel" name="wait_green">
-   <property name="geometry">
-    <rect>
-     <x>474</x>
-     <y>89</y>
-     <width>9</width>
-     <height>9</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: transparent;
-image: url(:/images/image/dot.png);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="wait">
-   <property name="geometry">
-    <rect>
-     <x>488</x>
-     <y>84</y>
-     <width>47</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>hanwhaGothic</family>
-     <pointsize>9</pointsize>
-     <bold>false</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: transparent;
-color: #D5D5D5;</string>
-   </property>
-   <property name="text">
-    <string>대기 중</string>
-   </property>
-  </widget>
   <widget class="QWidget" name="infoswipe" native="true">
    <property name="geometry">
     <rect>
@@ -726,22 +644,18 @@ background-color: transparent;</string>
     </property>
    </widget>
   </widget>
-  <zorder>right</zorder>
   <zorder>left</zorder>
-  <zorder>nextButton</zorder>
   <zorder>previousButton</zorder>
   <zorder>lock</zorder>
   <zorder>title</zorder>
   <zorder>infotext</zorder>
-  <zorder>run_red</zorder>
-  <zorder>run</zorder>
   <zorder>videoLabel</zorder>
   <zorder>camset_suc</zorder>
-  <zorder>wait_green</zorder>
-  <zorder>wait</zorder>
   <zorder>camset_fail</zorder>
   <zorder>infoswipe</zorder>
   <zorder>infojes</zorder>
+  <zorder>right</zorder>
+  <zorder>nextButton</zorder>
  </widget>
  <resources/>
  <connections/>

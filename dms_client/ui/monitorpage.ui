@@ -283,8 +283,8 @@ font: 700 14pt &quot;hanwhaGothic&quot;;</string>
   <widget class="QLabel" name="right">
    <property name="geometry">
     <rect>
-     <x>545</x>
-     <y>45</y>
+     <x>510</x>
+     <y>10</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -302,8 +302,8 @@ background-color: rgb(36, 43, 50);</string>
   <widget class="QLabel" name="left">
    <property name="geometry">
     <rect>
-     <x>515</x>
-     <y>45</y>
+     <x>480</x>
+     <y>10</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -321,8 +321,8 @@ background-color: rgb(36, 43, 50);</string>
   <widget class="QPushButton" name="nextButton">
    <property name="geometry">
     <rect>
-     <x>545</x>
-     <y>45</y>
+     <x>510</x>
+     <y>10</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -362,8 +362,8 @@ QPushButton:focus {
   <widget class="QPushButton" name="previousButton">
    <property name="geometry">
     <rect>
-     <x>515</x>
-     <y>45</y>
+     <x>480</x>
+     <y>10</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -592,47 +592,6 @@ background-color: transparent;</string>
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="run_red">
-   <property name="geometry">
-    <rect>
-     <x>474</x>
-     <y>89</y>
-     <width>9</width>
-     <height>9</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">image: url(:/images/image/dot_o.png);
-background-color: transparent;</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="run">
-   <property name="geometry">
-    <rect>
-     <x>488</x>
-     <y>84</y>
-     <width>47</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>hanwhaGothic</family>
-     <pointsize>9</pointsize>
-     <bold>false</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: transparent;
-color: #D5D5D5;</string>
-   </property>
-   <property name="text">
-    <string>실행 중</string>
-   </property>
-  </widget>
   <widget class="QWidget" name="widget_rate" native="true">
    <property name="geometry">
     <rect>
@@ -668,7 +627,8 @@ border-radius: 8px;
 font: 800 11pt &quot;hanwhaGothic&quot;;
 background-color: #0e1420;
 outline: none;
-color: white;</string>
+color: white;
+padding-top: 2px;</string>
     </property>
     <property name="text">
      <string>    졸음도</string>
@@ -684,7 +644,7 @@ color: white;</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>32</y>
+      <y>37</y>
       <width>91</width>
       <height>22</height>
      </rect>
@@ -730,7 +690,7 @@ background-color: #66cc66;
     <property name="geometry">
      <rect>
       <x>46</x>
-      <y>38</y>
+      <y>43</y>
       <width>24</width>
       <height>13</height>
      </rect>
@@ -764,7 +724,7 @@ QProgressBar::chunk {
     <property name="geometry">
      <rect>
       <x>12</x>
-      <y>5</y>
+      <y>8</y>
       <width>18</width>
       <height>18</height>
      </rect>
@@ -781,7 +741,7 @@ background-color: transparent;</string>
     <property name="geometry">
      <rect>
       <x>12</x>
-      <y>5</y>
+      <y>8</y>
       <width>18</width>
       <height>18</height>
      </rect>
@@ -798,7 +758,7 @@ background-color: transparent;</string>
     <property name="geometry">
      <rect>
       <x>12</x>
-      <y>5</y>
+      <y>8</y>
       <width>18</width>
       <height>18</height>
      </rect>
@@ -877,7 +837,7 @@ background-color: transparent;</string>
      <string>000</string>
     </property>
    </widget>
-   <widget class="QLabel" name="safe">
+   <widget class="QLabel" name="co2Safe">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -895,7 +855,7 @@ background-color: transparent;</string>
      <string>양호</string>
     </property>
    </widget>
-   <widget class="QLabel" name="warning">
+   <widget class="QLabel" name="co2Warning">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -913,7 +873,7 @@ background-color: transparent;</string>
      <string>주의</string>
     </property>
    </widget>
-   <widget class="QLabel" name="danger">
+   <widget class="QLabel" name="co2Danger">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -931,7 +891,7 @@ background-color: transparent;</string>
      <string>경고</string>
     </property>
    </widget>
-   <widget class="QLabel" name="co2">
+   <widget class="QLabel" name="co2Image">
     <property name="geometry">
      <rect>
       <x>12</x>
@@ -949,7 +909,7 @@ background-color: transparent;</string>
     </property>
    </widget>
   </widget>
-  <widget class="QFrame" name="warntext">
+  <widget class="QFrame" name="middleWarning">
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -1300,10 +1260,100 @@ background-color: transparent;</string>
     </property>
    </widget>
   </widget>
-  <widget class="QFrame" name="alarmtext">
+  <widget class="QFrame" name="co2alarmtext">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>75</x>
+     <y>114</y>
+     <width>300</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(161, 0, 0, 0.3);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="co2WarningLabel">
+    <property name="geometry">
+     <rect>
+      <x>32</x>
+      <y>8</y>
+      <width>280</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>hanwhaGothic</family>
+      <pointsize>10</pointsize>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(249, 33, 33);
+font: 800 10pt &quot;hanwhaGothic&quot;;
+background-color: transparent;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="midLineWidth">
+     <number>0</number>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;CO2 농도 1200ppm 이상! 환기가 필요합니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="warn_3">
+    <property name="geometry">
+     <rect>
+      <x>8</x>
+      <y>6</y>
+      <width>19</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/images/image/dang.png);
+background-color: transparent;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="background_red">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>580</width>
+     <height>480</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(255, 68, 68, 0.15);</string>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QFrame" name="highWarning">
+   <property name="geometry">
+    <rect>
+     <x>8</x>
      <y>77</y>
      <width>437</width>
      <height>32</height>
@@ -1374,169 +1424,23 @@ background-color: transparent;</string>
     </property>
    </widget>
   </widget>
-  <widget class="QFrame" name="co2alarmtext">
-   <property name="geometry">
-    <rect>
-     <x>70</x>
-     <y>114</y>
-     <width>320</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgba(161, 0, 0, 0.3);</string>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
-   </property>
-   <widget class="QLabel" name="infotext_4">
-    <property name="geometry">
-     <rect>
-      <x>32</x>
-      <y>8</y>
-      <width>281</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>hanwhaGothic</family>
-      <pointsize>10</pointsize>
-      <italic>false</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(249, 33, 33);
-font: 800 10pt &quot;hanwhaGothic&quot;;
-background-color: transparent;</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-    <property name="lineWidth">
-     <number>1</number>
-    </property>
-    <property name="midLineWidth">
-     <number>0</number>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;CO2 농도 1200ppm 이상! 환기가 필요합니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-    <property name="wordWrap">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="warn_3">
-    <property name="geometry">
-     <rect>
-      <x>8</x>
-      <y>6</y>
-      <width>19</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image: url(:/images/image/dang.png);
-background-color: transparent;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QLabel" name="infoLabel">
-   <property name="geometry">
-    <rect>
-     <x>450</x>
-     <y>10</y>
-     <width>51</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(161, 0, 0);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="infoLabel2">
-   <property name="geometry">
-    <rect>
-     <x>480</x>
-     <y>19</y>
-     <width>21</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-background-color: transparent;</string>
-   </property>
-   <property name="text">
-    <string>!!!</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="infoPicture">
-   <property name="geometry">
-    <rect>
-     <x>456</x>
-     <y>18</y>
-     <width>21</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: transparent;
-image: url(:/images/image/danger.png);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="background_red">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>580</width>
-     <height>480</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgba(255, 68, 68, 0.15);</string>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
-   </property>
-  </widget>
   <zorder>background_red</zorder>
   <zorder>videoLabel</zorder>
   <zorder>right</zorder>
   <zorder>left</zorder>
-  <zorder>nextButton</zorder>
-  <zorder>previousButton</zorder>
   <zorder>title</zorder>
   <zorder>infotext</zorder>
-  <zorder>run_red</zorder>
-  <zorder>run</zorder>
   <zorder>widget_rate</zorder>
   <zorder>widget_co2</zorder>
-  <zorder>warntext</zorder>
-  <zorder>alarmtext</zorder>
-  <zorder>infoLabel</zorder>
-  <zorder>infoLabel2</zorder>
-  <zorder>infoPicture</zorder>
+  <zorder>middleWarning</zorder>
   <zorder>naviWidget</zorder>
   <zorder>co2alarmtext</zorder>
   <zorder>infoalarm</zorder>
   <zorder>infoswipe</zorder>
   <zorder>infojes</zorder>
+  <zorder>highWarning</zorder>
+  <zorder>nextButton</zorder>
+  <zorder>previousButton</zorder>
  </widget>
  <resources/>
  <connections/>

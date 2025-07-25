@@ -33,8 +33,12 @@ void CalibratePage::activate() {
   writeEncryptedCommand(socket, Protocol::CALIBRATE);
   connect(socket, &QLocalSocket::readyRead, this, &CalibratePage::readFrame);
   progressStep = 0;
-  // ui->infoLabel->setText("뜬 눈의 크기를 측정합니다. 준비 완료 시 버튼을 눌러주세요.");
+  ui->infoLabel->setText("뜬 눈의 크기를 측정합니다. 준비 완료 시 우측으로 스와이프 하세요.");
   ui->progressBar->setValue(0);
+  ui->info_next->setVisible(false);
+  ui->info_ready->setVisible(true);
+  ui->openedIcon->setVisible(true);
+  ui->closedIcon->setVisible(false);
 }
 
 void CalibratePage::deactivate() {
@@ -58,6 +62,7 @@ void CalibratePage::moveToNextStep() {
     ui->nextButton->setEnabled(false);
     ui->previousButton->setEnabled(false);
     ui->infoLabel->setText("뜬 눈 크기 측정중. . . .");
+    ui->eyeLabel->setText("측정 중");
     progressStep = 0;
     ui->progressBar->setValue(0);
     finishTimer->start();
@@ -66,13 +71,17 @@ void CalibratePage::moveToNextStep() {
     writeEncryptedCommand(socket, Protocol::CALIBRATE_FINISH);
     ui->nextButton->setEnabled(true);
     ui->previousButton->setEnabled(true);
-    ui->infoLabel->setText("감은 눈의 크기를 측정합니다. 준비 완료 시 버튼을 눌러주세요.");
+    ui->infoLabel->setText("감은 눈의 크기를 측정합니다. 준비 완료 시 우측으로 스와이프 하세요.");
+    ui->eyeLabel->setText("측정 준비 중");
+    ui->openedIcon->setVisible(false);
+    ui->closedIcon->setVisible(true);
     break;
   case 2:
     writeEncryptedCommand(socket, Protocol::CALIBRATE_CLOSED);
     ui->nextButton->setEnabled(false);
     ui->previousButton->setEnabled(false);
     ui->infoLabel->setText("감은 눈 크기 측정중. . . .");
+    ui->eyeLabel->setText("측정 중");
     progressStep = 0;
     ui->progressBar->setValue(0);
     finishTimer->start();
@@ -81,7 +90,10 @@ void CalibratePage::moveToNextStep() {
     writeEncryptedCommand(socket, Protocol::CALIBRATE_FINISH);
     ui->nextButton->setEnabled(true);
     ui->previousButton->setEnabled(true);
-    ui->infoLabel->setText("눈 크기 측정 완료. 시작하려면 버튼을 눌러주세요.");
+    ui->infoLabel->setText("눈 크기 측정 완료. 모니터링을 시작하려면 우측으로 스와이프 하세요.");
+    ui->eyeLabel->setText("측정 완료");
+    ui->info_next->setVisible(true);
+    ui->info_ready->setVisible(false);
     break;
   case 4:
     emit moveToNext();
@@ -96,16 +108,22 @@ void CalibratePage::moveToPreviousStep() {
     emit moveToPrevious();
     break;
   case 2:
-    ui->infoLabel->setText("뜬 눈의 크기를 측정합니다. 준비 완료 시 버튼을 눌러주세요.");
+    ui->infoLabel->setText("뜬 눈의 크기를 측정합니다. 준비 완료 시 우측으로 스와이프 하세요.");
+    ui->eyeLabel->setText("측정 준비 중");
     ui->progressBar->setValue(0);
     progressStep = 0;
     clickCount -= 2;
+    ui->openedIcon->setVisible(true);
+    ui->closedIcon->setVisible(false);
     break;
   case 4:
-    ui->infoLabel->setText("감은 눈의 크기를 측정합니다. 준비 완료 시 버튼을 눌러주세요.");
+    ui->infoLabel->setText("감은 눈의 크기를 측정합니다. 준비 완료 시 우측으로 스와이프 하세요.");
+    ui->eyeLabel->setText("측정 완료");
     ui->progressBar->setValue(0);
     progressStep = 0;
     clickCount -= 2;
+    ui->info_next->setVisible(false);
+    ui->info_ready->setVisible(true);
     break;
   }
 }

@@ -167,22 +167,6 @@ border: 1px solid rgb(26, 31, 44);</string>
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="nextButton">
-   <property name="geometry">
-    <rect>
-     <x>450</x>
-     <y>10</y>
-     <width>80</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>nextButton</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="infostart">
    <property name="geometry">
     <rect>
@@ -227,30 +211,6 @@ border: 1px solid rgb(26, 31, 44);</string>
     <string>손을 인식하면 카메라 설정 화면으로 넘어갑니다.</string>
    </property>
   </widget>
-  <widget class="QLabel" name="wait">
-   <property name="geometry">
-    <rect>
-     <x>488</x>
-     <y>84</y>
-     <width>47</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>hanwhaGothic</family>
-     <pointsize>9</pointsize>
-     <bold>false</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: transparent;
-color: #D5D5D5;</string>
-   </property>
-   <property name="text">
-    <string>대기 중</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="palm1">
    <property name="geometry">
     <rect>
@@ -268,7 +228,7 @@ background-color: transparent;</string>
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="../resources/resources.qrc">:/images/image/palm1.png</pixmap>
+    <pixmap>:/images/image/palm1.png</pixmap>
    </property>
   </widget>
   <widget class="QWidget" name="widget" native="true">
@@ -465,62 +425,68 @@ image: url(:/images/image/hand_gesture.png);</string>
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="wait_green">
+  <widget class="QPushButton" name="nextButton">
    <property name="geometry">
     <rect>
-     <x>474</x>
-     <y>89</y>
-     <width>9</width>
-     <height>9</height>
+     <x>510</x>
+     <y>10</y>
+     <width>25</width>
+     <height>25</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: transparent;
-image: url(:/images/image/dot.png);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="run_red">
-   <property name="geometry">
-    <rect>
-     <x>474</x>
-     <y>89</y>
-     <width>9</width>
-     <height>9</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">image: url(:/images/image/dot_o.png);
-background-color: transparent;</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="run">
-   <property name="geometry">
-    <rect>
-     <x>488</x>
-     <y>84</y>
-     <width>47</width>
-     <height>21</height>
-    </rect>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
    </property>
    <property name="font">
     <font>
-     <family>hanwhaGothic</family>
-     <pointsize>9</pointsize>
-     <bold>false</bold>
+     <family>Nunito</family>
+     <pointsize>13</pointsize>
+     <bold>true</bold>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: transparent;
-color: #D5D5D5;</string>
+    <string notr="true">QPushButton {
+    border: 2px solid black;
+    border-radius: 8px;
+	background-color: transparent;
+	border-color: #F37321;
+    outline: none;
+	color: white;
+	padding-right: 25px;
+}
+
+QPushButton:focus {
+    outline: none;
+}
+
+QPushButton:pressed {
+    background-color: #e0e0e0;
+}</string>
    </property>
    <property name="text">
-    <string>실행 중</string>
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="right">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>10</y>
+     <width>25</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/image/arrow_right.png);
+border: 2px solid transparent;
+border-radius: 8px;
+background-color: rgb(36, 43, 50);</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
   <zorder>titlelabel</zorder>
@@ -528,20 +494,15 @@ color: #D5D5D5;</string>
   <zorder>man_border</zorder>
   <zorder>jes_title</zorder>
   <zorder>videoLabel</zorder>
-  <zorder>nextButton</zorder>
-  <zorder>wait</zorder>
   <zorder>palm1</zorder>
   <zorder>widget</zorder>
   <zorder>infostart</zorder>
   <zorder>introstart</zorder>
   <zorder>line</zorder>
-  <zorder>wait_green</zorder>
   <zorder>label</zorder>
-  <zorder>run_red</zorder>
-  <zorder>run</zorder>
+  <zorder>right</zorder>
+  <zorder>nextButton</zorder>
  </widget>
- <resources>
-  <include location="../resources/resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

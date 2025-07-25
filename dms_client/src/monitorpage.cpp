@@ -58,9 +58,8 @@ void MonitorPage::wakeupUI(bool on) {
   if (on && !wakeupFlashing) {
     wakeupFlashing = true;
     ++mainWindow->info.alertCount;
-    ui->infoLabel->setStyleSheet("border: 1px solid #FE0808; border-radius: 10px; background-color: #242B32; outline: none;");
-    ui->infoLabel2->setStyleSheet("background-color: transparent; color: #FE0808;");
-    ui->infoPicture->setPixmap(QPixmap(":/images/image/danger.png"));
+    ui->background_red->setVisible(true);
+    ui->highWarning->setVisible(true);
     playDevice();
 
     // 최근 5초 프레임을 클립으로 저장
@@ -69,9 +68,8 @@ void MonitorPage::wakeupUI(bool on) {
   }
   else if (!on && wakeupFlashing) {
     wakeupFlashing = false;
-    ui->infoLabel->setStyleSheet("border: 1px solid #08F7FE; border-radius: 10px; background-color: #242B32; outline: none;");
-    ui->infoLabel2->setStyleSheet("background-color: transparent; color: #08F7FE;");
-    ui->infoPicture->setPixmap(QPixmap(":/images/image/safe.png"));
+    ui->background_red->setVisible(false);
+    ui->highWarning->setVisible(false);
     stopDevice();
   }
 }
@@ -109,6 +107,16 @@ void MonitorPage::activate() {
       writeEncryptedCommand(socket, Protocol::LOCK);
   }
   openDevice();
+  ui->background_red->setVisible(false);
+  ui->co2alarmtext->setVisible(false);
+  ui->middleWarning->setVisible(false);
+  ui->highWarning->setVisible(false);
+  ui->co2Warning->setVisible(false);
+  ui->co2Danger->setVisible(false);
+  ui->co2Safe->setVisible(false);
+  ui->dangerface->setVisible(false);
+  ui->warningface->setVisible(false);
+  ui->safeface->setVisible(true);
 }
 
 void MonitorPage::deactivate() {
