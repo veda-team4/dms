@@ -642,6 +642,9 @@ color: #D5D5D5;</string>
      <height>80</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;</string>
+   </property>
    <widget class="QLabel" name="sleepingLabel">
     <property name="geometry">
      <rect>
@@ -668,7 +671,7 @@ outline: none;
 color: white;</string>
     </property>
     <property name="text">
-     <string>   졸음도</string>
+     <string>    졸음도</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -817,6 +820,9 @@ background-color: transparent;</string>
      <width>120</width>
      <height>61</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;</string>
    </property>
    <widget class="QLabel" name="co2Label">
     <property name="geometry">
@@ -1024,6 +1030,9 @@ background-color: transparent;</string>
      <height>151</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;</string>
+   </property>
    <widget class="QLabel" name="man_border">
     <property name="geometry">
      <rect>
@@ -1114,6 +1123,9 @@ background-color: transparent;</string>
      <height>151</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;</string>
+   </property>
    <widget class="QLabel" name="man_border_2">
     <property name="geometry">
      <rect>
@@ -1203,6 +1215,9 @@ background-color: transparent;</string>
      <width>121</width>
      <height>151</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;</string>
    </property>
    <widget class="QLabel" name="man_border_3">
     <property name="geometry">
@@ -1484,6 +1499,23 @@ image: url(:/images/image/danger.png);</string>
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="background_red">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>580</width>
+     <height>480</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(255, 68, 68, 0.15);</string>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <zorder>background_red</zorder>
   <zorder>videoLabel</zorder>
   <zorder>right</zorder>
   <zorder>left</zorder>
