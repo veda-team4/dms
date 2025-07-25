@@ -30,5 +30,11 @@
         <file>image/sadface.png</file>
         <file>image/smileface.png</file>
         <file>image/infoswipe.png</file>
+        <file>image/co2c.png</file>
+        <file>image/dangerface.png</file>
+        <file>image/safeface.png</file>
+        <file>image/warningface.png</file>
+        <file>image/warn.png</file>
+        <file>image/dang.png</file>
     </qresource>
 </RCC>
