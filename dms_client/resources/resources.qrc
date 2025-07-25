@@ -36,5 +36,8 @@
         <file>image/warningface.png</file>
         <file>image/warn.png</file>
         <file>image/dang.png</file>
+        <file>image/direction.png</file>
+        <file>image/from2.png</file>
+        <file>image/to2.png</file>
     </qresource>
 </RCC>
