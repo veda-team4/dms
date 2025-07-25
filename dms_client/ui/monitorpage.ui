@@ -657,7 +657,8 @@ padding-top: 2px;</string>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <family>hanwhaGothic</family>
+      <pointsize>10</pointsize>
       <bold>true</bold>
      </font>
     </property>
@@ -667,9 +668,10 @@ border: 2px solid #66cc66;
 border-radius: 5px;
 background-color: #0e1420;
 outline: none;
+color: white;
 }
 QProgressBar:chunk {
-border-radius: 5px;
+border-radius: 3px;
 background-color: #66cc66;
 }</string>
     </property>
@@ -683,41 +685,10 @@ background-color: #66cc66;
      <set>Qt::AlignCenter</set>
     </property>
     <property name="textVisible">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
-   </widget>
-   <widget class="QProgressBar" name="sleepingProgress">
-    <property name="geometry">
-     <rect>
-      <x>46</x>
-      <y>43</y>
-      <width>24</width>
-      <height>13</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>hanwhaGothic</family>
-      <pointsize>10</pointsize>
-      <italic>false</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QProgressBar {
-	font: 800 10pt &quot;hanwhaGothic&quot;;
-    border: none;
-    background-color: transparent;
-    text-align: center;
-    color: white;
-}
-
-QProgressBar::chunk {
-    background-color: transparent;
-}</string>
-    </property>
-    <property name="value">
-     <number>0</number>
+    <property name="format">
+     <string> %p%</string>
     </property>
    </widget>
    <widget class="QLabel" name="safeface">
@@ -771,6 +742,11 @@ background-color: transparent;</string>
      <string/>
     </property>
    </widget>
+   <zorder>sleepingLabel</zorder>
+   <zorder>safeface</zorder>
+   <zorder>warningface</zorder>
+   <zorder>dangerface</zorder>
+   <zorder>sleepingBar</zorder>
   </widget>
   <widget class="QWidget" name="widget_co2" native="true">
    <property name="geometry">

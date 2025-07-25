@@ -60,6 +60,7 @@ void MonitorPage::wakeupUI(bool on) {
     ++mainWindow->info.alertCount;
     ui->background_red->setVisible(true);
     ui->highWarning->setVisible(true);
+    ui->infotext->setVisible(false);
     playDevice();
 
     // 최근 5초 프레임을 클립으로 저장
@@ -70,6 +71,7 @@ void MonitorPage::wakeupUI(bool on) {
     wakeupFlashing = false;
     ui->background_red->setVisible(false);
     ui->highWarning->setVisible(false);
+    ui->infotext->setVisible(true);
     stopDevice();
   }
 }
@@ -221,7 +223,6 @@ void MonitorPage::readFrame() {
         double value = *reinterpret_cast<const double*>(decrypted.constData() + 5);
         int v = (int)(value * 100.0);
         ui->sleepingBar->setValue(v);
-        ui->sleepingProgress->setValue(v);
 
         if (value == 1.0) {
           wakeupUI(true);
