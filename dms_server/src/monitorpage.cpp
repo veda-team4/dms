@@ -17,7 +17,13 @@
 #define MAX_DOWN_COUNT 2 // 몇번 카운트 해야 경고할 것인지
 // ********************************************
 
+void startRtsp();
+void stopRtsp();
+
 int monitorpage(double thresholdEAR) {
+  // RTSP 서버 쓰레드 시작
+  std::thread rtsp_thread(startRtsp);
+
   // 시작 시간 기록
   auto startTime = std::chrono::steady_clock::now();
 
@@ -38,6 +44,8 @@ int monitorpage(double thresholdEAR) {
     if (protocol != Protocol::NOTHING) {
       if (protocol == Protocol::STOP) {
         writeLog("message from client: STOP");
+        stopRtsp();
+        rtsp_thread.join();
         return 0;
       }
       else if (protocol == Protocol::LOCK) {
@@ -119,6 +127,11 @@ int monitorpage(double thresholdEAR) {
     }
     else {
       blinkWindow.push_back(false);
+    }
+
+    {
+      std::lock_guard<std::mutex> lock(rtspFrameMutex);
+      frame.copyTo(rtspFrame);
     }
 
     // 윈도우 초과한 항목 1개 제거

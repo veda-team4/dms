@@ -25,6 +25,12 @@ set_target_properties(dlib PROPERTIES
 # OpenSSL
 find_package(OpenSSL REQUIRED)
 
+# GStreamer
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(GST REQUIRED gstreamer-1.0 gstreamer-rtsp-server-1.0)
+include_directories(${GST_INCLUDE_DIRS})
+link_directories(${GST_LIBRARY_DIRS})
+
 # Main executable
 add_executable(dms_server
  src/main.cpp
@@ -35,6 +41,7 @@ add_executable(dms_server
  src/monitorpage.cpp
  src/startpage.cpp
  src/reportpage.cpp
+ src/rtsp.cpp
  )
 
-target_link_libraries(dms_server ${OpenCV_LIBS} dlib OpenSSL::SSL OpenSSL::Crypto)
+target_link_libraries(dms_server ${OpenCV_LIBS} dlib OpenSSL::SSL OpenSSL::Crypto ${GST_LIBRARIES})

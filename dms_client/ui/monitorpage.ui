@@ -133,7 +133,7 @@ font: 700 14pt &quot;hanwhaGothic&quot;;</string>
      <number>0</number>
     </property>
    </widget>
-   <widget class="QLabel" name="restplace">
+   <widget class="QLabel" name="restNameLabel">
     <property name="geometry">
      <rect>
       <x>72</x>
@@ -256,15 +256,29 @@ font: 700 14pt &quot;hanwhaGothic&quot;;</string>
      <number>0</number>
     </property>
    </widget>
+   <widget class="QLabel" name="kmLabel">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>160</y>
+      <width>57</width>
+      <height>14</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
    <zorder>desLabel</zorder>
    <zorder>fromLabel</zorder>
    <zorder>toLabel</zorder>
    <zorder>timeLabel</zorder>
-   <zorder>restplace</zorder>
+   <zorder>restNameLabel</zorder>
    <zorder>direction</zorder>
    <zorder>from</zorder>
    <zorder>to</zorder>
    <zorder>fromLabel2</zorder>
+   <zorder>kmLabel</zorder>
   </widget>
   <widget class="QLabel" name="right">
    <property name="geometry">

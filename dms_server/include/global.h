@@ -16,6 +16,8 @@ extern bool hasFace; // 얼굴 감지 유무
 extern std::mutex faceMutex; // 위 두 변수 위한 뮤텍스
 extern cv::Mat sharedFrame; // 쓰레드에게 전달하는 프레임
 extern std::mutex frameMutex; // 위 변수 위한 뮤텍스
+extern cv::Mat rtspFrame;
+extern std::mutex rtspFrameMutex;
 extern std::atomic<bool> running; // 쓰레드 동작 제어 변수
 
 extern std::vector<int> landmarkIdx; // 사용할 얼굴 랜드마크
