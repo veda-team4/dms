@@ -39,5 +39,8 @@
         <file>image/direction.png</file>
         <file>image/from2.png</file>
         <file>image/to2.png</file>
+        <file>image/Eye.png</file>
+        <file>image/Arrow right-circle.png</file>
+        <file>image/Eye off.png</file>
     </qresource>
 </RCC>
