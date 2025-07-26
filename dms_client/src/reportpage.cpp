@@ -37,6 +37,8 @@ void ReportPage::activate() {
       mainWindow->updateLock();
       writeEncryptedCommand(socket, Protocol::LOCK);
   }
+  ui->sleepingTime_1->setVisible(false);
+  ui->sleepingTime_2->setVisible(false);
 }
 
 void ReportPage::deactivate() {
@@ -54,12 +56,7 @@ void ReportPage::deactivate() {
 void ReportPage::printGraph(Information& info) {
     QVector<double>& values = info.values;
 
-    QFont tinyFont;
-    tinyFont.setPixelSize(1);
-
-    // values.push_back(10); values.push_back(20); values.push_back(40); values.push_back(90); values.push_back(100); values.push_back(80);
-
-    // === 2. 시리즈 생성 (인덱스를 0~100으로 정규화) ===
+    // === 1. 라인 시리즈 생성 ===
     QLineSeries *series = new QLineSeries();
     for (int i = 0; i < values.size(); ++i) {
         double x = (double)i / (values.size() - 1) * 100.0; // 0~100%
@@ -67,48 +64,84 @@ void ReportPage::printGraph(Information& info) {
         series->append(x, y);
     }
 
-    QPen pen = series->pen();
-    pen.setWidth(1);
+    // 라인 색상/굵기
+    QPen pen(QColor("#F37321"));
+    pen.setWidth(2);
     series->setPen(pen);
 
-    // === 3. 차트 생성 ===
+    // === 2. 차트 생성 ===
     QChart *chart = new QChart();
     chart->legend()->hide();
     chart->addSeries(series);
-    chart->setMargins(QMargins(10, 0, 10, 0));  // 바깥쪽 여백 제거
-    chart->layout()->setContentsMargins(0, 0, 0, 0); 
+    chart->setBackgroundBrush(QColor("#0E1420"));  
+    chart->setPlotAreaBackgroundVisible(false);
+    chart->setMargins(QMargins(5, 5, 5, 5));
+    chart->layout()->setContentsMargins(0, 0, 0, 0);
+    chart->setBackgroundRoundness(0); // 여백 줄이기
 
-    // === 4. X축: 0~100% 고정 ===
+    // === 3. X축 설정 ===
     QValueAxis *axisX = new QValueAxis;
     axisX->setRange(0, 100);
     axisX->setLabelsVisible(false);
+    axisX->setGridLineVisible(false);
+    axisX->setLineVisible(true);
+    axisX->setTickCount(2);
+
+    QFont tinyFont;
+    tinyFont.setPixelSize(1);
     axisX->setLabelsFont(tinyFont);
+
     chart->addAxis(axisX, Qt::AlignBottom);
     series->attachAxis(axisX);
 
-    // === 5. Y축: 값 범위 ===
+    // === 4. Y축 설정 ===
     QValueAxis *axisY = new QValueAxis;
-    axisY->setRange(0, 100); // 값 범위 고정 (필요 시 min/max 계산)
-    axisY->setLabelsVisible(false);
+    axisY->setRange(0, 100);
+    axisY->setTickCount(5);
+    axisY->setLabelFormat("%d%%");
+    axisY->setLabelsVisible(true);
+    axisY->setLabelsBrush(QBrush(Qt::white));
+
+    QFont labelFont;
+    labelFont.setPixelSize(10);
+    labelFont.setBold(true);
+    axisY->setLabelsFont(labelFont);
+
+    QPen gridPen(QColor(255, 255, 255, 80));
+    axisY->setGridLinePen(gridPen);
+
     chart->addAxis(axisY, Qt::AlignLeft);
     series->attachAxis(axisY);
 
-    // === 6. QChartView를 chartContainer에 추가 ===
+    // === 5. ChartView 생성 ===
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
     chartView->setContentsMargins(0, 0, 0, 0);
+    chartView->setStyleSheet("background: transparent;");
 
+    // *** 꽉 채우기 위해 SizePolicy 강제 ***
+    chartView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    chartView->setMinimumSize(0, 0);
+
+    // === 6. 레이아웃에 추가 (여백 제거) ===
     QLayout *layout = ui->chartContainer->layout();
     if (!layout) {
         layout = new QVBoxLayout(ui->chartContainer);
         ui->chartContainer->setLayout(layout);
-    } else {
-        QLayoutItem *child;
-        while ((child = layout->takeAt(0)) != nullptr) {
-            delete child->widget();
-            delete child;
-        }
     }
+
+    // 여백 및 간격 제거
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setSpacing(0);
+
+    // 기존 차트 제거
+    QLayoutItem *child;
+    while ((child = layout->takeAt(0)) != nullptr) {
+        delete child->widget();
+        delete child;
+    }
+
+    // 차트 추가
     layout->addWidget(chartView);
 }
 
@@ -117,22 +150,25 @@ void ReportPage::printSummary(Information& info) {
     ui->sleepingAverage->setText(QString::fromStdString(averageStr));
     std::string alertCount = (std::to_string(info.alertCount) + std::string("회"));
     ui->sleepingNum->setText(QString::fromStdString(alertCount));
+    ui->drivingTime->setText(QString::fromStdString(info.drivingTime));
 }
 
 void ReportPage::playSleepingClip() {
     if (mainWindow->sleepingFrames.empty()) return;
     if (mainWindow->sleepingFrames.size() >= 1) {
         ui->novideo_1->setVisible(false);
+        ui->sleepingTime_1->setVisible(true);
     }
     if (mainWindow->sleepingFrames.size() >= 2) {
         ui->novideo_2->setVisible(false);
+        ui->sleepingTime_2->setVisible(true);
     }
 
     currentFrameIndex = 0;
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, [this]() {
-        auto& clip0 = mainWindow->sleepingFrames[mainWindow->sleepingFrames.size() - 2];
+        auto& clip0 = mainWindow->sleepingFrames[mainWindow->sleepingFrames.size() - (mainWindow->sleepingFrames.size() >= 2 ? 2 : 1)];
         if (currentFrameIndex >= clip0.size()) {
             currentFrameIndex = 0;
         }
@@ -140,6 +176,9 @@ void ReportPage::playSleepingClip() {
         ui->videoLabel->setPixmap(
             clip0[currentFrameIndex].scaled(ui->videoLabel->size(), Qt::KeepAspectRatio)
         );
+        // 졸음 시간 출력
+        std::string t = "졸음 감지 #1 (" + mainWindow->sleepingTimes[mainWindow->sleepingTimes.size() - (mainWindow->sleepingTimes.size() >= 2 ? 2 : 1)] + ")";
+        ui->sleepingTime_1->setText(QString::fromStdString(t));
 
         if (mainWindow->sleepingFrames.size() >= 2) {
             auto& clip1 = mainWindow->sleepingFrames[mainWindow->sleepingFrames.size() - 1];
@@ -147,6 +186,9 @@ void ReportPage::playSleepingClip() {
             ui->videoLabel_2->setPixmap(
                 clip1[currentFrameIndex].scaled(ui->videoLabel_2->size(), Qt::KeepAspectRatio)
             );
+            // 졸음 시간 출력
+            std::string t = "졸음 감지 #2 (" + mainWindow->sleepingTimes[mainWindow->sleepingTimes.size() - 1] + ")";
+            ui->sleepingTime_2->setText(QString::fromStdString(t));
         }
         currentFrameIndex++;
     });

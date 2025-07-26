@@ -4,6 +4,9 @@
 #include "protocols.h"
 #include <unistd.h>
 #include <QDateTime>
+#include <iomanip>
+#include <sstream>
+#include <string>
 
 MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* socket) : BasePage(parent), mainWindow(mainWindow), ui(new Ui::MonitorPage), socket(socket) {
   ui->setupUi(this);
@@ -11,6 +14,7 @@ MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* 
   connect(ui->nextButton, &QPushButton::clicked, this, &MonitorPage::moveToNext);
 
   ui->naviWidget->hide();
+  mainWindow->startTime = std::chrono::steady_clock::now();
 }
 
 MonitorPage::~MonitorPage()
@@ -68,6 +72,14 @@ void MonitorPage::wakeupUI(bool on) {
     // 최근 5초 프레임을 클립으로 저장
     std::vector<QPixmap> clip(mainWindow->recentFrames.begin(), mainWindow->recentFrames.end());
     mainWindow->sleepingFrames.push_back(std::move(clip));
+
+    // 졸음 발생 시간 저장
+    auto now = std::chrono::system_clock::now();
+    std::time_t now_c = std::chrono::system_clock::to_time_t(now);
+    std::tm* local = std::localtime(&now_c);
+    std::ostringstream oss;
+    oss << std::put_time(local, "%H:%M");
+    mainWindow->sleepingTimes.push_back(oss.str());
   }
   else if (!on && wakeupFlashing) {
     wakeupFlashing = false;

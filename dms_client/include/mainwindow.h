@@ -22,6 +22,7 @@ struct Information {
   int alertCount = 0;
   unsigned long long sleepingCount = 0;
   double sleepingAverage = 0.0;
+  std::string drivingTime;
   void clear() {
       values.clear();
       alertCount = sleepingCount = sleepingAverage = 0;
@@ -41,8 +42,10 @@ public:
   bool isLock();
   Information info;
   std::deque<QPixmap> recentFrames;
+  std::vector<std::string> sleepingTimes;
   std::vector<std::vector<QPixmap>> sleepingFrames;
   const int MAX_FRAMES = 30 * 5;
+  std::chrono::steady_clock::time_point startTime;
 
 protected:
   bool eventFilter(QObject* obj, QEvent* event) override;

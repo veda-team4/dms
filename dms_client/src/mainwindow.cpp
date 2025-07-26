@@ -196,6 +196,10 @@ void MainWindow::showReportPage() {
   if (auto prev = qobject_cast<BasePage*>(ui->stackedWidget->currentWidget())) {
     prev->deactivate();
   }
+  auto endTime = std::chrono::steady_clock::now();
+  auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(endTime - startTime).count();
+  info.drivingTime = std::to_string((int)(elapsed / 3600)) + "시간 " + std::to_string((int)(elapsed / 60)) + "분";
+
   ui->stackedWidget->setCurrentWidget(reportPage);
   reportPage->activate();
   focusMenu(4);
