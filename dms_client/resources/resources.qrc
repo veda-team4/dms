@@ -42,5 +42,6 @@
         <file>image/Eye.png</file>
         <file>image/Arrow right-circle.png</file>
         <file>image/Eye off.png</file>
+        <file>image/novideo.png</file>
     </qresource>
 </RCC>

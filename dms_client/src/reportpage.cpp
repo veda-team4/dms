@@ -113,43 +113,43 @@ void ReportPage::printGraph(Information& info) {
 }
 
 void ReportPage::printSummary(Information& info) {
-    std::string averageStr = "  운전 중 눈감김 비율 평균: ";
-    averageStr += (std::to_string((int)info.sleepingAverage) + std::string("%"));
+    std::string averageStr = (std::to_string((int)info.sleepingAverage) + std::string("%"));
     ui->sleepingAverage->setText(QString::fromStdString(averageStr));
-    std::string alertCount = "  졸음 경고 횟수: ";
-    alertCount += (std::to_string(info.alertCount) + std::string("회"));
-    ui->alertCount->setText(QString::fromStdString(alertCount));
+    std::string alertCount = (std::to_string(info.alertCount) + std::string("회"));
+    ui->sleepingNum->setText(QString::fromStdString(alertCount));
 }
 
 void ReportPage::playSleepingClip() {
     if (mainWindow->sleepingFrames.empty()) return;
+    if (mainWindow->sleepingFrames.size() >= 1) {
+        ui->novideo_1->setVisible(false);
+    }
+    if (mainWindow->sleepingFrames.size() >= 2) {
+        ui->novideo_2->setVisible(false);
+    }
 
-    currentClipIndex = currentFrameIndex = 0;
+    currentFrameIndex = 0;
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, [this]() {
-        auto &clip = mainWindow->sleepingFrames[currentClipIndex];
-        ui->sleepingLabel->setText(QString::fromStdString(std::string("졸음 영상 #") + std::to_string(currentClipIndex + 1)));
-        if (currentFrameIndex >= clip.size()) {
-            // 다음 클립으로
-            currentClipIndex++;
+        auto& clip0 = mainWindow->sleepingFrames[mainWindow->sleepingFrames.size() - 2];
+        if (currentFrameIndex >= clip0.size()) {
             currentFrameIndex = 0;
-
-            if (currentClipIndex >= mainWindow->sleepingFrames.size()) {
-                currentClipIndex = 0;
-                currentFrameIndex = 0;
-                return;
-            }
         }
-
         // 프레임 출력
         ui->videoLabel->setPixmap(
-            clip[currentFrameIndex].scaled(ui->videoLabel->size(), Qt::KeepAspectRatio)
+            clip0[currentFrameIndex].scaled(ui->videoLabel->size(), Qt::KeepAspectRatio)
         );
 
+        if (mainWindow->sleepingFrames.size() >= 2) {
+            auto& clip1 = mainWindow->sleepingFrames[mainWindow->sleepingFrames.size() - 1];
+            // 프레임 출력
+            ui->videoLabel_2->setPixmap(
+                clip1[currentFrameIndex].scaled(ui->videoLabel_2->size(), Qt::KeepAspectRatio)
+            );
+        }
         currentFrameIndex++;
     });
-
     timer->start(33); // 30fps 재생
 }
 

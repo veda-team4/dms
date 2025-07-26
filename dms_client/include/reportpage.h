@@ -31,7 +31,6 @@ private:
     QByteArray iv;
     int ciphertext_len = -1;
     quint8 cmd;
-    int currentClipIndex;
     int currentFrameIndex;
     QTimer* timer;
     void readFrame();

@@ -16,22 +16,24 @@
   <widget class="QWidget" name="chartWidget" native="true">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>30</y>
-     <width>240</width>
-     <height>180</height>
+     <x>263</x>
+     <y>100</y>
+     <width>306</width>
+     <height>185</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: #0E1420;</string>
+    <string notr="true">background-color: #0E1420;
+border: 1px solid #1A1F2C;
+border-radius: 5px;</string>
    </property>
    <widget class="QWidget" name="chartContainer" native="true">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>30</y>
-      <width>241</width>
-      <height>151</height>
+      <x>30</x>
+      <y>40</y>
+      <width>271</width>
+      <height>141</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -42,8 +44,8 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>5</y>
-      <width>241</width>
+      <y>3</y>
+      <width>306</width>
       <height>31</height>
      </rect>
     </property>
@@ -57,144 +59,735 @@
      <string notr="true">color: white;</string>
     </property>
     <property name="text">
-     <string>운전 중 눈감김 비율</string>
+     <string>시간대별 졸음 발생</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QWidget" name="summaryWidget" native="true">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>30</y>
-     <width>240</width>
-     <height>180</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #0E1420;</string>
-   </property>
-   <widget class="QLabel" name="sleepingAverage">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>7</y>
-      <width>241</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Hanwha</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: white;</string>
-    </property>
-    <property name="text">
-     <string>  운전 중 눈감김 비율 평균: 25%</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="alertCount">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>50</y>
-      <width>241</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Hanwha</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: white;</string>
-    </property>
-    <property name="text">
-     <string>  졸음 경고 횟수: 2회</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
   </widget>
   <widget class="QLabel" name="videoLabel">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>220</y>
-     <width>320</width>
-     <height>240</height>
+     <x>30</x>
+     <y>335</y>
+     <width>140</width>
+     <height>105</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border: 1px solid black;</string>
+    <string notr="true">border: 1px solid #1A1F2C;
+background-color: #151A25;</string>
    </property>
    <property name="text">
     <string/>
    </property>
   </widget>
-  <widget class="QWidget" name="chartWidget_2" native="true">
+  <widget class="QLabel" name="right">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>220</y>
-     <width>181</width>
-     <height>241</height>
+     <x>510</x>
+     <y>10</y>
+     <width>25</width>
+     <height>25</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: #0E1420;</string>
+    <string notr="true">image: url(:/images/image/arrow_right.png);
+border: 2px solid transparent;
+border-radius: 8px;
+background-color: rgb(36, 43, 50);</string>
    </property>
-   <widget class="QLabel" name="sleepingLabel">
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="nextButton">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>10</y>
+     <width>25</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Nunito</family>
+     <pointsize>13</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    border: 2px solid black;
+    border-radius: 8px;
+	background-color: transparent;
+	border-color: #F37321;
+    outline: none;
+	color: white;
+	padding-right: 25px;
+}
+
+QPushButton:focus {
+    outline: none;
+}
+
+QPushButton:pressed {
+    background-color: #e0e0e0;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="title">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>26</y>
+     <width>240</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Hanwha</family>
+     <pointsize>17</pointsize>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #F37321;
+font: 800 17pt &quot;Hanwha&quot;;
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string>운전자 모니터링 시스템</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="sleepingAverageLabel">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>200</y>
+     <width>110</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Hanwha</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string> 눈감김 평균</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="averageBox">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>195</y>
+     <width>110</width>
+     <height>90</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #0E1420;
+border-radius: 5px;
+border: 1px solid #1A1F2C;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="totalTimeBox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>100</y>
+     <width>110</width>
+     <height>90</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #0E1420;
+border-radius: 5px;
+border: 1px solid #1A1F2C;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="alertNumBox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>195</y>
+     <width>110</width>
+     <height>90</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #0E1420;
+border-radius: 5px;
+border: 1px solid #1A1F2C;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="totalKmBox">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>100</y>
+     <width>110</width>
+     <height>90</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #0E1420;
+border-radius: 5px;
+border: 1px solid #1A1F2C;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="sleepingAverage">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>240</y>
+     <width>110</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Hanwha</family>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string>25 %</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="totalKmLabel">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>100</y>
+     <width>110</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Hanwha</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string>총 주행 거리</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="totalKm">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>150</y>
+     <width>110</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Hanwha</family>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string>110 KM</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="totalKmLabel_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>100</y>
+     <width>110</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Hanwha</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string>총 운전 시간</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="sleepingAverage_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>150</y>
+     <width>110</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Hanwha</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string>1시간 40분</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="sleepingNumLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>200</y>
+     <width>110</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Hanwha</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string>졸음 감지 횟수</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="sleepingNum">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>240</y>
+     <width>110</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Hanwha</family>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+background-color: transparent;</string>
+   </property>
+   <property name="text">
+    <string>1 회</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>60</y>
+     <width>191</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Hanwha</family>
+     <pointsize>13</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #D5D5D5;</string>
+   </property>
+   <property name="text">
+    <string>운전자 모니터링 리포트</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>300</y>
+     <width>430</width>
+     <height>147</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #0E1420;
+border-radius: 5px;
+border: 1px solid #1A1F2C;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="videoLabel_2">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>335</y>
+     <width>140</width>
+     <height>105</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 1px solid #1A1F2C;
+background-color: #151A25;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QWidget" name="novideo_2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>335</y>
+     <width>140</width>
+     <height>105</height>
+    </rect>
+   </property>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>20</y>
+      <width>16</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../resources/resources.qrc">:/images/image/novideo.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>5</y>
-      <width>181</width>
-      <height>31</height>
+      <y>53</y>
+      <width>141</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Hanwha</family>
-      <pointsize>12</pointsize>
+      <family>hanwhaGothic</family>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="styleSheet">
      <string notr="true">color: white;</string>
     </property>
     <property name="text">
-     <string>졸음 영상 #1</string>
+     <string>최근 졸음 감지가 없어
+표시할 영상이 없습니다.</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="nextButton">
+  <widget class="QWidget" name="novideo_1" native="true">
    <property name="geometry">
     <rect>
-     <x>492</x>
-     <y>4</y>
-     <width>80</width>
-     <height>22</height>
+     <x>30</x>
+     <y>335</y>
+     <width>140</width>
+     <height>105</height>
     </rect>
    </property>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>20</y>
+      <width>16</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../resources/resources.qrc">:/images/image/novideo.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>53</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>hanwhaGothic</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;</string>
+    </property>
+    <property name="text">
+     <string>최근 졸음 감지가 없어
+표시할 영상이 없습니다.</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="sleepingTime_1">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>310</y>
+     <width>140</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Hanwha</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #D5D5D5;</string>
+   </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>졸음 감지 #1 (14:03)</string>
    </property>
   </widget>
+  <widget class="QLabel" name="sleepingTime_2">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>310</y>
+     <width>140</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Hanwha</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #D5D5D5;</string>
+   </property>
+   <property name="text">
+    <string>졸음 감지 #2 (16:03)</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="infojes" native="true">
+   <property name="geometry">
+    <rect>
+     <x>456</x>
+     <y>300</y>
+     <width>121</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <widget class="QLabel" name="man_border">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>113</width>
+      <height>147</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>hanwhaGothic</family>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;
+background-color: rgb(14, 20, 32);
+border-radius: 8px;</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="jes_label">
+    <property name="geometry">
+     <rect>
+      <x>13</x>
+      <y>18</y>
+      <width>111</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>hanwhaGothic</family>
+      <pointsize>10</pointsize>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;
+font: 800 10pt &quot;hanwhaGothic&quot;;
+color:white;</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;
+&lt;body&gt;
+&lt;div style=&quot;color:#f37321; margin-bottom: 4px;&quot;&gt;
+홈&lt;span style=&quot;color:#ffffff;&quot;&gt;으로&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div style=&quot;color:#ffffff; margin-bottom: 4px;&quot;&gt;
+돌아가려면
+    &lt;/div&gt;
+&lt;div style=&quot;color:#ffffff; margin-top: 0px;&quot;&gt;
+손을 뻗어주세요.
+    &lt;/div&gt;
+&lt;body&gt;
+&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="palm1">
+    <property name="geometry">
+     <rect>
+      <x>35</x>
+      <y>86</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/images/image/palm1(1).png);
+background-color: transparent;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <zorder>chartWidget</zorder>
+  <zorder>right</zorder>
+  <zorder>nextButton</zorder>
+  <zorder>title</zorder>
+  <zorder>averageBox</zorder>
+  <zorder>totalTimeBox</zorder>
+  <zorder>alertNumBox</zorder>
+  <zorder>totalKmBox</zorder>
+  <zorder>sleepingAverageLabel</zorder>
+  <zorder>sleepingAverage</zorder>
+  <zorder>totalKmLabel</zorder>
+  <zorder>totalKm</zorder>
+  <zorder>totalKmLabel_2</zorder>
+  <zorder>sleepingAverage_2</zorder>
+  <zorder>sleepingNumLabel</zorder>
+  <zorder>sleepingNum</zorder>
+  <zorder>label_2</zorder>
+  <zorder>label_3</zorder>
+  <zorder>videoLabel</zorder>
+  <zorder>videoLabel_2</zorder>
+  <zorder>novideo_2</zorder>
+  <zorder>novideo_1</zorder>
+  <zorder>sleepingTime_1</zorder>
+  <zorder>sleepingTime_2</zorder>
+  <zorder>infojes</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
