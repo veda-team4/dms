@@ -61,7 +61,9 @@ void MonitorPage::wakeupUI(bool on) {
     ui->background_red->setVisible(true);
     ui->highWarning->setVisible(true);
     ui->infotext->setVisible(false);
+    ui->infoalarm->raise();
     playDevice();
+    navigation(true);
 
     // 최근 5초 프레임을 클립으로 저장
     std::vector<QPixmap> clip(mainWindow->recentFrames.begin(), mainWindow->recentFrames.end());
@@ -72,11 +74,39 @@ void MonitorPage::wakeupUI(bool on) {
     ui->background_red->setVisible(false);
     ui->highWarning->setVisible(false);
     ui->infotext->setVisible(true);
+    if (mainWindow->isLock()) {
+      ui->infojes->raise();
+    }
+    else {
+      ui->infoswipe->raise();
+    }
     stopDevice();
+    navigation(false);
   }
 }
 
 void MonitorPage::navigation(bool on) {
+    if (on) {
+      ui->naviWidget->setVisible(true);
+      /*
+      while (!gps->cur_location(&latitude, &longitude)) {
+        usleep(100);
+      }
+      restArea area = osrm->getRestAreas(latitude, longitude);
+      ui->toLabel->setText((area.isRestArea ? QString("휴게소") : QString("졸음쉼터")));
+      std::string dist = std::to_string(area.route_distance / 1000);
+      size_t dot = dist.find('.');
+      if (dot != std::string::npos && dot + 3 < dist.length()) {
+      dist = dist.substr(0, dot + 3);
+      }
+      ui->kmLabel->setText(QString::fromStdString(dist + std::string(" KM")));
+      ui->timeLabel->setText(QString::fromStdString(std::to_string((int)(area.route_duration / 60)) + std::string(" 분")));
+      */
+    }
+    else {
+      ui->naviWidget->setVisible(false);
+    }
+    /*
     if (on && !navigating) {
         while (!gps->cur_location(&latitude, &longitude)) {
           usleep(100);
@@ -91,13 +121,12 @@ void MonitorPage::navigation(bool on) {
         ui->kmLabel->setText(QString::fromStdString(dist + std::string(" KM")));
         ui->timeLabel->setText(QString::fromStdString(std::to_string((int)(area.route_duration / 60)) + std::string(" 분")));
         ui->naviWidget->show();
-        navigating = true;
         writeLog(std::string("latitude: ") + std::to_string(latitude) + std::string(", longitude: ") + std::to_string(longitude));
     }
     else if (!on && navigating) {
         ui->naviWidget->hide();
-        navigating = false;
     }
+    */
 }
 
 void MonitorPage::activate() {
@@ -119,6 +148,7 @@ void MonitorPage::activate() {
   ui->dangerface->setVisible(false);
   ui->warningface->setVisible(false);
   ui->safeface->setVisible(true);
+  ui->infojes->raise();
 }
 
 void MonitorPage::deactivate() {
@@ -198,6 +228,12 @@ void MonitorPage::readFrame() {
         else {
           mainWindow->updateLock();
           writeEncryptedCommand(socket, (mainWindow->isLock() ? Protocol::LOCK : Protocol::UNLOCK));
+          if (mainWindow->isLock()) {
+            ui->infojes->raise();
+          }
+          else {
+            ui->infoswipe->raise();
+          }
           return;
         }
       }
@@ -224,7 +260,7 @@ void MonitorPage::readFrame() {
         int v = (int)(value * 100.0);
         ui->sleepingBar->setValue(v);
 
-        if (v < 50) {
+        if (v < 40) {
             ui->sleepingBar->setStyleSheet("QProgressBar { border: 2px solid #66cc66; border-radius: 5px; background-color: #0e1420; outline: none; color: white; } QProgressBar:chunk { border-radius: 3px; background-color: #66cc66; }");
         }
         else if (v < 80) {
