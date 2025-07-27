@@ -19,7 +19,7 @@ ConnectDialog::~ConnectDialog()
 void ConnectDialog::onConnectButtonClicked() {
     QString ip = ui->ipEdit->text();
     QString port = ui->portEdit->text();
-    QString url = QString("rtsp://%1:%2/stream").arg(ip, port); // 실제 경로 맞게 수정
+    QString url = QString("rtsp://%1:%2/mystream").arg(ip, port); // 실제 경로 맞게 수정
     emit connectToRtsp(url);
     accept(); // 모달 닫기
 }
