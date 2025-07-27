@@ -32,7 +32,7 @@ private:
     int ciphertext_len = -1;
     quint8 cmd;
     int currentFrameIndex;
-    QTimer* timer;
+    QTimer* timer = nullptr;
     void readFrame();
     void printGraph(Information& info);
     void printSummary(Information& info);

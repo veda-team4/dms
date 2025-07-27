@@ -49,7 +49,11 @@ void ReportPage::deactivate() {
   }
   buffer.clear();
   ciphertext_len = -1;
-  timer->stop();
+  if (timer) {
+    timer->stop();
+    delete timer;
+    timer = nullptr;
+  }
   mainWindow->sleepingFrames.clear();
 }
 
@@ -168,6 +172,7 @@ void ReportPage::playSleepingClip() {
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, [this]() {
+      if (mainWindow->sleepingFrames.empty()) return;
         auto& clip0 = mainWindow->sleepingFrames[mainWindow->sleepingFrames.size() - (mainWindow->sleepingFrames.size() >= 2 ? 2 : 1)];
         if (currentFrameIndex >= clip0.size()) {
             currentFrameIndex = 0;
