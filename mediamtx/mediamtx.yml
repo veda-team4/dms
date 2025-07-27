@@ -51,12 +51,25 @@ authMethod: internal
 # Internal authentication.
 # list of users.
 authInternalUsers:
-
-- user: admin
-  pass: admin
-  ips: []   # 특정 IP 제한 없으면 비워둠
+  # Default unprivileged user.
+  # Username. 'any' means any user, including anonymous ones.
+- user: any
+  # Password. Not used in case of 'any' user.
+  pass:
+  # IPs or networks allowed to use this user. An empty list means any IP.
+  ips: []
+  # List of permissions.
   permissions:
-    - action: read      # 스트림 시청 허용
+    # Available actions are: publish, read, playback, api, metrics, pprof.
+  - action: publish
+    # Paths can be set to further restrict access to a specific path.
+    # An empty path means any path.
+    # Regular expressions can be used by using a tilde as prefix.
+    path:
+  - action: read
+    path:
+  - action: playback
+    path:
 
   # Default administrator.
   # This allows to use API, metrics and PPROF without authentication,
@@ -68,7 +81,6 @@ authInternalUsers:
   - action: api
   - action: metrics
   - action: pprof
-  - action: publish
 
 # HTTP-based authentication.
 # URL called to perform authentication. Every time a user wants
@@ -232,7 +244,7 @@ rtsp: yes
 rtspTransports: [udp, multicast, tcp]
 # Use secure protocol variants (RTSPS, TLS, SRTP).
 # Available values are "no", "strict", "optional".
-rtspEncryption: "optional"
+rtspEncryption: "no"
 # Address of the TCP/RTSP listener. This is needed only when encryption is "no" or "optional".
 rtspAddress: :8554
 # Address of the TCP/TLS/RTSPS listener. This is needed only when encryption is "strict" or "optional".
