@@ -13,81 +13,80 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="videoLabel_1">
+  <widget class="QFrame" name="frame_1">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>40</y>
-     <width>240</width>
-     <height>180</height>
+     <x>70</x>
+     <y>10</y>
+     <width>300</width>
+     <height>300</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">border: 1px solid white;</string>
    </property>
-   <property name="text">
-    <string>videoLabel_1</string>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="videoLabel_2">
+  <widget class="QFrame" name="frame_2">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>40</y>
-     <width>251</width>
-     <height>181</height>
+     <x>420</x>
+     <y>10</y>
+     <width>300</width>
+     <height>300</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">border: 1px solid white;</string>
    </property>
-   <property name="text">
-    <string>videoLabel_2</string>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="videoLabel_3">
+  <widget class="QFrame" name="frame_3">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>240</y>
-     <width>251</width>
-     <height>181</height>
+     <x>70</x>
+     <y>330</y>
+     <width>300</width>
+     <height>300</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">border: 1px solid white;</string>
    </property>
-   <property name="text">
-    <string>videoLabel_3</string>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="videoLabel_4">
+  <widget class="QFrame" name="frame_4">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>250</y>
-     <width>240</width>
-     <height>180</height>
+     <x>420</x>
+     <y>330</y>
+     <width>300</width>
+     <height>300</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">border: 1px solid white;</string>
    </property>
-   <property name="text">
-    <string>videoLabel_4</string>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
    </property>
-  </widget>
-  <widget class="QPushButton" name="connectButton">
-   <property name="geometry">
-    <rect>
-     <x>840</x>
-     <y>490</y>
-     <width>100</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>운전자 연결</string>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
    </property>
   </widget>
  </widget>

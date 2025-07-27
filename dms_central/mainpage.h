@@ -6,6 +6,7 @@
 #include <QVector>
 #include <QLabel>
 #include <opencv2/opencv.hpp>
+#include "driverpage.h"
 
 namespace Ui {
 class MainPage;
@@ -21,14 +22,8 @@ public:
 
 private:
     Ui::MainPage *ui;
-    QVector<cv::VideoCapture*> captures;
-    QVector<QLabel*> videoLabels;
-    QTimer* frameTimer;
 
-private slots:
-    void openConnectDialog();
-    void addStream(const QString& url);
-    void updateFrames();
+    DriverPage* driver1, * driver2, * driver3, * driver4;
 };
 
 #endif // MAINPAGE_H

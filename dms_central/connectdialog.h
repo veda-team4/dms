@@ -14,9 +14,11 @@ class ConnectDialog : public QDialog
 public:
     explicit ConnectDialog(QWidget *parent = nullptr);
     ~ConnectDialog();
+    QString getUrl();
 
 private:
     Ui::ConnectDialog *ui;
+    QString ip, port;
 
 signals:
     void connectToRtsp(const QString& url);

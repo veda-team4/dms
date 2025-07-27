@@ -1,6 +1,7 @@
 #include "connectdialog.h"
 #include "ui_connectdialog.h"
 #include <QPushButton>
+#include <QString>
 
 ConnectDialog::ConnectDialog(QWidget *parent)
     : QDialog(parent)
@@ -16,10 +17,12 @@ ConnectDialog::~ConnectDialog()
     delete ui;
 }
 
+QString ConnectDialog::getUrl() {
+    return QString("rtsp://%1:%2/mystream").arg(ip, port);
+}
+
 void ConnectDialog::onConnectButtonClicked() {
-    QString ip = ui->ipEdit->text();
-    QString port = ui->portEdit->text();
-    QString url = QString("rtsp://%1:%2/mystream").arg(ip, port); // 실제 경로 맞게 수정
-    emit connectToRtsp(url);
+    ip = ui->ipEdit->text();
+    port = ui->portEdit->text();
     accept(); // 모달 닫기
 }

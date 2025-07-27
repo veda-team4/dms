@@ -17,6 +17,7 @@ qt_add_executable(dms_central
     loginpage.h loginpage.cpp loginpage.ui
     mainpage.h mainpage.cpp mainpage.ui
     connectdialog.h connectdialog.cpp connectdialog.ui
+    driverpage.h driverpage.cpp driverpage.ui
 )
 
 target_link_libraries(dms_central
@@ -27,7 +28,7 @@ target_link_libraries(dms_central
 )
 
 # OpenCV include 경로 추가
-target_include_directories(dms_central PRIVATE ${OpenCV_INCLUDE_DIRS})
+target_include_directories(dms_central PRIVATE ${OpenCV_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR})
 
 include(GNUInstallDirs)
 
