@@ -23,7 +23,6 @@ private:
     Ui::MainPage *ui;
     QVector<cv::VideoCapture*> captures;
     QVector<QLabel*> videoLabels;
-    cv::VideoCapture cap;
     QTimer* frameTimer;
 
 private slots:

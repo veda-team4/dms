@@ -60,6 +60,9 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="text">
+     <string>admin</string>
+    </property>
    </widget>
    <widget class="QLineEdit" name="passwordEdit">
     <property name="geometry">
@@ -69,6 +72,9 @@
       <width>231</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="text">
+     <string>admin</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">

@@ -23,7 +23,6 @@ MainPage::MainPage(QWidget *parent)
 MainPage::~MainPage()
 {
     delete ui;
-    cap.release();
 }
 
 void MainPage::openConnectDialog() {
@@ -35,7 +34,7 @@ void MainPage::openConnectDialog() {
 void MainPage::addStream(const QString& url) {
     cv::VideoCapture* cap = new cv::VideoCapture(url.toStdString());
     if (!cap->isOpened()) {
-        qDebug("RTSP error");
+        qDebug("RTSP connection error");
         delete cap;
         return;
     }
