@@ -19,16 +19,18 @@
 
 void startRtsp();
 void stopRtsp();
+void rtspPushLoop();
 
 int monitorpage(double thresholdEAR) {
+  streaming = true;
+  startRtsp();
   // RTSP 서버 쓰레드 시작
-  std::thread rtsp_thread(startRtsp);
+  std::thread rtsp_thread(rtspPushLoop);
 
   // 시작 시간 기록
   auto startTime = std::chrono::steady_clock::now();
 
   // 눈 감음 정보 저장 변수
-  // std::deque<std::pair<std::chrono::steady_clock::time_point, bool>> blinkHistory;
   std::deque<bool> blinkWindow(BLINK_WINDOW_NUM, false);
   unsigned long long closedCount = 0;
   double eyeClosedRatio = 0.0; // BLINK_WINDOW_MS 중에 눈 감은 비율
@@ -44,11 +46,12 @@ int monitorpage(double thresholdEAR) {
     if (protocol != Protocol::NOTHING) {
       if (protocol == Protocol::STOP) {
         writeLog("message from client: STOP");
-        stopRtsp();
+        streaming = false;
         rtsp_thread.join();
+        stopRtsp();
         return 0;
-      }
-      else if (protocol == Protocol::LOCK) {
+    }
+    else if (protocol == Protocol::LOCK) {
         writeLog(std::string("message from client: LOCK"));
         gestureLock = true;
       }
@@ -65,6 +68,11 @@ int monitorpage(double thresholdEAR) {
     cap >> frame;
     if (frame.empty()) break;
     cv::flip(frame, frame, 1);
+
+    {
+      std::lock_guard<std::mutex> lock(rtspFrameMutex);
+      frame.copyTo(rtspFrame);
+    }
 
     // 얼굴 탐지 쓰레드를 위해 최신 프레임 공유
     {
@@ -127,11 +135,6 @@ int monitorpage(double thresholdEAR) {
     }
     else {
       blinkWindow.push_back(false);
-    }
-
-    {
-      std::lock_guard<std::mutex> lock(rtspFrameMutex);
-      frame.copyTo(rtspFrame);
     }
 
     // 윈도우 초과한 항목 1개 제거

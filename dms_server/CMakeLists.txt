@@ -25,17 +25,6 @@ set_target_properties(dlib PROPERTIES
 # OpenSSL
 find_package(OpenSSL REQUIRED)
 
-# GStreamer
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(GST REQUIRED gstreamer-1.0 gstreamer-rtsp-server-1.0)
-include_directories(${GST_INCLUDE_DIRS})
-link_directories(${GST_LIBRARY_DIRS})
-
-# ===== 추가: gio-2.0 =====
-pkg_check_modules(GIO REQUIRED gio-2.0)
-include_directories(${GIO_INCLUDE_DIRS})
-link_directories(${GIO_LIBRARY_DIRS})
-
 # Main executable
 add_executable(dms_server
  src/main.cpp
@@ -54,6 +43,4 @@ target_link_libraries(dms_server
     dlib
     OpenSSL::SSL
     OpenSSL::Crypto
-    ${GST_LIBRARIES}
-    ${GIO_LIBRARIES}      # 추가된 부분
 )

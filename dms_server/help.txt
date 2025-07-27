@@ -22,14 +22,3 @@ ffplay /dev/video0 으로 영상 출력 확인할 수 있다.
 
 2. OpenSSL 설치
 sudo apt-get install libssl-dev
-
-3. rtsp 패키지 설치
-sudo apt install libgstreamer1.0-dev \
-        libgstreamer-plugins-base1.0-dev \
-        libgstrtspserver-1.0-dev \
-        gstreamer1.0-plugins-good \
-        gstreamer1.0-plugins-bad \
-        gstreamer1.0-plugins-ugly \
-        gstreamer1.0-libav \
-        gstreamer1.0-tools \
-        gstreamer1.0-rtsp
