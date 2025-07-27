@@ -340,7 +340,7 @@ border: none;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../resources/resources.qrc">:/images/image/eye.png</pixmap>
+      <pixmap resource="../resources/resources.qrc">:/images/image/eye_white.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>

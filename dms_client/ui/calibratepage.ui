@@ -409,7 +409,7 @@ background-color: transparent;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/images/image/Eye.png);
+     <string notr="true">image: url(:/images/image/eye_orange.png);
 background-color: transparent;</string>
     </property>
     <property name="text">
