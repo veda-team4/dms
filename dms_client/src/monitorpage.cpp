@@ -8,7 +8,7 @@
 #include <sstream>
 #include <string>
 
-#define DEVICE_ON 1
+#define DEVICE_ON 0
 
 MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* socket) : BasePage(parent), mainWindow(mainWindow), ui(new Ui::MonitorPage), socket(socket) {
   ui->setupUi(this);
