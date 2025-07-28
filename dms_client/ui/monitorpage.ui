@@ -782,10 +782,10 @@ color: white;</string>
    <widget class="QLabel" name="co2value">
     <property name="geometry">
      <rect>
-      <x>42</x>
-      <y>7</y>
-      <width>31</width>
-      <height>16</height>
+      <x>28</x>
+      <y>6</y>
+      <width>41</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -795,6 +795,9 @@ background-color: transparent;</string>
     </property>
     <property name="text">
      <string>000</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="co2Safe">
@@ -854,8 +857,8 @@ background-color: transparent;</string>
    <widget class="QLabel" name="co2Image">
     <property name="geometry">
      <rect>
-      <x>12</x>
-      <y>5</y>
+      <x>7</x>
+      <y>4</y>
       <width>22</width>
       <height>22</height>
      </rect>

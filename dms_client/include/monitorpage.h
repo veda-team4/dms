@@ -12,6 +12,7 @@
 #include "gps.h"
 #include "osrm.h"
 #include "bluetooth.h"
+#include "co2.h"
 
 extern bool gestureLock;
 
@@ -52,6 +53,9 @@ private:
   Speaker* speaker;
   Bluetooth* bluetooth;
   Gps* gps;
+  CO2Sensor* co2;
+  int co2_v, temp, hum;
+  QTimer* co2Timer;
   Osrm* osrm;
   double latitude, longitude;
   bool navigating = false;

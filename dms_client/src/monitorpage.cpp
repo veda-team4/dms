@@ -16,55 +16,49 @@ MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* 
   connect(ui->nextButton, &QPushButton::clicked, this, &MonitorPage::moveToNext);
 
   ui->naviWidget->hide();
-  mainWindow->startTime = std::chrono::steady_clock::now();
+#if DEVICE_ON
+  co2_v = 0;
+  co2Timer = new QTimer(this);
+  connect(co2Timer, &QTimer::timeout, this, [this]() {
+      co2->read_CTH(&co2_v, &temp, &hum);
+      ui->co2value->setText(QString::fromStdString(std::to_string(co2_v)));
+      if(co2_v >= 1200) {
+        ui->co2alarmtext->setVisible(true);
+      }
+      else {
+        ui->co2alarmtext->setVisible(false);
+      }
+  });
+  co2Timer->start(5000);
+  openDevice();
+#endif
 }
 
 MonitorPage::~MonitorPage()
 {
     delete ui;
 #if DEVICE_ON
-  led->led_off();
-  delete led;
-  delete gps;
-  delete bluetooth;
-  delete speaker;
+    delete co2Timer;
+    closeDevice();
 #endif
 }
 
 void MonitorPage::openDevice() {
-#if DEVICE_ON
   led = new Led();
   speaker = new Speaker("plughw:4,0");
   gps = new Gps();
+  co2 = new CO2Sensor();
   bluetooth = new Bluetooth();
   osrm = new Osrm();
-#endif
 }
 
 void MonitorPage::closeDevice() {
-#if DEVICE_ON
   led->led_off();
   delete led;
   delete speaker;
   delete gps;
   delete bluetooth;
   delete osrm;
-#endif
-}
-
-void MonitorPage::playDevice() {
-#if DEVICE_ON
-  led->led_on();
-  speaker->play("tts.wav");
-  navigation(true);
-#endif
-}
-
-void MonitorPage::stopDevice() {
-#if DEVICE_ON
-  led->led_off();
-  navigation(false);
-#endif
 }
 
 void MonitorPage::wakeupUI(bool on) {
@@ -75,7 +69,10 @@ void MonitorPage::wakeupUI(bool on) {
     ui->highWarning->setVisible(true);
     ui->infotext->setVisible(false);
     ui->infoalarm->raise();
-    playDevice();
+ #if DEVICE_ON
+    led->led_on();
+    speaker->play("tts.wav");
+ #endif
     navigation(true);
 
     // 최근 5초 프레임을 클립으로 저장
@@ -101,7 +98,9 @@ void MonitorPage::wakeupUI(bool on) {
     else {
       ui->infoswipe->raise();
     }
-    stopDevice();
+#if DEVICE_ON
+    led->led_off();
+#endif
     navigation(false);
   }
 }
@@ -133,6 +132,7 @@ void MonitorPage::navigation(bool on) {
 }
 
 void MonitorPage::activate() {
+  mainWindow->startTime = std::chrono::steady_clock::now();
   connect(socket, &QLocalSocket::readyRead, this, &MonitorPage::readFrame);
   writeEncryptedCommand(socket, Protocol::MONITOR);
   mainWindow->info.clear();
@@ -140,7 +140,6 @@ void MonitorPage::activate() {
       mainWindow->updateLock();
       writeEncryptedCommand(socket, Protocol::LOCK);
   }
-  openDevice();
   ui->background_red->setVisible(false);
   ui->co2alarmtext->setVisible(false);
   ui->middleWarning->setVisible(false);
@@ -163,7 +162,6 @@ void MonitorPage::deactivate() {
   buffer.clear();
   ciphertext_len = -1;
   wakeupUI(false);
-  closeDevice();
 }
 
 void MonitorPage::readFrame() {

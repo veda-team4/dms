@@ -56,6 +56,8 @@ void ReportPage::deactivate() {
     timer = nullptr;
   }
   mainWindow->sleepingFrames.clear();
+  ui->videoLabel->clear();
+  ui->videoLabel_2->clear();
 }
 
 void ReportPage::printGraph(Information& info) {
@@ -148,6 +150,8 @@ void ReportPage::printGraph(Information& info) {
 
     // 차트 추가
     layout->addWidget(chartView);
+
+    ui->timeLabel->raise();
 }
 
 void ReportPage::printSummary(Information& info) {
@@ -164,14 +168,14 @@ void ReportPage::playSleepingClip() {
         ui->novideo_1->setVisible(false);
         ui->sleepingTime_1->setVisible(true);
         // 졸음 시간 출력
-        std::string t = "졸음 감지 #1 (" + mainWindow->sleepingTimes[mainWindow->sleepingTimes.size() - (mainWindow->sleepingTimes.size() >= 2 ? 2 : 1)] + ")";
+        std::string t = "(" + mainWindow->sleepingTimes[mainWindow->sleepingTimes.size() - (mainWindow->sleepingTimes.size() >= 2 ? 2 : 1)] + ")";
         ui->sleepingTime_1->setText(QString::fromStdString(t));
     }
     if (mainWindow->sleepingFrames.size() >= 2) {
         ui->novideo_2->setVisible(false);
         ui->sleepingTime_2->setVisible(true);
         // 졸음 시간 출력
-        std::string t = "졸음 감지 #2 (" + mainWindow->sleepingTimes[mainWindow->sleepingTimes.size() - 1] + ")";
+        std::string t = "(" + mainWindow->sleepingTimes[mainWindow->sleepingTimes.size() - 1] + ")";
         ui->sleepingTime_2->setText(QString::fromStdString(t));
     }
 
