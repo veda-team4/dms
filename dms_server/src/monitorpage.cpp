@@ -13,7 +13,7 @@
 
 // ********** 눈 감김 감지 관련 상수 **********
 #define BLINK_WINDOW_NUM 45 // 눈 감김 분석 윈도우
-#define INCREASE_THRESH  10 // 고개 움직임 감지 최소 값
+#define INCREASE_THRESH  5 // 고개 움직임 감지 최소 값
 #define MAX_DOWN_COUNT 2 // 몇번 카운트 해야 경고할 것인지
 // ********************************************
 

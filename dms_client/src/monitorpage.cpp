@@ -17,13 +17,14 @@ MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* 
 
   ui->naviWidget->hide();
 #if DEVICE_ON
-  openDevice();
-  while (!gps->cur_location(&latitude, &longitude)) {
-    usleep(100);
+  openDevice(); 
+  while(!gps->cur_location(&latitude, &longitude)) {
+    usleep(500000);
   }
   co2_v = 0;
   co2Timer = new QTimer(this);
   gpsTimer = new QTimer(this);
+  wakeupTimer = new QTimer(this);
   connect(co2Timer, &QTimer::timeout, this, [this]() {
       co2->read_CTH(&co2_v, &temp, &hum);
       ui->co2value->setText(QString::fromStdString(std::to_string(co2_v)));
@@ -36,12 +37,13 @@ MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* 
   });
   connect(gpsTimer, &QTimer::timeout, this, [this]() {
       double lat, lon;
-      while (!gps->cur_location(&lat, &lon)) {
-        usleep(100);
-      }
+      gps->cur_location(&latitude, &longitude);
       totalKm += osrm->getDistance(latitude, longitude, lat, lon);
       latitude = lat;
       longitude = lon;
+  });
+  connect(wakeupTimer, &QTimer::timeout, this, [this]() {
+    speaker->play("wakeup.wav");
   });
 #endif
 }
@@ -51,6 +53,8 @@ MonitorPage::~MonitorPage()
     delete ui;
 #if DEVICE_ON
     delete co2Timer;
+    delete gpsTimer;
+    delete wakeupTimer;
     closeDevice();
 #endif
 }
@@ -83,7 +87,8 @@ void MonitorPage::wakeupUI(bool on) {
     ui->infoalarm->raise();
  #if DEVICE_ON
     led->led_on();
-    speaker->play("tts.wav");
+    speaker->play("wakeup.wav");
+    wakeupTimer->start(1000);
  #endif
     navigation(true);
 
@@ -112,6 +117,7 @@ void MonitorPage::wakeupUI(bool on) {
     }
 #if DEVICE_ON
     led->led_off();
+    wakeupTimer->stop();
 #endif
     navigation(false);
   }
@@ -122,9 +128,8 @@ void MonitorPage::navigation(bool on) {
     if (on) {
       ui->naviWidget->setVisible(true);
       #if DEVICE_ON
-      while (!gps->cur_location(&latitude, &longitude)) {
-        usleep(100);
-      }
+      gps->cur_location(&latitude, &longitude);
+
       restArea area = osrm->getRestAreas(latitude, longitude);
       ui->toLabel->setText((area.isRestArea ? QString("휴게소") : QString("졸음쉼터")));
       ui->restNameLabel->setText(QString::fromStdString(area.name) + (area.isRestArea ? QString("휴게소") : QString("졸음쉼터")));
@@ -165,8 +170,10 @@ void MonitorPage::activate() {
   ui->safeface->setVisible(true);
   ui->infojes->raise();
 #if DEVICE_ON
+  gps->cur_location(&latitude, &longitude);
+  
   co2Timer->start(5000);
-  gpsTimer->start(100000);
+  gpsTimer->start(60000);
 #endif
 }
 

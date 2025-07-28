@@ -53,7 +53,7 @@ bool Gps::update() {
     FD_ZERO(&readfds);
     FD_SET(fd, &readfds);
 
-    struct timeval timeout = { 1, 0 };
+    struct timeval timeout = { 0, 100000 };
     int ret = select(fd + 1, &readfds, nullptr, nullptr, &timeout);
     if (ret > 0 && FD_ISSET(fd, &readfds)) {
         std::string buffer;
