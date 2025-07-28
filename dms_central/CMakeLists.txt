@@ -1,34 +1,34 @@
-cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 3.14)
 project(dms_central LANGUAGES CXX)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# OpenCV 추가
+find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
+
 find_package(OpenCV REQUIRED)
 
-qt_standard_project_setup()
-
-qt_add_executable(dms_central
-    WIN32 MACOSX_BUNDLE
+add_executable(dms_central
     main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
-    loginpage.h loginpage.cpp loginpage.ui
-    mainpage.h mainpage.cpp mainpage.ui
-    connectdialog.h connectdialog.cpp connectdialog.ui
-    driverpage.h driverpage.cpp driverpage.ui
+    mainwindow.cpp mainwindow.h mainwindow.ui
+    loginpage.cpp loginpage.h loginpage.ui
+    mainpage.cpp mainpage.h mainpage.ui
+    connectdialog.cpp connectdialog.h connectdialog.ui
+    driverpage.cpp driverpage.h driverpage.ui
 )
 
 target_link_libraries(dms_central
-    PRIVATE
-        Qt::Core
-        Qt::Widgets
-        ${OpenCV_LIBS}   # OpenCV 라이브러리 링크
+    PRIVATE Qt5::Core Qt5::Widgets
+            ${OpenCV_LIBS}
 )
 
-# OpenCV include 경로 추가
-target_include_directories(dms_central PRIVATE ${OpenCV_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(dms_central PRIVATE
+    ${OpenCV_INCLUDE_DIRS}
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
 
 include(GNUInstallDirs)
 
@@ -38,9 +38,9 @@ install(TARGETS dms_central
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
-qt_generate_deploy_app_script(
-    TARGET dms_central
-    OUTPUT_SCRIPT deploy_script
-    NO_UNSUPPORTED_PLATFORM_ERROR
-)
-install(SCRIPT ${deploy_script})
+#qt_generate_deploy_app_script(
+#    TARGET dms_central
+#    OUTPUT_SCRIPT deploy_script
+#    NO_UNSUPPORTED_PLATFORM_ERROR
+#)
+#install(SCRIPT ${deploy_script})
