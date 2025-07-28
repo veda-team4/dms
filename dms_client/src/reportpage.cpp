@@ -29,6 +29,10 @@ ReportPage::~ReportPage()
 
 void ReportPage::activate() {
   connect(socket, &QLocalSocket::readyRead, this, &ReportPage::readFrame);
+
+  ui->sleepingTime_1->setVisible(false);
+  ui->sleepingTime_2->setVisible(false);
+
   writeEncryptedCommand(socket, Protocol::REPORT);
   printGraph(mainWindow->info);
   printSummary(mainWindow->info);
@@ -36,10 +40,7 @@ void ReportPage::activate() {
   if(!mainWindow->isLock()) {
       mainWindow->updateLock();
       writeEncryptedCommand(socket, Protocol::LOCK);
-  }
-  ui->sleepingTime_1->setVisible(false);
-  ui->sleepingTime_2->setVisible(false);
-}
+  }}
 
 void ReportPage::deactivate() {
   writeEncryptedCommand(socket, Protocol::STOP);
@@ -162,10 +163,16 @@ void ReportPage::playSleepingClip() {
     if (mainWindow->sleepingFrames.size() >= 1) {
         ui->novideo_1->setVisible(false);
         ui->sleepingTime_1->setVisible(true);
+        // 졸음 시간 출력
+        std::string t = "졸음 감지 #1 (" + mainWindow->sleepingTimes[mainWindow->sleepingTimes.size() - (mainWindow->sleepingTimes.size() >= 2 ? 2 : 1)] + ")";
+        ui->sleepingTime_1->setText(QString::fromStdString(t));
     }
     if (mainWindow->sleepingFrames.size() >= 2) {
         ui->novideo_2->setVisible(false);
         ui->sleepingTime_2->setVisible(true);
+        // 졸음 시간 출력
+        std::string t = "졸음 감지 #2 (" + mainWindow->sleepingTimes[mainWindow->sleepingTimes.size() - 1] + ")";
+        ui->sleepingTime_2->setText(QString::fromStdString(t));
     }
 
     currentFrameIndex = 0;
@@ -181,9 +188,6 @@ void ReportPage::playSleepingClip() {
         ui->videoLabel->setPixmap(
             clip0[currentFrameIndex].scaled(ui->videoLabel->size(), Qt::KeepAspectRatio)
         );
-        // 졸음 시간 출력
-        std::string t = "졸음 감지 #1 (" + mainWindow->sleepingTimes[mainWindow->sleepingTimes.size() - (mainWindow->sleepingTimes.size() >= 2 ? 2 : 1)] + ")";
-        ui->sleepingTime_1->setText(QString::fromStdString(t));
 
         if (mainWindow->sleepingFrames.size() >= 2) {
             auto& clip1 = mainWindow->sleepingFrames[mainWindow->sleepingFrames.size() - 1];
@@ -191,9 +195,6 @@ void ReportPage::playSleepingClip() {
             ui->videoLabel_2->setPixmap(
                 clip1[currentFrameIndex].scaled(ui->videoLabel_2->size(), Qt::KeepAspectRatio)
             );
-            // 졸음 시간 출력
-            std::string t = "졸음 감지 #2 (" + mainWindow->sleepingTimes[mainWindow->sleepingTimes.size() - 1] + ")";
-            ui->sleepingTime_2->setText(QString::fromStdString(t));
         }
         currentFrameIndex++;
     });
