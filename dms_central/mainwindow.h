@@ -2,8 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "loginpage.h"
-#include "mainpage.h"
+#include "topbarwidget.h"
+#include "leftwidget.h"
+#include "centerwidget.h"
+#include "rightwidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,10 +23,11 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    LoginPage* loginPage;
-    MainPage* mainPage;
+    TopBarWidget* topBarWidget;
+    LeftWidget* leftWidget;
+    CenterWidget* centerWidget;
+    RightWidget* rightWidget;
 
 private slots:
-    void showMainPage();
 };
 #endif // MAINWINDOW_H

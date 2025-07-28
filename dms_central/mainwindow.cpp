@@ -7,22 +7,22 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    loginPage = new LoginPage();
-    mainPage = new MainPage();
-    ui->stackedWidget->addWidget(loginPage);
-    ui->stackedWidget->addWidget(mainPage);
-    ui->stackedWidget->setCurrentWidget(loginPage);
-
-    connect(loginPage, &LoginPage::loginSuccess, this, &MainWindow::showMainPage);
+    // 상단, 좌측, 중앙, 우측 위젯 선언
+    topBarWidget = new TopBarWidget(this, ui->frameTopBar);
+    topBarWidget->setGeometry(0, 0, ui->frameTopBar->width(), ui->frameTopBar->height());
+    leftWidget = new LeftWidget(this, ui->frameLeft);
+    leftWidget->setGeometry(0, 0, ui->frameLeft->width(), ui->frameLeft->height());
+    centerWidget = new CenterWidget(this, ui->frameCenter);
+    centerWidget->setGeometry(0, 0, ui->frameCenter->width(), ui->frameCenter->height());
+    rightWidget = new RightWidget(this, ui->frameRight);
+    rightWidget->setGeometry(0, 0, ui->frameRight->width(), ui->frameRight->height());
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete loginPage;
-    delete mainPage;
-}
-
-void MainWindow::showMainPage() {
-    ui->stackedWidget->setCurrentWidget(mainPage);
+    delete topBarWidget;
+    delete leftWidget;
+    delete centerWidget;
+    delete rightWidget;
 }

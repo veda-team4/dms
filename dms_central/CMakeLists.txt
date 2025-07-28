@@ -18,6 +18,10 @@ add_executable(dms_central
     mainpage.cpp mainpage.h mainpage.ui
     connectdialog.cpp connectdialog.h connectdialog.ui
     driverpage.cpp driverpage.h driverpage.ui
+    topbarwidget.h topbarwidget.cpp topbarwidget.ui
+    leftwidget.h leftwidget.cpp leftwidget.ui
+    centerwidget.h centerwidget.cpp centerwidget.ui
+    rightwidget.h rightwidget.cpp rightwidget.ui
 )
 
 target_link_libraries(dms_central
