@@ -291,11 +291,11 @@ color:white;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/images/image/previous(1).png);
+     <string notr="true">image: url(:/images/image/previous(2).png);
 background-color: transparent;</string>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="next">
@@ -308,28 +308,28 @@ background-color: transparent;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/images/image/next(1).png);
+     <string notr="true">image: url(:/images/image/next(2).png);
 background-color: transparent;</string>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="palm2">
     <property name="geometry">
      <rect>
-      <x>12</x>
+      <x>10</x>
       <y>71</y>
-      <width>15</width>
+      <width>18</width>
       <height>15</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/images/image/palm2(1).png);
+     <string notr="true">image: url(:/images/image/palm2(2).png);
 background-color: transparent;</string>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="wdot1">

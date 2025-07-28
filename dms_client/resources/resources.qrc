@@ -44,5 +44,8 @@
         <file>image/eye_white.png</file>
         <file>image/eye_orange.png</file>
         <file>image/information.png</file>
+        <file>image/previous(2).png</file>
+        <file>image/palm2(2).png</file>
+        <file>image/next(2).png</file>
     </qresource>
 </RCC>
