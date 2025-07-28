@@ -8,6 +8,8 @@
 #include <sstream>
 #include <string>
 
+#define DEVICE_ON 0
+
 MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* socket) : BasePage(parent), mainWindow(mainWindow), ui(new Ui::MonitorPage), socket(socket) {
   ui->setupUi(this);
   connect(ui->previousButton, &QPushButton::clicked, this, &MonitorPage::moveToPrevious);
@@ -20,42 +22,49 @@ MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* 
 MonitorPage::~MonitorPage()
 {
     delete ui;
+#if DEVICE_ON
+  led->led_off();
+  delete led;
+  delete gps;
+  delete bluetooth;
+  delete speaker;
+#endif
 }
 
 void MonitorPage::openDevice() {
-  /*
+#if DEVICE_ON
   led = new Led();
   speaker = new Speaker("plughw:4,0");
   gps = new Gps();
   bluetooth = new Bluetooth();
   osrm = new Osrm();
-  */
+#endif
 }
 
 void MonitorPage::closeDevice() {
-  /*
+#if DEVICE_ON
   led->led_off();
   delete led;
   delete speaker;
   delete gps;
   delete bluetooth;
   delete osrm;
-  */
+#endif
 }
 
 void MonitorPage::playDevice() {
-    /*
-    led->led_on();
-    speaker->play("tts.wav");
-    navigation(true);
-    */
+#if DEVICE_ON
+  led->led_on();
+  speaker->play("tts.wav");
+  navigation(true);
+#endif
 }
 
 void MonitorPage::stopDevice() {
-    /*
-    led->led_off();
-    navigation(false);
-    */
+#if DEVICE_ON
+  led->led_off();
+  navigation(false);
+#endif
 }
 
 void MonitorPage::wakeupUI(bool on) {
@@ -98,47 +107,29 @@ void MonitorPage::wakeupUI(bool on) {
 }
 
 void MonitorPage::navigation(bool on) {
+#if DEVICE_ON
     if (on) {
       ui->naviWidget->setVisible(true);
-      /*
+      #if DEVICE_ON
       while (!gps->cur_location(&latitude, &longitude)) {
         usleep(100);
       }
       restArea area = osrm->getRestAreas(latitude, longitude);
       ui->toLabel->setText((area.isRestArea ? QString("휴게소") : QString("졸음쉼터")));
+      ui->restNameLabel->setText(QString::fromStdString(area.name) + (area.isRestArea ? QString("휴게소") : QString("졸음쉼터")));
       std::string dist = std::to_string(area.route_distance / 1000);
       size_t dot = dist.find('.');
       if (dot != std::string::npos && dot + 3 < dist.length()) {
       dist = dist.substr(0, dot + 3);
       }
       ui->kmLabel->setText(QString::fromStdString(dist + std::string(" KM")));
-      ui->timeLabel->setText(QString::fromStdString(std::to_string((int)(area.route_duration / 60)) + std::string(" 분")));
-      */
+      ui->timeLabel->setText(QString::fromStdString(std::to_string((int)(area.route_duration / 60)) + std::string(" 분 소요 예정")));
+      #endif
     }
     else {
       ui->naviWidget->setVisible(false);
     }
-    /*
-    if (on && !navigating) {
-        while (!gps->cur_location(&latitude, &longitude)) {
-          usleep(100);
-        }
-        restArea area = osrm->getRestAreas(latitude, longitude);
-        ui->restNameLabel->setText(QString::fromStdString(area.name) + (area.isRestArea ? QString(" 휴게소") : QString(" 졸음쉼터")));
-        std::string dist = std::to_string(area.route_distance / 1000);
-        size_t dot = dist.find('.');
-        if (dot != std::string::npos && dot + 3 < dist.length()) {
-        dist = dist.substr(0, dot + 3);
-        }
-        ui->kmLabel->setText(QString::fromStdString(dist + std::string(" KM")));
-        ui->timeLabel->setText(QString::fromStdString(std::to_string((int)(area.route_duration / 60)) + std::string(" 분")));
-        ui->naviWidget->show();
-        writeLog(std::string("latitude: ") + std::to_string(latitude) + std::string(", longitude: ") + std::to_string(longitude));
-    }
-    else if (!on && navigating) {
-        ui->naviWidget->hide();
-    }
-    */
+#endif
 }
 
 void MonitorPage::activate() {

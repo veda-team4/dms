@@ -110,9 +110,9 @@ color: rgb(255, 68, 68);</string>
    <widget class="QLabel" name="timeLabel">
     <property name="geometry">
      <rect>
-      <x>77</x>
+      <x>70</x>
       <y>261</y>
-      <width>151</width>
+      <width>305</width>
       <height>33</height>
      </rect>
     </property>
@@ -130,7 +130,10 @@ background-color: transparent;
 font: 700 14pt &quot;hanwhaGothic&quot;;</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;1시간 30분&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;30분 소요 예정&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="margin">
      <number>0</number>
@@ -159,7 +162,10 @@ font: 700 14pt &quot;hanwhaGothic&quot;;
 background-color: transparent;</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;서울 만남 휴게소&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;서울 만남 휴게소&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="desLabel">
@@ -230,42 +236,13 @@ image: url(:/images/image/to2.png);</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="fromLabel2">
-    <property name="geometry">
-     <rect>
-      <x>233</x>
-      <y>260</y>
-      <width>81</width>
-      <height>33</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>hanwhaGothic</family>
-      <pointsize>14</pointsize>
-      <italic>false</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: white;
-background-color: transparent;
-font: 700 14pt &quot;hanwhaGothic&quot;;</string>
-    </property>
-    <property name="text">
-     <string>소요 예정</string>
-    </property>
-    <property name="margin">
-     <number>0</number>
-    </property>
-   </widget>
    <widget class="QLabel" name="kmLabel">
     <property name="geometry">
      <rect>
       <x>100</x>
-      <y>160</y>
+      <y>155</y>
       <width>111</width>
-      <height>16</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -285,7 +262,6 @@ font: 700 14pt &quot;hanwhaGothic&quot;;</string>
    <zorder>direction</zorder>
    <zorder>from</zorder>
    <zorder>to</zorder>
-   <zorder>fromLabel2</zorder>
    <zorder>kmLabel</zorder>
   </widget>
   <widget class="QLabel" name="right">
