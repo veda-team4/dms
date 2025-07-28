@@ -55,9 +55,9 @@ private:
   Gps* gps;
   CO2Sensor* co2;
   int co2_v, temp, hum;
-  QTimer* co2Timer;
+  QTimer* co2Timer, * gpsTimer;
   Osrm* osrm;
-  double latitude, longitude;
+  double latitude, longitude, totalKm = 0.0;
   bool navigating = false;
   void navigation(bool on);
 

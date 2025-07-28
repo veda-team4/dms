@@ -15,6 +15,7 @@ class Osrm {
 public:
   Osrm(const std::string& csvPath = "./../../dms_client/resources/rest_areas.csv");
   restArea getRestAreas(double currLat, double currLon, int topN = 3);
+  double getDistance(double fromLat, double fromLon, double toLat, double toLon);
 
 private:
   struct InternalArea {

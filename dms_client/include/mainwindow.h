@@ -22,10 +22,11 @@ struct Information {
   int alertCount = 0;
   unsigned long long sleepingCount = 0;
   double sleepingAverage = 0.0;
+  double totalDistance = 0.0;
   std::string drivingTime;
   void clear() {
       values.clear();
-      alertCount = sleepingCount = sleepingAverage = 0;
+      alertCount = sleepingCount = sleepingAverage = totalDistance = 0.0;
   }
 };
 

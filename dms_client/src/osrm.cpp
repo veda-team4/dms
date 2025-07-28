@@ -44,6 +44,12 @@ restArea Osrm::getRestAreas(double currLat, double currLon, int topN) {
   */
 }
 
+double Osrm::getDistance(double fromLat, double fromLon, double toLat, double toLon) {
+    double dist, dur;
+    query_osrm(fromLat, fromLon, toLat, toLon, dist, dur);
+    return dist;
+}
+
 void Osrm::loadData(const std::string& csvPath) {
   std::ifstream file(csvPath);
   std::string line;

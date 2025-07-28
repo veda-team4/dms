@@ -8,7 +8,7 @@
 #include <sstream>
 #include <string>
 
-#define DEVICE_ON 0
+#define DEVICE_ON 1
 
 MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* socket) : BasePage(parent), mainWindow(mainWindow), ui(new Ui::MonitorPage), socket(socket) {
   ui->setupUi(this);
@@ -17,8 +17,13 @@ MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* 
 
   ui->naviWidget->hide();
 #if DEVICE_ON
+  openDevice();
+  while (!gps->cur_location(&latitude, &longitude)) {
+    usleep(100);
+  }
   co2_v = 0;
   co2Timer = new QTimer(this);
+  gpsTimer = new QTimer(this);
   connect(co2Timer, &QTimer::timeout, this, [this]() {
       co2->read_CTH(&co2_v, &temp, &hum);
       ui->co2value->setText(QString::fromStdString(std::to_string(co2_v)));
@@ -29,8 +34,15 @@ MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* 
         ui->co2alarmtext->setVisible(false);
       }
   });
-  co2Timer->start(5000);
-  openDevice();
+  connect(gpsTimer, &QTimer::timeout, this, [this]() {
+      double lat, lon;
+      while (!gps->cur_location(&lat, &lon)) {
+        usleep(100);
+      }
+      totalKm += osrm->getDistance(latitude, longitude, lat, lon);
+      latitude = lat;
+      longitude = lon;
+  });
 #endif
 }
 
@@ -140,6 +152,7 @@ void MonitorPage::activate() {
       mainWindow->updateLock();
       writeEncryptedCommand(socket, Protocol::LOCK);
   }
+  totalKm = 0.0;
   ui->background_red->setVisible(false);
   ui->co2alarmtext->setVisible(false);
   ui->middleWarning->setVisible(false);
@@ -151,6 +164,10 @@ void MonitorPage::activate() {
   ui->warningface->setVisible(false);
   ui->safeface->setVisible(true);
   ui->infojes->raise();
+#if DEVICE_ON
+  co2Timer->start(5000);
+  gpsTimer->start(100000);
+#endif
 }
 
 void MonitorPage::deactivate() {
@@ -162,6 +179,11 @@ void MonitorPage::deactivate() {
   buffer.clear();
   ciphertext_len = -1;
   wakeupUI(false);
+  mainWindow->info.totalDistance = totalKm;
+#if DEVICE_ON
+  co2Timer->stop();
+  gpsTimer->stop();
+#endif
 }
 
 void MonitorPage::readFrame() {

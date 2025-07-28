@@ -40,7 +40,8 @@ void ReportPage::activate() {
   if(!mainWindow->isLock()) {
       mainWindow->updateLock();
       writeEncryptedCommand(socket, Protocol::LOCK);
-  }}
+  }
+}
 
 void ReportPage::deactivate() {
   writeEncryptedCommand(socket, Protocol::STOP);
@@ -160,6 +161,7 @@ void ReportPage::printSummary(Information& info) {
     std::string alertCount = (std::to_string(info.alertCount) + std::string("회"));
     ui->sleepingNum->setText(QString::fromStdString(alertCount));
     ui->drivingTime->setText(QString::fromStdString(info.drivingTime));
+    ui->totalKm->setText(QString::number(info.totalDistance, 'f', 2) + QString(" KM"));
 }
 
 void ReportPage::playSleepingClip() {
