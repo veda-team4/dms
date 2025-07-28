@@ -189,7 +189,7 @@ background-color: transparent;</string>
    <property name="geometry">
     <rect>
      <x>140</x>
-     <y>200</y>
+     <y>205</y>
      <width>110</width>
      <height>31</height>
     </rect>
@@ -287,7 +287,7 @@ border: 1px solid #1A1F2C;</string>
    <property name="geometry">
     <rect>
      <x>140</x>
-     <y>240</y>
+     <y>242</y>
      <width>110</width>
      <height>30</height>
     </rect>
@@ -313,7 +313,7 @@ background-color: transparent;</string>
    <property name="geometry">
     <rect>
      <x>140</x>
-     <y>100</y>
+     <y>110</y>
      <width>110</width>
      <height>31</height>
     </rect>
@@ -339,7 +339,7 @@ background-color: transparent;</string>
    <property name="geometry">
     <rect>
      <x>140</x>
-     <y>150</y>
+     <y>147</y>
      <width>110</width>
      <height>30</height>
     </rect>
@@ -365,7 +365,7 @@ background-color: transparent;</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>100</y>
+     <y>110</y>
      <width>110</width>
      <height>31</height>
     </rect>
@@ -391,7 +391,7 @@ background-color: transparent;</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>150</y>
+     <y>147</y>
      <width>110</width>
      <height>30</height>
     </rect>
@@ -417,7 +417,7 @@ background-color: transparent;</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>200</y>
+     <y>205</y>
      <width>110</width>
      <height>31</height>
     </rect>
@@ -443,7 +443,7 @@ background-color: transparent;</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>240</y>
+     <y>242</y>
      <width>110</width>
      <height>30</height>
     </rect>
@@ -565,11 +565,14 @@ background-color: #151A25;</string>
     <property name="font">
      <font>
       <family>hanwhaGothic</family>
-      <pointsize>10</pointsize>
+      <pointsize>9</pointsize>
+      <italic>false</italic>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: white;</string>
+     <string notr="true">color: white;
+font: 800 9pt &quot;hanwhaGothic&quot;;</string>
     </property>
     <property name="text">
      <string>최근 졸음 감지가 없어
@@ -623,11 +626,14 @@ background-color: #151A25;</string>
     <property name="font">
      <font>
       <family>hanwhaGothic</family>
-      <pointsize>10</pointsize>
+      <pointsize>9</pointsize>
+      <italic>false</italic>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: white;</string>
+     <string notr="true">color: white;
+font: 800 9pt &quot;hanwhaGothic&quot;;</string>
     </property>
     <property name="text">
      <string>최근 졸음 감지가 없어
@@ -772,6 +778,102 @@ background-color: transparent;</string>
     </property>
    </widget>
   </widget>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>328</x>
+     <y>311</y>
+     <width>111</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(14, 20, 32);</string>
+   </property>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>16</x>
+      <y>0</y>
+      <width>57</width>
+      <height>14</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(248, 155, 108);
+font: 800 10pt &quot;hanwhaGothic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>영상 안내</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>31</y>
+      <width>110</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 800 9pt &quot;hanwhaGothic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;
+&lt;body&gt;
+    &lt;div style=&quot;color:#ffffff; margin-bottom: 4px;&quot;&gt;
+    졸음 감지 영상은
+    &lt;/div&gt;
+    &lt;div style=&quot;color:#f37321; margin-bottom: 4px;&quot;&gt;
+    자동&lt;span style=&quot;color:#ffffff;&quot;&gt;으로 표시됩니다.&lt;/span&gt;
+    &lt;/div&gt;
+&lt;body&gt;
+&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>79</y>
+      <width>110</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 800 9pt &quot;hanwhaGothic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;
+&lt;body&gt;
+    &lt;div style=&quot;color:#f37321; margin-bottom: 4px;&quot;&gt;
+    안전 운전&lt;span style=&quot;color:#ffffff;&quot;&gt;을 위한&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div style=&quot;color:#ffffff;&quot;&gt;
+    참고용 자료입니다.
+    &lt;/div&gt;
+&lt;body&gt;
+&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>1</y>
+      <width>12</width>
+      <height>12</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/images/image/information.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
   <zorder>chartWidget</zorder>
   <zorder>right</zorder>
   <zorder>nextButton</zorder>
@@ -797,6 +899,7 @@ background-color: transparent;</string>
   <zorder>sleepingTime_1</zorder>
   <zorder>sleepingTime_2</zorder>
   <zorder>infojes</zorder>
+  <zorder>widget</zorder>
  </widget>
  <resources>
   <include location="../resources/resources.qrc"/>
