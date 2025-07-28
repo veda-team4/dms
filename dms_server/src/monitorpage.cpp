@@ -12,20 +12,16 @@
 #include "protocols.h"
 
 // ********** 눈 감김 감지 관련 상수 **********
-#define BLINK_WINDOW_NUM 45 // 눈 감김 분석 윈도우
+#define BLINK_WINDOW_NUM 40 // 눈 감김 분석 윈도우
 #define INCREASE_THRESH  5 // 고개 움직임 감지 최소 값
 #define MAX_DOWN_COUNT 2 // 몇번 카운트 해야 경고할 것인지
 // ********************************************
 
 void startRtsp();
-void stopRtsp();
-void rtspPushLoop();
 
 int monitorpage(double thresholdEAR) {
-  streaming = true;
-  startRtsp();
   // RTSP 서버 쓰레드 시작
-  std::thread rtsp_thread(rtspPushLoop);
+  std::thread rtsp_thread(startRtsp);
 
   // 시작 시간 기록
   auto startTime = std::chrono::steady_clock::now();
@@ -48,7 +44,6 @@ int monitorpage(double thresholdEAR) {
         writeLog("message from client: STOP");
         streaming = false;
         rtsp_thread.join();
-        stopRtsp();
         return 0;
     }
     else if (protocol == Protocol::LOCK) {
@@ -132,16 +127,12 @@ int monitorpage(double thresholdEAR) {
       else if (diff < 0) {
         downCount = 0;
       }
+      // 윈도우 초과한 항목 1개 제거
+      if (blinkWindow.front()) {
+        --closedCount;
+      }
+      blinkWindow.pop_front();
     }
-    else {
-      blinkWindow.push_back(false);
-    }
-
-    // 윈도우 초과한 항목 1개 제거
-    if (blinkWindow.front()) {
-      --closedCount;
-    }
-    blinkWindow.pop_front();
 
     // 1.5초간의 { 현재 시간, 눈 감음 여부 } Window 에서 눈 감김 비율 계산
     eyeClosedRatio = static_cast<double>(closedCount) / BLINK_WINDOW_NUM;
