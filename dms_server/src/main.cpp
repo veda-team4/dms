@@ -4,6 +4,7 @@
 #include <sys/un.h>
 #include <unistd.h>
 #include <opencv2/opencv.hpp>
+#include <signal.h>
 #include "threads.h"
 #include "functions.h"
 #include "protocols.h"
@@ -35,6 +36,9 @@ int server_fd, client_fd; // 서버, 클라이언트 소켓 파일 디스크립�
 // --------------------------------------------------------
 
 int main(void) {
+  // SIGPIPE 무시
+  signal(SIGPIPE, SIG_IGN);
+
   // 0. 소켓 PATH 설정
   char SOCKET_PATH[128] = { 0, };
   strcpy(SOCKET_PATH, getenv("HOME"));

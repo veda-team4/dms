@@ -17,9 +17,15 @@
 #define MAX_DOWN_COUNT 2 // 몇번 카운트 해야 경고할 것인지
 // ********************************************
 
+double eyeClosedRatio;
+std::chrono::steady_clock::time_point prevHeadTime;
+std::chrono::steady_clock::time_point currentHeadTime;
+
 void startRtsp();
 
 int monitorpage(double thresholdEAR) {
+  prevHeadTime = currentHeadTime = std::chrono::steady_clock::now();
+
   // RTSP 서버 쓰레드 시작
   std::thread rtsp_thread(startRtsp);
 
@@ -29,7 +35,7 @@ int monitorpage(double thresholdEAR) {
   // 눈 감음 정보 저장 변수
   std::deque<bool> blinkWindow(BLINK_WINDOW_NUM, false);
   unsigned long long closedCount = 0;
-  double eyeClosedRatio = 0.0; // BLINK_WINDOW_MS 중에 눈 감은 비율
+  eyeClosedRatio = 0.0; // BLINK_WINDOW_MS 중에 눈 감은 비율
 
   // 고개 떨어짐 정보 저장 변수
   int downCount = 0; // 고개 떨어짐 횟수
@@ -148,6 +154,7 @@ int monitorpage(double thresholdEAR) {
       if (writeEncryptedCommand(client_fd, Protocol::HEADDROPPED) == -1) {
         return -1;
       }
+      currentHeadTime = std::chrono::steady_clock::now();
     }
 
     {

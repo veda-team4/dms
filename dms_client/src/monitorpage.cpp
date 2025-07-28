@@ -18,8 +18,16 @@ MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* 
   ui->naviWidget->hide();
 #if DEVICE_ON
   openDevice(); 
-  while(!gps->cur_location(&latitude, &longitude)) {
+  int i;
+  for (i = 0; i < 10; ++i) {
+    if(gps->cur_location(&latitude, &longitude)) {
+      writeLog("Gps connected");
+      break;
+    }
     usleep(500000);
+  }
+  if (i == 10) {
+    writeLog("Gps not connected");
   }
   co2_v = 0;
   co2Timer = new QTimer(this);
