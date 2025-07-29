@@ -25,6 +25,7 @@ private slots:
 private:
     Ui::LoginFrame *ui;
     void setPlaceholders();
+    void showLoginError();
 
 };
 
