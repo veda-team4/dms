@@ -10,6 +10,18 @@
     <height>650</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="font">
+   <font>
+    <family>Hanwha</family>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Frame</string>
   </property>
@@ -18,93 +30,322 @@
     background-color: #121212;
 }</string>
   </property>
-  <widget class="QPushButton" name="Login_pushButton">
+  <widget class="QWidget" name="title_widget" native="true">
    <property name="geometry">
     <rect>
-     <x>590</x>
-     <y>400</y>
-     <width>75</width>
-     <height>24</height>
+     <x>460</x>
+     <y>570</y>
+     <width>263</width>
+     <height>48</height>
     </rect>
    </property>
-   <property name="text">
-    <string> 로그인</string>
-   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QLabel" name="title_icon">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="resources/resources.qrc">:/images/image/safety_driver_icon.png</pixmap>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="title_label">
+      <property name="font">
+       <font>
+        <family>Hanwha</family>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: white;
+</string>
+      </property>
+      <property name="text">
+       <string>Monitoring Viewer</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
-  <widget class="QLineEdit" name="ID_lineEdit">
+  <widget class="QFrame" name="login_box">
    <property name="geometry">
     <rect>
-     <x>496</x>
-     <y>241</y>
-     <width>261</width>
-     <height>42</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>admin</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="PW_lineEdit">
-   <property name="geometry">
-    <rect>
-     <x>496</x>
-     <y>325</y>
-     <width>261</width>
-     <height>42</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>admin</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="ID_label">
-   <property name="geometry">
-    <rect>
-     <x>430</x>
-     <y>250</y>
-     <width>48</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>hanwhaGothic</family>
-    </font>
-   </property>
-   <property name="text">
-    <string>아이디</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="PW_label">
-   <property name="geometry">
-    <rect>
-     <x>440</x>
-     <y>350</y>
-     <width>48</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>hanwhaGothic</family>
-    </font>
-   </property>
-   <property name="text">
-    <string>비밀번호</string>
-   </property>
-  </widget>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>390</x>
-     <y>80</y>
+     <x>389</x>
+     <y>120</y>
      <width>411</width>
      <height>391</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout"/>
+   <property name="styleSheet">
+    <string notr="true">QFrame{
+	background-color: #1A1A1A;
+	border: 1px solid #2C2C2C;
+	border-radius: 10px;
+	padding: 24px;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <widget class="QWidget" name="login_widget_2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>10</y>
+      <width>181</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <widget class="QLabel" name="login_icon_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>91</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	background-color: transparent;
+	border: none;
+	outline: none;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="resources/resources.qrc">:/images/image/login_icon.png</pixmap>
+     </property>
+    </widget>
+    <widget class="QLabel" name="login_label_2">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>10</y>
+       <width>141</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Hanwha</family>
+       <pointsize>20</pointsize>
+       <fontweight>Light</fontweight>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	background-color: transparent;
+	border: none;
+	outline: none;
+	color: white;
+}</string>
+     </property>
+     <property name="text">
+      <string>로그인</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="id_widget_2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
+      <width>361</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <widget class="QLabel" name="id_icon">
+     <property name="geometry">
+      <rect>
+       <x>-10</x>
+       <y>20</y>
+       <width>91</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	background-color: transparent;
+	border: none;
+	outline: none;
+	color: white;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="resources/resources.qrc">:/images/image/id_user.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="id_lineEdit_2">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>45</y>
+       <width>261</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>hanwhaGothic</family>
+       <pointsize>10</pointsize>
+       <fontweight>Light</fontweight>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLineEdit {
+    border: 2px solid #2C2C2C;
+    border-radius: 4px;
+    padding: 5px 10px;
+    color: #FFFFFF;
+	background-color: transparent;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="pw_widget_2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>170</y>
+      <width>351</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <widget class="QLabel" name="pw_icon_2">
+     <property name="geometry">
+      <rect>
+       <x>-20</x>
+       <y>20</y>
+       <width>91</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	background-color: transparent;
+	border: none;
+	outline: none;
+	color: white;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="resources/resources.qrc">:/images/image/pw_Lock.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="pw_lineEdit_2">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>45</y>
+       <width>261</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>hanwhaGothic</family>
+       <pointsize>10</pointsize>
+       <fontweight>Light</fontweight>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLineEdit {
+    border: 2px solid #2C2C2C;
+    border-radius: 4px;
+    padding: 5px 10px;
+    color: #FFFFFF;
+	background-color: transparent;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="login_pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>34</x>
+      <y>310</y>
+      <width>341</width>
+      <height>42</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>hanwhaGothic</family>
+      <pointsize>11</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #F37321;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+}
+
+QPushButton:hover {
+    background-color: #e3620f; /* 살짝 어두운 주황 */
+}
+
+QPushButton:pressed {
+    background-color: #c8510a; /* 더 눌린 느낌 */
+}</string>
+    </property>
+    <property name="text">
+     <string>로그인</string>
+    </property>
+   </widget>
   </widget>
+  <zorder>login_box</zorder>
+  <zorder>title_widget</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
