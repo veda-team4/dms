@@ -4,6 +4,7 @@
 #include <QFrame>
 #include <QMediaPlayer>
 #include <QVideoWidget>
+#include <QMovie>
 
 class MainWindow;
 
@@ -24,6 +25,7 @@ private:
     MainWindow* mainWindow;
     QMediaPlayer* player = nullptr;
     QVideoWidget* videoWidget = nullptr;
+    QMovie* loadingGif;
     void connectRtsp(QString ip);
     void disconnectRtsp();
 };

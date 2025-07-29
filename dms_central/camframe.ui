@@ -16,49 +16,77 @@
   <property name="styleSheet">
    <string notr="true">background-color: #2C2C2C;</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="videoLabel">
    <property name="geometry">
     <rect>
-     <x>35</x>
-     <y>73</y>
-     <width>260</width>
-     <height>61</height>
+     <x>0</x>
+     <y>0</y>
+     <width>330</width>
+     <height>260</height>
     </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>11</pointsize>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: #B0B0B0;</string>
    </property>
    <property name="text">
-    <string>카메라가 아직 연결되지 않았습니다.
-[연결] 버튼을 눌러주세요.</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignmentFlag::AlignCenter</set>
+    <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="connectButton">
+  <widget class="QFrame" name="waitingFrame_1">
    <property name="geometry">
     <rect>
-     <x>135</x>
-     <y>160</y>
-     <width>60</width>
-     <height>25</height>
+     <x>0</x>
+     <y>0</y>
+     <width>330</width>
+     <height>260</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>-1</pointsize>
-     <bold>true</bold>
-    </font>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
    </property>
-   <property name="styleSheet">
-    <string notr="true">
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>35</x>
+      <y>60</y>
+      <width>260</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #B0B0B0;</string>
+    </property>
+    <property name="text">
+     <string>카메라가 아직 연결되지 않았습니다.
+[연결] 버튼을 눌러주세요.</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="connectButton">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>160</y>
+      <width>60</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
 
 QPushButton {
     background-color: #F7933A; /* 기본 색상 */
@@ -78,12 +106,13 @@ QPushButton:hover {
 QPushButton:pressed {
     background-color: #D87520; /* 살짝 어두운 오렌지 */
 }</string>
-   </property>
-   <property name="text">
-    <string>연결</string>
-   </property>
+    </property>
+    <property name="text">
+     <string>연결</string>
+    </property>
+   </widget>
   </widget>
-  <widget class="QLabel" name="videoLabel">
+  <widget class="QFrame" name="waitingFrame_2">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -92,14 +121,62 @@ QPushButton:pressed {
      <height>260</height>
     </rect>
    </property>
-   <property name="text">
-    <string/>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
    </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>35</x>
+      <y>70</y>
+      <width>260</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #B0B0B0;</string>
+    </property>
+    <property name="text">
+     <string>  연결을 시도중입니다 . . . .
+
+잠시만 기다려주세요</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="loadingLabel">
+    <property name="geometry">
+     <rect>
+      <x>135</x>
+      <y>166</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="resources/resources.qrc">:/images/image/waiting.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
   </widget>
-  <zorder>videoLabel</zorder>
-  <zorder>label</zorder>
-  <zorder>connectButton</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
