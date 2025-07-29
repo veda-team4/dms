@@ -12,7 +12,6 @@ find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
 add_executable(dms_central
     main.cpp
     mainwindow.cpp mainwindow.h mainwindow.ui
-    loginpage.cpp loginpage.h loginpage.ui
     mainpage.cpp mainpage.h mainpage.ui
     connectdialog.cpp connectdialog.h connectdialog.ui
     driverpage.cpp driverpage.h driverpage.ui
@@ -22,6 +21,7 @@ add_executable(dms_central
     rightframe.h rightframe.cpp rightframe.ui
     resources/resources.qrc
     loginframe.h loginframe.cpp loginframe.ui
+    camframe.h camframe.cpp camframe.ui
 )
 
 target_link_libraries(dms_central
