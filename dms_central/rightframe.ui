@@ -42,7 +42,8 @@ border-top-color: transparent;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(44, 44, 44);
-border: 1px solid rgb(176, 176, 176);</string>
+border: 1px solid rgb(176, 176, 176);
+border-bottom-color: none;</string>
    </property>
    <widget class="QLabel" name="eventon_text">
     <property name="geometry">
@@ -85,6 +86,23 @@ border: none;</string>
      <string notr="true">background-color: transparent;
 image: url(:/images/image/bellon.png);
 border: none;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="event_button">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>150</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;
+border-bottom-color: none;</string>
     </property>
     <property name="text">
      <string/>
@@ -162,7 +180,9 @@ border: none;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(44, 44, 44);
-border: 1px solid rgb(176, 176, 176);</string>
+border: 1px solid rgb(176, 176, 176);
+border-bottom-color: none;
+border-left-color: none;</string>
    </property>
    <widget class="QLabel" name="alarmoff_text">
     <property name="geometry">
@@ -210,6 +230,22 @@ border: none;</string>
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="alarm_button">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>150</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QWidget" name="event_off" native="true">
    <property name="geometry">
@@ -222,7 +258,9 @@ border: none;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(44, 44, 44);
-border: 1px solid rgb(176, 176, 176);</string>
+border: 1px solid rgb(176, 176, 176);
+border-bottom-color: none;
+border-right-color: none;</string>
    </property>
    <widget class="QLabel" name="eventoff_text">
     <property name="geometry">
@@ -283,7 +321,8 @@ border: none;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(44, 44, 44);
-border: 1px solid rgb(176, 176, 176);</string>
+border: 1px solid rgb(176, 176, 176);
+border-bottom-color: none;</string>
    </property>
    <widget class="QComboBox" name="combo_cam">
     <property name="geometry">
