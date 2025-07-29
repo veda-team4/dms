@@ -19,5 +19,9 @@
         <file>image/id_user.png</file>
         <file>image/pw_Lock.png</file>
         <file>image/safety_driver_icon.png</file>
+        <file>image/folder.png</file>
+        <file>image/search.png</file>
+        <file>image/keyboard_arrow_down.png</file>
+        <file>image/keyboard_arrow_right.png</file>
     </qresource>
 </RCC>
