@@ -9,5 +9,9 @@
         <file>image/falling.png</file>
         <file>image/connect.png</file>
         <file>image/camera.png</file>
+        <file>image/alarmoff.png</file>
+        <file>image/alarmon.png</file>
+        <file>image/send.png</file>
+        <file>image/search.png</file>
     </qresource>
 </RCC>
