@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LoginFrame</class>
+ <widget class="QFrame" name="LoginFrame">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>650</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Frame</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QFrame {
+    background-color: #121212;
+}</string>
+  </property>
+  <widget class="QPushButton" name="Login_pushButton">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>400</y>
+     <width>75</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string> 로그인</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="ID_lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>496</x>
+     <y>241</y>
+     <width>261</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>admin</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="PW_lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>496</x>
+     <y>325</y>
+     <width>261</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>admin</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="ID_label">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>250</y>
+     <width>48</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>hanwhaGothic</family>
+    </font>
+   </property>
+   <property name="text">
+    <string>아이디</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="PW_label">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>350</y>
+     <width>48</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>hanwhaGothic</family>
+    </font>
+   </property>
+   <property name="text">
+    <string>비밀번호</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>80</y>
+     <width>411</width>
+     <height>391</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout"/>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

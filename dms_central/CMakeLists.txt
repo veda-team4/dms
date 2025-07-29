@@ -21,8 +21,7 @@ add_executable(dms_central
     centerframe.h centerframe.cpp centerframe.ui
     rightframe.h rightframe.cpp rightframe.ui
     resources/resources.qrc
-
-
+    loginframe.h loginframe.cpp loginframe.ui
 )
 
 target_link_libraries(dms_central
