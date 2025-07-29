@@ -4,7 +4,6 @@
 #include <QWidget>
 #include <QLabel>
 #include <QTimer>
-#include <opencv2/opencv.hpp>
 
 namespace Ui {
 class DriverPage;
@@ -25,7 +24,7 @@ private slots:
 private:
     Ui::DriverPage *ui;
     QTimer* frameTimer;
-    cv::VideoCapture cap;
+    //cv::VideoCapture cap;
     bool connected;
 };
 

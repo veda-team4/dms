@@ -17,40 +17,11 @@ DriverPage::DriverPage(QWidget *parent)
 DriverPage::~DriverPage()
 {
     delete ui;
-    cap.release();
 }
 
 void DriverPage::handleButtonClick() {
-    if (!connected) {
-        ConnectDialog dlg(this);
-        if (dlg.exec() == QDialog::Accepted) {
-            QString url = dlg.getUrl();
-            cap.open(url.toStdString());
-
-            if (cap.isOpened()) {
-                connected = true;
-                ui->connectButton->setText("Disconnect");
-                frameTimer->start(33);
-            }
-        }
-    }
-    else {
-        frameTimer->stop();
-        cap.release();
-        connected = false;
-        ui->connectButton->setText("Connect");
-        ui->videoLabel->clear();
-    }
 }
 
 void DriverPage::updateFrame() {
-    if (!cap.isOpened()) return;
-
-    cv::Mat frame;
-
-    cap.read(frame);
-
-    cv::cvtColor(frame, frame, cv::COLOR_BGR2RGB);
-    QImage qimg(frame.data, frame.cols, frame.rows, frame.step, QImage::Format_RGB888);
-    ui->videoLabel->setPixmap(QPixmap::fromImage(qimg));
 }
+

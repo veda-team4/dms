@@ -5,7 +5,6 @@
 #include <QTimer>
 #include <QVector>
 #include <QLabel>
-#include <opencv2/opencv.hpp>
 #include "driverpage.h"
 
 namespace Ui {

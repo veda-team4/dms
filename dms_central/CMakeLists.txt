@@ -7,9 +7,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
-
-find_package(OpenCV REQUIRED)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
 
 add_executable(dms_central
     main.cpp
@@ -25,8 +23,7 @@ add_executable(dms_central
 )
 
 target_link_libraries(dms_central
-    PRIVATE Qt5::Core Qt5::Widgets
-            ${OpenCV_LIBS}
+    PRIVATE Qt6::Core Qt6::Widgets
 )
 
 target_include_directories(dms_central PRIVATE

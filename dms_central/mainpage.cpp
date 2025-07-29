@@ -1,6 +1,5 @@
 #include "mainpage.h"
 #include "ui_mainpage.h"
-#include <opencv2/opencv.hpp>
 #include <QTimer>
 #include <QVBoxLayout>
 
