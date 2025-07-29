@@ -15,6 +15,8 @@ void LoginFrame::setPlaceholders()
 {
     ui->id_lineEdit_2->setPlaceholderText(QStringLiteral("아이디"));
     ui->pw_lineEdit_2-> setPlaceholderText(QStringLiteral("비밀번호"));
+
+    ui->pw_lineEdit_2->setEchoMode(QLineEdit::Password);
 }
 
 void LoginFrame::onLoginClicked()
