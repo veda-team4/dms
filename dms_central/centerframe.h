@@ -2,6 +2,7 @@
 #define CENTERFRAME_H
 
 #include <QFrame>
+#include "camframe.h"
 
 class MainWindow;
 
@@ -20,6 +21,8 @@ public:
 private:
     Ui::CenterFrame *ui;
     MainWindow* mainWindow;
+
+    CamFrame* cam0, * cam1, * cam2, * cam3;
 };
 
 #endif // CENTERFRAME_H
