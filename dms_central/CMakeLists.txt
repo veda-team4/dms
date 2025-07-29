@@ -20,6 +20,9 @@ add_executable(dms_central
     leftframe.h leftframe.cpp leftframe.ui
     centerframe.h centerframe.cpp centerframe.ui
     rightframe.h rightframe.cpp rightframe.ui
+    resources/resources.qrc
+
+
 )
 
 target_link_libraries(dms_central

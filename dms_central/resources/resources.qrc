@@ -1,4 +1,11 @@
 <RCC>
     <qresource prefix="/images">
+        <file>image/belloff.png</file>
+        <file>image/bellon.png</file>
+        <file>image/chatoff.png</file>
+        <file>image/chaton.png</file>
+        <file>image/closing.png</file>
+        <file>image/warn_o.png</file>
+        <file>image/falling.png</file>
     </qresource>
 </RCC>
