@@ -16,19 +16,6 @@ CamFrame::CamFrame(MainWindow* mainWindow, QWidget *parent)
         }
     });
 
-    loadingGif = new QMovie(":/images/image/loading.gif");
-    ui->loadingLabel->setMovie(loadingGif);
-
-    ui->waitingFrame_2->hide();
-}
-
-CamFrame::~CamFrame()
-{
-    delete loadingGif;
-    delete ui;
-}
-
-void CamFrame::connectRtsp(QString ip) {
     player = new QMediaPlayer(this);
     videoWidget = new QVideoWidget(this);
 
@@ -39,8 +26,28 @@ void CamFrame::connectRtsp(QString ip) {
             videoWidget->raise();
             loadingGif->stop();
         }
+        else if (status == QMediaPlayer::EndOfMedia) {
+            ui->waitingFrame_1->show();
+            ui->waitingFrame_1->raise();
+            videoWidget->hide();
+        }
     });
 
+    loadingGif = new QMovie(":/images/image/loading.gif");
+    ui->loadingLabel->setMovie(loadingGif);
+    ui->waitingFrame_2->hide();
+    videoWidget->hide();
+}
+
+CamFrame::~CamFrame()
+{
+    delete loadingGif;
+    delete ui;
+    delete player;
+    delete videoWidget;
+}
+
+void CamFrame::connectRtsp(QString ip) {
     ui->waitingFrame_1->hide();
     ui->waitingFrame_2->show();
     ui->waitingFrame_2->raise();
@@ -52,13 +59,4 @@ void CamFrame::connectRtsp(QString ip) {
     QString rtspUrl = QString("rtsp://%1:8554/mystream").arg(ip);
     player->setSource(QUrl((rtspUrl)));
     player->play();
-}
-
-void CamFrame::disconnectRtsp() {
-    if (player) {
-        delete player;
-    }
-    if (videoWidget) {
-        delete videoWidget;
-    }
 }

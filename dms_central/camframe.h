@@ -27,7 +27,6 @@ private:
     QVideoWidget* videoWidget = nullptr;
     QMovie* loadingGif;
     void connectRtsp(QString ip);
-    void disconnectRtsp();
 };
 
 #endif // CAMFRAME_H
