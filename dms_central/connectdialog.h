@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+class MainWindow;
+
 namespace Ui {
 class ConnectDialog;
 }
@@ -12,19 +14,18 @@ class ConnectDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ConnectDialog(QWidget *parent = nullptr);
+    explicit ConnectDialog(MainWindow* mainWindow, QWidget *parent = nullptr);
     ~ConnectDialog();
-    QString getUrl();
+
+    QString selectedIp();
+
+private slots:
+    void onConnectClicked();
 
 private:
     Ui::ConnectDialog *ui;
-    QString ip, port;
-
-signals:
-    void connectToRtsp(const QString& url);
-
-private slots:
-    void onConnectButtonClicked();
+    MainWindow* mainWindow;
+    QString m_selectedIp;
 };
 
 #endif // CONNECTDIALOG_H

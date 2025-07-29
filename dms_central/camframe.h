@@ -2,6 +2,10 @@
 #define CAMFRAME_H
 
 #include <QFrame>
+#include <QMediaPlayer>
+#include <QVideoWidget>
+
+class MainWindow;
 
 namespace Ui {
 class CamFrame;
@@ -12,11 +16,16 @@ class CamFrame : public QFrame
     Q_OBJECT
 
 public:
-    explicit CamFrame(QWidget *parent = nullptr);
+    explicit CamFrame(MainWindow* mainWindow, QWidget *parent = nullptr);
     ~CamFrame();
 
 private:
     Ui::CamFrame *ui;
+    MainWindow* mainWindow;
+    QMediaPlayer* player = nullptr;
+    QVideoWidget* videoWidget = nullptr;
+    void connectRtsp(QString ip);
+    void disconnectRtsp();
 };
 
 #endif // CAMFRAME_H

@@ -7,5 +7,7 @@
         <file>image/closing.png</file>
         <file>image/warn_o.png</file>
         <file>image/falling.png</file>
+        <file>image/connect.png</file>
+        <file>image/camera.png</file>
     </qresource>
 </RCC>

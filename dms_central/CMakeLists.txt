@@ -7,14 +7,12 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Multimedia MultimediaWidgets)
 
 add_executable(dms_central
     main.cpp
     mainwindow.cpp mainwindow.h mainwindow.ui
-    mainpage.cpp mainpage.h mainpage.ui
     connectdialog.cpp connectdialog.h connectdialog.ui
-    driverpage.cpp driverpage.h driverpage.ui
     topframe.h topframe.cpp topframe.ui
     leftframe.h leftframe.cpp leftframe.ui
     centerframe.h centerframe.cpp centerframe.ui
@@ -25,7 +23,7 @@ add_executable(dms_central
 )
 
 target_link_libraries(dms_central
-    PRIVATE Qt6::Core Qt6::Widgets
+    PRIVATE Qt6::Core Qt6::Widgets Qt6::Multimedia Qt6::MultimediaWidgets
 )
 
 target_include_directories(dms_central PRIVATE

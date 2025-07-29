@@ -6,79 +6,203 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>350</width>
     <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLineEdit" name="ipEdit">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>70</y>
-     <width>113</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>192.168.0.60</string>
-   </property>
-  </widget>
+  <property name="styleSheet">
+   <string notr="true">background-color: #1A1A1A;
+border: 1px solid #2C2C2C;</string>
+  </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>70</y>
-     <width>58</width>
-     <height>16</height>
+     <x>12</x>
+     <y>15</y>
+     <width>20</width>
+     <height>20</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+border: none;</string>
+   </property>
    <property name="text">
-    <string>IP</string>
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources/resources.qrc">:/images/image/connect.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>120</y>
-     <width>58</width>
-     <height>16</height>
+     <x>0</x>
+     <y>50</y>
+     <width>350</width>
+     <height>1</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">border: 1px solid #2C2C2C;</string>
+   </property>
    <property name="text">
-    <string>Port</string>
+    <string>TextLabel</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="portEdit">
+  <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>120</y>
-     <width>113</width>
-     <height>21</height>
+     <x>39</x>
+     <y>13</y>
+     <width>131</width>
+     <height>20</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: none;
+background-color: transparent;
+color: #FFFFFF;</string>
+   </property>
    <property name="text">
-    <string>8554</string>
+    <string>연결할 카메라 선택</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>250</y>
+     <width>350</width>
+     <height>1</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 1px solid #2C2C2C;</string>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancelButton">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>260</y>
+     <width>60</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #1A1A1A;   /* 기본 배경 */
+    color: #FFFFFF;              /* 글자 색 */
+    border-radius: 4px;
+}
+
+QPushButton:hover {
+    background-color: #333333;   /* 살짝 밝은 톤 (hover) */
+}
+
+QPushButton:pressed {
+    background-color: #0D0D0D;   /* 더 어두운 톤 (pressed) */
+}</string>
+   </property>
+   <property name="text">
+    <string>취소</string>
    </property>
   </widget>
   <widget class="QPushButton" name="connectButton">
    <property name="geometry">
     <rect>
-     <x>280</x>
-     <y>50</y>
-     <width>100</width>
-     <height>32</height>
+     <x>210</x>
+     <y>260</y>
+     <width>60</width>
+     <height>25</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">
+
+QPushButton {
+    background-color: #F7933A; /* 기본 색상 */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+/* 마우스를 올렸을 때 (Hover 상태) */
+QPushButton:hover {
+    background-color: #FF9F50; /* 약간 밝은 오렌지 */
+}
+
+/* 버튼을 누르고 있을 때 (Pressed 상태) */
+QPushButton:pressed {
+    background-color: #D87520; /* 살짝 어두운 오렌지 */
+}</string>
+   </property>
    <property name="text">
-    <string>Connect</string>
+    <string>연결</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>26</x>
+     <y>68</y>
+     <width>300</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* 콤보박스 기본 (닫힌 상태) */
+QComboBox {
+    background-color: #1A1A1A;    /* 기본 회색(어두운 배경) */
+    color: #FFFFFF;
+    border-radius: 4px;
+    padding: 4px 8px;
+}
+
+/* 드롭다운 리스트 영역 */
+QComboBox QAbstractItemView {
+    background-color: #1A1A1A;       /* 기본 회색 */
+    color: #FFFFFF;
+    border: 1px solid #333333;
+    padding-left: 2px;
+}
+
+QComboBox QAbstractItemView::item {
+    height: 30px;
+}
+
+QComboBox QAbstractItemView::item:selected {
+background-color: #F7933A;
+}</string>
+   </property>
+   <property name="editable">
+    <bool>false</bool>
+   </property>
+   <property name="currentText">
+    <string/>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

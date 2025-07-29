@@ -42,7 +42,7 @@
     <set>Qt::AlignmentFlag::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="connectButton">
    <property name="geometry">
     <rect>
      <x>135</x>
@@ -83,6 +83,22 @@ QPushButton:pressed {
     <string>연결</string>
    </property>
   </widget>
+  <widget class="QLabel" name="videoLabel">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>330</width>
+     <height>260</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>videoLabel</zorder>
+  <zorder>label</zorder>
+  <zorder>connectButton</zorder>
  </widget>
  <resources/>
  <connections/>
