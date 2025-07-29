@@ -46,14 +46,11 @@ void startRtsp() {
     std::thread pushThread(pushFrameToRtsp);
     pushThread.join();
     stopRtsp();
-    
-    close(server_fd);
-    close(client_fd);
 }
 
 void connectSocket() {
-    int server_fd = socket(AF_INET, SOCK_STREAM, 0);
-    if (server_fd < 0) {
+    int s_fd = socket(AF_INET, SOCK_STREAM, 0);
+    if (s_fd < 0) {
         writeLog("socket error");
         return;
     }
@@ -65,74 +62,65 @@ void connectSocket() {
 
     // 3. 소켓 옵션 + 바인딩
     int opt = 1;
-    setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
-    if (bind(server_fd, (sockaddr*)&addr, sizeof(addr)) < 0) {
+    setsockopt(s_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
+    if (bind(s_fd, (sockaddr*)&addr, sizeof(addr)) < 0) {
         perror("bind");
-        close(server_fd);
+        close(s_fd);
         return;
     }
 
     // 4. 리스닝
-    if (listen(server_fd, 1) < 0) {
+    if (listen(s_fd, 1) < 0) {
         perror("listen");
-        close(server_fd);
+        close(s_fd);
         return;
     }
 
     // 5. non-blocking 설정
-    int flags = fcntl(server_fd, F_GETFL, 0);
-    fcntl(server_fd, F_SETFL, flags | O_NONBLOCK);
+    int flags = fcntl(s_fd, F_GETFL, 0);
+    fcntl(s_fd, F_SETFL, flags | O_NONBLOCK);
 
     writeLog("Waiting for client connection on port 9000...");
 
     while (streaming) {
         sockaddr_in client_addr{};
         socklen_t client_len = sizeof(client_addr);
-        int client_fd = accept(server_fd, (sockaddr*)&client_addr, &client_len);
-        if (client_fd >= 0) {
+        int c_fd = accept(s_fd, (sockaddr*)&client_addr, &client_len);
+        if (c_fd >= 0) {
             writeLog("[Socket] Client connected");
 
             while(streaming) {
                 char buf;
-                int ret = recv(client_fd, &buf, 1, MSG_PEEK | MSG_DONTWAIT);
+                int ret = recv(c_fd, &buf, 1, MSG_PEEK | MSG_DONTWAIT);
                 if (ret == 0) {
                     // 클라이언트 종료
                     writeLog("[Socket] Client disconnected");
-                    close(client_fd);
-                    client_fd = -1;
+                    close(c_fd);
+                    c_fd = -1;
                     break;
                 }
                 uint8_t protocol = Protocol::EYECLOSEDRATIO;
-                if (writeEncryptedData(client_fd, protocol, eyeClosedRatio) == -1) {
+                if (writeEncryptedData(c_fd, protocol, eyeClosedRatio) == -1) {
                     continue;
                 }
                 if (prevHeadTime < currentHeadTime) {
                     prevHeadTime = currentHeadTime;
-                    if (writeEncryptedCommand(client_fd, Protocol::HEADDROPPED) == -1) {
+                    if (writeEncryptedCommand(c_fd, Protocol::HEADDROPPED) == -1) {
                         continue;
                     }
                 }
             }
-            close(client_fd);
+            close(c_fd);
         }
         sleep(1);
     }
 
-    close(server_fd);
+    close(s_fd);
 }
 
 // --- 프레임 전송 ---
 void pushFrameToRtsp() {
     while (streaming) {
-        char buf;
-        int ret = recv(client_fd, &buf, 1, MSG_PEEK | MSG_DONTWAIT);
-        if (ret == 0) {
-            // 연결 종료
-            writeLog("Client disconnected");
-            streaming = false;
-            break;
-        }
-        
         cv::Mat frame;
         {
             std::lock_guard<std::mutex> lock(rtspFrameMutex);
