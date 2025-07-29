@@ -4,6 +4,9 @@
 
 int main(int argc, char *argv[])
 {
+    // "Login message box" custom design sheet 적용
+    QCoreApplication::setAttribute(Qt::AA_DontUseNativeDialogs);
+
     QApplication a(argc, argv);
     LoginFrame login;
     MainWindow w;
