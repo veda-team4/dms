@@ -39,6 +39,7 @@ LeftFrame::LeftFrame(MainWindow* mainWindow, QWidget *parent)
     // 3. + 버튼 클릭 → 카메라 추가 다이얼로그 띄우기
     connect(addBtn, &QPushButton::clicked, this, [=]() {
         // 다이얼로그 팝업 띄우기
+        /*
         ConnectDialog dialog(this);
         if (dialog.exec() == QDialog::Accepted) {
             QString camName = dialog.getName();  // 입력된 카메라 이름
@@ -69,6 +70,7 @@ LeftFrame::LeftFrame(MainWindow* mainWindow, QWidget *parent)
 
             carItem->setExpanded(true);
         }
+        */
     });
 
     //************스타일 시트 적용***************************//

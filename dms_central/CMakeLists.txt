@@ -20,6 +20,7 @@ add_executable(dms_central
     resources/resources.qrc
     loginframe.h loginframe.cpp loginframe.ui
     camframe.h camframe.cpp camframe.ui
+    adddriverdialog.h adddriverdialog.cpp adddriverdialog.ui
 )
 
 target_link_libraries(dms_central
