@@ -6,6 +6,7 @@
 #include "leftframe.h"
 #include "centerframe.h"
 #include "rightframe.h"
+#include <QDebug>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,6 +21,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void setId(const QString& id);
+    QString getId();
 
 private:
     Ui::MainWindow *ui;
@@ -27,7 +30,9 @@ private:
     LeftFrame* leftFrame;
     CenterFrame* centerFrame;
     RightFrame* rightFrame;
+    QString m_userID;
 
 private slots:
+
 };
 #endif // MAINWINDOW_H

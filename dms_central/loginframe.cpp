@@ -1,8 +1,8 @@
 #include "loginframe.h"
 #include "ui_loginframe.h"
 
-LoginFrame::LoginFrame(QWidget *parent)
-    : QFrame(parent)
+LoginFrame::LoginFrame(MainWindow* mainWindow, QWidget *parent)
+    : mainWindow(mainWindow), QFrame(parent)
     , ui(new Ui::LoginFrame)
 {
     ui->setupUi(this);
@@ -25,17 +25,16 @@ void LoginFrame::setPlaceholders()
 
 void LoginFrame::onLoginClicked()
 {
+    m_id = ui->id_lineEdit_2->text();
+    m_pw = ui->pw_lineEdit_2->text();
 
-    bool ok = (ui->id_lineEdit_2->text() == "admin"
-               && ui->pw_lineEdit_2->text() == "veda1234");
+    bool ok = (m_id == "admin" && m_pw == "veda1234");
     if (ok) {
-        emit loginSucceeded(); // 로그인 성공 시그널
+        emit loginSucceeded(m_id); // 로그인 성공 시그널
         this->close(); // 로그인 창 닫기
     } else {
-        //QMessageBox::warning(this, "로그인 실패", "아이디/비밀번호를 확인하세요");
         showLoginError();
     }
-
 }
 
 void LoginFrame::showLoginError()

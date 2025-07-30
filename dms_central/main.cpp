@@ -8,13 +8,15 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_DontUseNativeDialogs);
 
     QApplication a(argc, argv);
-    LoginFrame login;
     MainWindow w;
+    LoginFrame login(&w);
 
+    // Set ID
+    QObject::connect(&login, &LoginFrame::loginSucceeded, &w, &MainWindow::setId);
+    // Show MainWindow
     QObject::connect(&login, &LoginFrame::loginSucceeded, &w, &MainWindow::show);
 
     login.show();
-
     return a.exec();
 
 }
