@@ -33,7 +33,7 @@ LeftFrame::LeftFrame(MainWindow* mainWindow, QWidget *parent)
     // iconLabel->setFixedSize(20, 20);  // 정렬 맞추기용
 
     // 2-2. 차량 라벨
-    QLabel* camLabel = new QLabel("차량 01");
+    QLabel* camLabel = new QLabel("차량");
     camLabel->setStyleSheet("color: white; font: 10pt \"hanwhaGothic\";");
 
     // 2-3. +버튼

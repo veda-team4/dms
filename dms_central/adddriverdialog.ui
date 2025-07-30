@@ -14,8 +14,8 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(26, 26, 26);
-border: 1px bold;
+   <string notr="true">background-color: rgba(26, 26, 26, 1);
+border: 1px;
 border-color: #2C2C2C;
 </string>
   </property>
@@ -34,7 +34,16 @@ border-color: #2C2C2C;
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: #2C2C2C;</string>
+    <string notr="true">background-color: rgba(44, 44, 44, 1);</string>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Sunken</enum>
+   </property>
+   <property name="lineWidth">
+    <number>1</number>
+   </property>
+   <property name="midLineWidth">
+    <number>0</number>
    </property>
    <property name="orientation">
     <enum>Qt::Orientation::Horizontal</enum>
@@ -55,7 +64,7 @@ border-color: #2C2C2C;
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: #2C2C2C;</string>
+    <string notr="true">background-color: rgba(44, 44, 44, 1);</string>
    </property>
    <property name="orientation">
     <enum>Qt::Orientation::Horizontal</enum>
@@ -110,7 +119,7 @@ background: transparent;
    <property name="geometry">
     <rect>
      <x>21</x>
-     <y>70</y>
+     <y>85</y>
      <width>307</width>
      <height>22</height>
     </rect>
@@ -145,11 +154,18 @@ color: white;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 8pt &quot;hanwhaGothic&quot;;
-color: white;</string>
+     <string notr="true">border: 1px solid rgba(44, 44, 44, 1);
+font: 8pt &quot;hanwhaGothic&quot;;
+color: white;
+
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
     <property name="placeholderText">
-     <string extracomment="CAM 01"/>
+     <string>CAM 01</string>
     </property>
    </widget>
   </widget>
@@ -165,17 +181,91 @@ color: white;</string>
    <property name="styleSheet">
     <string notr="true">font: 9pt &quot;hanwhaGothic&quot;;
 color: white;
-background-color: #F7933A;</string>
+background-color: #F7933A;
+border-radius: 3px;</string>
    </property>
    <property name="text">
     <string>확인</string>
    </property>
   </widget>
+  <widget class="QWidget" name="widget_3" native="true">
+   <property name="geometry">
+    <rect>
+     <x>21</x>
+     <y>135</y>
+     <width>307</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: transparent;</string>
+   </property>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>4</y>
+      <width>64</width>
+      <height>14</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 9pt &quot;hanwhaGothic&quot;;
+color: white;</string>
+    </property>
+    <property name="text">
+     <string>IP 주소</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>99</x>
+      <y>0</y>
+      <width>208</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 8pt &quot;hanwhaGothic&quot;;
+color: white;
+border: 1px solid rgba(44, 44, 44, 1);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string extracomment="192.168.0.100">192.168.0.100</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>208</x>
+     <y>211</y>
+     <width>60</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 9pt &quot;hanwhaGothic&quot;;
+color: white;
+background-color: transparent;
+border: 1px solid rgba(44, 44, 44, 1);
+border-radius: 3px;</string>
+   </property>
+   <property name="text">
+    <string>취소</string>
+   </property>
+  </widget>
   <zorder>line_2</zorder>
   <zorder>widget</zorder>
-  <zorder>line</zorder>
   <zorder>widget_2</zorder>
   <zorder>pushButton</zorder>
+  <zorder>line</zorder>
+  <zorder>widget_3</zorder>
+  <zorder>pushButton_2</zorder>
  </widget>
  <resources/>
  <connections/>
