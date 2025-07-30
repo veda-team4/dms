@@ -28,7 +28,7 @@ void LoginFrame::onLoginClicked()
     m_id = ui->id_lineEdit_2->text();
     m_pw = ui->pw_lineEdit_2->text();
 
-    bool ok = (m_id == "admin" && m_pw == "veda1234");
+    bool ok = (m_id == "" && m_pw == "");
     if (ok) {
         emit loginSucceeded(m_id); // 로그인 성공 시그널
         this->close(); // 로그인 창 닫기

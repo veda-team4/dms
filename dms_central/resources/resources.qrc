@@ -29,5 +29,6 @@
         <file>image/time.svg</file>
         <file>image/minimize.svg</file>
         <file>image/x_image.png</file>
+        <file>image/reddot.png</file>
     </qresource>
 </RCC>
