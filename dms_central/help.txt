@@ -1,0 +1,4 @@
+# 1. OpenSSL 설치 (Light 아닌 개발용으로 받기)
+https://slproweb.com/products/Win32OpenSSL.html
+
+# 2. 환경 변수 등록 (Path -> C:\Program Files\OpenSSL-Win64\bin)

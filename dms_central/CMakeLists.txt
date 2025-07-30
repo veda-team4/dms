@@ -9,6 +9,24 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets Multimedia MultimediaWidgets)
 
+# OpenSSL 찾기
+set(OPENSSL_ROOT_DIR "C:/Program Files/OpenSSL-Win64")
+set(OPENSSL_INCLUDE_DIR "${OPENSSL_ROOT_DIR}/include")
+
+find_library(OPENSSL_CRYPTO_LIBRARY
+    NAMES libcrypto
+    PATHS "${OPENSSL_ROOT_DIR}/lib/VC/x64/MD"
+    NO_DEFAULT_PATH
+)
+
+find_library(OPENSSL_SSL_LIBRARY
+    NAMES libssl
+    PATHS "${OPENSSL_ROOT_DIR}/lib/VC/x64/MD"
+    NO_DEFAULT_PATH
+)
+
+include_directories(${OPENSSL_INCLUDE_DIR})
+
 add_executable(dms_central
     main.cpp
     mainwindow.cpp mainwindow.h mainwindow.ui
@@ -25,6 +43,7 @@ add_executable(dms_central
 
 target_link_libraries(dms_central
     PRIVATE Qt6::Core Qt6::Widgets Qt6::Multimedia Qt6::MultimediaWidgets
+    PRIVATE ${OPENSSL_SSL_LIBRARY} ${OPENSSL_CRYPTO_LIBRARY}
 )
 
 target_include_directories(dms_central PRIVATE
@@ -39,10 +58,3 @@ install(TARGETS dms_central
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
-
-#qt_generate_deploy_app_script(
-#    TARGET dms_central
-#    OUTPUT_SCRIPT deploy_script
-#    NO_UNSUPPORTED_PLATFORM_ERROR
-#)
-#install(SCRIPT ${deploy_script})

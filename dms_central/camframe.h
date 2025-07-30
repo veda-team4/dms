@@ -5,8 +5,16 @@
 #include <QMediaPlayer>
 #include <QVideoWidget>
 #include <QMovie>
+#include <QTcpSocket>
 
 class MainWindow;
+
+namespace Protocol {
+enum Type: uint8_t {
+    EYECLOSEDRATIO,
+    HEADDROPPED,
+};
+}
 
 namespace Ui {
 class CamFrame;
@@ -26,7 +34,20 @@ private:
     QMediaPlayer* player = nullptr;
     QVideoWidget* videoWidget = nullptr;
     QMovie* loadingGif;
+    QTcpSocket* socket;
+    QByteArray buffer;
+    QByteArray iv;
+    int ciphertext_len = -1;
+    quint8 cmd;
+
     void connectRtsp(QString ip);
+    bool aes_decrypt(const unsigned char* ciphertext, int ciphertext_len, const unsigned char* key, const unsigned char* iv, unsigned char* plaintext, int* plaintext_len);
+
+private slots:
+    void onButtonClicked();
+    void onRtspChanged(QMediaPlayer::MediaStatus status);
+    void onReadyRead();
+    void onDisconnected();
 };
 
 #endif // CAMFRAME_H
