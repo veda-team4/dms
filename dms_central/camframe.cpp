@@ -22,14 +22,16 @@ CamFrame::CamFrame(MainWindow* mainWindow, QWidget *parent)
 
     loadingGif = new QMovie(":/images/image/loading.gif");
     ui->loadingLabel->setMovie(loadingGif);
-    ui->waitingFrame_1->show();
-    ui->waitingFrame_2->hide();
     videoWidget->hide();
+    ui->waitingFrame_1->raise();
 
     connect(ui->connectButton, &QPushButton::clicked, this, &CamFrame::onButtonClicked);
     connect(player, &QMediaPlayer::mediaStatusChanged, this, &CamFrame::onRtspChanged);
     connect(socket, &QTcpSocket::readyRead, this, &CamFrame::onReadyRead);
     connect(socket, &QTcpSocket::disconnected, this, &CamFrame::onDisconnected);
+    connect(ui->cancelButton, &QPushButton::clicked, this, [this]() {
+        ui->waitingFrame_1->raise();
+    });
 }
 
 CamFrame::~CamFrame()
@@ -48,8 +50,6 @@ void CamFrame::onButtonClicked() {
 
         socket->connectToHost(ip, 9000);
 
-        ui->waitingFrame_1->hide();
-        ui->waitingFrame_2->show();
         ui->waitingFrame_2->raise();
         loadingGif->start();
 
@@ -59,20 +59,35 @@ void CamFrame::onButtonClicked() {
     }
 }
 
+void CamFrame::resetPlayer() {
+    if (player) {
+        player->stop();
+        player->deleteLater();
+    }
+    player = new QMediaPlayer(this);
+    videoWidget->setGeometry(ui->videoLabel->geometry());
+    player->setVideoOutput(videoWidget);
+
+    // 다시 시그널 연결
+    connect(player, &QMediaPlayer::mediaStatusChanged, this, &CamFrame::onRtspChanged);
+}
+
 void CamFrame::onRtspChanged(QMediaPlayer::MediaStatus status) {
     if (status == QMediaPlayer::BufferedMedia || status == QMediaPlayer::LoadedMedia) {
         loadingGif->stop();
-        ui->waitingFrame_2->hide();
         videoWidget->show();
         videoWidget->raise();
     }
     else if (status == QMediaPlayer::EndOfMedia) {
+        resetPlayer();
         videoWidget->hide();
-        ui->waitingFrame_1->show();
         ui->waitingFrame_1->raise();
     }
     else if (status == QMediaPlayer::InvalidMedia) {
-
+        resetPlayer();
+        player->setSource(QUrl());
+        videoWidget->hide();
+        ui->waitingFrame_3->raise();
     }
 }
 

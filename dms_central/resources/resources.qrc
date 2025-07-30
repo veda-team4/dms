@@ -28,5 +28,6 @@
         <file>image/close.svg</file>
         <file>image/time.svg</file>
         <file>image/minimize.svg</file>
+        <file>image/x_image.png</file>
     </qresource>
 </RCC>

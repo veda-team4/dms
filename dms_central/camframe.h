@@ -41,6 +41,7 @@ private:
     quint8 cmd;
 
     void connectRtsp(QString ip);
+    void resetPlayer();
     bool aes_decrypt(const unsigned char* ciphertext, int ciphertext_len, const unsigned char* key, const unsigned char* iv, unsigned char* plaintext, int* plaintext_len);
 
 private slots:

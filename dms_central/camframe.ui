@@ -131,9 +131,9 @@ QPushButton:pressed {
     <property name="geometry">
      <rect>
       <x>35</x>
-      <y>70</y>
+      <y>60</y>
       <width>260</width>
-      <height>61</height>
+      <height>71</height>
      </rect>
     </property>
     <property name="font">
@@ -174,6 +174,145 @@ QPushButton:pressed {
     </property>
    </widget>
   </widget>
+  <widget class="QFrame" name="waitingFrame_3">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>330</width>
+     <height>260</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>62</y>
+      <width>280</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #B0B0B0;
+ background-color: rgba(218, 24, 24, 0.3);</string>
+    </property>
+    <property name="text">
+     <string>카메라 연결에 실패했습니다.</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="cancelButton">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>171</y>
+      <width>60</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+
+QPushButton {
+    background-color: #F7933A; /* 기본 색상 */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+/* 마우스를 올렸을 때 (Hover 상태) */
+QPushButton:hover {
+    background-color: #FF9F50; /* 약간 밝은 오렌지 */
+}
+
+/* 버튼을 누르고 있을 때 (Pressed 상태) */
+QPushButton:pressed {
+    background-color: #D87520; /* 살짝 어두운 오렌지 */
+}</string>
+    </property>
+    <property name="text">
+     <string>재연결</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>120</y>
+      <width>330</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #B0B0B0;</string>
+    </property>
+    <property name="text">
+     <string>네트워크 상태를 확인해주세요.</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>36</x>
+      <y>78</y>
+      <width>12</width>
+      <height>12</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="resources/resources.qrc">:/images/image/x_image.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <zorder>videoLabel</zorder>
+  <zorder>waitingFrame_2</zorder>
+  <zorder>waitingFrame_1</zorder>
+  <zorder>waitingFrame_3</zorder>
  </widget>
  <resources>
   <include location="resources/resources.qrc"/>
