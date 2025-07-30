@@ -7,12 +7,12 @@ RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
     , ui(new Ui::RightFrame)
 {
     ui->setupUi(this);
-    //event_alaam_button
+//event_alaam_button
     connect(ui->alarm_button, &QPushButton::clicked, this, &RightFrame::alarmPage);
     connect(ui->event_button, &QPushButton::clicked, this, &RightFrame::eventPage);
 
+
     //scrollArea = new QScrollArea(this);
-    scrollArea = new QScrollArea(this);
 }
 
 RightFrame::~RightFrame()
@@ -25,6 +25,7 @@ RightFrame::~RightFrame()
 이벤트 위젯 작성
 이벤트 위젯 위치 설정 - 새 위젯은 0, 120, 이전 위젯은 0, 220, ...
 */
+
 void RightFrame::eventPage() {
     ui->scrollArea->setVisible(true);
     ui->search->setVisible(true);
@@ -43,6 +44,8 @@ void RightFrame::alarmPage() {
     ui->event_off->setVisible(true);
     ui->event_on->setVisible(false);
 }
+
+
 
 /*
 RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
@@ -76,10 +79,7 @@ void RightFrame::addNewWidget() {
         bar->setValue(bar->maximum());
     });
 }
-<<<<<<< HEAD
 
-=======
-*/
 
 void RightFrame::addNewWidget()
 {
@@ -96,4 +96,4 @@ void RightFrame::addNewWidget()
     });
     timer->start(1000);  // 1초마다 추가
 
-}
+}*/
