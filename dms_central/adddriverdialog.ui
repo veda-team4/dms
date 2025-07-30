@@ -6,13 +6,176 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>350</width>
+    <height>250</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(26, 26, 26);
+border: 1px bold;
+border-color: #2C2C2C;
+</string>
+  </property>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>50</y>
+     <width>350</width>
+     <height>1</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #2C2C2C;</string>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Orientation::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_2">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>200</y>
+     <width>350</width>
+     <height>1</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #2C2C2C;</string>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Orientation::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>19</x>
+     <y>13</y>
+     <width>102</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/images/image/camera.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>28</x>
+      <y>5</y>
+      <width>80</width>
+      <height>14</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 11pt &quot;hanwhaGothic&quot;;
+color: white;
+background: transparent;
+</string>
+    </property>
+    <property name="text">
+     <string>카메라 추가</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="widget_2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>21</x>
+     <y>70</y>
+     <width>307</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background: transparent;</string>
+   </property>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>4</y>
+      <width>64</width>
+      <height>14</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 9pt &quot;hanwhaGothic&quot;;
+color: white;</string>
+    </property>
+    <property name="text">
+     <string>카메라 이름</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>99</x>
+      <y>0</y>
+      <width>208</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 8pt &quot;hanwhaGothic&quot;;
+color: white;</string>
+    </property>
+    <property name="placeholderText">
+     <string extracomment="CAM 01"/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>281</x>
+     <y>211</y>
+     <width>60</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 9pt &quot;hanwhaGothic&quot;;
+color: white;
+background-color: #F7933A;</string>
+   </property>
+   <property name="text">
+    <string>확인</string>
+   </property>
+  </widget>
+  <zorder>line_2</zorder>
+  <zorder>widget</zorder>
+  <zorder>line</zorder>
+  <zorder>widget_2</zorder>
+  <zorder>pushButton</zorder>
  </widget>
  <resources/>
  <connections/>

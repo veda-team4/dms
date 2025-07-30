@@ -17,6 +17,9 @@ public:
     explicit LeftFrame(MainWindow* mainWindow, QWidget *parent = nullptr);
     ~LeftFrame();
 
+protected:
+    bool eventFilter(QObject* obj, QEvent* event) override;
+
 private:
     Ui::LeftFrame *ui;
     MainWindow* mainWindow;
