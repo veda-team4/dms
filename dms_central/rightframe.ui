@@ -14,23 +14,8 @@
    <string>Frame</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: orange;</string>
+   <string notr="true">background-color: rgb(44, 44, 44);</string>
   </property>
-  <widget class="QListWidget" name="listWidget">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>120</y>
-     <width>300</width>
-     <height>490</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(44, 44, 44);
-border: 1px solid rgb(176, 176, 176);
-border-top-color: transparent;</string>
-   </property>
-  </widget>
   <widget class="QWidget" name="event_on" native="true">
    <property name="geometry">
     <rect>
@@ -41,9 +26,9 @@ border-top-color: transparent;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(44, 44, 44);
-border: 1px solid rgb(176, 176, 176);
-border-bottom-color: none;</string>
+    <string notr="true">background-color: rgb(26, 26, 26);
+border: 1px solid rgb(44, 44, 44);
+border-left-color: none;</string>
    </property>
    <widget class="QLabel" name="eventon_text">
     <property name="geometry">
@@ -91,23 +76,6 @@ border: none;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="event_button">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>150</width>
-      <height>40</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: transparent;
-border-bottom-color: none;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
   </widget>
   <widget class="QWidget" name="trans_on" native="true">
    <property name="geometry">
@@ -119,8 +87,8 @@ border-bottom-color: none;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(44, 44, 44);
-border: 1px solid rgb(176, 176, 176);</string>
+    <string notr="true">background-color: rgb(26, 26, 26);
+border: 1px solid rgb(44, 44, 44);</string>
    </property>
    <widget class="QLabel" name="alarmon_text">
     <property name="geometry">
@@ -179,10 +147,8 @@ border: none;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(44, 44, 44);
-border: 1px solid rgb(176, 176, 176);
-border-bottom-color: none;
-border-left-color: none;</string>
+    <string notr="true">background-color: rgb(26, 26, 26);
+border: none;</string>
    </property>
    <widget class="QLabel" name="alarmoff_text">
     <property name="geometry">
@@ -257,10 +223,8 @@ border: none;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(44, 44, 44);
-border: 1px solid rgb(176, 176, 176);
-border-bottom-color: none;
-border-right-color: none;</string>
+    <string notr="true">background-color: rgb(26, 26, 26);
+border: none;</string>
    </property>
    <widget class="QLabel" name="eventoff_text">
     <property name="geometry">
@@ -309,6 +273,23 @@ border: none;</string>
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="event_button">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>150</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;
+border-bottom-color: none;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QWidget" name="trans_alarm" native="true">
    <property name="geometry">
@@ -320,8 +301,10 @@ border: none;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(44, 44, 44);
-border: 1px solid rgb(176, 176, 176);
+    <string notr="true">background-color: rgb(26, 26, 26);
+border: 1px solid rgb(44, 44, 44);
+border-left-color: none;
+border-right-color: none;
 border-bottom-color: none;</string>
    </property>
    <widget class="QComboBox" name="combo_cam">
@@ -335,27 +318,12 @@ border-bottom-color: none;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(176, 176, 176);
-background-color: rgb(44, 44, 44);
-border: 1px solid rgb(176, 176, 176);
+background-color: rgb(26, 26, 26);
+border: 1px solid rgb(44, 44, 44);
 border-radius: 5px;</string>
     </property>
-   </widget>
-   <widget class="QLabel" name="select_cam">
-    <property name="geometry">
-     <rect>
-      <x>31</x>
-      <y>35</y>
-      <width>67</width>
-      <height>14</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-background-color: transparent;
-border: none;</string>
-    </property>
-    <property name="text">
-     <string>카메라 선택</string>
+    <property name="placeholderText">
+     <string>  카메라 선택</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
@@ -394,26 +362,32 @@ border: 1px solid rgb(243, 115, 33);</string>
     <property name="styleSheet">
      <string notr="true">color: rgb(255, 255, 255);
 border-radius: 5px;
-border: 1px solid rgb(176, 176, 176);
+border: 1px solid rgb(44, 44, 44);
 background-color: transparent;</string>
     </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>31</x>
-      <y>77</y>
-      <width>210</width>
-      <height>20</height>
-     </rect>
+    <property name="inputMask">
+     <string/>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: transparent;
-color: rgb(176, 176, 176);
-border: none;</string>
+    <property name="maxLength">
+     <number>100</number>
     </property>
-    <property name="text">
+    <property name="frame">
+     <bool>true</bool>
+    </property>
+    <property name="cursorPosition">
+     <number>0</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+    </property>
+    <property name="dragEnabled">
+     <bool>false</bool>
+    </property>
+    <property name="placeholderText">
      <string>알림 내용을 입력하세요... (최대 100자)</string>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -434,12 +408,6 @@ border: none;</string>
      <string/>
     </property>
    </widget>
-   <zorder>label</zorder>
-   <zorder>combo_cam</zorder>
-   <zorder>select_cam</zorder>
-   <zorder>pushButton</zorder>
-   <zorder>lineEdit</zorder>
-   <zorder>label_2</zorder>
   </widget>
   <widget class="QWidget" name="search" native="true">
    <property name="geometry">
@@ -447,21 +415,23 @@ border: none;</string>
      <x>0</x>
      <y>40</y>
      <width>300</width>
-     <height>80</height>
+     <height>70</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(44, 44, 44);
-border: 1px solid rgb(176, 176, 176);
-border-bottom-color: transparent;</string>
+    <string notr="true">background-color: rgb(26, 26, 26);
+border: 1px solid rgb(44, 44, 44);
+border-bottom-color: none;
+border-right-color: none;
+border-left-color: none;</string>
    </property>
    <widget class="QLineEdit" name="search_text">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>22</y>
-      <width>240</width>
-      <height>20</height>
+      <x>45</x>
+      <y>20</y>
+      <width>235</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -469,43 +439,31 @@ border-bottom-color: transparent;</string>
 background-color: transparent;
 border: none;</string>
     </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>25</y>
-      <width>185</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(176, 176, 176);
-background-color: transparent;
-border: none;</string>
-    </property>
     <property name="text">
-     <string>이벤트를 검색하세요 (예: 눈 감음)</string>
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>이벤트를 검색하세요. (예: 눈 감음)</string>
     </property>
    </widget>
    <widget class="Line" name="line">
     <property name="geometry">
      <rect>
       <x>16</x>
-      <y>55</y>
+      <y>50</y>
       <width>271</width>
       <height>1</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(176, 176, 176);
-background-color: rgb(176, 176, 176);</string>
+     <string notr="true">color: rgb(44, 44, 44);
+background-color: rgb(44, 44, 44);</string>
     </property>
     <property name="orientation">
      <enum>Qt::Orientation::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="search_icon">
     <property name="geometry">
      <rect>
       <x>21</x>
@@ -523,588 +481,242 @@ border: none;</string>
      <string/>
     </property>
    </widget>
-   <zorder>search_text</zorder>
-   <zorder>line</zorder>
-   <zorder>label_4</zorder>
-   <zorder>label_3</zorder>
   </widget>
-  <widget class="QWidget" name="widget" native="true">
+  <widget class="QScrollArea" name="scrollArea">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>120</y>
+     <y>110</y>
      <width>300</width>
-     <height>100</height>
+     <height>501</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: transparent;
+    <string notr="true">background-color: rgb(26, 26, 26);
 border: none;</string>
    </property>
-   <widget class="Line" name="line_2">
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents">
     <property name="geometry">
      <rect>
-      <x>14</x>
-      <y>90</y>
-      <width>267</width>
-      <height>1</height>
+      <x>0</x>
+      <y>0</y>
+      <width>300</width>
+      <height>501</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(176, 176, 176);
-background-color: rgb(176, 176, 176);</string>
+     <string notr="true">border: 1px solid rgb(44, 44, 44);
+border-left-color: none;
+border-right-color: none;
+border-bottom-color: none;</string>
     </property>
-    <property name="orientation">
-     <enum>Qt::Orientation::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>25</x>
-      <y>13</y>
-      <width>61</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
+    <widget class="QWidget" name="widget_1" native="true">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>300</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: transparent;
+border: none;</string>
+     </property>
+     <widget class="Line" name="line_2">
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>90</y>
+        <width>267</width>
+        <height>1</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(44, 44, 44);
+background-color: rgb(44, 44, 44);</string>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>25</x>
+        <y>13</y>
+        <width>61</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
 background-color: transparent;
 border: none;</string>
-    </property>
-    <property name="text">
-     <string>CAM 01</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>52</x>
-      <y>43</y>
-      <width>130</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(176, 176, 176);
+      </property>
+      <property name="text">
+       <string>CAM 01</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>52</x>
+        <y>43</y>
+        <width>130</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(176, 176, 176);
 background-color: transparent;
 border: none;</string>
-    </property>
-    <property name="text">
-     <string>눈 감음 경고</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_7">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>42</y>
-      <width>16</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: transparent;
+      </property>
+      <property name="text">
+       <string>눈 감음 경고</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>42</y>
+        <width>16</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: transparent;
 image: url(:/images/image/closing.png);
 border: none;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_8">
-    <property name="geometry">
-     <rect>
-      <x>45</x>
-      <y>65</y>
-      <width>160</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>8</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(176, 176, 176);
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>45</x>
+        <y>65</y>
+        <width>160</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(176, 176, 176);
 background-color: transparent;
 border: none;</string>
-    </property>
-    <property name="text">
-     <string>2025.07.31 오후 23:58:58</string>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QWidget" name="widget_2" native="true">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>320</y>
-     <width>300</width>
-     <height>100</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: transparent;
+      </property>
+      <property name="text">
+       <string>2025.07.31 오후 23:58:58</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_15">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>42</y>
+        <width>16</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: transparent;
+image: url(:/images/image/warn_o.png);
 border: none;</string>
-   </property>
-   <widget class="Line" name="line_3">
-    <property name="geometry">
-     <rect>
-      <x>14</x>
-      <y>90</y>
-      <width>267</width>
-      <height>1</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(176, 176, 176);
-background-color: rgb(176, 176, 176);</string>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Orientation::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_9">
-    <property name="geometry">
-     <rect>
-      <x>25</x>
-      <y>13</y>
-      <width>61</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-background-color: transparent;
-border: none;</string>
-    </property>
-    <property name="text">
-     <string>CAM 02</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_10">
-    <property name="geometry">
-     <rect>
-      <x>52</x>
-      <y>43</y>
-      <width>130</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(176, 176, 176);
-background-color: transparent;
-border: none;</string>
-    </property>
-    <property name="text">
-     <string>고개 떨어짐 경고</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_11">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>42</y>
-      <width>16</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: transparent;
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>42</y>
+        <width>16</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: transparent;
 image: url(:/images/image/falling.png);
 border: none;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_12">
-    <property name="geometry">
-     <rect>
-      <x>45</x>
-      <y>65</y>
-      <width>160</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>8</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(176, 176, 176);
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_13">
+      <property name="geometry">
+       <rect>
+        <x>175</x>
+        <y>13</y>
+        <width>61</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
 background-color: transparent;
 border: none;</string>
-    </property>
-    <property name="text">
-     <string>2025.07.31 오후 23:58:58</string>
-    </property>
+      </property>
+      <property name="text">
+       <string>CAM 03</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>13</y>
+        <width>61</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
+background-color: transparent;
+border: none;</string>
+      </property>
+      <property name="text">
+       <string>CAM 02</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
-  <widget class="QWidget" name="widget_3" native="true">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>220</y>
-     <width>300</width>
-     <height>100</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: transparent;
-border: none;</string>
-   </property>
-   <widget class="Line" name="line_4">
-    <property name="geometry">
-     <rect>
-      <x>14</x>
-      <y>90</y>
-      <width>267</width>
-      <height>1</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(176, 176, 176);
-background-color: rgb(176, 176, 176);</string>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Orientation::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_13">
-    <property name="geometry">
-     <rect>
-      <x>25</x>
-      <y>13</y>
-      <width>61</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-background-color: transparent;
-border: none;</string>
-    </property>
-    <property name="text">
-     <string>CAM 03</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_14">
-    <property name="geometry">
-     <rect>
-      <x>52</x>
-      <y>43</y>
-      <width>130</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(176, 176, 176);
-background-color: transparent;
-border: none;</string>
-    </property>
-    <property name="text">
-     <string>졸음도 45% 주의</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_15">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>42</y>
-      <width>16</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: transparent;
-image: url(:/images/image/warn_o.png);
-border: none;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_16">
-    <property name="geometry">
-     <rect>
-      <x>45</x>
-      <y>65</y>
-      <width>160</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>8</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(176, 176, 176);
-background-color: transparent;
-border: none;</string>
-    </property>
-    <property name="text">
-     <string>2025.07.31 오후 23:58:58</string>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QWidget" name="widget_4" native="true">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>420</y>
-     <width>300</width>
-     <height>100</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: transparent;
-border: none;</string>
-   </property>
-   <widget class="Line" name="line_5">
-    <property name="geometry">
-     <rect>
-      <x>14</x>
-      <y>90</y>
-      <width>267</width>
-      <height>1</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(176, 176, 176);
-background-color: rgb(176, 176, 176);</string>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Orientation::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_17">
-    <property name="geometry">
-     <rect>
-      <x>25</x>
-      <y>13</y>
-      <width>61</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-background-color: transparent;
-border: none;</string>
-    </property>
-    <property name="text">
-     <string>CAM 03</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_18">
-    <property name="geometry">
-     <rect>
-      <x>52</x>
-      <y>43</y>
-      <width>130</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(176, 176, 176);
-background-color: transparent;
-border: none;</string>
-    </property>
-    <property name="text">
-     <string>졸음도 45% 주의</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_19">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>42</y>
-      <width>16</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: transparent;
-image: url(:/images/image/warn_o.png);
-border: none;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_20">
-    <property name="geometry">
-     <rect>
-      <x>45</x>
-      <y>65</y>
-      <width>160</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>8</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(176, 176, 176);
-background-color: transparent;
-border: none;</string>
-    </property>
-    <property name="text">
-     <string>2025.07.31 오후 23:58:58</string>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QWidget" name="widget_5" native="true">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>520</y>
-     <width>300</width>
-     <height>100</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: transparent;
-border: none;</string>
-   </property>
-   <widget class="Line" name="line_6">
-    <property name="geometry">
-     <rect>
-      <x>14</x>
-      <y>90</y>
-      <width>267</width>
-      <height>1</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(176, 176, 176);
-background-color: rgb(176, 176, 176);</string>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Orientation::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_21">
-    <property name="geometry">
-     <rect>
-      <x>25</x>
-      <y>13</y>
-      <width>61</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-background-color: transparent;
-border: none;</string>
-    </property>
-    <property name="text">
-     <string>CAM 03</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_22">
-    <property name="geometry">
-     <rect>
-      <x>52</x>
-      <y>43</y>
-      <width>130</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(176, 176, 176);
-background-color: transparent;
-border: none;</string>
-    </property>
-    <property name="text">
-     <string>졸음도 45% 주의</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_23">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>42</y>
-      <width>16</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: transparent;
-image: url(:/images/image/warn_o.png);
-border: none;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_24">
-    <property name="geometry">
-     <rect>
-      <x>45</x>
-      <y>65</y>
-      <width>160</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>8</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(176, 176, 176);
-background-color: transparent;
-border: none;</string>
-    </property>
-    <property name="text">
-     <string>2025.07.31 오후 23:58:58</string>
-    </property>
-   </widget>
-  </widget>
-  <zorder>trans_on</zorder>
-  <zorder>trans_off</zorder>
   <zorder>event_off</zorder>
   <zorder>event_on</zorder>
+  <zorder>trans_on</zorder>
+  <zorder>trans_off</zorder>
   <zorder>trans_alarm</zorder>
-  <zorder>listWidget</zorder>
+  <zorder>scrollArea</zorder>
   <zorder>search</zorder>
-  <zorder>widget</zorder>
-  <zorder>widget_2</zorder>
-  <zorder>widget_3</zorder>
-  <zorder>widget_4</zorder>
-  <zorder>widget_5</zorder>
  </widget>
  <resources/>
  <connections/>
