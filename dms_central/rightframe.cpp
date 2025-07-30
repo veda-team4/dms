@@ -121,9 +121,7 @@ void RightFrame::addNewWidget() {
 
     // scrollAreaWidgetContents 높이 조정
     ui->scrollAreaWidgetContents->setMinimumHeight(yOffset);
-
-    // 자동 스크롤
-    //ui->scrollArea->verticalScrollBar()->setValue(ui->scrollArea->verticalScrollBar()->maximum());
+    ui->scrollAreaWidgetContents->setMaximumHeight(yOffset);
 
 }
 
