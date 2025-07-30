@@ -15,13 +15,10 @@ RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
 
     connect(ui->event_button, &QPushButton::clicked, this, &RightFrame::addNewWidget);
 
-
     ui->widget_1->setVisible(false);
 
-
-
-    ui->scrollAreaWidgetContents->setMinimumHeight(10);
-
+    ui->scrollAreaWidgetContents->setMinimumHeight(yOffset);
+    ui->scrollAreaWidgetContents->setMaximumHeight(yOffset);
 }
 
 RightFrame::~RightFrame()
@@ -34,8 +31,6 @@ RightFrame::~RightFrame()
 
 /*
 데이터 받기 - CAM 번호, 경고 종류, 경고 시간
-이벤트 위젯 작성
-이벤트 위젯 위치 설정 - 새 위젯은 0, 120, 이전 위젯은 0, 220, ...
 */
 
 void RightFrame::eventPage() {
