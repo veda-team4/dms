@@ -7,10 +7,12 @@ RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
     , ui(new Ui::RightFrame)
 {
     ui->setupUi(this);
+//event_alaam_button
+    connect(ui->alarm_button, &QPushButton::clicked, this, &RightFrame::alarmPage);
+    connect(ui->event_button, &QPushButton::clicked, this, &RightFrame::eventPage);
 
 
-
-    scrollArea = new QScrollArea(this);
+    //scrollArea = new QScrollArea(this);
 }
 
 RightFrame::~RightFrame()
@@ -22,9 +24,26 @@ RightFrame::~RightFrame()
 데이터 받기 - CAM 번호, 경고 종류, 경고 시간
 이벤트 위젯 작성
 이벤트 위젯 위치 설정 - 새 위젯은 0, 120, 이전 위젯은 0, 220, ...
-
-이벤트, 알람 탭 버튼 - 탭, 내용 모두 스위치
 */
+
+void RightFrame::eventPage() {
+    ui->scrollArea->setVisible(true);
+    ui->search->setVisible(true);
+    ui->trans_alarm->setVisible(false);
+    ui->trans_off->setVisible(true);
+    ui->trans_on->setVisible(false);
+    ui->event_on->setVisible(true);
+    ui->event_off->setVisible(false);
+}
+void RightFrame::alarmPage() {
+    ui->trans_alarm->setVisible(true);
+    ui->scrollArea->setVisible(false);
+    ui->search->setVisible(false);
+    ui->trans_on->setVisible(true);
+    ui->trans_off->setVisible(false);
+    ui->event_off->setVisible(true);
+    ui->event_on->setVisible(false);
+}
 
 
 
@@ -60,7 +79,7 @@ void RightFrame::addNewWidget() {
         bar->setValue(bar->maximum());
     });
 }
-*/
+
 
 void RightFrame::addNewWidget()
 {
@@ -77,4 +96,4 @@ void RightFrame::addNewWidget()
     });
     timer->start(1000);  // 1초마다 추가
 
-}
+}*/

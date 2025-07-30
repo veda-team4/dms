@@ -25,7 +25,7 @@ public:
     explicit RightFrame(MainWindow* mainWindow, QWidget *parent = nullptr);
     ~RightFrame();
     // -----
-    CustomScrollArea(QWidget* parent = nullptr) : QScrollArea(parent), yOffset(0) {
+    /*CustomScrollArea(QWidget* parent = nullptr) : QScrollArea(parent), yOffset(0) {
         container = new QWidget;
         container->setMinimumHeight(1);  // 초기 높이
         container->setMinimumWidth(300); // 너비는 고정 가능
@@ -46,22 +46,26 @@ public:
         verticalScrollBar()->setValue(verticalScrollBar()->maximum());
     }
 
+
 private:
     QWidget* container;
     int yOffset;
     // -----
-
+*/
 private:
     Ui::RightFrame *ui;
     MainWindow* mainWindow;
 
 
-    QWidget *contentWidget;
+    //QWidget *contentWidget;
     QScrollArea *scrollArea;
     int count = 0;
 
+    void alarmPage();
+    void eventPage();
+
 private slots:
-    void addNewWidget();
+    //void addNewWidget();
 };
 
 #endif // RIGHTFRAME_H
