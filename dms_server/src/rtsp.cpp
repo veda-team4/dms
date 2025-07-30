@@ -109,6 +109,8 @@ void connectSocket() {
                         continue;
                     }
                 }
+
+                usleep(100000);
             }
             close(c_fd);
         }
