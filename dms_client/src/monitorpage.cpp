@@ -97,6 +97,7 @@ void MonitorPage::wakeupUI(bool on) {
     led->led_on();
     speaker->play("wakeup.wav");
     wakeupTimer->start(1000);
+    bluetooth->Motor();
  #endif
     navigation(true);
 
@@ -126,6 +127,7 @@ void MonitorPage::wakeupUI(bool on) {
 #if DEVICE_ON
     led->led_off();
     wakeupTimer->stop();
+    bluetooth->Motor();
 #endif
     navigation(false);
   }
