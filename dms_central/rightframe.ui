@@ -27,8 +27,7 @@
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(26, 26, 26);
-border: 1px solid rgb(44, 44, 44);
-border-left-color: none;</string>
+border: none;</string>
    </property>
    <widget class="QLabel" name="eventon_text">
     <property name="geometry">
@@ -88,7 +87,7 @@ border: none;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(26, 26, 26);
-border: 1px solid rgb(44, 44, 44);</string>
+border: none;</string>
    </property>
    <widget class="QLabel" name="alarmon_text">
     <property name="geometry">
@@ -543,7 +542,7 @@ background-color: rgb(44, 44, 44);</string>
        <enum>Qt::Orientation::Horizontal</enum>
       </property>
      </widget>
-     <widget class="QLabel" name="label_5">
+     <widget class="QLabel" name="cam_label">
       <property name="geometry">
        <rect>
         <x>25</x>
@@ -566,7 +565,7 @@ border: none;</string>
        <string>CAM 01</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_6">
+     <widget class="QLabel" name="text_label">
       <property name="geometry">
        <rect>
         <x>52</x>
@@ -584,7 +583,7 @@ border: none;</string>
        <string>눈 감음 경고</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_7">
+     <widget class="QLabel" name="closing">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -602,7 +601,7 @@ border: none;</string>
        <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="label_8">
+     <widget class="QLabel" name="time_label">
       <property name="geometry">
        <rect>
         <x>45</x>

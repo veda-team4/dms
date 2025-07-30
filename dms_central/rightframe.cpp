@@ -7,17 +7,29 @@ RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
     , ui(new Ui::RightFrame)
 {
     ui->setupUi(this);
-//event_alaam_button
+
+    int yOffset = 0;
+
     connect(ui->alarm_button, &QPushButton::clicked, this, &RightFrame::alarmPage);
     connect(ui->event_button, &QPushButton::clicked, this, &RightFrame::eventPage);
 
+    connect(ui->event_button, &QPushButton::clicked, this, &RightFrame::addNewWidget);
 
-    //scrollArea = new QScrollArea(this);
+
+    ui->widget_1->setVisible(false);
+
+
+
+    ui->scrollAreaWidgetContents->setMinimumHeight(10);
+
 }
 
 RightFrame::~RightFrame()
 {
     delete ui;
+    for(auto& widget: eventWidgets) {
+        delete widget;
+    }
 }
 
 /*
@@ -46,54 +58,72 @@ void RightFrame::alarmPage() {
 }
 
 
-
-/*
-RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
-    : mainWindow(mainWindow), QFrame(parent)
-    , ui(new Ui::RightFrame)
-{
-    ui->setupUi(this);
-
-    scrollArea = new QScrollArea(this);
-    widget_1 = new QWidget(scrollArea);
-
-    contentWidget->setLayout(layout);
-    scrollArea->setWidgetResizable(true);
-    scrollArea->setWidget(contentWidget);
-    setCentralWidget(scrollArea);
-
-    // 예시: 1초마다 새 위젯 추가
-    QTimer *timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &RightFrame::addNewWidget);
-    timer->start(1000);  // 1초마다
-}
-
 void RightFrame::addNewWidget() {
-    // 새 라벨 생성
-    QLabel *label = new QLabel(QString("New Widget #%1").arg(++count));
-    layout->addWidget(label);
+    // 위젯 다 밀기
+    for(auto& widget: eventWidgets) {
+        widget->move(0, widget->y() + 100);
+    }
 
-    // 스크롤 맨 아래로 이동
-    QTimer::singleShot(0, [=]() {
-        QScrollBar *bar = scrollArea->verticalScrollBar();
-        bar->setValue(bar->maximum());
-    });
+    // 새로운 위젯 생성
+    QWidget *newWidget = new QWidget(ui->scrollAreaWidgetContents);
+    eventWidgets.push_back(newWidget);
+
+    newWidget->setFixedSize(300, 100);
+    newWidget->move(0, 0);
+
+    newWidget->setStyleSheet(
+        "background-color: transparent;"
+        "border: none;"
+        );
+
+    // 위젯 안에 요소 추가
+    QLabel *cam_label = new QLabel("CAM 00", newWidget);
+    cam_label->setGeometry(25, 10, 75, 20);
+    cam_label->setStyleSheet(
+        "color: rgb(255, 255, 255);"
+        "background-color: transparent;"
+        "border: none;" "font-size: 800 30px;"
+        );
+    QLabel *icon = new QLabel("", newWidget);
+    icon->setGeometry(30, 42, 16, 16);
+    icon->setStyleSheet(
+        "background-color: transparent;"
+        "image: url(:/images/image/closing.png);"
+        "border: none;"
+        );
+    static int i = 0;
+    //QLabel *text_label = new QLabel("alarm text", newWidget);
+    QLabel *text_label = new QLabel(QString::fromStdString(std::to_string(i++)), newWidget);
+    text_label->setGeometry(52, 43, 130, 16);
+    text_label->setStyleSheet(
+        "color: rgb(176, 176, 176);"
+        "background-color: transparent;"
+        "border: none;" "font-size: 15px;"
+        );
+    QLabel *time_label = new QLabel("2025.00.00 00:00:00", newWidget);
+    time_label->setGeometry(45, 65, 160, 16);
+    time_label->setStyleSheet(
+        "color: rgb(176, 176, 176);"
+        "background-color: transparent;"
+        "border: none;" "font-size: 13px;"
+        );
+    QFrame *line = new QFrame(newWidget);
+    line->setGeometry(14, 90, 267, 1);
+    line->setFrameShape(QFrame::HLine);
+    line->setFrameShadow(QFrame::Plain);
+    line->setStyleSheet("background-color: rgb(44, 44, 44);");
+
+
+    newWidget->show();
+
+    // 다음 위젯 위치 계산
+    yOffset += 100;
+
+    // scrollAreaWidgetContents 높이 조정
+    ui->scrollAreaWidgetContents->setMinimumHeight(yOffset);
+
+    // 자동 스크롤
+    //ui->scrollArea->verticalScrollBar()->setValue(ui->scrollArea->verticalScrollBar()->maximum());
+
 }
 
-
-void RightFrame::addNewWidget()
-{
-    //    CustomScrollArea* scrollArea = new QScrollArea;
-    scrollArea->resize(320, 240);
-    scrollArea->show();
-
-    // 1초마다 새로운 버튼 추가
-    QTimer* timer = new QTimer;
-    QObject::connect(timer, &QTimer::timeout, [=]() {
-        QPushButton* btn = new QPushButton("New Item");
-        btn->resize(300, 40);
-        //   scrollArea->addNewWidget(btn);
-    });
-    timer->start(1000);  // 1초마다 추가
-
-}*/
