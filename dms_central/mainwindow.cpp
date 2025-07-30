@@ -31,9 +31,5 @@ MainWindow::~MainWindow()
 void MainWindow::setId(const QString& id)
 {
     m_userID = id;
-}
-
-QString MainWindow::getId()
-{
-    return m_userID;
+    topFrame->setAdminID(id);
 }
