@@ -11,8 +11,8 @@ class MainWindow;
 
 namespace Protocol {
 enum Type: uint8_t {
-    EYECLOSEDRATIO,
-    HEADDROPPED,
+    EYECLOSEDRATIO = 15,
+    HEADDROPPED = 19
 };
 }
 

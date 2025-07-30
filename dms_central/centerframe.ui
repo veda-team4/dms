@@ -14,7 +14,9 @@
    <string>Frame</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #121212;</string>
+   <string notr="true">background-color: #121212;
+border-left: 1px solid #2C2C2C;
+border-right: 1px solid #2C2C2C;</string>
   </property>
  </widget>
  <resources/>

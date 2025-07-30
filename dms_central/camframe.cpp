@@ -71,6 +71,9 @@ void CamFrame::onRtspChanged(QMediaPlayer::MediaStatus status) {
         ui->waitingFrame_1->show();
         ui->waitingFrame_1->raise();
     }
+    else if (status == QMediaPlayer::InvalidMedia) {
+
+    }
 }
 
 void CamFrame::onDisconnected() {
