@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     centerFrame->move(200, 40);
     rightFrame = new RightFrame(this, ui->centralwidget);
     rightFrame->move(900, 40);
+
 }
 
 MainWindow::~MainWindow()
@@ -25,4 +26,14 @@ MainWindow::~MainWindow()
     delete leftFrame;
     delete centerFrame;
     delete rightFrame;
+}
+
+void MainWindow::setId(const QString& id)
+{
+    m_userID = id;
+}
+
+QString MainWindow::getId()
+{
+    return m_userID;
 }
