@@ -23,5 +23,9 @@
         <file>image/search.png</file>
         <file>image/keyboard_arrow_down.png</file>
         <file>image/keyboard_arrow_right.png</file>
+        <file>image/user_icon.png</file>
+        <file>image/close.svg</file>
+        <file>image/time.svg</file>
+        <file>image/minimize.svg</file>
     </qresource>
 </RCC>
