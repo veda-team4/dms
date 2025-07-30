@@ -10,6 +10,8 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QScrollBar>
+#include <QVBoxLayout>
+#include <QVector>
 
 class MainWindow;
 
@@ -27,7 +29,7 @@ public:
     // -----
     /*CustomScrollArea(QWidget* parent = nullptr) : QScrollArea(parent), yOffset(0) {
         container = new QWidget;
-        container->setMinimumHeight(1);  // 초기 높이
+        container->setMinimumHeight(490);  // 초기 높이
         container->setMinimumWidth(300); // 너비는 고정 가능
 
         setWidget(container);
@@ -49,23 +51,25 @@ public:
 
 private:
     QWidget* container;
-    int yOffset;
+
     // -----
 */
 private:
     Ui::RightFrame *ui;
     MainWindow* mainWindow;
 
-
     //QWidget *contentWidget;
     QScrollArea *scrollArea;
-    int count = 0;
+    int yOffset;
+    QVector<QWidget*> eventWidgets;
 
     void alarmPage();
     void eventPage();
+    void addNewWidget();
+    void customWidget();
 
 private slots:
-    //void addNewWidget();
+    //
 };
 
 #endif // RIGHTFRAME_H
