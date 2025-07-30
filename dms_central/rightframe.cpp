@@ -12,6 +12,7 @@ RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
 
     connect(ui->alarm_button, &QPushButton::clicked, this, &RightFrame::alarmPage);
     connect(ui->event_button, &QPushButton::clicked, this, &RightFrame::eventPage);
+    //connect(ui->search_button, &QPushButton::clicked, this, &RightFrame::searchEvent);
 
     connect(ui->event_button, &QPushButton::clicked, this, &RightFrame::addNewWidget);
 
@@ -19,6 +20,11 @@ RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
 
     ui->scrollAreaWidgetContents->setMinimumHeight(yOffset);
     ui->scrollAreaWidgetContents->setMaximumHeight(yOffset);
+
+    ui->combo_cam->addItem("  카메라 선택");
+    ui->combo_cam->addItem("  CAM01");
+    ui->combo_cam->addItem("  CAM02");
+    ui->combo_cam->addItem("  CAM03");
 }
 
 RightFrame::~RightFrame()
@@ -120,3 +126,6 @@ void RightFrame::addNewWidget() {
 
 }
 
+void RightFrame::searchEvent() {
+
+}

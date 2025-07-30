@@ -39,7 +39,7 @@ private:
     void alarmPage();
     void eventPage();
     void addNewWidget();
-    void customWidget();
+    void searchEvent();
 };
 
 #endif // RIGHTFRAME_H
