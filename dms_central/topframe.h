@@ -2,6 +2,8 @@
 #define TOPFRAME_H
 
 #include <QFrame>
+#include <QTimer>
+#include <QTime>
 
 class MainWindow;
 
@@ -16,10 +18,16 @@ class TopFrame : public QFrame
 public:
     explicit TopFrame(MainWindow* mainWindow, QWidget *parent = nullptr);
     ~TopFrame();
+    void setAdminID(const QString &id); // userID 설정
+    void startClock(); // 시계 시작
+
+private slots:
+    void updateTime();
 
 private:
     Ui::TopFrame *ui;
     MainWindow* mainWindow;
+    QTimer *clockTimer;
 };
 
 #endif // TOPFRAME_H
