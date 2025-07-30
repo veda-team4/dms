@@ -21,8 +21,6 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void setId(const QString& id);
-    QString getId();
 
 private:
     Ui::MainWindow *ui;
@@ -32,7 +30,8 @@ private:
     RightFrame* rightFrame;
     QString m_userID;
 
-private slots:
+public slots:
+    void setId(const QString& id);
 
 };
 #endif // MAINWINDOW_H

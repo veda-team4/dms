@@ -107,7 +107,7 @@ border: none;
      <rect>
       <x>25</x>
       <y>12</y>
-      <width>48</width>
+      <width>91</width>
       <height>16</height>
      </rect>
     </property>
@@ -123,39 +123,16 @@ border: none;
 border: none;</string>
     </property>
     <property name="text">
-     <string>admin</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="line1">
-    <property name="geometry">
-     <rect>
-      <x>73</x>
-      <y>11</y>
-      <width>16</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>11</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border:none;
-color: #B0B0B0;</string>
-    </property>
-    <property name="text">
-     <string>|</string>
+     <string/>
     </property>
    </widget>
   </widget>
   <widget class="QLabel" name="time_label">
    <property name="geometry">
     <rect>
-     <x>1010</x>
+     <x>1045</x>
      <y>10</y>
-     <width>61</width>
+     <width>101</width>
      <height>20</height>
     </rect>
    </property>
@@ -169,39 +146,6 @@ color: #B0B0B0;</string>
    <property name="styleSheet">
     <string notr="true">color:white;
 border:none;</string>
-   </property>
-   <property name="text">
-    <string>15:50:49</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="minimize_pushButton">
-   <property name="geometry">
-    <rect>
-     <x>1126</x>
-     <y>-1</y>
-     <width>41</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton{
-qproperty-icon: url(&quot;:/images/image/minimize.svg&quot;);
-qproperty-iconSize: 19px 19px;
-text: &quot;&quot;;               /* 텍스트 지우기 */
-background: transparent;
-border: none;
-
-}
-
-QPushButton:hover {
-    background-color: rgba(255,255,255,0.10); /* 10% 밝은 배경 */
-    color: #D8D8D8;                           /* 아이콘을 약간 밝게 */
-}
-
-QPushButton:pressed {
-    background-color: rgba(255,255,255,0.20); /* 20% 밝은 배경 */
-    color: #FFFFFF;                           /* 아이콘을 완전 화이트로 */
-}</string>
    </property>
    <property name="text">
     <string/>
@@ -248,34 +192,10 @@ QPushButton:pressed {
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="line2">
-   <property name="geometry">
-    <rect>
-     <x>1077</x>
-     <y>11</y>
-     <width>16</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>11</pointsize>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">border:none;
-color: #B0B0B0;
-background: transparent;</string>
-   </property>
-   <property name="text">
-    <string>|</string>
-   </property>
-  </widget>
   <widget class="QToolButton" name="toolButton">
    <property name="geometry">
     <rect>
-     <x>984</x>
+     <x>1020</x>
      <y>9</y>
      <width>24</width>
      <height>22</height>
