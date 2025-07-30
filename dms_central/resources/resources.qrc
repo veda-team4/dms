@@ -29,5 +29,7 @@
         <file>image/time.svg</file>
         <file>image/minimize.svg</file>
         <file>image/x_image.png</file>
+        <file>image/Video_off.png</file>
+        <file>image/Video_on.png</file>
     </qresource>
 </RCC>
