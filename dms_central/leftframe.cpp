@@ -150,6 +150,7 @@ LeftFrame::~LeftFrame()
     delete ui;
 }
 
+//클릭시 색적용
 bool LeftFrame::eventFilter(QObject* obj, QEvent* event)
 {
     if (event->type() == QEvent::MouseButtonPress) {
