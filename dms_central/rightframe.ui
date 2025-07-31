@@ -316,10 +316,31 @@ border-bottom-color: none;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(176, 176, 176);
-background-color: rgb(26, 26, 26);
-border: 1px solid rgb(44, 44, 44);
-border-radius: 5px;</string>
+     <string notr="true">QComboBox {
+        background-color: rgb(26, 26, 26);
+        color: rgb(176, 176, 176);
+        border: 1px solid rgb(44, 44, 44);
+        border-radius: 5px;
+    }
+
+    QComboBox QAbstractItemView {
+        background-color: rgb(26, 26, 26);
+        selection-background-color: rgb(26, 26, 26);   /* 선택됐을 때 배경 */
+        selection-color: rgb(176, 176, 176);               /* 선택됐을 때 글자색 */
+    }
+
+	QComboBox QAbstractItemView::item {
+        background-color: rgb(30, 30, 30);
+        color: rgb(176, 176, 176);
+    }
+    QComboBox QAbstractItemView::item:hover {
+        background-color: rgb(247, 147, 58);    /* 마우스 오버 시 배경색 */
+        color: black;                 /* 마우스 오버 시 글자색 */
+		/*border: 1px solid rgb(247, 147, 58);
+    	outline: 1px solid rgb(247, 147, 58);
+		  rgb(247, 147, 58);  */
+		outline: none;
+    }</string>
     </property>
     <property name="placeholderText">
      <string>  카메라 선택</string>
@@ -474,6 +495,23 @@ background-color: rgb(44, 44, 44);</string>
     <property name="styleSheet">
      <string notr="true">image: url(:/images/image/search.png);
 background-color: transparent;
+border: none;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="search_button">
+    <property name="geometry">
+     <rect>
+      <x>22</x>
+      <y>22</y>
+      <width>21</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;
 border: none;</string>
     </property>
     <property name="text">
@@ -733,8 +771,8 @@ border: none;</string>
   <zorder>trans_on</zorder>
   <zorder>trans_off</zorder>
   <zorder>trans_alarm</zorder>
-  <zorder>scrollArea</zorder>
   <zorder>search</zorder>
+  <zorder>scrollArea</zorder>
  </widget>
  <resources/>
  <connections/>
