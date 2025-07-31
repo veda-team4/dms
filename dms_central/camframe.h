@@ -12,7 +12,8 @@ class MainWindow;
 namespace Protocol {
 enum Type: uint8_t {
     EYECLOSEDRATIO = 15,
-    HEADDROPPED = 19
+    HEADDROPPED = 19,
+    STRETCH = 22
 };
 }
 
@@ -39,6 +40,8 @@ private:
     QByteArray iv;
     int ciphertext_len = -1;
     quint8 cmd;
+
+    bool sleeping = false;
 
     void connectRtsp(QString ip);
     void resetPlayer();

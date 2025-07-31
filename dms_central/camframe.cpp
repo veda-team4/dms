@@ -17,8 +17,7 @@ CamFrame::CamFrame(MainWindow* mainWindow, QWidget *parent)
     videoWidget = new QVideoWidget(ui->videoLabel);
     socket = new QTcpSocket(this);
 
-    //videoWidget->setGeometry(ui->videoLabel->geometry());
-    videoWidget->setGeometry(ui->videoLabel->geometry().adjusted(2, 2, -2, -2));
+    videoWidget->setGeometry(ui->videoLabel->geometry().adjusted(1, 1, -1, -1));
     player->setVideoOutput(videoWidget);
 
     loadingGif = new QMovie(":/images/image/loading.gif");
@@ -157,7 +156,13 @@ void CamFrame::onReadyRead() {
             quint8 cmd = static_cast<quint8>(decrypted[0]);
 
             if (cmd == Protocol::HEADDROPPED) {
+                sleeping = true;
+                ui->videoFrame->setStyleSheet("border: 1px solid red");
                 return;
+            }
+            else if (cmd == Protocol::STRETCH) {
+                sleeping = false;
+                ui->videoFrame->setStyleSheet("border: none");
             }
             else {
                 quint32 dataLen = *reinterpret_cast<const quint32*>(decrypted.constData() + 1);
@@ -165,13 +170,18 @@ void CamFrame::onReadyRead() {
                     double value = *reinterpret_cast<const double*>(decrypted.constData() + 5);
                     int v = (int)(value * 100.0);
                     if (v < 40) {
-                        ui->videoFrame->setStyleSheet("border: none;");
+                        if (!sleeping) {
+                            ui->videoFrame->setStyleSheet("border: none;");
+                        }
                     }
-                    else if (v < 100) {
-                        ui->videoFrame->setStyleSheet("border: 2px solid yellow;");
+                    else if (v < 80) {
+                        if (!sleeping) {
+                            ui->videoFrame->setStyleSheet("border: 1px solid yellow;");
+                        }
                     }
                     else {
-                        ui->videoFrame->setStyleSheet("border: 2px solid red;");
+                        sleeping = true;
+                        ui->videoFrame->setStyleSheet("border: 1px solid red;");
                     }
                     return;
                 }
