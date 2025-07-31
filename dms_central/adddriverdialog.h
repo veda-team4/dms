@@ -2,6 +2,7 @@
 #define ADDDRIVERDIALOG_H
 
 #include <QDialog>
+#include <Camerainfo.h>
 
 class MainWindow;
 
@@ -17,15 +18,15 @@ public:
     explicit AddDriverDialog(MainWindow* mainWindow, QWidget *parent = nullptr);
     ~AddDriverDialog();
 
-    QString dcamName();
+    CameraInfo cameraInfo() const;
 
 private slots:
-    void getdcamName();
+    void onConfirmClicked();
 
 private:
     Ui::AddDriverDialog *ui;
     MainWindow* mainWindow;
-    QString m_dcamName;
+    CameraInfo m_info;
 };
 
 #endif // ADDDRIVERDIALOG_H

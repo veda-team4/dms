@@ -9,7 +9,8 @@ AddDriverDialog::AddDriverDialog(MainWindow* mainWindow, QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(ui->pushButton, &QPushButton::clicked, this, &AddDriverDialog::getdcamName);
+    connect(ui->pushButton, &QPushButton::clicked, this, &AddDriverDialog::onConfirmClicked);
+    connect(ui->pushButton_2, &QPushButton::clicked, this, &AddDriverDialog::reject);
 }
 
 AddDriverDialog::~AddDriverDialog()
@@ -17,11 +18,12 @@ AddDriverDialog::~AddDriverDialog()
     delete ui;
 }
 
-QString AddDriverDialog::dcamName() {
-    return m_dcamName;
+CameraInfo AddDriverDialog::cameraInfo() const {
+    return m_info;
 }
 
-void AddDriverDialog::getdcamName(){
-    m_dcamName = ui->lineEdit->text();
+void AddDriverDialog::onConfirmClicked() {
+    m_info.name = ui->lineEdit->text();
+    m_info.ip   = ui->lineEdit_2->text();
     accept();
 }
