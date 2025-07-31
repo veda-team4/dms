@@ -8,6 +8,7 @@
 #include <QWidget>
 #include <adddriverdialog.h>
 #include <ui_adddriverdialog.h>
+#include <deletedriverdialog.h>
 
 LeftFrame::LeftFrame(MainWindow* mainWindow, QWidget *parent)
     : mainWindow(mainWindow), QFrame(parent)
@@ -55,8 +56,7 @@ LeftFrame::LeftFrame(MainWindow* mainWindow, QWidget *parent)
         // 다이얼로그 팝업 띄우기
         AddDriverDialog dialog (mainWindow, this);
         if (dialog.exec() == QDialog::Accepted) {
-            QString camName = dialog.dcamName();  // 입력된 카메라 이름
-
+            CameraInfo info = dialog.cameraInfo(); // 입력된 카메라 이름
             // 트리 항목 추가
             QTreeWidgetItem* camItem = new QTreeWidgetItem(carItem);
 
@@ -75,7 +75,7 @@ LeftFrame::LeftFrame(MainWindow* mainWindow, QWidget *parent)
             iconLabel->setStyleSheet("background-color: transparent;");
 
             //라벨
-            QLabel* camLabel = new QLabel(camName);
+            QLabel* camLabel = new QLabel(info.name);
             camLabel->setStyleSheet("color: white; font: 10pt \"hanwhaGothic\";");
 
             //-버튼
@@ -95,7 +95,11 @@ LeftFrame::LeftFrame(MainWindow* mainWindow, QWidget *parent)
 
             // 삭제 버튼 연결
             connect(removeBtn, &QPushButton::clicked, this, [=]() {
-                delete camItem;
+                // 삭제 확인 다이얼로그 띄우기
+                DeleteDriverDialog dialog(info, mainWindow, this);
+                if (dialog.exec() == QDialog::Accepted) {
+                    delete camItem;
+                }
             });
 
             carItem->setExpanded(true);
