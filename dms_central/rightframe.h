@@ -40,6 +40,15 @@ private:
     void eventPage();
     void addNewWidget();
     void searchEvent();
+    void inputMessage();
+
+signals:
+    void sendMessage(const QString &text);
+
+/*
+public slots:
+    void receiveMessage(const QString &text);
+*/
 };
 
 #endif // RIGHTFRAME_H

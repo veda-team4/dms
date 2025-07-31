@@ -13,6 +13,7 @@ RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
     connect(ui->alarm_button, &QPushButton::clicked, this, &RightFrame::alarmPage);
     connect(ui->event_button, &QPushButton::clicked, this, &RightFrame::eventPage);
     //connect(ui->search_button, &QPushButton::clicked, this, &RightFrame::searchEvent);
+    connect(ui->send_button, &QPushButton::clicked, this, &RightFrame::inputMessage);
 
     connect(ui->event_button, &QPushButton::clicked, this, &RightFrame::addNewWidget);
 
@@ -129,3 +130,27 @@ void RightFrame::addNewWidget() {
 void RightFrame::searchEvent() {
 
 }
+
+void RightFrame::inputMessage() {
+    QString input = ui->lineEdit->text();
+
+    emit sendMessage(input);
+
+    ui->lineEdit->clear();
+    ui->lineEdit->setFocus();
+}
+/*
+ * center
+void RightFrame::receiveMessage(const QString &text) {
+    qDebug() << "Message : " << text;
+    //메시지 출력 함수
+}
+
+ * main
+SenderWidget *sender = new SenderWidget;
+Receiver *receiver = new Receiver;
+
+QObject::connect(sender, &SenderWidget::textReadyToSend,
+                 receiver, &Receiver::handleReceivedText);
+*/
+
