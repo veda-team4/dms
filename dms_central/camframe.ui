@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>330</width>
-    <height>260</height>
+    <width>340</width>
+    <height>255</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,26 +16,13 @@
   <property name="styleSheet">
    <string notr="true">background-color: #2C2C2C;</string>
   </property>
-  <widget class="QLabel" name="videoLabel">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>330</width>
-     <height>260</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QFrame" name="waitingFrame_1">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>330</width>
-     <height>260</height>
+     <width>340</width>
+     <height>255</height>
     </rect>
    </property>
    <property name="frameShape">
@@ -47,7 +34,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>35</x>
+      <x>40</x>
       <y>60</y>
       <width>260</width>
       <height>61</height>
@@ -73,7 +60,7 @@
    <widget class="QPushButton" name="connectButton">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>140</x>
       <y>160</y>
       <width>60</width>
       <height>25</height>
@@ -117,8 +104,8 @@ QPushButton:pressed {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>330</width>
-     <height>260</height>
+     <width>340</width>
+     <height>255</height>
     </rect>
    </property>
    <property name="frameShape">
@@ -130,7 +117,7 @@ QPushButton:pressed {
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>35</x>
+      <x>40</x>
       <y>60</y>
       <width>260</width>
       <height>71</height>
@@ -157,7 +144,7 @@ QPushButton:pressed {
    <widget class="QLabel" name="loadingLabel">
     <property name="geometry">
      <rect>
-      <x>145</x>
+      <x>150</x>
       <y>166</y>
       <width>40</width>
       <height>40</height>
@@ -179,8 +166,8 @@ QPushButton:pressed {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>330</width>
-     <height>260</height>
+     <width>340</width>
+     <height>255</height>
     </rect>
    </property>
    <property name="font">
@@ -197,7 +184,7 @@ QPushButton:pressed {
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>25</x>
+      <x>30</x>
       <y>62</y>
       <width>280</width>
       <height>41</height>
@@ -223,7 +210,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="cancelButton">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>140</x>
       <y>171</y>
       <width>60</width>
       <height>25</height>
@@ -266,7 +253,7 @@ QPushButton:pressed {
      <rect>
       <x>0</x>
       <y>120</y>
-      <width>330</width>
+      <width>340</width>
       <height>40</height>
      </rect>
     </property>
@@ -289,7 +276,7 @@ QPushButton:pressed {
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>36</x>
+      <x>39</x>
       <y>78</y>
       <width>12</width>
       <height>12</height>
@@ -309,10 +296,45 @@ QPushButton:pressed {
     </property>
    </widget>
   </widget>
-  <zorder>videoLabel</zorder>
+  <widget class="QFrame" name="videoFrame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>340</width>
+     <height>255</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <widget class="QLabel" name="videoLabel">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>340</width>
+      <height>255</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
   <zorder>waitingFrame_2</zorder>
   <zorder>waitingFrame_1</zorder>
   <zorder>waitingFrame_3</zorder>
+  <zorder>videoFrame</zorder>
  </widget>
  <resources>
   <include location="resources/resources.qrc"/>

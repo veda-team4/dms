@@ -31,5 +31,6 @@
         <file>image/x_image.png</file>
         <file>image/Video_off.png</file>
         <file>image/Video_on.png</file>
+        <file>image/reddot.png</file>
     </qresource>
 </RCC>

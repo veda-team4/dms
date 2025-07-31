@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    setWindowFlags(Qt::FramelessWindowHint);
+
     // 상단, 좌측, 중앙, 우측 위젯 선언
     topFrame = new TopFrame(this, ui->centralwidget);
     topFrame->move(0, 0);

@@ -17,7 +17,8 @@ CamFrame::CamFrame(MainWindow* mainWindow, QWidget *parent)
     videoWidget = new QVideoWidget(this);
     socket = new QTcpSocket(this);
 
-    videoWidget->setGeometry(ui->videoLabel->geometry());
+    //videoWidget->setGeometry(ui->videoLabel->geometry());
+    videoWidget->setGeometry(ui->videoLabel->geometry().adjusted(2, 2, -2, -2));
     player->setVideoOutput(videoWidget);
 
     loadingGif = new QMovie(":/images/image/loading.gif");
@@ -139,6 +140,15 @@ void CamFrame::onReadyRead() {
                 if (cmd == Protocol::EYECLOSEDRATIO) {
                     double value = *reinterpret_cast<const double*>(decrypted.constData() + 5);
                     int v = (int)(value * 100.0);
+                    if (v < 40) {
+                        ui->videoFrame->setStyleSheet("border: none;");
+                    }
+                    else if (v <= 80) {
+                        ui->videoFrame->setStyleSheet("border: 2px solid yellow;");
+                    }
+                    else {
+                        ui->videoFrame->setStyleSheet("border: 2px solid red;");
+                    }
                     return;
                 }
             }
