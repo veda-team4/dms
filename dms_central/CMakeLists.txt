@@ -39,6 +39,8 @@ add_executable(dms_central
     loginframe.h loginframe.cpp loginframe.ui
     camframe.h camframe.cpp camframe.ui
     adddriverdialog.h adddriverdialog.cpp adddriverdialog.ui
+    deletedriverdialog.h deletedriverdialog.cpp deletedriverdialog.ui
+    camerainfo.h
 )
 
 target_link_libraries(dms_central
