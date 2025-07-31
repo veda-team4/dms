@@ -34,7 +34,7 @@ void startRtsp() {
     const char* cmd =
     "ffmpeg -y -f rawvideo -pixel_format bgr24 -video_size 320x240 -framerate 30 -i - "
     "-c:v libx264 -preset ultrafast -tune zerolatency -f rtsp "
-    "rtsp://127.0.0.1:8554/mystream";
+    "rtsp://127.0.0.1:8554/dms_stream";
     
     // FFmpeg 프로세스 실행
     ffmpegPipe = popen(cmd, "w");

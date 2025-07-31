@@ -66,10 +66,17 @@ authInternalUsers:
     # An empty path means any path.
     # Regular expressions can be used by using a tilde as prefix.
     path:
-  - action: read
-    path:
+#  - action: read
+#    path:
   - action: playback
     path:
+  
+- user: admin
+  pass: vedateam4
+  ips: []
+  permissions:
+    - action: read
+      path:
 
   # Default administrator.
   # This allows to use API, metrics and PPROF without authentication,
@@ -244,7 +251,7 @@ rtsp: yes
 rtspTransports: [udp, multicast, tcp]
 # Use secure protocol variants (RTSPS, TLS, SRTP).
 # Available values are "no", "strict", "optional".
-rtspEncryption: "no"
+rtspEncryption: "optional"
 # Address of the TCP/RTSP listener. This is needed only when encryption is "no" or "optional".
 rtspAddress: :8554
 # Address of the TCP/TLS/RTSPS listener. This is needed only when encryption is "strict" or "optional".
