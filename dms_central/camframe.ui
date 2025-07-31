@@ -348,10 +348,10 @@ border: none;</string>
     </property>
    </widget>
   </widget>
+  <zorder>videoFrame</zorder>
   <zorder>waitingFrame_2</zorder>
   <zorder>waitingFrame_1</zorder>
   <zorder>waitingFrame_3</zorder>
-  <zorder>videoFrame</zorder>
  </widget>
  <resources>
   <include location="resources/resources.qrc"/>

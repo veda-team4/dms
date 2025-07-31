@@ -28,10 +28,10 @@ CamFrame::CamFrame(MainWindow* mainWindow, QWidget *parent)
     connect(socket, &QTcpSocket::readyRead, this, &CamFrame::onReadyRead);
     connect(socket, &QTcpSocket::disconnected, this, &CamFrame::onDisconnected);
     connect(ui->cancelButton, &QPushButton::clicked, this, [this]() {
-        showFrame(0);
+        showFrame(1);
     });
 
-    showFrame(0);
+    showFrame(1);
 }
 
 CamFrame::~CamFrame()
@@ -44,25 +44,25 @@ CamFrame::~CamFrame()
 }
 
 void CamFrame::showFrame(int idx) {
-    if (idx == 0) {
+    if (idx == 1) {
         ui->waitingFrame_1->show();
     }
     else {
         ui->waitingFrame_1->hide();
     }
-    if (idx == 1) {
+    if (idx == 2) {
         ui->waitingFrame_2->show();
     }
     else {
         ui->waitingFrame_2->hide();
     }
-    if (idx == 2) {
+    if (idx == 3) {
         ui->waitingFrame_3->show();
     }
     else {
         ui->waitingFrame_3->hide();
     }
-    if (idx == 3) {
+    if (idx == 0) {
         ui->videoFrame->show();
     }
     else {
@@ -77,10 +77,10 @@ void CamFrame::onButtonClicked() {
 
         socket->connectToHost(ip, 9000);
 
-        showFrame(1);
+        showFrame(2);
         loadingGif->start();
 
-        QString rtspUrl = QString("rtsp://%1:8554/mystream").arg(ip);
+        QString rtspUrl = QString("rtsps://admin:vedateam4@%1:8322/dms_stream").arg(ip);
         player->setSource(QUrl((rtspUrl)));
         player->play();
     }
@@ -102,11 +102,11 @@ void CamFrame::resetPlayer() {
 void CamFrame::onRtspChanged(QMediaPlayer::MediaStatus status) {
     if (status == QMediaPlayer::BufferedMedia || status == QMediaPlayer::LoadedMedia) {
         loadingGif->stop();
-        showFrame(3);
+        showFrame(0);
     }
     else if (status == QMediaPlayer::EndOfMedia) {
         resetPlayer();
-        showFrame(0);
+        showFrame(1);
     }
     else if (status == QMediaPlayer::InvalidMedia) {
         resetPlayer();
