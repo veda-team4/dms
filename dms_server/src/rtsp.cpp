@@ -16,6 +16,8 @@ static FILE* ffmpegPipe = nullptr;
 extern double eyeClosedRatio;
 extern std::chrono::steady_clock::time_point prevHeadTime;
 extern std::chrono::steady_clock::time_point currentHeadTime;
+extern std::chrono::steady_clock::time_point prevStretchTime;
+extern std::chrono::steady_clock::time_point currentStretchTime;
 
 void pushFrameToRtsp();
 void stopRtsp();
@@ -106,6 +108,12 @@ void connectSocket() {
                 if (prevHeadTime < currentHeadTime) {
                     prevHeadTime = currentHeadTime;
                     if (writeEncryptedCommand(c_fd, Protocol::HEADDROPPED) == -1) {
+                        continue;
+                    }
+                }
+                if (prevStretchTime < currentStretchTime) {
+                    prevStretchTime = currentStretchTime;
+                    if (writeEncryptedCommand(c_fd, Protocol::STRETCH) == -1) {
                         continue;
                     }
                 }

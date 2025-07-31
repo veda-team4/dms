@@ -308,10 +308,7 @@ void MonitorPage::readFrame() {
         }
         else {
             ui->sleepingBar->setStyleSheet("QProgressBar { border: 2px solid #FF4444; border-radius: 5px; background-color: #0e1420; outline: none; color: white; } QProgressBar:chunk { border-radius: 3px; background-color: #FF4444; }");
-        }
-
-        if (value == 1.0) {
-          wakeupUI(true);
+            wakeupUI(true);
         }
 
         // ---- 1초마다 values에 추가 ----

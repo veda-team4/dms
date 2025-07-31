@@ -14,17 +14,21 @@
 // ********** 눈 감김 감지 관련 상수 **********
 #define BLINK_WINDOW_NUM 40 // 눈 감김 분석 윈도우
 #define INCREASE_THRESH  5 // 고개 움직임 감지 최소 값
-#define MAX_DOWN_COUNT 2 // 몇번 카운트 해야 경고할 것인지
+#define MAX_DOWN_COUNT 1 // 몇번 카운트 해야 경고할 것인지
 // ********************************************
 
 double eyeClosedRatio;
+bool sleeping = false;
 std::chrono::steady_clock::time_point prevHeadTime;
 std::chrono::steady_clock::time_point currentHeadTime;
+std::chrono::steady_clock::time_point prevStretchTime;
+std::chrono::steady_clock::time_point currentStretchTime;
 
 void startRtsp();
 
 int monitorpage(double thresholdEAR) {
   prevHeadTime = currentHeadTime = std::chrono::steady_clock::now();
+  prevStretchTime = currentStretchTime = std::chrono::steady_clock::now();
 
   // RTSP 서버 쓰레드 시작
   std::thread rtsp_thread(startRtsp);
@@ -119,10 +123,18 @@ int monitorpage(double thresholdEAR) {
         ++closedCount;
       }
         
+      /*
       // 고개 떨어짐 계산. 얼굴 사각형 중앙 y 좌표로 계산
       static double prevFaceY = 1e50; // 이전 고개 좌표
       double currentFaceY = (faceRect.top() + faceRect.bottom()) / 2.0;
       double diff = currentFaceY - prevFaceY;
+      prevFaceY = currentFaceY;
+      */
+
+      // 고개 떨어짐 계산. 코의 랜드마크 4점의 평균으로 계산
+      static double prevFaceY = 1e50;
+      double currentFaceY = (landmarks.part(28).y() + landmarks.part(29).y() + landmarks.part(30).y() + landmarks.part(31).y()) / 4.0;
+      double diff = currentFaceY - prevFaceY;;
       prevFaceY = currentFaceY;
 
       // 이전 좌표와 비교해서 INCREASE_THRESH 보다 크게 증가하면 downCount 증가
@@ -143,6 +155,10 @@ int monitorpage(double thresholdEAR) {
     // 1.5초간의 { 현재 시간, 눈 감음 여부 } Window 에서 눈 감김 비율 계산
     eyeClosedRatio = static_cast<double>(closedCount) / BLINK_WINDOW_NUM;
 
+    if (eyeClosedRatio >= 0.8) {
+      sleeping = true;
+    }
+
     // 눈 감김 비율 전송
     protocol = Protocol::EYECLOSEDRATIO;
     if (writeEncryptedData(client_fd, protocol, eyeClosedRatio) == -1) {
@@ -151,6 +167,7 @@ int monitorpage(double thresholdEAR) {
 
     // 머리 떨어짐 감지 및 출력
     if (downCount >= MAX_DOWN_COUNT) {
+      sleeping = true;
       if (writeEncryptedCommand(client_fd, Protocol::HEADDROPPED) == -1) {
         return -1;
       }
@@ -186,6 +203,10 @@ int monitorpage(double thresholdEAR) {
         lastStretchTime = stretchTime;
         if (writeEncryptedCommand(client_fd, Protocol::STRETCH) == -1) {
           return -1;
+        }
+        if (sleeping) {
+          currentStretchTime = std::chrono::steady_clock::now();
+          sleeping = false;
         }
       }
     }
