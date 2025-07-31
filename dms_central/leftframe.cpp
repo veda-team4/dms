@@ -63,8 +63,8 @@ LeftFrame::LeftFrame(MainWindow* mainWindow, QWidget *parent)
             // 항목 내부 위젯 구성 (아이콘+ CAM 이름 + '–' 버튼)
             QWidget* camWidget = new QWidget;
             QHBoxLayout* camLayout = new QHBoxLayout(camWidget);
-            camLayout->setContentsMargins(4, 0, 4, 0);
-            camLayout->setSpacing(6);
+            camLayout->setContentsMargins(0, 0, 4, 0);
+            camLayout->setSpacing(8);
             camWidget->setStyleSheet("background-color: transparent;");
 
             //아이콘
@@ -74,9 +74,23 @@ LeftFrame::LeftFrame(MainWindow* mainWindow, QWidget *parent)
             iconLabel->setFixedSize(20, 20);  // 정렬 맞추기용
             iconLabel->setStyleSheet("background-color: transparent;");
 
-            //라벨
-            QLabel* camLabel = new QLabel(info.name);
-            camLabel->setStyleSheet("color: white; font: 10pt \"hanwhaGothic\";");
+            //Name 라벨
+            QLabel* nameLabel = new QLabel(info.name);
+            nameLabel->setStyleSheet("color: white; font: 9pt \"hanwhaGothic\";");
+
+            //IP 라벨
+            QLabel* ipLabel = new QLabel(info.ip);
+            ipLabel->setStyleSheet("color: #B0B0B0; font: 7pt \"hanwhaGothic\";");
+
+            //Name+IP 위젯
+            QWidget* infoWidget = new QWidget;
+            QVBoxLayout* infoLayout = new QVBoxLayout(infoWidget);
+            infoLayout->setContentsMargins(0, 0, 0, 0);
+            infoLayout->setSpacing(6);
+            infoWidget->setStyleSheet("background-color: transparent;");
+            infoLayout->addWidget(nameLabel);
+            //infoLayout->addStretch();
+            infoLayout->addWidget(ipLabel);
 
             //-버튼
             QPushButton* removeBtn = new QPushButton("–");
@@ -87,7 +101,7 @@ LeftFrame::LeftFrame(MainWindow* mainWindow, QWidget *parent)
             removeBtn->setStyleSheet("color: white; font: 12pt \"hanwhaGothic\";");
 
             camLayout->addWidget(iconLabel);
-            camLayout->addWidget(camLabel);
+            camLayout->addWidget(infoWidget);
             camLayout->addStretch();
             camLayout->addWidget(removeBtn);
 
@@ -120,8 +134,8 @@ LeftFrame::LeftFrame(MainWindow* mainWindow, QWidget *parent)
 
     /* 트리 항목 줄 높이 */
     QTreeView::item {
-        height: 32px;
-        padding: 2px;
+        height: 28px;
+        padding: 6px;
         border: none;
     }
 
@@ -174,4 +188,3 @@ bool LeftFrame::eventFilter(QObject* obj, QEvent* event)
     }
     return QFrame::eventFilter(obj, event);
 }
-
