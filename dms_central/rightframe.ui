@@ -346,7 +346,7 @@ border-bottom-color: none;</string>
      <string>  카메라 선택</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="send_button">
     <property name="geometry">
      <rect>
       <x>21</x>
@@ -771,8 +771,8 @@ border: none;</string>
   <zorder>trans_on</zorder>
   <zorder>trans_off</zorder>
   <zorder>trans_alarm</zorder>
-  <zorder>search</zorder>
   <zorder>scrollArea</zorder>
+  <zorder>search</zorder>
  </widget>
  <resources/>
  <connections/>
