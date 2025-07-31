@@ -61,6 +61,8 @@ private:
   bool navigating = false;
   void navigation(bool on);
 
+  std::chrono::steady_clock::time_point prevHeadDowntime;
+
   void openDevice();
   void closeDevice();
 

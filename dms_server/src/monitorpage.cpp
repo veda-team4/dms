@@ -141,8 +141,8 @@ int monitorpage(double thresholdEAR) {
       if (diff > INCREASE_THRESH && isClosed) {
         ++downCount;
       }
-      // 이전 좌표와 비교해서 INCREASE_THRESH 보다 작게 증가하면 downCount 0 으로 초기화
-      else if (diff < 0) {
+      // 이전 좌표와 비교해서 감소하거나 눈 뜨고 있으면 downCount 0 으로 초기화
+      else {
         downCount = 0;
       }
       // 윈도우 초과한 항목 1개 제거
@@ -172,6 +172,7 @@ int monitorpage(double thresholdEAR) {
         return -1;
       }
       currentHeadTime = std::chrono::steady_clock::now();
+      downCount = 0;
     }
 
     {

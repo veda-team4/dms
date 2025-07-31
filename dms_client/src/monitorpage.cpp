@@ -15,6 +15,8 @@ MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* 
   connect(ui->previousButton, &QPushButton::clicked, this, &MonitorPage::moveToPrevious);
   connect(ui->nextButton, &QPushButton::clicked, this, &MonitorPage::moveToNext);
 
+  prevHeadDowntime = std::chrono::steady_clock::now();
+
   ui->naviWidget->hide();
 #if DEVICE_ON
   openDevice(); 
@@ -244,6 +246,13 @@ void MonitorPage::readFrame() {
       quint8 cmd = static_cast<quint8>(decrypted[0]);
 
       if (cmd == Protocol::HEADDROPPED) {
+        auto now_t = std::chrono::steady_clock::now();
+        if (std::chrono::duration_cast<std::chrono::milliseconds>(now_t - prevHeadDowntime).count() <= 10) {
+          return;
+        }
+        else {
+          prevHeadDowntime = now_t;
+        }
         wakeupUI(true);
         return;
       }
