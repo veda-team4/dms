@@ -22,11 +22,13 @@ CalibratePage::CalibratePage(QWidget* parent, MainWindow* mainWindow, QLocalSock
       moveToNextStep();
     }
     });
+  speaker = new Speaker("plughw:4,0");
 }
 
 CalibratePage::~CalibratePage() {
   delete ui;
   delete finishTimer;
+  delete speaker;
 }
 
 void CalibratePage::activate() {
@@ -75,6 +77,7 @@ void CalibratePage::moveToNextStep() {
     ui->eyeLabel->setText("측정 준비 중");
     ui->openedIcon->setVisible(false);
     ui->closedIcon->setVisible(true);
+    speaker->play("OK.wav");
     break;
   case 2:
     writeEncryptedCommand(socket, Protocol::CALIBRATE_CLOSED);
@@ -94,6 +97,7 @@ void CalibratePage::moveToNextStep() {
     ui->eyeLabel->setText("측정 완료");
     ui->info_next->setVisible(true);
     ui->info_ready->setVisible(false);
+    speaker->play("OK.wav");
     break;
   case 4:
     emit moveToNext();

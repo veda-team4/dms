@@ -10,6 +10,7 @@
 #include <QTimer>
 #include "basepage.h"
 #include "mainwindow.h"
+#include "speaker.h"
 
 namespace Ui {
   class CalibratePage;
@@ -44,6 +45,7 @@ private:
   int clickCount = 0;
   int progressStep = 0;
   const int progressTotalSteps = 20;
+  Speaker* speaker;
 };
 
 #endif // CALIBRATEPAGE_H
