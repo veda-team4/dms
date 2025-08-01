@@ -263,7 +263,7 @@ QPushButton:pressed {
   <widget class="QLabel" name="status_label">
    <property name="geometry">
     <rect>
-     <x>52</x>
+     <x>51</x>
      <y>111</y>
      <width>281</width>
      <height>16</height>
@@ -281,14 +281,14 @@ background-color: transparent;
 color: #AAAAAA;</string>
    </property>
    <property name="text">
-    <string>연결할 카메라를 선택한 후 [연결] 버튼을 눌러주세요.</string>
+    <string/>
    </property>
   </widget>
-  <widget class="QToolButton" name="toolButton">
+  <widget class="QToolButton" name="status_icon">
    <property name="geometry">
     <rect>
      <x>25</x>
-     <y>110</y>
+     <y>109</y>
      <width>24</width>
      <height>22</height>
     </rect>
