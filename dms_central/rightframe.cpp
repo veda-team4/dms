@@ -14,10 +14,20 @@ RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
     connect(ui->event_button, &QPushButton::clicked, this, &RightFrame::eventPage);
     //connect(ui->search_button, &QPushButton::clicked, this, &RightFrame::searchEvent);
     connect(ui->send_button, &QPushButton::clicked, this, &RightFrame::inputMessage);
+    //connect(ui->lineEdit, &QLineEdit::returnPressed, this, &RightFrame::inputMessage);
+    connect(ui->textEdit, &QTextEdit::textChanged, this, [=]() {
+        QString text = ui->textEdit->toPlainText();
+        if (text.length() > 100) {
+            text.truncate(100);
+            ui->textEdit->setPlainText(text);
+            QTextCursor cursor = ui->textEdit->textCursor();
+            cursor.movePosition(QTextCursor::End);
+            ui->textEdit->setTextCursor(cursor);
+        }
+    });
 
     connect(ui->event_button, &QPushButton::clicked, this, &RightFrame::addNewWidget);
 
-    ui->widget_1->setVisible(false);
 
     ui->scrollAreaWidgetContents->setMinimumHeight(yOffset);
     ui->scrollAreaWidgetContents->setMaximumHeight(yOffset);
@@ -26,6 +36,9 @@ RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
     ui->combo_cam->addItem("  CAM01");
     ui->combo_cam->addItem("  CAM02");
     ui->combo_cam->addItem("  CAM03");
+
+    ui->complete->setVisible(false);
+
 }
 
 RightFrame::~RightFrame()
@@ -42,7 +55,6 @@ RightFrame::~RightFrame()
 
 void RightFrame::eventPage() {
     ui->scrollArea->setVisible(true);
-    ui->search->setVisible(true);
     ui->trans_alarm->setVisible(false);
     ui->trans_off->setVisible(true);
     ui->trans_on->setVisible(false);
@@ -52,13 +64,28 @@ void RightFrame::eventPage() {
 void RightFrame::alarmPage() {
     ui->trans_alarm->setVisible(true);
     ui->scrollArea->setVisible(false);
-    ui->search->setVisible(false);
     ui->trans_on->setVisible(true);
     ui->trans_off->setVisible(false);
     ui->event_off->setVisible(true);
     ui->event_on->setVisible(false);
 }
 
+/*
+void RightFrame::addNewWidget(QString camName, int type) {
+    if (type == 1) {
+        // camName
+        // 주의) 졸음도 40%
+    }
+    else if (type == 2) {
+        // camName
+        // 경고) 눈 감음
+    }
+    else if (type == 3) {
+        // camName
+        // 경고) 고개 떨어짐
+    }
+}
+*/
 
 void RightFrame::addNewWidget() {
     // 위젯 다 밀기
@@ -80,11 +107,12 @@ void RightFrame::addNewWidget() {
 
     // 위젯 안에 요소 추가
     QLabel *cam_label = new QLabel("CAM 00", newWidget);
-    cam_label->setGeometry(25, 10, 75, 20);
+    cam_label->setGeometry(25, 10, 100, 25);
     cam_label->setStyleSheet(
         "color: rgb(255, 255, 255);"
         "background-color: transparent;"
-        "border: none;" "font-size: 800 30px;"
+        "border: none;"  "font-size: 14px;"
+        "font-family: HanwhaGothic;"
         );
     QLabel *icon = new QLabel("", newWidget);
     icon->setGeometry(30, 42, 16, 16);
@@ -100,7 +128,8 @@ void RightFrame::addNewWidget() {
     text_label->setStyleSheet(
         "color: rgb(176, 176, 176);"
         "background-color: transparent;"
-        "border: none;" "font-size: 15px;"
+        "border: none;" "font-size: 13px;"
+        "font-family: HanwhaGothic;"
         );
     QLabel *time_label = new QLabel("2025.00.00 00:00:00", newWidget);
     time_label->setGeometry(45, 65, 160, 16);
@@ -108,6 +137,7 @@ void RightFrame::addNewWidget() {
         "color: rgb(176, 176, 176);"
         "background-color: transparent;"
         "border: none;" "font-size: 13px;"
+        "font-family: HanwhaGothic;"
         );
     QFrame *line = new QFrame(newWidget);
     line->setGeometry(14, 90, 267, 1);
@@ -132,12 +162,14 @@ void RightFrame::searchEvent() {
 }
 
 void RightFrame::inputMessage() {
-    QString input = ui->lineEdit->text();
+    QString input = ui->textEdit->toPlainText();
 
     emit sendMessage(input);
 
-    ui->lineEdit->clear();
-    ui->lineEdit->setFocus();
+    ui->textEdit->clear();
+    ui->textEdit->setFocus();
+
+    sendComplete();
 }
 /*
  * center
@@ -154,3 +186,10 @@ QObject::connect(sender, &SenderWidget::textReadyToSend,
                  receiver, &Receiver::handleReceivedText);
 */
 
+void RightFrame::sendComplete() {
+    ui->complete->setVisible(true);
+    //QTimer::singleShot(2000, this, SLOT(onDelayFinished()));
+    //시간 주기
+    ui->complete->setVisible(false);
+}
+void RightFrame::onDelayFinished() {}
