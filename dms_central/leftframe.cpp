@@ -1,5 +1,7 @@
 #include "leftframe.h"
 #include "ui_leftframe.h"
+#include "mainwindow.h"
+#include "rightframe.h"
 
 #include <QHBoxLayout>
 #include <QPushButton>
@@ -60,6 +62,8 @@ LeftFrame::LeftFrame(MainWindow* mainWindow, QWidget *parent)
         if (dialog.exec() == QDialog::Accepted) {
             CameraInfo info = dialog.cameraInfo(); // 입력된 카메라 이름
             mainWindow->camerainfo.push_back(info);
+            mainWindow->rightFrame->addDriver(info.name, info.ip);
+
             // 트리 항목 추가
             QTreeWidgetItem* camItem = new QTreeWidgetItem(carItem);
 
@@ -127,6 +131,7 @@ LeftFrame::LeftFrame(MainWindow* mainWindow, QWidget *parent)
                     }),
                     vec.end()
                     );
+                mainWindow->rightFrame->deleteDriver(info.name, info.ip);
             });
 
             carItem->setExpanded(true);

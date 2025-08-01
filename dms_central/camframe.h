@@ -6,6 +6,7 @@
 #include <QVideoWidget>
 #include <QMovie>
 #include <QTcpSocket>
+#include <QLabel>
 
 class MainWindow;
 
@@ -32,6 +33,8 @@ public:
 
 private:
     Ui::CamFrame *ui;
+
+public:
     MainWindow* mainWindow;
     QMediaPlayer* player = nullptr;
     QVideoWidget* videoWidget = nullptr;
@@ -50,6 +53,7 @@ private:
     void resetPlayer();
     bool aes_decrypt(const unsigned char* ciphertext, int ciphertext_len, const unsigned char* key, const unsigned char* iv, unsigned char* plaintext, int* plaintext_len);
     void showFrame(int idx);
+    QLabel* overlayLabel;
 
 private slots:
     void onButtonClicked();

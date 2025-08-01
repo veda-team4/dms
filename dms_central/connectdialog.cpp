@@ -46,8 +46,17 @@ QString ConnectDialog::selectedIp() {
     return m_selectedIp;
 }
 
+QString ConnectDialog::selectedName() {
+    return m_selectedName;
+}
+
 void ConnectDialog::onConnectClicked() {
     m_selectedIp = ui->comboBox->currentData().toString();
+    for(auto& info: mainWindow->camerainfo) {
+        if(info.ip == m_selectedIp) {
+            m_selectedName = info.name;
+        }
+    }
     accept();
 }
 

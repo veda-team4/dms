@@ -18,11 +18,11 @@ public:
     explicit CenterFrame(MainWindow* mainWindow, QWidget *parent = nullptr);
     ~CenterFrame();
 
+    CamFrame* cam0, * cam1, * cam2, * cam3;
+
 private:
     Ui::CenterFrame *ui;
     MainWindow* mainWindow;
-
-    CamFrame* cam0, * cam1, * cam2, * cam3;
 };
 
 #endif // CENTERFRAME_H

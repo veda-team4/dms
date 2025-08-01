@@ -28,6 +28,8 @@ public:
     explicit RightFrame(MainWindow* mainWindow, QWidget *parent = nullptr);
     ~RightFrame();
     void addNewWidget(QString camName, int type);
+    void addDriver(QString name, QString ip);
+    void deleteDriver(QString name, QString ip);
 
 private:
     Ui::RightFrame *ui;

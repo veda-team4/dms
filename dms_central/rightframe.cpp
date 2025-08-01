@@ -1,6 +1,6 @@
 #include "rightframe.h"
 #include "ui_rightframe.h"
-
+#include "mainwindow.h"
 
 RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
     : mainWindow(mainWindow), QFrame(parent)
@@ -29,16 +29,25 @@ RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
     ui->scrollAreaWidgetContents->setMaximumHeight(yOffset);
 
     ui->combo_cam->addItem("  카메라 선택");
-    ui->combo_cam->addItem("  CAM01");
-    ui->combo_cam->addItem("  CAM02");
-    ui->combo_cam->addItem("  CAM03");
 
     ui->complete->setVisible(false);
+}
 
-    //addNewWidget("CAM01", 1);
-    //addNewWidget("CAM02", 2);
-    //addNewWidget("CAM03", 3);
+void RightFrame::addDriver(QString name, QString ip) {
+    QPair<QString, QString> data(name, ip);
+    ui->combo_cam->addItem(QString("  ") + name, QVariant::fromValue(data));
+}
 
+void RightFrame::deleteDriver(QString name, QString ip) {
+    for (int i = 0; i < ui->combo_cam->count(); ++i) {
+        // 저장된 QPair 꺼내기
+        QPair<QString, QString> data = ui->combo_cam->itemData(i).value<QPair<QString, QString>>();
+
+        if (data.first == name && data.second == ip) {
+            ui->combo_cam->removeItem(i);
+            break; // 첫 번째 매칭만 삭제 (모두 삭제하려면 break 제거)
+        }
+    }
 }
 
 RightFrame::~RightFrame()
@@ -189,7 +198,35 @@ void RightFrame::addNewWidget(QString camName, int type) {
 void RightFrame::inputMessage() {
     QString input = ui->textEdit->toPlainText();
 
-    emit sendMessage(input);
+    QPair<QString, QString> data =
+        ui->combo_cam->currentData().value<QPair<QString, QString>>();
+
+    QString name = data.first;
+    QString ip = data.second;
+
+    CamFrame* cams[] = {
+        mainWindow->centerFrame->cam0,
+        mainWindow->centerFrame->cam1,
+        mainWindow->centerFrame->cam2,
+        mainWindow->centerFrame->cam3
+    };
+
+    CamFrame* targetCam = nullptr;
+    for (CamFrame* cam : cams) {
+        if (cam && cam->name == name && cam->ip == ip) {
+            targetCam = cam;
+            break;
+        }
+    }
+
+    if (targetCam) {
+        // 메시지 보내기
+        qDebug() << "SEND MESSAGE";
+    }
+    else {
+        // 해당 운전자와 연결되어 있지 않습니다.
+        qDebug() << "NOT CONNECTED";
+    }
 
     ui->textEdit->clear();
     ui->textEdit->setFocus();

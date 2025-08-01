@@ -81,6 +81,8 @@ void CamFrame::onButtonClicked() {
     ConnectDialog dlg(mainWindow, this);
     if (dlg.exec() == QDialog::Accepted) {
         QString ip = dlg.selectedIp();
+        QString name = dlg.selectedName();
+        setIpName(name, ip);
 
         socket->connectToHost(ip, 9000);
 
@@ -114,11 +116,13 @@ void CamFrame::onRtspChanged(QMediaPlayer::MediaStatus status) {
     else if (status == QMediaPlayer::EndOfMedia) {
         resetPlayer();
         showFrame(1);
+        name = ip = "";
     }
     else if (status == QMediaPlayer::InvalidMedia) {
         resetPlayer();
         player->setSource(QUrl());
         showFrame(3);
+        name = ip = "";
     }
 }
 

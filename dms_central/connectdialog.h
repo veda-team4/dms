@@ -18,6 +18,7 @@ public:
     ~ConnectDialog();
 
     QString selectedIp();
+    QString selectedName();
     void onCameraSelected(int index);
 
 private slots:
@@ -27,6 +28,7 @@ private:
     Ui::ConnectDialog *ui;
     MainWindow* mainWindow;
     QString m_selectedIp;
+    QString m_selectedName;
 };
 
 #endif // CONNECTDIALOG_H
