@@ -134,7 +134,7 @@ border: transparent;
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>100</y>
+     <y>88</y>
      <width>200</width>
      <height>510</height>
     </rect>
