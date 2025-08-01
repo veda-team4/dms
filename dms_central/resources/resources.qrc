@@ -18,13 +18,11 @@
         <file>image/login_icon.png</file>
         <file>image/id_user.png</file>
         <file>image/pw_Lock.png</file>
-        <file>image/safety_driver_icon.png</file>
         <file>image/folder.png</file>
         <file>image/search.png</file>
         <file>image/keyboard_arrow_down.png</file>
         <file>image/keyboard_arrow_right.png</file>
         <file>image/user_icon.png</file>
-        <file>image/safety_driver_icon.png</file>
         <file>image/close.svg</file>
         <file>image/time.svg</file>
         <file>image/minimize.svg</file>
@@ -32,5 +30,6 @@
         <file>image/Video_off.png</file>
         <file>image/Video_on.png</file>
         <file>image/reddot.png</file>
+        <file>image/safety_driver_icon.svg</file>
     </qresource>
 </RCC>
