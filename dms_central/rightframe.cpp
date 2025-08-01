@@ -12,9 +12,7 @@ RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
 
     connect(ui->alarm_button, &QPushButton::clicked, this, &RightFrame::alarmPage);
     connect(ui->event_button, &QPushButton::clicked, this, &RightFrame::eventPage);
-    //connect(ui->search_button, &QPushButton::clicked, this, &RightFrame::searchEvent);
     connect(ui->send_button, &QPushButton::clicked, this, &RightFrame::inputMessage);
-    //connect(ui->lineEdit, &QLineEdit::returnPressed, this, &RightFrame::inputMessage);
     connect(ui->textEdit, &QTextEdit::textChanged, this, [=]() {
         QString text = ui->textEdit->toPlainText();
         if (text.length() > 100) {
@@ -25,8 +23,6 @@ RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
             ui->textEdit->setTextCursor(cursor);
         }
     });
-
-    connect(ui->event_button, &QPushButton::clicked, this, &RightFrame::addNewWidget);
 
 
     ui->scrollAreaWidgetContents->setMinimumHeight(yOffset);
@@ -39,6 +35,10 @@ RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
 
     ui->complete->setVisible(false);
 
+    addNewWidget("CAM01", 1);
+    addNewWidget("CAM02", 2);
+    addNewWidget("CAM03", 3);
+
 }
 
 RightFrame::~RightFrame()
@@ -48,10 +48,6 @@ RightFrame::~RightFrame()
         delete widget;
     }
 }
-
-/*
-데이터 받기 - CAM 번호, 경고 종류, 경고 시간
-*/
 
 void RightFrame::eventPage() {
     ui->scrollArea->setVisible(true);
@@ -70,24 +66,8 @@ void RightFrame::alarmPage() {
     ui->event_on->setVisible(false);
 }
 
-/*
-void RightFrame::addNewWidget(QString camName, int type) {
-    if (type == 1) {
-        // camName
-        // 주의) 졸음도 40%
-    }
-    else if (type == 2) {
-        // camName
-        // 경고) 눈 감음
-    }
-    else if (type == 3) {
-        // camName
-        // 경고) 고개 떨어짐
-    }
-}
-*/
 
-void RightFrame::addNewWidget() {
+void RightFrame::addNewWidget(QString camName, int type) {
     // 위젯 다 밀기
     for(auto& widget: eventWidgets) {
         widget->move(0, widget->y() + 100);
@@ -106,7 +86,7 @@ void RightFrame::addNewWidget() {
         );
 
     // 위젯 안에 요소 추가
-    QLabel *cam_label = new QLabel("CAM 00", newWidget);
+    QLabel *cam_label = new QLabel(camName, newWidget);
     cam_label->setGeometry(25, 10, 100, 25);
     cam_label->setStyleSheet(
         "color: rgb(255, 255, 255);"
@@ -114,31 +94,80 @@ void RightFrame::addNewWidget() {
         "border: none;"  "font-size: 14px;"
         "font-family: HanwhaGothic;"
         );
-    QLabel *icon = new QLabel("", newWidget);
-    icon->setGeometry(30, 42, 16, 16);
-    icon->setStyleSheet(
-        "background-color: transparent;"
-        "image: url(:/images/image/closing.png);"
-        "border: none;"
-        );
-    static int i = 0;
-    //QLabel *text_label = new QLabel("alarm text", newWidget);
-    QLabel *text_label = new QLabel(QString::fromStdString(std::to_string(i++)), newWidget);
-    text_label->setGeometry(52, 43, 130, 16);
-    text_label->setStyleSheet(
-        "color: rgb(176, 176, 176);"
-        "background-color: transparent;"
-        "border: none;" "font-size: 13px;"
-        "font-family: HanwhaGothic;"
-        );
-    QLabel *time_label = new QLabel("2025.00.00 00:00:00", newWidget);
-    time_label->setGeometry(45, 65, 160, 16);
+
+    if (type == 1) {
+        // 주의) 졸음도 40%
+        QLabel *icon = new QLabel("", newWidget);
+        icon->setGeometry(30, 42, 16, 16);
+        icon->setStyleSheet(
+            "background-color: transparent;"
+            "image: url(:/images/image/warn_o.png);"
+            "border: none;"
+            );
+        QLabel *text_label = new QLabel("주의) 졸음도 40%", newWidget);
+        //QLabel *text_label = new QLabel(QString::fromStdString(std::to_string(i++)), newWidget);
+        text_label->setGeometry(52, 43, 130, 16);
+        text_label->setStyleSheet(
+            "color: rgb(255, 180, 0);"
+            "background-color: transparent;"
+            "border: none;" "font-size: 13px;"
+            "font-family: HanwhaGothic;"
+            );
+    }
+    else if (type == 2) {
+        // 경고) 눈 감음
+        QLabel *icon = new QLabel("", newWidget);
+        icon->setGeometry(30, 42, 16, 16);
+        icon->setStyleSheet(
+            "background-color: transparent;"
+            "image: url(:/images/image/closing.png);"
+            "border: none;"
+            );
+        QLabel *text_label = new QLabel("경고) 눈 감음", newWidget);
+        //QLabel *text_label = new QLabel(QString::fromStdString(std::to_string(i++)), newWidget);
+        text_label->setGeometry(52, 43, 130, 16);
+        text_label->setStyleSheet(
+            "color: rgb(218, 24, 24);"
+            "background-color: transparent;"
+            "border: none;" "font-size: 13px;"
+            "font-family: HanwhaGothic;"
+            );
+    }
+    else if (type == 3) {
+        // 경고) 고개 떨어짐
+        QLabel *icon = new QLabel("", newWidget);
+        icon->setGeometry(30, 42, 16, 16);
+        icon->setStyleSheet(
+            "background-color: transparent;"
+            "image: url(:/images/image/falling.png);"
+            "border: none;"
+            );
+        QLabel *text_label = new QLabel("경고) 고개 떨어짐", newWidget);
+        //QLabel *text_label = new QLabel(QString::fromStdString(std::to_string(i++)), newWidget);
+        text_label->setGeometry(52, 43, 130, 16);
+        text_label->setStyleSheet(
+            "color: rgb(218, 24, 24);"
+            "background-color: transparent;"
+            "border: none;" "font-size: 13px;"
+            "font-family: HanwhaGothic;"
+            );
+    }
+
+    QLabel *time_label = new QLabel("", newWidget);
+    time_label->setGeometry(45, 65, 160, 16);  // 위치와 크기 지정
+    // 시간 포맷 설정
+    QString formattedTime = QDateTime::currentDateTime().toString("yyyy'.'MM'.'dd' 'hh':'mm':'ss");
+    // 스타일 적용 (옵션)
     time_label->setStyleSheet(
         "color: rgb(176, 176, 176);"
         "background-color: transparent;"
         "border: none;" "font-size: 13px;"
         "font-family: HanwhaGothic;"
         );
+    // 텍스트 설정
+    time_label->setText(formattedTime);
+
+
     QFrame *line = new QFrame(newWidget);
     line->setGeometry(14, 90, 267, 1);
     line->setFrameShape(QFrame::HLine);
@@ -154,10 +183,6 @@ void RightFrame::addNewWidget() {
     // scrollAreaWidgetContents 높이 조정
     ui->scrollAreaWidgetContents->setMinimumHeight(yOffset);
     ui->scrollAreaWidgetContents->setMaximumHeight(yOffset);
-
-}
-
-void RightFrame::searchEvent() {
 
 }
 
