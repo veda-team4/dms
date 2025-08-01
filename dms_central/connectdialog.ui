@@ -60,15 +60,16 @@ border: none;</string>
    <property name="geometry">
     <rect>
      <x>39</x>
-     <y>13</y>
+     <y>14</y>
      <width>131</width>
      <height>20</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>10</pointsize>
-     <bold>true</bold>
+     <family>hanwhaGothic</family>
+     <pointsize>11</pointsize>
+     <bold>false</bold>
     </font>
    </property>
    <property name="styleSheet">
@@ -105,6 +106,11 @@ color: #FFFFFF;</string>
      <height>25</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>hanwhaGothic</family>
+    </font>
+   </property>
    <property name="styleSheet">
     <string notr="true">QPushButton {
     background-color: #1A1A1A;   /* 기본 배경 */
@@ -132,6 +138,12 @@ QPushButton:pressed {
      <width>60</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>hanwhaGothic</family>
+     <pointsize>-1</pointsize>
+    </font>
    </property>
    <property name="styleSheet">
     <string notr="true">
@@ -167,6 +179,13 @@ QPushButton:pressed {
      <width>300</width>
      <height>30</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>hanwhaGothic</family>
+     <pointsize>8</pointsize>
+     <bold>false</bold>
+    </font>
    </property>
    <property name="styleSheet">
     <string notr="true">/* 콤보박스 기본 (닫힌 상태) */
@@ -239,6 +258,50 @@ QPushButton:pressed {
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="status_label">
+   <property name="geometry">
+    <rect>
+     <x>52</x>
+     <y>111</y>
+     <width>281</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>hanwhaGothic</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border:none;
+background-color: transparent;
+color: #AAAAAA;</string>
+   </property>
+   <property name="text">
+    <string>연결할 카메라를 선택한 후 [연결] 버튼을 눌러주세요.</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="toolButton">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>110</y>
+     <width>24</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">qproperty-icon: url(&quot;:/images/image/plug.svg&quot;);
+qproperty-iconSize: 22px 22px;
+background: transparent;
+border: none;
+color: white;</string>
+   </property>
+   <property name="text">
+    <string>...</string>
    </property>
   </widget>
  </widget>
