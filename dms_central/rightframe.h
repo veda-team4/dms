@@ -12,6 +12,7 @@
 #include <QScrollBar>
 #include <QVBoxLayout>
 #include <QVector>
+#include <QDateTime>
 
 class MainWindow;
 
@@ -38,8 +39,7 @@ private:
 
     void alarmPage();
     void eventPage();
-    void addNewWidget();
-    void searchEvent();
+    void addNewWidget(QString camName, int type);
     void inputMessage();
     void sendComplete();
 
