@@ -91,11 +91,12 @@ void RightFrame::addNewWidget() {
 
     // 위젯 안에 요소 추가
     QLabel *cam_label = new QLabel("CAM 00", newWidget);
-    cam_label->setGeometry(25, 10, 75, 20);
+    cam_label->setGeometry(25, 10, 100, 25);
     cam_label->setStyleSheet(
         "color: rgb(255, 255, 255);"
         "background-color: transparent;"
-        "border: none;" "font-size: 800 30px;"
+        "border: none;"  "font-size: 14px;"
+        "font-family: HanwhaGothic;"
         );
     QLabel *icon = new QLabel("", newWidget);
     icon->setGeometry(30, 42, 16, 16);
@@ -111,7 +112,8 @@ void RightFrame::addNewWidget() {
     text_label->setStyleSheet(
         "color: rgb(176, 176, 176);"
         "background-color: transparent;"
-        "border: none;" "font-size: 15px;"
+        "border: none;" "font-size: 13px;"
+        "font-family: HanwhaGothic;"
         );
     QLabel *time_label = new QLabel("2025.00.00 00:00:00", newWidget);
     time_label->setGeometry(45, 65, 160, 16);
@@ -119,6 +121,7 @@ void RightFrame::addNewWidget() {
         "color: rgb(176, 176, 176);"
         "background-color: transparent;"
         "border: none;" "font-size: 13px;"
+        "font-family: HanwhaGothic;"
         );
     QFrame *line = new QFrame(newWidget);
     line->setGeometry(14, 90, 267, 1);
