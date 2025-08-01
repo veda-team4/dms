@@ -151,11 +151,53 @@ border-radius: 3px;</string>
     <string>취소</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="btn_close">
+   <property name="geometry">
+    <rect>
+     <x>329</x>
+     <y>0</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft PhagsPa</family>
+     <pointsize>13</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+qproperty-icon: url(&quot;:/images/image/close.svg&quot;);
+qproperty-iconSize: 19px 19px;
+text: &quot;&quot;;               /* 텍스트 지우기 */
+background: transparent;
+border: 1px solid #444;
+
+}
+
+QPushButton:hover {
+    background-color: rgba(255,255,255,0.10); /* 10% 밝은 배경 */
+    color: #D8D8D8;                           /* 아이콘을 약간 밝게 */
+}
+
+QPushButton:pressed {
+    background-color: rgba(255,255,255,0.20); /* 20% 밝은 배경 */
+    color: #FFFFFF;                           /* 아이콘을 완전 화이트로 */
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <zorder>line_2</zorder>
   <zorder>widget</zorder>
   <zorder>pushButton</zorder>
   <zorder>line</zorder>
   <zorder>pushButton_2</zorder>
+  <zorder>btn_close</zorder>
  </widget>
  <resources/>
  <connections/>

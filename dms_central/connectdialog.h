@@ -18,6 +18,7 @@ public:
     ~ConnectDialog();
 
     QString selectedIp();
+    void onCameraSelected(int index);
 
 private slots:
     void onConnectClicked();
