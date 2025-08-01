@@ -12,10 +12,15 @@ ConnectDialog::ConnectDialog(MainWindow* mainWindow, QWidget *parent)
 
     connect(ui->connectButton, &QPushButton::clicked, this, &ConnectDialog::onConnectClicked);
     connect(ui->cancelButton, &QPushButton::clicked, this, &QDialog::close);
+    // 창닫기 기능
+    connect(ui->btn_close, &QPushButton::clicked, this, [this](){
+        if(auto w = window())   w->close();
+    });
 
     ui->comboBox->addItem(QIcon(":/images/image/camera.png"), "CAM 01 - 192.168.0.58", "192.168.0.58");
     ui->comboBox->addItem(QIcon(":/images/image/camera.png"), "CAM 02 - 192.168.0.72", "192.168.0.72");
     ui->comboBox->addItem(QIcon(":/images/image/camera.png"), "CAM 03");
+
 }
 
 ConnectDialog::~ConnectDialog()

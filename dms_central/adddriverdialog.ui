@@ -15,8 +15,6 @@
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgba(26, 26, 26, 1);
-border: 1px;
-border-color: #2C2C2C;
 </string>
   </property>
   <widget class="Line" name="line">
@@ -99,9 +97,9 @@ border-color: #2C2C2C;
     <property name="geometry">
      <rect>
       <x>28</x>
-      <y>5</y>
-      <width>80</width>
-      <height>14</height>
+      <y>4</y>
+      <width>91</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -259,6 +257,47 @@ border-radius: 3px;</string>
     <string>취소</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="btn_close">
+   <property name="geometry">
+    <rect>
+     <x>329</x>
+     <y>0</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft PhagsPa</family>
+     <pointsize>13</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+qproperty-icon: url(&quot;:/images/image/close.svg&quot;);
+qproperty-iconSize: 19px 19px;
+text: &quot;&quot;;               /* 텍스트 지우기 */
+background: transparent;
+border: 1px solid #444;
+
+}
+
+QPushButton:hover {
+    background-color: rgba(255,255,255,0.10); /* 10% 밝은 배경 */
+    color: #D8D8D8;                           /* 아이콘을 약간 밝게 */
+}
+
+QPushButton:pressed {
+    background-color: rgba(255,255,255,0.20); /* 20% 밝은 배경 */
+    color: #FFFFFF;                           /* 아이콘을 완전 화이트로 */
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <zorder>line_2</zorder>
   <zorder>widget</zorder>
   <zorder>widget_2</zorder>
@@ -266,6 +305,7 @@ border-radius: 3px;</string>
   <zorder>line</zorder>
   <zorder>widget_3</zorder>
   <zorder>pushButton_2</zorder>
+  <zorder>btn_close</zorder>
  </widget>
  <resources/>
  <connections/>
