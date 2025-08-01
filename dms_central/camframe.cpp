@@ -1,6 +1,8 @@
 #include "camframe.h"
 #include "ui_camframe.h"
 #include "connectdialog.h"
+#include "rightframe.h"
+#include "mainwindow.h"
 #include <openssl/evp.h>
 #include <openssl/aes.h>
 #include <openssl/rand.h>
@@ -41,6 +43,11 @@ CamFrame::~CamFrame()
     delete player;
     delete videoWidget;
     delete socket;
+}
+
+void CamFrame::setIpName(QString _name, QString _ip) {
+    name = _name;
+    ip = _ip;
 }
 
 void CamFrame::showFrame(int idx) {
@@ -158,6 +165,7 @@ void CamFrame::onReadyRead() {
             if (cmd == Protocol::HEADDROPPED) {
                 sleeping = true;
                 ui->videoFrame->setStyleSheet("border: 1px solid red");
+                mainWindow->rightFrame->addNewWidget(name, 3);
                 return;
             }
             else if (cmd == Protocol::STRETCH) {
@@ -173,15 +181,23 @@ void CamFrame::onReadyRead() {
                         if (!sleeping) {
                             ui->videoFrame->setStyleSheet("border: none;");
                         }
+                        over40 = false;
                     }
                     else if (v < 80) {
+                        if (!over40) {
+                            over40 = true;
+                            mainWindow->rightFrame->addNewWidget(name, 1);
+                        }
                         if (!sleeping) {
                             ui->videoFrame->setStyleSheet("border: 1px solid yellow;");
                         }
                     }
                     else {
-                        sleeping = true;
-                        ui->videoFrame->setStyleSheet("border: 1px solid red;");
+                        if (!sleeping) {
+                            sleeping = true;
+                            ui->videoFrame->setStyleSheet("border: 1px solid red;");
+                            mainWindow->rightFrame->addNewWidget(name, 2);
+                        }
                     }
                     return;
                 }

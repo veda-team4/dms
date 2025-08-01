@@ -28,6 +28,7 @@ class CamFrame : public QFrame
 public:
     explicit CamFrame(MainWindow* mainWindow, QWidget *parent = nullptr);
     ~CamFrame();
+    void setIpName(QString _name, QString _ip);
 
 private:
     Ui::CamFrame *ui;
@@ -38,8 +39,10 @@ private:
     QTcpSocket* socket;
     QByteArray buffer;
     QByteArray iv;
+    QString name, ip;
     int ciphertext_len = -1;
     quint8 cmd;
+    bool over40 = false;
 
     bool sleeping = false;
 

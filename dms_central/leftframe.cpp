@@ -9,6 +9,7 @@
 #include <adddriverdialog.h>
 #include <ui_adddriverdialog.h>
 #include <deletedriverdialog.h>
+#include <mainwindow.h>
 
 LeftFrame::LeftFrame(MainWindow* mainWindow, QWidget *parent)
     : mainWindow(mainWindow), QFrame(parent)
@@ -58,6 +59,7 @@ LeftFrame::LeftFrame(MainWindow* mainWindow, QWidget *parent)
         AddDriverDialog dialog (mainWindow, this);
         if (dialog.exec() == QDialog::Accepted) {
             CameraInfo info = dialog.cameraInfo(); // 입력된 카메라 이름
+            mainWindow->camerainfo.push_back(info);
             // 트리 항목 추가
             QTreeWidgetItem* camItem = new QTreeWidgetItem(carItem);
 
@@ -118,6 +120,13 @@ LeftFrame::LeftFrame(MainWindow* mainWindow, QWidget *parent)
                 if (dialog.exec() == QDialog::Accepted) {
                     delete camItem;
                 }
+                auto &vec = mainWindow->camerainfo;
+                vec.erase(
+                    std::remove_if(vec.begin(), vec.end(), [&](const CameraInfo &c) {
+                        return c.name == info.name && c.ip == info.ip;
+                    }),
+                    vec.end()
+                    );
             });
 
             carItem->setExpanded(true);

@@ -27,6 +27,7 @@ class RightFrame : public QFrame
 public:
     explicit RightFrame(MainWindow* mainWindow, QWidget *parent = nullptr);
     ~RightFrame();
+    void addNewWidget(QString camName, int type);
 
 private:
     Ui::RightFrame *ui;
@@ -39,7 +40,7 @@ private:
 
     void alarmPage();
     void eventPage();
-    void addNewWidget(QString camName, int type);
+
     void inputMessage();
     void sendComplete();
 

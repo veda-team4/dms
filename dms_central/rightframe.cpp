@@ -35,9 +35,9 @@ RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
 
     ui->complete->setVisible(false);
 
-    addNewWidget("CAM01", 1);
-    addNewWidget("CAM02", 2);
-    addNewWidget("CAM03", 3);
+    //addNewWidget("CAM01", 1);
+    //addNewWidget("CAM02", 2);
+    //addNewWidget("CAM03", 3);
 
 }
 

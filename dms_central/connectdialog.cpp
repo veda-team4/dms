@@ -1,5 +1,6 @@
 #include "connectdialog.h"
 #include "ui_connectdialog.h"
+#include "mainwindow.h"
 #include <QPushButton>
 #include <QString>
 
@@ -30,10 +31,10 @@ ConnectDialog::ConnectDialog(MainWindow* mainWindow, QWidget *parent)
             &ConnectDialog::onCameraSelected);
 
     ui->comboBox->addItem(" 카메라 선택 ", QString());
-    ui->comboBox->addItem(QIcon(":/images/image/camera.png"), "CAM 01 - 192.168.0.58", "192.168.0.58");
-    ui->comboBox->addItem(QIcon(":/images/image/camera.png"), "CAM 02 - 192.168.0.72", "192.168.0.72");
-    ui->comboBox->addItem(QIcon(":/images/image/camera.png"), "CAM 03");
-
+    for(auto& info: mainWindow->camerainfo) {
+        QString name = info.name + QString(" - ") + info.ip;
+        ui->comboBox->addItem(QIcon(":/images/image/camera.png"), name, info.ip);
+    }
 }
 
 ConnectDialog::~ConnectDialog()
