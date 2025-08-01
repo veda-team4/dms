@@ -14,10 +14,20 @@ RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
     connect(ui->event_button, &QPushButton::clicked, this, &RightFrame::eventPage);
     //connect(ui->search_button, &QPushButton::clicked, this, &RightFrame::searchEvent);
     connect(ui->send_button, &QPushButton::clicked, this, &RightFrame::inputMessage);
+    //connect(ui->lineEdit, &QLineEdit::returnPressed, this, &RightFrame::inputMessage);
+    connect(ui->textEdit, &QTextEdit::textChanged, this, [=]() {
+        QString text = ui->textEdit->toPlainText();
+        if (text.length() > 100) {
+            text.truncate(100);
+            ui->textEdit->setPlainText(text);
+            QTextCursor cursor = ui->textEdit->textCursor();
+            cursor.movePosition(QTextCursor::End);
+            ui->textEdit->setTextCursor(cursor);
+        }
+    });
 
     connect(ui->event_button, &QPushButton::clicked, this, &RightFrame::addNewWidget);
 
-    ui->widget_1->setVisible(false);
 
     ui->scrollAreaWidgetContents->setMinimumHeight(yOffset);
     ui->scrollAreaWidgetContents->setMaximumHeight(yOffset);
@@ -26,6 +36,9 @@ RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
     ui->combo_cam->addItem("  CAM01");
     ui->combo_cam->addItem("  CAM02");
     ui->combo_cam->addItem("  CAM03");
+
+    ui->complete->setVisible(false);
+
 }
 
 RightFrame::~RightFrame()
@@ -42,7 +55,6 @@ RightFrame::~RightFrame()
 
 void RightFrame::eventPage() {
     ui->scrollArea->setVisible(true);
-    ui->search->setVisible(true);
     ui->trans_alarm->setVisible(false);
     ui->trans_off->setVisible(true);
     ui->trans_on->setVisible(false);
@@ -52,7 +64,6 @@ void RightFrame::eventPage() {
 void RightFrame::alarmPage() {
     ui->trans_alarm->setVisible(true);
     ui->scrollArea->setVisible(false);
-    ui->search->setVisible(false);
     ui->trans_on->setVisible(true);
     ui->trans_off->setVisible(false);
     ui->event_off->setVisible(true);
@@ -132,12 +143,14 @@ void RightFrame::searchEvent() {
 }
 
 void RightFrame::inputMessage() {
-    QString input = ui->lineEdit->text();
+    QString input = ui->textEdit->toPlainText();
 
     emit sendMessage(input);
 
-    ui->lineEdit->clear();
-    ui->lineEdit->setFocus();
+    ui->textEdit->clear();
+    ui->textEdit->setFocus();
+
+    sendComplete();
 }
 /*
  * center
@@ -154,3 +167,10 @@ QObject::connect(sender, &SenderWidget::textReadyToSend,
                  receiver, &Receiver::handleReceivedText);
 */
 
+void RightFrame::sendComplete() {
+    ui->complete->setVisible(true);
+    //QTimer::singleShot(2000, this, SLOT(onDelayFinished()));
+    //시간 주기
+    ui->complete->setVisible(false);
+}
+void RightFrame::onDelayFinished() {}

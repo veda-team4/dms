@@ -41,9 +41,15 @@ private:
     void addNewWidget();
     void searchEvent();
     void inputMessage();
+    void sendComplete();
 
 signals:
     void sendMessage(const QString &text);
+
+public slots:
+    void onDelayFinished();
+
+
 
 /*
 public slots:
