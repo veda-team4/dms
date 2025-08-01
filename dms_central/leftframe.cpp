@@ -36,6 +36,7 @@ LeftFrame::LeftFrame(MainWindow* mainWindow, QWidget *parent)
     // 2-2. 차량 라벨
     QLabel* camLabel = new QLabel("차량");
     camLabel->setStyleSheet("color: white; font: 10pt \"hanwhaGothic\";");
+    camLabel->setMinimumHeight(12);
 
     // 2-3. +버튼
     QPushButton* addBtn = new QPushButton("+");
@@ -77,10 +78,13 @@ LeftFrame::LeftFrame(MainWindow* mainWindow, QWidget *parent)
             //Name 라벨
             QLabel* nameLabel = new QLabel(info.name);
             nameLabel->setStyleSheet("color: white; font: 9pt \"hanwhaGothic\";");
+            nameLabel->setMinimumHeight(9);
 
             //IP 라벨
             QLabel* ipLabel = new QLabel(info.ip);
-            ipLabel->setStyleSheet("color: #B0B0B0; font: 7pt \"hanwhaGothic\";");
+            ipLabel->setStyleSheet("color: white; font: 7pt \"hanwhaGothic\";");
+            ipLabel->setMinimumHeight(7);
+            //#B0B0B0
 
             //Name+IP 위젯
             QWidget* infoWidget = new QWidget;
