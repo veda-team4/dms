@@ -8,13 +8,13 @@ CenterFrame::CenterFrame(MainWindow* mainWindow, QWidget *parent)
     ui->setupUi(this);
 
     cam0 = new CamFrame(mainWindow, this);
-    cam0->move(7, 45);
+    cam0->move(7, 10);
     cam1 = new CamFrame(mainWindow, this);
-    cam1->move(352, 45);
+    cam1->move(352, 10);
     cam2 = new CamFrame(mainWindow, this);
-    cam2->move(7, 305);
+    cam2->move(7, 310);
     cam3 = new CamFrame(mainWindow, this);
-    cam3->move(352, 305);
+    cam3->move(352, 310);
 }
 
 CenterFrame::~CenterFrame()

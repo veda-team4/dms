@@ -32,8 +32,23 @@ CamFrame::CamFrame(MainWindow* mainWindow, QWidget *parent)
     connect(ui->cancelButton, &QPushButton::clicked, this, [this]() {
         showFrame(1);
     });
+    connect(ui->xbutton, &QPushButton::clicked, this, [&]() {
+        resetPlayer();
+        if (socket && socket->isOpen()) {
+            socket->disconnectFromHost();
+            socket->close();
+        }
+        name.clear();
+        ip.clear();
+        buffer.clear();
+        ciphertext_len = -1;
+        sleeping = false;
+        over40 = false;
+        showFrame(1);
+    });
 
     showFrame(1);
+    ui->topFrame->hide();
 }
 
 CamFrame::~CamFrame()
@@ -69,11 +84,15 @@ void CamFrame::showFrame(int idx) {
     else {
         ui->waitingFrame_3->hide();
     }
+
     if (idx == 0) {
         ui->videoFrame->show();
+        ui->topFrame->show();
+        ui->nameipLabel->setText((name + " - " + ip));
     }
     else {
         ui->videoFrame->hide();
+        ui->topFrame->hide();
     }
 }
 
