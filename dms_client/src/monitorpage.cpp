@@ -21,14 +21,15 @@ MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* 
 #if DEVICE_ON
   openDevice(); 
   int i;
-  for (i = 0; i < 10; ++i) {
-    if(gps->cur_location(&latitude, &longitude)) {
+  for (i = 0; i < 100; ++i) {
+    gps->cur_location(&latitude, &longitude);
+    if (33.0 <= latitude && latitude <= 43) {
       writeLog("Gps connected");
       break;
     }
     usleep(500000);
   }
-  if (i == 10) {
+  if (i == 100) {
     writeLog("Gps not connected");
   }
   co2_v = 0;
@@ -47,10 +48,12 @@ MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* 
   });
   connect(gpsTimer, &QTimer::timeout, this, [this]() {
       double lat, lon;
-      gps->cur_location(&latitude, &longitude);
-      totalKm += osrm->getDistance(latitude, longitude, lat, lon);
-      latitude = lat;
-      longitude = lon;
+      gps->cur_location(&lat, &lon);
+      if (33.0 <= lat && lat <= 43.0) {
+        totalKm += osrm->getDistance(latitude, longitude, lat, lon);
+        latitude = lat;
+        longitude = lon;
+      }
   });
   connect(wakeupTimer, &QTimer::timeout, this, [this]() {
     speaker->play("wakeup.wav");
