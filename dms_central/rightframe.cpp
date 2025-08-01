@@ -70,6 +70,22 @@ void RightFrame::alarmPage() {
     ui->event_on->setVisible(false);
 }
 
+/*
+void RightFrame::addNewWidget(QString camName, int type) {
+    if (type == 1) {
+        // camName
+        // 주의) 졸음도 40%
+    }
+    else if (type == 2) {
+        // camName
+        // 경고) 눈 감음
+    }
+    else if (type == 3) {
+        // camName
+        // 경고) 고개 떨어짐
+    }
+}
+*/
 
 void RightFrame::addNewWidget() {
     // 위젯 다 밀기
