@@ -4,6 +4,7 @@
 #include <QFrame>
 #include <QMessageBox>
 #include <QString>
+#include <QMouseEvent>
 
 class MainWindow;
 
@@ -22,6 +23,12 @@ public:
 signals:
     void loginSucceeded(const QString &id); // 로그인 성공 시그널
 
+// 상단바 움직이기
+protected:
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
+
 private slots:
     void onLoginClicked(); // 버튼 처리
 
@@ -34,6 +41,8 @@ private:
 private:
     QString m_id;
     QString m_pw;
+    bool   m_drag    = false;
+    QPoint m_dragPos;
 
 };
 

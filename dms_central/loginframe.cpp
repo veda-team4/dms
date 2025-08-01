@@ -6,13 +6,21 @@ LoginFrame::LoginFrame(MainWindow* mainWindow, QWidget *parent)
     , ui(new Ui::LoginFrame)
 {
     ui->setupUi(this);
+
+    setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
     setPlaceholders();
 
+    // 로그인 버튼 연동
     connect(ui->login_pushButton_2, &QPushButton::clicked,
             this, &LoginFrame::onLoginClicked);
 
     connect(ui->pw_lineEdit_2, &QLineEdit::returnPressed,
             this, &LoginFrame::onLoginClicked);
+
+    // 창닫기 기능
+    connect(ui->btn_close, &QPushButton::clicked, this, [this](){
+        if(auto w = window())   w->close();
+    });
 }
 
 void LoginFrame::setPlaceholders()
@@ -73,6 +81,28 @@ void LoginFrame::showLoginError()
     )");
     msg.exec();
 }
+
+/* 상단바 움직이는 이벤트 */
+void LoginFrame::mousePressEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton) {
+        m_drag    = true;
+        m_dragPos = event->globalPosition().toPoint() - window()->frameGeometry().topLeft();
+    }
+}
+
+void LoginFrame::mouseMoveEvent(QMouseEvent *event)
+{
+    if (m_drag)
+        window()->move(event->globalPosition().toPoint() - m_dragPos);
+}
+
+void LoginFrame::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton)
+        m_drag = false;
+}
+/*--------------------*/
 
 LoginFrame::~LoginFrame()
 {
