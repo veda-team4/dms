@@ -11,8 +11,8 @@ DeleteDriverDialog::DeleteDriverDialog(const CameraInfo& info, MainWindow* mainW
 
     // label_2에 텍스트 설정
     QString text = QString(R"(
-    <div style="font: 12pt 'hanwhaGothic'; color: white; background: transparent;">
-    <span style="color:#ff7f27; font-weight:bold;">%1</span>을 제거하시겠습니까?
+    <div style="font:300 12pt 'hanwhaGothic'; color: white; background: transparent;">
+    <span style="color:#ff7f27; font:12pt 'hanwhaGothic';">%1</span>을 제거하시겠습니까?
     </div>
     )").arg(info.name);
     ui->label_2->setText(text);
