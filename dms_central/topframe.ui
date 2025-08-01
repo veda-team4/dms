@@ -21,47 +21,27 @@ border-bottom: 2px solid #2C2C2C;</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>-13</y>
-     <width>281</width>
-     <height>61</height>
+     <y>4</y>
+     <width>221</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">border:none;</string>
    </property>
-   <widget class="QLabel" name="title_icon">
-    <property name="geometry">
-     <rect>
-      <x>2</x>
-      <y>18</y>
-      <width>31</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border:none
-</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap>:/images/image/safety_driver_icon.png</pixmap>
-    </property>
-   </widget>
    <widget class="QLabel" name="title_label">
     <property name="geometry">
      <rect>
-      <x>41</x>
-      <y>20</y>
-      <width>211</width>
+      <x>28</x>
+      <y>3</y>
+      <width>181</width>
       <height>26</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Hanwha</family>
-      <pointsize>14</pointsize>
+      <pointsize>13</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -73,6 +53,26 @@ border: none;
      <string>Monitoring Viewer</string>
     </property>
    </widget>
+   <widget class="QToolButton" name="title_icon">
+    <property name="geometry">
+     <rect>
+      <x>-5</x>
+      <y>1</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">qproperty-icon: url(&quot;:/images/image/safety_driver_icon.svg&quot;);
+qproperty-iconSize: 20px 20px;
+background: transparent;
+border: none;
+color: white;</string>
+    </property>
+    <property name="text">
+     <string>...</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QWidget" name="user_widget" native="true">
    <property name="geometry">
@@ -80,8 +80,11 @@ border: none;
      <x>900</x>
      <y>0</y>
      <width>81</width>
-     <height>80</height>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border:none;</string>
    </property>
    <widget class="QLabel" name="admin_icon">
     <property name="geometry">
@@ -99,7 +102,7 @@ border: none;
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>:/images/image/user_icon.png</pixmap>
+     <pixmap resource="resources/resources.qrc">:/images/image/user_icon.png</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="admin_label">
@@ -120,6 +123,7 @@ border: none;
     </property>
     <property name="styleSheet">
      <string notr="true">color: white;
+background: transparent;
 border: none;</string>
     </property>
     <property name="text">
@@ -131,7 +135,7 @@ border: none;</string>
    <property name="geometry">
     <rect>
      <x>1080</x>
-     <y>10</y>
+     <y>9</y>
      <width>61</width>
      <height>20</height>
     </rect>
@@ -195,10 +199,10 @@ QPushButton:pressed {
   <widget class="QToolButton" name="toolButton">
    <property name="geometry">
     <rect>
-     <x>1056</x>
-     <y>9</y>
-     <width>24</width>
-     <height>22</height>
+     <x>1054</x>
+     <y>4</y>
+     <width>30</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -213,6 +217,8 @@ color: white;</string>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
