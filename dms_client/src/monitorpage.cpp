@@ -45,6 +45,23 @@ MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* 
       else {
         ui->co2alarmtext->setVisible(false);
       }
+
+      if(co2_v < 1000) {
+          ui->co2Safe->setVisible(true);
+          ui->co2Warning->setVisible(false);
+          ui->co2Danger->setVisible(false);
+      }
+      else if(co2_v < 1200) {
+          ui->co2Safe->setVisible(false);
+          ui->co2Warning->setVisible(true);
+          ui->co2Danger->setVisible(false);
+      }
+      else {
+          ui->co2Safe->setVisible(false);
+          ui->co2Warning->setVisible(false);
+          ui->co2Danger->setVisible(true);
+      }
+
   });
   connect(gpsTimer, &QTimer::timeout, this, [this]() {
       double lat, lon;
