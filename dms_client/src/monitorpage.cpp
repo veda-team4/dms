@@ -19,7 +19,7 @@ MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* 
 
   ui->naviWidget->hide();
   speaker = new Speaker("plughw:4,0");
-#if DEVICE_ON
+#if DEVICE_ONf
   openDevice(); 
   int i;
   for (i = 0; i < 100; ++i) {
