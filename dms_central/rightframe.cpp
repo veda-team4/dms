@@ -221,6 +221,7 @@ void RightFrame::inputMessage() {
 
     if (targetCam) {
         // 메시지 보내기
+        targetCam->writeEncryptedMessage(input.toStdString());
         qDebug() << "SEND MESSAGE";
     }
     else {

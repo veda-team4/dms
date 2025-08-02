@@ -9,6 +9,72 @@
 
 static unsigned char key[33] = "abcdefghijklmnopqrstuvwxyz012345";
 
+int CamFrame::writeNBytes(QTcpSocket* socket, const void* buf, int len) {
+    int totalWritten = 0;
+    const char* buffer = static_cast<const char*>(buf);
+
+    while (totalWritten < len) {
+        qint64 bytesWritten = socket->write(buffer + totalWritten, len - totalWritten);
+
+        if (bytesWritten < 0) {
+            if (errno == EINTR)
+                continue;
+            perror("write");
+            return -1;
+        }
+
+        if (bytesWritten == 0) {
+            return -1; // 쓰기 불가
+        }
+
+        if (!socket->waitForBytesWritten(-1)) {  // 블로킹으로 보장
+            return -1;
+        }
+
+        totalWritten += bytesWritten;
+    }
+
+    return totalWritten == len ? totalWritten : -1;
+}
+
+// writeEncryptedMessage: QTcpSocket으로 암호화 메시지 전송
+int CamFrame::writeEncryptedMessage(std::string msg) {
+    // 1. IV 생성
+    unsigned char iv[16];
+    if (RAND_bytes(iv, sizeof(iv)) != 1) {
+        qDebug() << "RAND_bytes failed\n";
+        return -1;
+    }
+
+    // 2. 평문 준비
+    const unsigned char *plaintext =
+        reinterpret_cast<const unsigned char *>(msg.data());
+    int plaintext_len = msg.size();
+
+    // 3. 암호화
+    unsigned char ciphertext[4096];
+    int ciphertext_len;
+
+    if (!aes_encrypt(plaintext, plaintext_len, key, iv, ciphertext,
+                     &ciphertext_len)) {
+        qDebug() << "AES encryption failed\n";
+        return -1;
+    }
+
+    // 4. 암호문 길이
+    uint32_t len_field = ciphertext_len;
+
+    // 5. 순서대로 전송: [IV(16)] + [길이(4)] + [암호문]
+    if (writeNBytes(socket, iv, 16) == -1)
+        return -1;
+    if (writeNBytes(socket, &len_field, 4) == -1)
+        return -1;
+    if (writeNBytes(socket, ciphertext, ciphertext_len) == -1)
+        return -1;
+
+    return 0;
+}
+
 CamFrame::CamFrame(MainWindow* mainWindow, QWidget *parent)
     : mainWindow(mainWindow), QFrame(parent)
     , ui(new Ui::CamFrame)
@@ -150,6 +216,10 @@ void CamFrame::onDisconnected() {
     ciphertext_len = -1;
 }
 
+void CamFrame::sendMessage(QString str) {
+
+}
+
 void CamFrame::onReadyRead() {
     buffer.append(socket->readAll());
 
@@ -255,6 +325,38 @@ bool CamFrame::aes_decrypt(const unsigned char* ciphertext, int ciphertext_len,
         return false;
     }
     *plaintext_len += len;
+
+    EVP_CIPHER_CTX_free(ctx);
+    return true;
+}
+
+bool CamFrame::aes_encrypt(const unsigned char* plaintext, int plaintext_len,
+                 const unsigned char* key, const unsigned char* iv,
+                 unsigned char* ciphertext, int* ciphertext_len) {
+    EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();
+    if (!ctx) return false;
+
+    // 초기화 (AES-256-CBC, key/iv 설정)
+    if (1 != EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), nullptr, key, iv)) {
+        EVP_CIPHER_CTX_free(ctx);
+        return false;
+    }
+
+    int len;
+
+    // 평문 암호화
+    if (1 != EVP_EncryptUpdate(ctx, ciphertext, &len, plaintext, plaintext_len)) {
+        EVP_CIPHER_CTX_free(ctx);
+        return false;
+    }
+    *ciphertext_len = len;
+
+    // 패딩 처리 및 마무리
+    if (1 != EVP_EncryptFinal_ex(ctx, ciphertext + len, &len)) {
+        EVP_CIPHER_CTX_free(ctx);
+        return false;
+    }
+    *ciphertext_len += len;
 
     EVP_CIPHER_CTX_free(ctx);
     return true;

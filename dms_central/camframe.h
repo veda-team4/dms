@@ -14,7 +14,8 @@ namespace Protocol {
 enum Type: uint8_t {
     EYECLOSEDRATIO = 15,
     HEADDROPPED = 19,
-    STRETCH = 22
+    STRETCH = 22,
+    MESSAGE = 23
 };
 }
 
@@ -52,8 +53,14 @@ public:
     void connectRtsp(QString ip);
     void resetPlayer();
     bool aes_decrypt(const unsigned char* ciphertext, int ciphertext_len, const unsigned char* key, const unsigned char* iv, unsigned char* plaintext, int* plaintext_len);
+    bool aes_encrypt(const unsigned char* plaintext, int plaintext_len,
+                     const unsigned char* key, const unsigned char* iv,
+                     unsigned char* ciphertext, int* ciphertext_len);
+    int writeNBytes(QTcpSocket* socket, const void* buf, int len);
+    int writeEncryptedMessage(std::string msg);
     void showFrame(int idx);
     QLabel* overlayLabel;
+    void sendMessage(QString str);
 
 private slots:
     void onButtonClicked();
