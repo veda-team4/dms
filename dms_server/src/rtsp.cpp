@@ -92,8 +92,9 @@ void connectSocket() {
             writeLog("[Socket] Client connected");
 
             while(streaming) {
+                std::string outStr;
                 char buf;
-                int ret = recv(c_fd, &buf, 1, MSG_PEEK | MSG_DONTWAIT);
+                int ret = readEncryptedMessageNonBlocking(c_fd, outStr);
                 if (ret == 0) {
                     // 클라이언트 종료
                     writeLog("[Socket] Client disconnected");
@@ -101,6 +102,9 @@ void connectSocket() {
                     c_fd = -1;
                     break;
                 }
+                else if (ret == 1) {
+                    std::cout << outStr << std::endl;
+                } 
                 uint8_t protocol = Protocol::EYECLOSEDRATIO;
                 if (writeEncryptedData(c_fd, protocol, eyeClosedRatio) == -1) {
                     continue;

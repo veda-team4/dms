@@ -44,7 +44,8 @@ namespace Protocol {
     HEADDROPPED,
     LEFT,
     RIGHT,
-    STRETCH
+    STRETCH,
+    MESSAGE
   };
 }
 

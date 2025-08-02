@@ -29,6 +29,9 @@ int writeEncryptedFrame(int fd, const std::vector<uchar>& buf);
 int writeEncryptedData(int fd, uint8_t protocol, double data);
 // fd와 연결된 소켓에 command 암호화하여 써주는 함수
 int writeEncryptedCommand(int fd, uint8_t command);
+
+int readEncryptedMessage(int fd, std::string& str);
+int readEncryptedMessageNonBlocking(int fd, std::string &outStr);
 // ****************************************************************
 
 // ************* OpenSSL 이용한 암호화, 복호화 함수 *****************
