@@ -18,6 +18,8 @@ extern std::chrono::steady_clock::time_point prevHeadTime;
 extern std::chrono::steady_clock::time_point currentHeadTime;
 extern std::chrono::steady_clock::time_point prevStretchTime;
 extern std::chrono::steady_clock::time_point currentStretchTime;
+extern std::atomic<bool> newMsg;
+extern std::string msg;
 
 void pushFrameToRtsp();
 void stopRtsp();
@@ -103,7 +105,8 @@ void connectSocket() {
                     break;
                 }
                 else if (ret == 1) {
-                    std::cout << outStr << std::endl;
+                    msg = outStr;
+                    newMsg = true;
                 } 
                 uint8_t protocol = Protocol::EYECLOSEDRATIO;
                 if (writeEncryptedData(c_fd, protocol, eyeClosedRatio) == -1) {

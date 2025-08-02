@@ -18,6 +18,7 @@ MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* 
   prevHeadDowntime = std::chrono::steady_clock::now();
 
   ui->naviWidget->hide();
+  speaker = new Speaker("plughw:4,0");
 #if DEVICE_ON
   openDevice(); 
   int i;
@@ -35,7 +36,6 @@ MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* 
   co2_v = 0;
   co2Timer = new QTimer(this);
   gpsTimer = new QTimer(this);
-  wakeupTimer = new QTimer(this);
   connect(co2Timer, &QTimer::timeout, this, [this]() {
       co2->read_CTH(&co2_v, &temp, &hum);
       ui->co2value->setText(QString::fromStdString(std::to_string(co2_v)));
@@ -72,15 +72,17 @@ MonitorPage::MonitorPage(QWidget* parent, MainWindow* mainWindow, QLocalSocket* 
         longitude = lon;
       }
   });
+#endif
+  wakeupTimer = new QTimer(this);
   connect(wakeupTimer, &QTimer::timeout, this, [this]() {
     speaker->play("wakeup.wav");
   });
-#endif
 }
 
 MonitorPage::~MonitorPage()
 {
     delete ui;
+    delete speaker;
 #if DEVICE_ON
     delete co2Timer;
     delete gpsTimer;
@@ -91,7 +93,6 @@ MonitorPage::~MonitorPage()
 
 void MonitorPage::openDevice() {
   led = new Led();
-  speaker = new Speaker("plughw:4,0");
   gps = new Gps();
   co2 = new CO2Sensor();
   bluetooth = new Bluetooth();
@@ -101,7 +102,6 @@ void MonitorPage::openDevice() {
 void MonitorPage::closeDevice() {
   led->led_off();
   delete led;
-  delete speaker;
   delete gps;
   delete bluetooth;
   delete osrm;
@@ -115,10 +115,9 @@ void MonitorPage::wakeupUI(bool on) {
     ui->highWarning->setVisible(true);
     ui->infotext->setVisible(false);
     ui->infoalarm->raise();
+    wakeupTimer->start(1000);
  #if DEVICE_ON
     led->led_on();
-    speaker->play("wakeup.wav");
-    wakeupTimer->start(1000);
     bluetooth->Motor();
  #endif
     navigation(true);
@@ -148,9 +147,9 @@ void MonitorPage::wakeupUI(bool on) {
     }
 #if DEVICE_ON
     led->led_off();
-    wakeupTimer->stop();
     bluetooth->Motor();
 #endif
+    wakeupTimer->stop();
     navigation(false);
   }
 }
@@ -201,6 +200,7 @@ void MonitorPage::activate() {
   ui->warningface->setVisible(false);
   ui->safeface->setVisible(true);
   ui->infojes->raise();
+  ui->msgFrame->hide();
 #if DEVICE_ON
   gps->cur_location(&latitude, &longitude);
   
@@ -348,6 +348,21 @@ void MonitorPage::readFrame() {
         }
         ++mainWindow->info.sleepingCount;
         mainWindow->info.sleepingAverage += (v - mainWindow->info.sleepingAverage) / mainWindow->info.sleepingCount;
+      }
+      else if (cmd == Protocol::MESSAGE) {
+        // ---- MESSAGE 처리 추가 ----
+        QByteArray messageData = QByteArray::fromRawData(decrypted.constData() + 5, dataLen);
+
+        QString message = QString::fromUtf8(messageData);
+
+        // 메시지 알림 UI 띄우기
+        ui->msgLabel->setText(message);
+        ui->msgFrame->show();
+        ui->msgFrame->raise();
+        speaker->play("message.wav");
+        QTimer::singleShot(5000, this, [=]() {
+            ui->msgFrame->hide();
+        });
       }
       else {
         writeLog("Clear protocol number " + std::to_string(cmd));

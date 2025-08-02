@@ -1387,6 +1387,125 @@ background-color: transparent;</string>
     </property>
    </widget>
   </widget>
+  <widget class="QFrame" name="msgFrame">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>114</y>
+     <width>440</width>
+     <height>330</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #0E1420;</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>421</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #1E2A38;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>10</width>
+       <height>181</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #2196F3;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>18</x>
+       <y>13</y>
+       <width>15</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../resources/resources.qrc">:/images/image/blueInfo.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>11</y>
+       <width>331</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>hanwhaGothic</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>&lt;div style=&quot;font-size:12pt;&quot;&gt;
+&lt;span style=&quot;color:#42A5F5; font-family: hanwhaGothic&quot;&gt;중앙 시스템&lt;/span&gt;&lt;span style=&quot;color:white;&quot;&gt;으로부터 메세지가 도착했습니다.&lt;/span&gt;
+&lt;/div&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="msgLabel">
+     <property name="geometry">
+      <rect>
+       <x>19</x>
+       <y>41</y>
+       <width>391</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>hanwhaGothic</family>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #263544;
+color: white;</string>
+     </property>
+     <property name="text">
+      <string>즉시 차량을 정차하거나 휴식을 취하세요.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+  </widget>
   <zorder>background_red</zorder>
   <zorder>videoLabel</zorder>
   <zorder>right</zorder>
@@ -1404,7 +1523,10 @@ background-color: transparent;</string>
   <zorder>highWarning</zorder>
   <zorder>nextButton</zorder>
   <zorder>previousButton</zorder>
+  <zorder>msgFrame</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

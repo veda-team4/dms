@@ -217,6 +217,46 @@ int readEncryptedMessage(int fd, std::string& str) {
     return 0;
 }
 
+int writeEncryptedMessage(int fd, std::string msg) {
+    // 1. 평문 구성: protocol + len + string
+    uint8_t protocol = Protocol::MESSAGE;
+    uint32_t len = msg.size();
+
+    std::vector<unsigned char> plaintext;
+    plaintext.push_back(protocol);
+
+    plaintext.insert(plaintext.end(),
+                     reinterpret_cast<unsigned char*>(&len),
+                     reinterpret_cast<unsigned char*>(&len) + 4);
+
+    plaintext.insert(plaintext.end(),
+                     reinterpret_cast<const unsigned char*>(msg.data()),
+                     reinterpret_cast<const unsigned char*>(msg.data()) + msg.size());
+
+    // 2. IV 생성
+    unsigned char iv[16];
+    if (RAND_bytes(iv, sizeof(iv)) != 1) {
+        perror("RAND_bytes");
+        return -1;
+    }
+
+    // 3. 암호화
+    std::vector<unsigned char> ciphertext(plaintext.size() + 32); // 패딩 여유
+    int ciphertext_len = 0;
+
+    if (!aes_encrypt(plaintext.data(), plaintext.size(), key, iv,
+                     ciphertext.data(), &ciphertext_len)) {
+        std::cerr << "AES encryption failed\n";
+        return -1;
+    }
+
+    // 4. 전송 구조: [IV(16)] + [암호문 길이(4)] + [암호문]
+    if (writeNBytes(fd, iv, 16) == -1) return -1;
+    if (writeNBytes(fd, &ciphertext_len, 4) == -1) return -1;
+    if (writeNBytes(fd, ciphertext.data(), ciphertext_len) == -1) return -1;
+
+    return 0;
+}
 
 int readEncryptedMessageNonBlocking(int fd, std::string &outStr) {
     // 상태 변수들을 static 으로 저장 (호출 사이 상태 유지)

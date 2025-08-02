@@ -32,6 +32,7 @@ int writeEncryptedCommand(int fd, uint8_t command);
 
 int readEncryptedMessage(int fd, std::string& str);
 int readEncryptedMessageNonBlocking(int fd, std::string &outStr);
+int writeEncryptedMessage(int fd, std::string msg);
 // ****************************************************************
 
 // ************* OpenSSL 이용한 암호화, 복호화 함수 *****************
