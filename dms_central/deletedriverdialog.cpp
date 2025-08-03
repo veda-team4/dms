@@ -9,6 +9,13 @@ DeleteDriverDialog::DeleteDriverDialog(const CameraInfo& info, MainWindow* mainW
 {
     ui->setupUi(this);
 
+    // 상단바 제거
+    setWindowFlags(
+        Qt::Dialog
+        | Qt::FramelessWindowHint      // 타이틀바(프레임) 전부 없애기
+        | Qt::WindowSystemMenuHint      // (필요하면) 시스템 메뉴 권한 유지
+    );
+
     // label_2에 텍스트 설정
     QString text = QString(R"(
     <div style="font:300 12pt 'hanwhaGothic'; color: white; background: transparent;">
@@ -22,6 +29,11 @@ DeleteDriverDialog::DeleteDriverDialog(const CameraInfo& info, MainWindow* mainW
 
     // 취소 버튼 → reject()
     connect(ui->pushButton_2, &QPushButton::clicked, this, &DeleteDriverDialog::reject);
+
+    // 창닫기 기능
+    connect(ui->btn_close, &QPushButton::clicked, this, [this](){
+        if(auto w = window())   w->close();
+    });
 }
 
 DeleteDriverDialog::~DeleteDriverDialog()

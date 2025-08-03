@@ -6,6 +6,7 @@
 #include "leftframe.h"
 #include "centerframe.h"
 #include "rightframe.h"
+#include "camerainfo.h"
 #include <QDebug>
 
 QT_BEGIN_NAMESPACE
@@ -22,13 +23,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private:
+public:
     Ui::MainWindow *ui;
     TopFrame* topFrame;
     LeftFrame* leftFrame;
     CenterFrame* centerFrame;
     RightFrame* rightFrame;
     QString m_userID;
+    QVector<CameraInfo> camerainfo;
 
 public slots:
     void setId(const QString& id);

@@ -18,6 +18,8 @@ extern std::chrono::steady_clock::time_point prevHeadTime;
 extern std::chrono::steady_clock::time_point currentHeadTime;
 extern std::chrono::steady_clock::time_point prevStretchTime;
 extern std::chrono::steady_clock::time_point currentStretchTime;
+extern std::atomic<bool> newMsg;
+extern std::string msg;
 
 void pushFrameToRtsp();
 void stopRtsp();
@@ -92,8 +94,9 @@ void connectSocket() {
             writeLog("[Socket] Client connected");
 
             while(streaming) {
+                std::string outStr;
                 char buf;
-                int ret = recv(c_fd, &buf, 1, MSG_PEEK | MSG_DONTWAIT);
+                int ret = readEncryptedMessageNonBlocking(c_fd, outStr);
                 if (ret == 0) {
                     // 클라이언트 종료
                     writeLog("[Socket] Client disconnected");
@@ -101,6 +104,10 @@ void connectSocket() {
                     c_fd = -1;
                     break;
                 }
+                else if (ret == 1) {
+                    msg = outStr;
+                    newMsg = true;
+                } 
                 uint8_t protocol = Protocol::EYECLOSEDRATIO;
                 if (writeEncryptedData(c_fd, protocol, eyeClosedRatio) == -1) {
                     continue;

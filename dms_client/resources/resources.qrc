@@ -47,5 +47,6 @@
         <file>image/previous(2).png</file>
         <file>image/palm2(2).png</file>
         <file>image/next(2).png</file>
+        <file>image/blueInfo.png</file>
     </qresource>
 </RCC>

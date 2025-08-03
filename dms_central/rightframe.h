@@ -12,6 +12,7 @@
 #include <QScrollBar>
 #include <QVBoxLayout>
 #include <QVector>
+#include <QDateTime>
 
 class MainWindow;
 
@@ -26,6 +27,9 @@ class RightFrame : public QFrame
 public:
     explicit RightFrame(MainWindow* mainWindow, QWidget *parent = nullptr);
     ~RightFrame();
+    void addNewWidget(QString camName, int type);
+    void addDriver(QString name, QString ip);
+    void deleteDriver(QString name, QString ip);
 
 private:
     Ui::RightFrame *ui;
@@ -38,12 +42,17 @@ private:
 
     void alarmPage();
     void eventPage();
-    void addNewWidget();
-    void searchEvent();
+
     void inputMessage();
+    void sendComplete();
 
 signals:
     void sendMessage(const QString &text);
+
+public slots:
+    void onDelayFinished();
+
+
 
 /*
 public slots:

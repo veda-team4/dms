@@ -1,6 +1,6 @@
 #include "rightframe.h"
 #include "ui_rightframe.h"
-
+#include "mainwindow.h"
 
 RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
     : mainWindow(mainWindow), QFrame(parent)
@@ -12,20 +12,42 @@ RightFrame::RightFrame(MainWindow* mainWindow, QWidget *parent)
 
     connect(ui->alarm_button, &QPushButton::clicked, this, &RightFrame::alarmPage);
     connect(ui->event_button, &QPushButton::clicked, this, &RightFrame::eventPage);
-    //connect(ui->search_button, &QPushButton::clicked, this, &RightFrame::searchEvent);
     connect(ui->send_button, &QPushButton::clicked, this, &RightFrame::inputMessage);
+    connect(ui->textEdit, &QTextEdit::textChanged, this, [=]() {
+        QString text = ui->textEdit->toPlainText();
+        if (text.length() > 100) {
+            text.truncate(100);
+            ui->textEdit->setPlainText(text);
+            QTextCursor cursor = ui->textEdit->textCursor();
+            cursor.movePosition(QTextCursor::End);
+            ui->textEdit->setTextCursor(cursor);
+        }
+    });
 
-    connect(ui->event_button, &QPushButton::clicked, this, &RightFrame::addNewWidget);
-
-    ui->widget_1->setVisible(false);
 
     ui->scrollAreaWidgetContents->setMinimumHeight(yOffset);
     ui->scrollAreaWidgetContents->setMaximumHeight(yOffset);
 
     ui->combo_cam->addItem("  카메라 선택");
-    ui->combo_cam->addItem("  CAM01");
-    ui->combo_cam->addItem("  CAM02");
-    ui->combo_cam->addItem("  CAM03");
+
+    ui->complete->setVisible(false);
+}
+
+void RightFrame::addDriver(QString name, QString ip) {
+    QPair<QString, QString> data(name, ip);
+    ui->combo_cam->addItem(QString("  ") + name, QVariant::fromValue(data));
+}
+
+void RightFrame::deleteDriver(QString name, QString ip) {
+    for (int i = 0; i < ui->combo_cam->count(); ++i) {
+        // 저장된 QPair 꺼내기
+        QPair<QString, QString> data = ui->combo_cam->itemData(i).value<QPair<QString, QString>>();
+
+        if (data.first == name && data.second == ip) {
+            ui->combo_cam->removeItem(i);
+            break; // 첫 번째 매칭만 삭제 (모두 삭제하려면 break 제거)
+        }
+    }
 }
 
 RightFrame::~RightFrame()
@@ -36,13 +58,8 @@ RightFrame::~RightFrame()
     }
 }
 
-/*
-데이터 받기 - CAM 번호, 경고 종류, 경고 시간
-*/
-
 void RightFrame::eventPage() {
     ui->scrollArea->setVisible(true);
-    ui->search->setVisible(true);
     ui->trans_alarm->setVisible(false);
     ui->trans_off->setVisible(true);
     ui->trans_on->setVisible(false);
@@ -52,7 +69,6 @@ void RightFrame::eventPage() {
 void RightFrame::alarmPage() {
     ui->trans_alarm->setVisible(true);
     ui->scrollArea->setVisible(false);
-    ui->search->setVisible(false);
     ui->trans_on->setVisible(true);
     ui->trans_off->setVisible(false);
     ui->event_off->setVisible(true);
@@ -60,7 +76,7 @@ void RightFrame::alarmPage() {
 }
 
 
-void RightFrame::addNewWidget() {
+void RightFrame::addNewWidget(QString camName, int type) {
     // 위젯 다 밀기
     for(auto& widget: eventWidgets) {
         widget->move(0, widget->y() + 100);
@@ -79,36 +95,88 @@ void RightFrame::addNewWidget() {
         );
 
     // 위젯 안에 요소 추가
-    QLabel *cam_label = new QLabel("CAM 00", newWidget);
-    cam_label->setGeometry(25, 10, 75, 20);
+    QLabel *cam_label = new QLabel(camName, newWidget);
+    cam_label->setGeometry(25, 10, 100, 25);
     cam_label->setStyleSheet(
         "color: rgb(255, 255, 255);"
         "background-color: transparent;"
-        "border: none;" "font-size: 800 30px;"
+        "border: none;"  "font-size: 14px;"
+        "font-family: HanwhaGothic;"
         );
-    QLabel *icon = new QLabel("", newWidget);
-    icon->setGeometry(30, 42, 16, 16);
-    icon->setStyleSheet(
-        "background-color: transparent;"
-        "image: url(:/images/image/closing.png);"
-        "border: none;"
-        );
-    static int i = 0;
-    //QLabel *text_label = new QLabel("alarm text", newWidget);
-    QLabel *text_label = new QLabel(QString::fromStdString(std::to_string(i++)), newWidget);
-    text_label->setGeometry(52, 43, 130, 16);
-    text_label->setStyleSheet(
-        "color: rgb(176, 176, 176);"
-        "background-color: transparent;"
-        "border: none;" "font-size: 15px;"
-        );
-    QLabel *time_label = new QLabel("2025.00.00 00:00:00", newWidget);
-    time_label->setGeometry(45, 65, 160, 16);
+
+    if (type == 1) {
+        // 주의) 졸음도 40%
+        QLabel *icon = new QLabel("", newWidget);
+        icon->setGeometry(30, 42, 16, 16);
+        icon->setStyleSheet(
+            "background-color: transparent;"
+            "image: url(:/images/image/warn_o.png);"
+            "border: none;"
+            );
+        QLabel *text_label = new QLabel("주의) 졸음도 40%", newWidget);
+        //QLabel *text_label = new QLabel(QString::fromStdString(std::to_string(i++)), newWidget);
+        text_label->setGeometry(52, 43, 130, 16);
+        text_label->setStyleSheet(
+            "color: rgb(255, 180, 0);"
+            "background-color: transparent;"
+            "border: none;" "font-size: 13px;"
+            "font-family: HanwhaGothic;"
+            );
+    }
+    else if (type == 2) {
+        // 경고) 눈 감음
+        QLabel *icon = new QLabel("", newWidget);
+        icon->setGeometry(30, 42, 16, 16);
+        icon->setStyleSheet(
+            "background-color: transparent;"
+            "image: url(:/images/image/closing.png);"
+            "border: none;"
+            );
+        QLabel *text_label = new QLabel("경고) 눈 감음", newWidget);
+        //QLabel *text_label = new QLabel(QString::fromStdString(std::to_string(i++)), newWidget);
+        text_label->setGeometry(52, 43, 130, 16);
+        text_label->setStyleSheet(
+            "color: rgb(218, 24, 24);"
+            "background-color: transparent;"
+            "border: none;" "font-size: 13px;"
+            "font-family: HanwhaGothic;"
+            );
+    }
+    else if (type == 3) {
+        // 경고) 고개 떨어짐
+        QLabel *icon = new QLabel("", newWidget);
+        icon->setGeometry(30, 42, 16, 16);
+        icon->setStyleSheet(
+            "background-color: transparent;"
+            "image: url(:/images/image/falling.png);"
+            "border: none;"
+            );
+        QLabel *text_label = new QLabel("경고) 고개 떨어짐", newWidget);
+        //QLabel *text_label = new QLabel(QString::fromStdString(std::to_string(i++)), newWidget);
+        text_label->setGeometry(52, 43, 130, 16);
+        text_label->setStyleSheet(
+            "color: rgb(218, 24, 24);"
+            "background-color: transparent;"
+            "border: none;" "font-size: 13px;"
+            "font-family: HanwhaGothic;"
+            );
+    }
+
+    QLabel *time_label = new QLabel("", newWidget);
+    time_label->setGeometry(45, 65, 160, 16);  // 위치와 크기 지정
+    // 시간 포맷 설정
+    QString formattedTime = QDateTime::currentDateTime().toString("yyyy'.'MM'.'dd' 'hh':'mm':'ss");
+    // 스타일 적용 (옵션)
     time_label->setStyleSheet(
         "color: rgb(176, 176, 176);"
         "background-color: transparent;"
         "border: none;" "font-size: 13px;"
+        "font-family: HanwhaGothic;"
         );
+    // 텍스트 설정
+    time_label->setText(formattedTime);
+
+
     QFrame *line = new QFrame(newWidget);
     line->setGeometry(14, 90, 267, 1);
     line->setFrameShape(QFrame::HLine);
@@ -127,17 +195,44 @@ void RightFrame::addNewWidget() {
 
 }
 
-void RightFrame::searchEvent() {
-
-}
-
 void RightFrame::inputMessage() {
-    QString input = ui->lineEdit->text();
+    QString input = ui->textEdit->toPlainText();
 
-    emit sendMessage(input);
+    QPair<QString, QString> data =
+        ui->combo_cam->currentData().value<QPair<QString, QString>>();
 
-    ui->lineEdit->clear();
-    ui->lineEdit->setFocus();
+    QString name = data.first;
+    QString ip = data.second;
+
+    CamFrame* cams[] = {
+        mainWindow->centerFrame->cam0,
+        mainWindow->centerFrame->cam1,
+        mainWindow->centerFrame->cam2,
+        mainWindow->centerFrame->cam3
+    };
+
+    CamFrame* targetCam = nullptr;
+    for (CamFrame* cam : cams) {
+        if (cam && cam->name == name && cam->ip == ip) {
+            targetCam = cam;
+            break;
+        }
+    }
+
+    if (targetCam) {
+        // 메시지 보내기
+        targetCam->writeEncryptedMessage(input.toStdString());
+        qDebug() << "SEND MESSAGE";
+    }
+    else {
+        // 해당 운전자와 연결되어 있지 않습니다.
+        qDebug() << "NOT CONNECTED";
+    }
+
+    ui->textEdit->clear();
+    ui->textEdit->setFocus();
+
+    sendComplete();
 }
 /*
  * center
@@ -154,3 +249,10 @@ QObject::connect(sender, &SenderWidget::textReadyToSend,
                  receiver, &Receiver::handleReceivedText);
 */
 
+void RightFrame::sendComplete() {
+    ui->complete->setVisible(true);
+    //QTimer::singleShot(2000, this, SLOT(onDelayFinished()));
+    //시간 주기
+    ui->complete->setVisible(false);
+}
+void RightFrame::onDelayFinished() {}

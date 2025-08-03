@@ -31,5 +31,7 @@
         <file>image/Video_on.png</file>
         <file>image/reddot.png</file>
         <file>image/safety_driver_icon.svg</file>
+        <file>image/check.svg</file>
+        <file>image/plug.svg</file>
     </qresource>
 </RCC>

@@ -174,6 +174,165 @@ int writeNBytes(int fd, const void* buf, int len) {
   return totalWritten == len ? totalWritten : -1;
 }
 
+int readEncryptedMessage(int fd, std::string& str) {
+    // 1. IV 읽기
+    unsigned char iv[16];
+    if (recv(fd, iv, 16, MSG_WAITALL) <= 0) {
+        perror("recv IV");
+        return -1;
+    }
+
+    // 2. 암호문 길이 읽기
+    uint32_t ciphertext_len;
+    if (recv(fd, &ciphertext_len, 4, MSG_WAITALL) <= 0) {
+        perror("recv ciphertext_len");
+        return -1;
+    }
+
+    // 안전성 체크 (예: 1MB 제한)
+    if (ciphertext_len > 1048576) {
+        std::cerr << "Ciphertext too large\n";
+        return -1;
+    }
+
+    // 3. 암호문 읽기
+    std::vector<unsigned char> ciphertext(ciphertext_len);
+    if (recv(fd, ciphertext.data(), ciphertext_len, MSG_WAITALL) <= 0) {
+        perror("recv ciphertext");
+        return -1;
+    }
+
+    // 4. 복호화
+    std::vector<unsigned char> plaintext(ciphertext_len + 32); // 패딩 고려
+    int plaintext_len = 0;
+
+    if (!aes_decrypt(ciphertext.data(), ciphertext_len, key, iv,
+                     plaintext.data(), &plaintext_len)) {
+        std::cerr << "AES decryption failed\n";
+        return -1;
+    }
+
+    // 5. 결과 문자열로 변환
+    str.assign(reinterpret_cast<char*>(plaintext.data()), plaintext_len);
+    return 0;
+}
+
+int writeEncryptedMessage(int fd, std::string msg) {
+    // 1. 평문 구성: protocol + len + string
+    uint8_t protocol = Protocol::MESSAGE;
+    uint32_t len = msg.size();
+
+    std::vector<unsigned char> plaintext;
+    plaintext.push_back(protocol);
+
+    plaintext.insert(plaintext.end(),
+                     reinterpret_cast<unsigned char*>(&len),
+                     reinterpret_cast<unsigned char*>(&len) + 4);
+
+    plaintext.insert(plaintext.end(),
+                     reinterpret_cast<const unsigned char*>(msg.data()),
+                     reinterpret_cast<const unsigned char*>(msg.data()) + msg.size());
+
+    // 2. IV 생성
+    unsigned char iv[16];
+    if (RAND_bytes(iv, sizeof(iv)) != 1) {
+        perror("RAND_bytes");
+        return -1;
+    }
+
+    // 3. 암호화
+    std::vector<unsigned char> ciphertext(plaintext.size() + 32); // 패딩 여유
+    int ciphertext_len = 0;
+
+    if (!aes_encrypt(plaintext.data(), plaintext.size(), key, iv,
+                     ciphertext.data(), &ciphertext_len)) {
+        std::cerr << "AES encryption failed\n";
+        return -1;
+    }
+
+    // 4. 전송 구조: [IV(16)] + [암호문 길이(4)] + [암호문]
+    if (writeNBytes(fd, iv, 16) == -1) return -1;
+    if (writeNBytes(fd, &ciphertext_len, 4) == -1) return -1;
+    if (writeNBytes(fd, ciphertext.data(), ciphertext_len) == -1) return -1;
+
+    return 0;
+}
+
+int readEncryptedMessageNonBlocking(int fd, std::string &outStr) {
+    // 상태 변수들을 static 으로 저장 (호출 사이 상태 유지)
+    static enum { READ_IV, READ_LEN, READ_DATA } state = READ_IV;
+    static unsigned char iv[16];
+    static uint32_t ciphertext_len = 0;
+    static std::vector<unsigned char> ciphertext;
+    static size_t bytesRead = 0;
+
+    // ---- 1. IV 읽기 ----
+    if (state == READ_IV) {
+        ssize_t ret = recv(fd, iv + bytesRead, 16 - bytesRead, MSG_DONTWAIT);
+        if (ret <= 0) {
+            if (ret == 0) return 0; // 클라이언트 종료
+            if (errno == EAGAIN || errno == EWOULDBLOCK) return -2; // 아직 데이터 없음
+            perror("recv IV");
+            return -1;
+        }
+        bytesRead += ret;
+        if (bytesRead < 16) return -2; // 아직 덜 읽음
+        state = READ_LEN;
+        bytesRead = 0;
+    }
+
+    // ---- 2. 길이 읽기 ----
+    if (state == READ_LEN) {
+        ssize_t ret = recv(fd, reinterpret_cast<char*>(&ciphertext_len) + bytesRead,
+                           4 - bytesRead, MSG_DONTWAIT);
+        if (ret <= 0) {
+            if (ret == 0) return 0;
+            if (errno == EAGAIN || errno == EWOULDBLOCK) return -2;
+            perror("recv length");
+            return -1;
+        }
+        bytesRead += ret;
+        if (bytesRead < 4) return -2;
+        state = READ_DATA;
+        bytesRead = 0;
+        ciphertext.resize(ciphertext_len);
+    }
+
+    // ---- 3. 암호문 읽기 ----
+    if (state == READ_DATA) {
+        ssize_t ret = recv(fd, ciphertext.data() + bytesRead,
+                           ciphertext_len - bytesRead, MSG_DONTWAIT);
+        if (ret <= 0) {
+            if (ret == 0) return 0;
+            if (errno == EAGAIN || errno == EWOULDBLOCK) return -2;
+            perror("recv data");
+            return -1;
+        }
+        bytesRead += ret;
+        if (bytesRead < ciphertext_len) return -2; // 아직 덜 읽음
+
+        // 복호화
+        std::vector<unsigned char> plaintext(ciphertext_len + 32);
+        int plaintext_len = 0;
+        if (!aes_decrypt(ciphertext.data(), ciphertext_len, key, iv,
+                         plaintext.data(), &plaintext_len)) {
+            std::cerr << "AES decryption failed\n";
+            return -1;
+        }
+
+        outStr.assign(reinterpret_cast<char*>(plaintext.data()), plaintext_len);
+
+        // 상태 초기화
+        state = READ_IV;
+        bytesRead = 0;
+        ciphertext.clear();
+
+        return 1; // 성공적으로 읽음
+    }
+
+    return -2;
+}
+
 bool aes_encrypt(const unsigned char* plaintext, int plaintext_len,
   const unsigned char* key, const unsigned char* iv,
   unsigned char* ciphertext, int* ciphertext_len) {

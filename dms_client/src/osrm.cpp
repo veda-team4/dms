@@ -45,9 +45,7 @@ restArea Osrm::getRestAreas(double currLat, double currLon, int topN) {
 }
 
 double Osrm::getDistance(double fromLat, double fromLon, double toLat, double toLon) {
-    double dist, dur;
-    query_osrm(fromLat, fromLon, toLat, toLon, dist, dur);
-    return dist;
+  return haversine(fromLat, fromLon, toLat, toLon);
 }
 
 void Osrm::loadData(const std::string& csvPath) {
@@ -80,7 +78,7 @@ double Osrm::haversine(double lat1, double lon1, double lat2, double lon2) {
   double dphi = (lat2 - lat1) * M_PI / 180.0;
   double dlambda = (lon2 - lon1) * M_PI / 180.0;
   double a = sin(dphi / 2) * sin(dphi / 2) + cos(phi1) * cos(phi2) * sin(dlambda / 2) * sin(dlambda / 2);
-  return 2 * R * atan2(sqrt(a), sqrt(1 - a));
+  return 2 * R * atan2(sqrt(a), sqrt(1 - a)) / 1000.0;
 }
 
 size_t Osrm::WriteCallback(void* contents, size_t size, size_t nmemb, std::string* buffer) {

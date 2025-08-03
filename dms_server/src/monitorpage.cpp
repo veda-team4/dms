@@ -23,6 +23,8 @@ std::chrono::steady_clock::time_point prevHeadTime;
 std::chrono::steady_clock::time_point currentHeadTime;
 std::chrono::steady_clock::time_point prevStretchTime;
 std::chrono::steady_clock::time_point currentStretchTime;
+std::atomic<bool> newMsg = false;
+std::string msg;
 
 void startRtsp();
 
@@ -67,6 +69,12 @@ int monitorpage(double thresholdEAR) {
       else {
         return -1;
       }
+    }
+
+    if (newMsg) {
+      // 메시지 보내기
+      writeEncryptedMessage(client_fd, msg);
+      newMsg = false;
     }
 
     cv::Mat frame;
