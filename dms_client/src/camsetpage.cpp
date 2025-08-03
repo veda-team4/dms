@@ -101,10 +101,8 @@ void CamSetPage::readSocket() {
         ui->camset_fail->raise();
         return;
       }
-
-      quint32 dataLen = *reinterpret_cast<const quint32*>(decrypted.constData() + 1);
-
-      if (cmd == Protocol::FRAME) {
+      else if (cmd == Protocol::FRAME) {
+        quint32 dataLen = *reinterpret_cast<const quint32*>(decrypted.constData() + 1);
         QByteArray imageData = QByteArray::fromRawData(decrypted.constData() + 5, dataLen);
 
         QPixmap pixmap;

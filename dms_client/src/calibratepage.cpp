@@ -190,9 +190,8 @@ void CalibratePage::readFrame() {
         return;
       }
 
-      quint32 dataLen = *reinterpret_cast<const quint32*>(decrypted.constData() + 1);
-
       if (cmd == Protocol::FRAME) {
+        quint32 dataLen = *reinterpret_cast<const quint32*>(decrypted.constData() + 1);
         QByteArray imageData = QByteArray::fromRawData(decrypted.constData() + 5, dataLen);
 
         QPixmap pixmap;
@@ -203,6 +202,7 @@ void CalibratePage::readFrame() {
         }
       }
       else if (cmd == Protocol::OPENEDEAR || cmd == Protocol::CLOSEDEAR || cmd == Protocol::EARTHRESHOLD) {
+        quint32 dataLen = *reinterpret_cast<const quint32*>(decrypted.constData() + 1);
         double value = *reinterpret_cast<const double*>(decrypted.constData() + 5);
         if (cmd == Protocol::OPENEDEAR) {
           //ui->openedVal->setText(QString::number(value));

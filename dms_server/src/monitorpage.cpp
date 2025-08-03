@@ -224,6 +224,38 @@ int monitorpage(double thresholdEAR) {
       drawGestureZones(frame);
     }
 
+    // 영상 품질 향상
+    cv::Mat ycrcb;
+    cv::cvtColor(frame, ycrcb, cv::COLOR_BGR2YCrCb);
+    std::vector<cv::Mat> channels;
+    cv::split(ycrcb, channels);
+    // CLAHE 적용
+    cv::Ptr<cv::CLAHE> clahe = cv::createCLAHE(2.0, cv::Size(8, 8));
+    clahe->apply(channels[0], channels[0]);
+    // 감마 보정 추가
+    double gammaVal;
+    cv::Scalar meanBrightness = cv::mean(channels[0]);
+    // 밝기 구간별 감마 값 설정
+    if (meanBrightness[0] < 40) {
+        gammaVal = 0.5;   // 아주 어두움 → 강하게 밝게
+    } else if (meanBrightness[0] < 80) {
+        gammaVal = 0.7;   // 어두움 → 보통 밝게
+    } else if (meanBrightness[0] < 120) {
+        gammaVal = 0.9;   // 약간 어두움 → 약간 보정
+    } else {
+        gammaVal = 1.0;   // 충분히 밝음 → 보정 안 함
+    }
+    // 1) 0~255 범위를 0~1로 정규화
+    cv::Mat gammaCorrected;
+    channels[0].convertTo(gammaCorrected, CV_32F, 1.0 / 255.0);
+    // 2) 감마 보정 적용
+    cv::pow(gammaCorrected, gammaVal, gammaCorrected);
+    // 3) 다시 0~255로 변환
+    gammaCorrected.convertTo(channels[0], CV_8U, 255.0);
+    // 채널 합치고 BGR 복원
+    cv::merge(channels, ycrcb);
+    cv::cvtColor(ycrcb, frame, cv::COLOR_YCrCb2BGR);
+
     // 클라이언트에 프레임 전송하기
     std::vector<uchar> buf;
     cv::imencode(".jpg", frame, buf);

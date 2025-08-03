@@ -307,9 +307,8 @@ void MonitorPage::readFrame() {
         }
       }
 
-      quint32 dataLen = *reinterpret_cast<const quint32*>(decrypted.constData() + 1);
-
       if (cmd == Protocol::FRAME) {
+        quint32 dataLen = *reinterpret_cast<const quint32*>(decrypted.constData() + 1);
         QByteArray imageData = QByteArray::fromRawData(decrypted.constData() + 5, dataLen);
 
         QPixmap pixmap;
@@ -325,6 +324,7 @@ void MonitorPage::readFrame() {
         }
       }
       else if (cmd == Protocol::EYECLOSEDRATIO) {
+        quint32 dataLen = *reinterpret_cast<const quint32*>(decrypted.constData() + 1);
         double value = *reinterpret_cast<const double*>(decrypted.constData() + 5);
         int v = (int)(value * 100.0);
         ui->sleepingBar->setValue(v);
@@ -350,6 +350,7 @@ void MonitorPage::readFrame() {
         mainWindow->info.sleepingAverage += (v - mainWindow->info.sleepingAverage) / mainWindow->info.sleepingCount;
       }
       else if (cmd == Protocol::MESSAGE) {
+        quint32 dataLen = *reinterpret_cast<const quint32*>(decrypted.constData() + 1);
         // ---- MESSAGE 처리 추가 ----
         QByteArray messageData = QByteArray::fromRawData(decrypted.constData() + 5, dataLen);
 

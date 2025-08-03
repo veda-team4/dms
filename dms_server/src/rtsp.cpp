@@ -145,6 +145,27 @@ void pushFrameToRtsp() {
             rtspFrame.copyTo(frame);
         }
 
+        // 영상 품질 향상
+        cv::Mat ycrcb;
+        cv::cvtColor(frame, ycrcb, cv::COLOR_BGR2YCrCb);
+        std::vector<cv::Mat> channels;
+        cv::split(ycrcb, channels);
+        // CLAHE 적용
+        cv::Ptr<cv::CLAHE> clahe = cv::createCLAHE(2.0, cv::Size(8, 8));
+        clahe->apply(channels[0], channels[0]);
+        // 감마 보정 추가
+        double gammaVal = 0.8;  // 기본 감마 값 (0.8 ~ 1.0 정도로 테스트 가능)
+        // 1) 0~255 범위를 0~1로 정규화
+        cv::Mat gammaCorrected;
+        channels[0].convertTo(gammaCorrected, CV_32F, 1.0 / 255.0);
+        // 2) 감마 보정 적용
+        cv::pow(gammaCorrected, gammaVal, gammaCorrected);
+        // 3) 다시 0~255로 변환
+        gammaCorrected.convertTo(channels[0], CV_8U, 255.0);
+        // 채널 합치고 BGR 복원
+        cv::merge(channels, ycrcb);
+        cv::cvtColor(ycrcb, frame, cv::COLOR_YCrCb2BGR);
+
         // 크기 조정
         cv::resize(frame, frame, cv::Size(320, 240));
 
